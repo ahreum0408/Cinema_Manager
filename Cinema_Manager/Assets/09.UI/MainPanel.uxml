@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
+    <ui:VisualElement name="container" style="flex-grow: 1;">
+        <ui:VisualElement name="top-container" style="height: 350px; margin-top: 200px; flex-direction: row; align-items: center; justify-content: space-between;">
+            <ui:VisualElement name="left-border" style="width: 22%; height: 100%; background-color: rgb(211, 255, 233);" />
+            <ui:VisualElement name="middle-border" style="width: 50%; height: 100%; background-color: rgb(211, 255, 233);" />
+            <ui:VisualElement name="left-border" style="width: 22%; height: 100%; align-items: flex-end; justify-content: center; background-color: rgb(211, 255, 233);">
+                <ui:VisualElement name="money-border" style="width: 85%; height: 28%; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; background-color: rgb(255, 255, 255); margin-right: 20px; flex-direction: row; align-items: center; justify-content: flex-start; margin-top: 10px; margin-bottom: 10px;">
+                    <ui:VisualElement name="icon" style="background-color: rgb(51, 255, 38); width: 60px; height: 60px;" />
+                    <ui:Label tabindex="-1" text="9999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="money-txt" class="middle-array_50" />
+                </ui:VisualElement>
+                <ui:VisualElement name="gam-border" style="width: 85%; height: 28%; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; background-color: rgb(255, 255, 255); margin-right: 20px; flex-direction: row; align-items: center; justify-content: flex-start; margin-top: 10px; margin-bottom: 10px;">
+                    <ui:VisualElement name="icon" style="background-color: rgb(255, 38, 163); width: 60px; height: 60px;" />
+                    <ui:Label tabindex="-1" text="9999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="gam-txt" class="middle-array_50" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
