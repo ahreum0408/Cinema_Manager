@@ -5,7 +5,7 @@ namespace UIToolkit {
     public abstract class UIView : IDisposable {
         protected bool isOverlay; // 부분 투명 여부
         protected bool hideOnAwake = true;
-        protected VisualElement topElement; // templeateContainer말하는거임
+        protected VisualElement topElement; // templeateContainer 말하는거임
 
         public VisualElement Root => topElement;
         public bool IsTransparent => isOverlay;
@@ -25,13 +25,16 @@ namespace UIToolkit {
             RegisterButtonCallbacks();
         }
 
-        // 설정
+        // 세팅
         protected virtual void SetVisualElements() {
 
         }
 
-        // 전체 콜백 등록
+        // 콜백 등록 및 해제
         protected virtual void RegisterButtonCallbacks() {
+
+        }
+        protected virtual void  UnRegisterButtonCallbacks() {
 
         }
 
@@ -43,7 +46,7 @@ namespace UIToolkit {
             topElement.style.display = DisplayStyle.None;
         }
 
-        // 모든 콜백 또는 이벤트 핸들러를 등록 해제
+        // 이벤트 핸들러를 등록 해제
         public virtual void Dispose() {
 
         }
