@@ -1,12 +1,17 @@
 using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
+// 구매 대기
 public class WaitBuy : Conditional
 {
+    public SharedCustomer customer;
+
     public override TaskStatus OnUpdate()
     {
-        return TaskStatus.Success;
+        if (customer.Value.wantBuy == customer.Value.currentBuy)
+        {
+            return TaskStatus.Failure;
+        }
+
+        return TaskStatus.Running;
     }
 }

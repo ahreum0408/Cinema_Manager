@@ -14,32 +14,49 @@ public enum CustomerState
 public class Customer : MonoBehaviour
 {
     [Header("Customer Type")]
+    public bool isBuy = false; // 구매 완료? 물건 다 받았냐
     public bool isSeat; // 식탁을 사용하는 손님인가?
     public bool isBad; // 진상 손님인가?
 
+    [Header("Buy Type")]
+    // 나중에 물건 타입도 추가?
+    [SerializeField] private int maxBuySum = 3;
+    public int wantBuy; // 원하는 수량
+    public int currentBuy; // 현재 받은 수량
+
+    [Space]
     private CustomerState currentState;
+    public Vector3 startPos;
 
     public NavMeshAgent Agent { get; private set; }
-
+    public Counter Counter {  get; private set; }
 
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
+        Counter = FindObjectOfType<Counter>();
         currentState = CustomerState.Line;
     }
 
     private void Start()
     {
+        startPos = transform.position;
         int rand = Random.Range(0, 3);
         if (rand > 0)
             isSeat = false;
         else
             isSeat = true;
+        SelectBuySum();
     }
 
     public void ChangeState(CustomerState changeState)
     {
         currentState = changeState;
+    }
+
+    private void SelectBuySum()
+    {
+        wantBuy = Random.Range(1, maxBuySum + 1);
     }
 }
 

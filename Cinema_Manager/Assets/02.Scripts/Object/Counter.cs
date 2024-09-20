@@ -45,11 +45,3 @@ public class Counter : MonoBehaviour
         }
     }
 }
-
-public class SharedCounter : SharedVariable<Counter>
-{
-    public static implicit operator SharedCounter(Counter value)
-    {
-        return new SharedCounter { Value = value };
-    }
-}

@@ -1429,8 +1429,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87d1da84fa52fe54282c8c7fcb2dbbcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isBuy: 0
   isSeat: 0
   isBad: 0
+  maxBuySum: 3
+  wantBuy: 0
+  currentBuy: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!195 &391416429388958199
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1632,7 +1637,7 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"Variables":[{"Type":"SharedCustomer","Name":"Customer","IsShared":true,"CustomermValue":0},{"Type":"SharedCounter","Name":"Counter","IsShared":true,"CountermValue":1}]}'
+      JSONSerialization: '{"Variables":[{"Type":"SharedCustomer","Name":"Customer","IsShared":true,"CustomermValue":0}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -1640,7 +1645,6 @@ MonoBehaviour:
         dataPosition: 
         unityObjects:
         - {fileID: 45224758067865580}
-        - {fileID: 115630431}
         byteData: 
         byteDataArray: 
       Version: 1.7.10

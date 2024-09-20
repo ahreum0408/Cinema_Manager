@@ -1,16 +1,15 @@
 using BehaviorDesigner.Runtime.Tasks;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// 구매 줄 체크
-public class CheckLine : Action
+public class EndCustomer : Action
 {
     public SharedCustomer customer;
 
     private Vector3 _destination;
     private NavMeshAgent _agent;
-
-    private bool _isStarted;
 
     public override void OnAwake()
     {
@@ -19,21 +18,13 @@ public class CheckLine : Action
 
     public override void OnStart()
     {
-        customer.Value.Counter.AddCustomer(customer.Value);
-        _destination = customer.Value.Counter.checkPoint.position;
+        customer.Value.Counter.RemoveCustomer(customer.Value);
+        _destination = customer.Value.startPos;
         _agent.SetDestination(_destination);
-        _isStarted = true;
-        Debug.Log(_destination);
     }
 
     public override TaskStatus OnUpdate()
     {
-        if (_isStarted)
-        {
-            _isStarted = false;
-            return TaskStatus.Running;
-        }
-
         float threshold = _agent.stoppingDistance + 0.1f;
         if (!_agent.isPathStale && _agent.remainingDistance < threshold)
         {

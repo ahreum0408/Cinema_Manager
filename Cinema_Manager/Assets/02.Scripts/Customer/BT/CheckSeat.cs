@@ -1,17 +1,16 @@
 using BehaviorDesigner.Runtime.Tasks;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// 구매 가능한 상태인지 체크
-public class CheckBuy : Conditional
+public class CheckSeat : Conditional
 {
     public SharedCustomer customer;
 
     public override TaskStatus OnUpdate()
     {
-        if (customer.Value.Counter.lineList.Count == 1)
-        {
-            customer.Value.ChangeState(CustomerState.Buy);
+        if(!customer.Value.isSeat)
             return TaskStatus.Success;
-        }
         else
             return TaskStatus.Failure;
     }
