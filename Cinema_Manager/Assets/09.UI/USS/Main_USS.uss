@@ -1,0 +1,52 @@
+.top-container {
+    height: 350px;
+    margin-top: 200px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#gaugebar > #unity-progress-bar {
+    height: 100%;
+    max-height: 100%;
+}
+
+.left-border {
+    width: 22%;
+    height: 100%;
+    background-color: rgb(211, 255, 233);
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.middle-border {
+    width: 50%;
+    height: 100%;
+    background-color: rgb(211, 255, 233);
+    align-items: center;
+    justify-content: center;
+}
+
+.right-border {
+    width: 22%;
+    height: 100%;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: rgb(211, 255, 233);
+}
+
+.good-border {
+    width: 85%;
+    height: 28%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: rgb(255, 255, 255);
+    margin-right: 20px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

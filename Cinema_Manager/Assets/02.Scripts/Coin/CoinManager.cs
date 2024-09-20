@@ -3,27 +3,37 @@ using UnityEngine;
 
 public class CoinManager : MonoSingleton<CoinManager> {
     private int _coin = 0;
+    private int _gam = 0;
 
     public int Coin {
         get {
             return _coin;
         }
         set {
-            if(_coin - value < 0) {
-                _coin = value;
-                Debug.LogWarning("현재 코인이 -임");
-            }
-            else {
-                _coin = value;
-            }
-            changeCoinEvent?.Invoke(_coin);
-        }
+            _coin += value;
+            MainEvents.ChangeCoinEvent?.Invoke(_coin);
 
+            if(_coin < 0) {
+                Debug.LogWarning("[주의] 현재 코인이 -임");
+            }
+        }
+    }
+    public int Gam {
+        get {
+            return _gam;
+        }
+        set {
+            _gam += value;
+            MainEvents.ChangeGamEvent?.Invoke(_gam);
+            
+            if (_gam < 0) {
+                Debug.LogWarning("[주의] 현재 잼이 -임");
+            }
+        }
     }
 
-    public Action<int> changeCoinEvent; // ui변경을 넣거나
-
-    public void ResetCoins() {
+    public void ResetGoods() {
         _coin = 0;
+        _gam = 0;
     }
 }

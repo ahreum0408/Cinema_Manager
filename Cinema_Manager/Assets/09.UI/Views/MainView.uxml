@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/USS/Main_USS.uss?fileID=7433441132597879392&amp;guid=ac0eb11ece132c14c8283d2efee773c1&amp;type=3#Main_USS" />
+    <ui:VisualElement name="container" style="flex-grow: 1;">
+        <ui:VisualElement name="top-container" class="top-container">
+            <ui:VisualElement name="left-border" class="left-border">
+                <ui:Button text="설정" parse-escape-sequences="true" display-tooltip-when-elided="true" name="setting-btn" class="btn-middle-array_30" style="-unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/10.Fonts/Rix%20X%20ladywatermelon%20Regular.ttf?fileID=12800000&amp;guid=060932080ae844041bd53088467dfd1f&amp;type=3#Rix X ladywatermelon Regular&quot;); width: 80px; height: 80px; margin-left: 30px;" />
+                <ui:Button text="상점" parse-escape-sequences="true" display-tooltip-when-elided="true" name="store-btn" class="btn-middle-array_30" style="-unity-font-definition: initial; -unity-font: url(&quot;project://database/Assets/10.Fonts/Rix%20X%20ladywatermelon%20Regular.ttf?fileID=12800000&amp;guid=060932080ae844041bd53088467dfd1f&amp;type=3#Rix X ladywatermelon Regular&quot;); width: 80px; height: 80px; margin-left: 30px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="middle-border" class="middle-border">
+                <ui:VisualElement name="levelbar" style="flex-direction: row-reverse; align-items: center; width: 70%; justify-content: center; height: 15%;">
+                    <ui:ProgressBar value="10" title="level-progress" name="gaugebar" style="width: 80%; justify-content: center; height: 100%; flex-grow: 1;" />
+                    <ui:VisualElement name="icon" style="width: 80px; height: 80px; background-color: rgb(255, 253, 38); overflow: visible; left: 7px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="right-border" class="right-border">
+                <ui:VisualElement name="coin-border" class="good-border">
+                    <ui:VisualElement name="icon" style="background-color: rgb(51, 255, 38); width: 60px; height: 60px;" />
+                    <ui:Label tabindex="-1" text="9999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="coin-txt" class="text_middle-array_50" />
+                </ui:VisualElement>
+                <ui:VisualElement name="gam-border" class="good-border">
+                    <ui:VisualElement name="icon" style="background-color: rgb(255, 38, 163); width: 60px; height: 60px;" />
+                    <ui:Label tabindex="-1" text="9999" parse-escape-sequences="true" display-tooltip-when-elided="true" name="gam-txt" class="text_middle-array_50" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,7 +1,14 @@
-.middle-array_50 {
+.text_middle-array_50 {
     -unity-text-align: middle-center;
     font-size: 50px;
+    -unity-font: url("project://database/Assets/10.Fonts/Rix%20X%20ladywatermelon%20Regular.ttf?fileID=12800000&guid=060932080ae844041bd53088467dfd1f&type=3#Rix X ladywatermelon Regular");
+    -unity-font-definition: initial;
     flex-grow: 1;
+}
+
+.btn-middle-array_30 {
+    -unity-text-align: middle-center;
+    font-size: 30px;
     -unity-font: url("project://database/Assets/10.Fonts/Rix%20X%20ladywatermelon%20Regular.ttf?fileID=12800000&guid=060932080ae844041bd53088467dfd1f&type=3#Rix X ladywatermelon Regular");
     -unity-font-definition: initial;
 }
