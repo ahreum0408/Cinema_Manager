@@ -23,11 +23,12 @@ public class PlayerController : AgentController
 
     private AgentMovementComponent _agentMovement;
     private AgentAnimationComponent _agentAnimation;
-    //private AgentStackComponent stackComponent;
+    private AgentStackComponent _stackComponent;
 
     // Property
-    //public bool IsStackMax => stackComponent.IsStackMax;
-    //public bool IsStacked => stackComponent.IsStacked;
+    public bool IsStackMax => _stackComponent.IsStackMax;
+    public bool IsStacked => _stackComponent.IsStacked;
+    public bool IsHolding = false;
 
     // Events
     //public Action<Bread> OnTakeBread;
@@ -57,7 +58,7 @@ public class PlayerController : AgentController
 
         _agentMovement = GetAgentComponent<AgentMovementComponent>();
         _agentAnimation = GetAgentComponent<AgentAnimationComponent>();
-        //stackComponent = GetAgentComponent<AgentStackComponent>();
+        _stackComponent = GetAgentComponent<AgentStackComponent>();
     }
     protected override void OnEnable()
     {
@@ -102,16 +103,20 @@ public class PlayerController : AgentController
         _agentAnimation.SetMovementAnimation(inputValue);
     }
 
-    /*
-    private void HandleTakeBread(Bread bread)
+    private void HandleTakeBread(ITakeable takeable)
     {
-        stackComponent.TakeObject(bread);
-        _agentAnimation.SetStackState();
+        _stackComponent.TakeObject(takeable);
+        if (IsHolding == false)
+        {
+            IsHolding = true;
+            _agentAnimation.UpperHoldingAnimation(IsHolding);
+        }
 
         // UI Update
         OnStackMaxed?.Invoke(IsStackMax);
     }
 
+    /*
     private Bread HandleGiveBread()
     {
         Bread bread = stackComponent.GetTopObject() as Bread;

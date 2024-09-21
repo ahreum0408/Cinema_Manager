@@ -21,9 +21,7 @@ public class AgentMovementComponent : AgentComponent
         }
     }
 
-    public override void ControllerUpdate()
-    {
-    }
+    public override void ControllerUpdate() {}
 
     public override void ControllerFixedUpdate()
     {
