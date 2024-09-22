@@ -22,12 +22,13 @@ MonoBehaviour:
       variableStartIndex: 
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(294.400024,136.400024)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(4.40002441,116.400024)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-114.099976,157.200043)"},"ID":2,"Name":"\uc904\uc11c\uae30","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckLine","NodeData":{"Offset":"(-111.558945,206.901123)"},"ID":3,"Name":"Check
         Line","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(84.07938,203.8634)"},"ID":4,"Name":"Inverter","Instant":true,"Children":[{"Type":"CheckBuy","NodeData":{"Offset":"(-3.41675568,151.995972)"},"ID":5,"Name":"Check
-        Buy","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(154.392822,158.85321)"},"ID":6,"Name":"\uad6c\ub9e4
-        \ub300\uae30 & \uad6c\ub9e4 \uccb4\ud06c","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"WaitBuy","NodeData":{"Offset":"(5.95002937,192.16333)"},"ID":7,"Name":"Wait
-        Buy","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(391.965424,158.040741)"},"ID":8,"Name":"\uba39\uace0
-        \uac00\ub294\uc9c0 \uccb4\ud06c","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckSeat","NodeData":{"Offset":"(-76.3558,194.4928)"},"ID":9,"Name":"Check
-        Seat","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"EndCustomer","NodeData":{"Offset":"(85.072876,186.397461)"},"ID":10,"Name":"End
-        Customer","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]}]},"Variables":[{"Type":"SharedCustomer","Name":"Customer","IsShared":true}]}'
+        Buy","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(154.392822,187.424622)"},"ID":6,"Name":"\uad6c\ub9e4
+        \ub300\uae30 & \uad6c\ub9e4 \uccb4\ud06c","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"WaitBuy","NodeData":{"Offset":"(5.95003128,192.16333)"},"ID":7,"Name":"Wait
+        Buy","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(406.251129,186.612152)"},"ID":8,"Name":"\uba39\uace0
+        \uac00\ub294\uc9c0 \uccb4\ud06c","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckSeat","NodeData":{"Offset":"(-62.0700874,194.4928)"},"ID":9,"Name":"Check
+        Seat","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"FindChair","NodeData":{"Offset":"(80.00006,190)"},"ID":10,"Name":"Find
+        Chair","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},{"Type":"EndCustomer","NodeData":{"Offset":"(1000,250)"},"ID":11,"Name":"End
+        Customer","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},"Variables":[{"Type":"SharedCustomer","Name":"Customer","IsShared":true}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 

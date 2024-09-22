@@ -1,4 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
+using UnityEngine;
 
 // 구매 가능한 상태인지 체크
 public class CheckBuy : Conditional
@@ -7,11 +8,8 @@ public class CheckBuy : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if (customer.Value.Counter.lineList.Count == 1)
-        {
-            customer.Value.ChangeState(CustomerState.Buy);
+        if (customer.Value.isBuy == true)
             return TaskStatus.Success;
-        }
         else
             return TaskStatus.Failure;
     }

@@ -2,15 +2,6 @@ using BehaviorDesigner.Runtime;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum CustomerState
-{
-    Line, 
-    Buy, 
-    WaitSeat, 
-    Seat, 
-    End
-}
-
 public class Customer : MonoBehaviour
 {
     [Header("Customer Type")]
@@ -24,18 +15,17 @@ public class Customer : MonoBehaviour
     public int wantBuy; // 원하는 수량
     public int currentBuy; // 현재 받은 수량
 
-    [Space]
-    private CustomerState currentState;
     public Vector3 startPos;
 
     public NavMeshAgent Agent { get; private set; }
     public Counter Counter {  get; private set; }
+    public Table Table { get; private set; }
 
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
         Counter = FindObjectOfType<Counter>();
-        currentState = CustomerState.Line;
+        Table = FindObjectOfType<Table>();
     }
 
     private void Start()
@@ -49,9 +39,19 @@ public class Customer : MonoBehaviour
         SelectBuySum();
     }
 
-    public void ChangeState(CustomerState changeState)
+    public Chair CanSeatChair()
     {
-        currentState = changeState;
+
+        foreach(var c in Table.chairs)
+        {
+            if(!c.IsUsing && !c.IsDirty)
+            {
+                c.IsUsing = true;
+                c.IsDirty = true;
+                return c;
+            }
+        }
+        return null;
     }
 
     private void SelectBuySum()

@@ -1,4 +1,3 @@
-using BehaviorDesigner.Runtime;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,15 +8,19 @@ public class Counter : MonoBehaviour
 
     public List<Customer> lineList = new List<Customer>();
 
+    private bool isStart = true; // √π º’¥‘¿Œ∞°?
+
     public void AddCustomer(Customer customer)
     {
         lineList.Add(customer);
 
-        if (lineList.Count == 1)
-            customer.ChangeState(CustomerState.Buy);
+        if (isStart)
+        {
+            customer.isBuy = true;
+            isStart = false;
+        }
         else
         {
-            customer.ChangeState(CustomerState.Line);
             checkPoint.position = new Vector3(
                 checkPoint.position.x,
                 checkPoint.position.y,
@@ -30,18 +33,21 @@ public class Counter : MonoBehaviour
     {
         lineList.Remove(customer);
 
-        if (customer.isSeat)
-            customer.ChangeState(CustomerState.WaitSeat);
-        else
-            customer.ChangeState(CustomerState.End);
 
+        isStart = true;
         foreach (var customers in lineList)
         {
+            if(isStart)
+            {
+                customers.isBuy = true;
+                isStart = false;
+            }
             customers.Agent.SetDestination(new Vector3(
-                customers.transform.position.x, 
-                customers.transform.position.y, 
+                customers.transform.position.x,
+                customers.transform.position.y,
                 customers.transform.position.z + lineInterval)
             );
+            customers.Agent.destination
         }
     }
 }

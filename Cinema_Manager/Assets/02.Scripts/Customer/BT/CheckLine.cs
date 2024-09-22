@@ -2,7 +2,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 
-// 구매 줄 체크
+// 구매 줄 체크 & 이동
 public class CheckLine : Action
 {
     public SharedCustomer customer;
@@ -23,7 +23,6 @@ public class CheckLine : Action
         _destination = customer.Value.Counter.checkPoint.position;
         _agent.SetDestination(_destination);
         _isStarted = true;
-        Debug.Log(_destination);
     }
 
     public override TaskStatus OnUpdate()

@@ -1,10 +1,8 @@
 using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EndCustomer : Action
+public class FindChair : Action
 {
     public SharedCustomer customer;
 
@@ -18,7 +16,7 @@ public class EndCustomer : Action
 
     public override void OnStart()
     {
-        _destination = customer.Value.startPos;
+        _destination = customer.Value.CanSeatChair().transform.position;
         _agent.SetDestination(_destination);
     }
 

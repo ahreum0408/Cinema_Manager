@@ -9,6 +9,7 @@ public class WaitBuy : Conditional
     {
         if (customer.Value.wantBuy == customer.Value.currentBuy)
         {
+            customer.Value.Counter.RemoveCustomer(customer.Value);
             return TaskStatus.Failure;
         }
 
