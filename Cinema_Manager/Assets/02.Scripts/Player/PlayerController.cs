@@ -28,11 +28,10 @@ public class PlayerController : AgentController
     // Property
     public bool IsStackMax => _stackComponent.IsStackMax;
     public bool IsStacked => _stackComponent.IsStacked;
-    public bool IsHolding = false;
 
     // Events
-    //public Action<Bread> OnTakeBread;
-    //public Func<Bread> OnGiveBread;
+    public Action<ITakeable> OnTakeFood;
+    public Func<ITakeable> OnGiveFood;
 
     public Action<int> OnGetPaid;
     public Func<int, int> OnPaidCost;
@@ -64,8 +63,8 @@ public class PlayerController : AgentController
     {
         base.OnEnable();
 
-        //OnTakeBread += HandleTakeBread;
-        //OnGiveBread += HandleGiveBread;
+        OnTakeFood += HandleTakeFood;
+        OnGiveFood += HandleGiveFood;
         //OnGetPaid += HandleOnGetPaid;
         //OnPaidCost += HandleOnPaidCost;
     }
@@ -84,8 +83,8 @@ public class PlayerController : AgentController
     {
         base.OnDisable();
 
-        //OnTakeBread -= HandleTakeBread;
-        //OnGiveBread -= HandleGiveBread;
+        OnTakeFood -= HandleTakeFood;
+        OnGiveFood -= HandleGiveFood;
         //OnGetPaid -= HandleOnGetPaid;
         //OnPaidCost -= HandleOnPaidCost;
     }
@@ -103,36 +102,28 @@ public class PlayerController : AgentController
         _agentAnimation.SetMovementAnimation(inputValue);
     }
 
-    private void HandleTakeBread(ITakeable takeable)
+    private void HandleTakeFood(ITakeable takeable)
     {
+        if (IsStacked == false)
+            _agentAnimation.UpperHoldingAnimation(true);
+
         _stackComponent.TakeObject(takeable);
-        if (IsHolding == false)
-        {
-            IsHolding = true;
-            _agentAnimation.UpperHoldingAnimation(IsHolding);
-        }
 
         // UI Update
-        OnStackMaxed?.Invoke(IsStackMax);
+        //OnStackMaxed?.Invoke(IsStackMax);
     }
 
-    /*
-    private Bread HandleGiveBread()
+    private Food HandleGiveFood()
     {
-        Bread bread = stackComponent.GetTopObject() as Bread;
+        Food food = _stackComponent.GetTopObject() as Food;
 
         // UI Update
-        OnStackMaxed?.Invoke(IsStackMax);
+        //OnStackMaxed?.Invoke(IsStackMax);
 
-        this.FrameDelayAfterAction(5, () =>
-        {
-            if (false == stackComponent.IsStacked)
-            {
-                _agentAnimation.SetDefaultState();
-            }
-        }).Forget();
+        if (IsStacked == false)
+            _agentAnimation.UpperHoldingAnimation(false);
 
-        return bread;
+        return food;
     }
 
     private void HandleOnGetPaid(int moneyAmount)
@@ -154,6 +145,5 @@ public class PlayerController : AgentController
 
         return beforeMoneyAmount;
     }
-    */
     #endregion
 }
