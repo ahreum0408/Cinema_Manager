@@ -11,6 +11,6 @@ public class CheckBuy : Conditional
         if (customer.Value.isBuy == true)
             return TaskStatus.Success;
         else
-            return TaskStatus.Failure;
+            return TaskStatus.Running;
     }
 }

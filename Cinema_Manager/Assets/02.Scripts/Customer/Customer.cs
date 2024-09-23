@@ -15,7 +15,8 @@ public class Customer : MonoBehaviour
     public int wantBuy; // 원하는 수량
     public int currentBuy; // 현재 받은 수량
 
-    public Vector3 startPos;
+    [HideInInspector] public Vector3 startPos;
+    [HideInInspector] public Chair currentChair;
 
     public NavMeshAgent Agent { get; private set; }
     public Counter Counter {  get; private set; }
@@ -31,27 +32,12 @@ public class Customer : MonoBehaviour
     private void Start()
     {
         startPos = transform.position;
-        int rand = Random.Range(0, 3);
+        int rand = Random.Range(0, 2);
         if (rand > 0)
             isSeat = false;
         else
             isSeat = true;
         SelectBuySum();
-    }
-
-    public Chair CanSeatChair()
-    {
-
-        foreach(var c in Table.chairs)
-        {
-            if(!c.IsUsing && !c.IsDirty)
-            {
-                c.IsUsing = true;
-                c.IsDirty = true;
-                return c;
-            }
-        }
-        return null;
     }
 
     private void SelectBuySum()

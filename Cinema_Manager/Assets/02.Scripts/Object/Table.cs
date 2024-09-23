@@ -11,4 +11,16 @@ public class Table : MonoBehaviour
     {
         chairs = GetComponentsInChildren<Chair>().ToList();
     }
+
+    public Chair CanSeatChair()
+    {
+        foreach (var chair in chairs)
+        {
+            if (!chair.IsUsing && !chair.IsDirty)
+            {
+                return chair;
+            }
+        }
+        return null;
+    }
 }

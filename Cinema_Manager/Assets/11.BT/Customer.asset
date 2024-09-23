@@ -24,10 +24,11 @@ MonoBehaviour:
         Line","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(84.07938,203.8634)"},"ID":4,"Name":"Inverter","Instant":true,"Children":[{"Type":"CheckBuy","NodeData":{"Offset":"(-3.41675568,151.995972)"},"ID":5,"Name":"Check
         Buy","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(154.392822,187.424622)"},"ID":6,"Name":"\uad6c\ub9e4
         \ub300\uae30 & \uad6c\ub9e4 \uccb4\ud06c","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"WaitBuy","NodeData":{"Offset":"(5.95003128,192.16333)"},"ID":7,"Name":"Wait
-        Buy","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(406.251129,186.612152)"},"ID":8,"Name":"\uba39\uace0
-        \uac00\ub294\uc9c0 \uccb4\ud06c","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckSeat","NodeData":{"Offset":"(-62.0700874,194.4928)"},"ID":9,"Name":"Check
-        Seat","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"FindChair","NodeData":{"Offset":"(80.00006,190)"},"ID":10,"Name":"Find
-        Chair","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},{"Type":"EndCustomer","NodeData":{"Offset":"(1000,250)"},"ID":11,"Name":"End
+        Buy","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(449.96933,186.612152)"},"ID":8,"Name":"\uba39\uace0
+        \uac00\ub294\uc9c0 \uccb4\ud06c","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckSeat","NodeData":{"Offset":"(-127.859543,168.177)"},"ID":9,"Name":"Check
+        Seat","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"FindChair","NodeData":{"Offset":"(4.848469,173.939453)"},"ID":10,"Name":"Find
+        Chair","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"UseTable","NodeData":{"Offset":"(151.2655,163.930923)"},"ID":11,"Name":"Use
+        Table","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true},"SingleeatTime":2}]},{"Type":"EndCustomer","NodeData":{"Offset":"(878.7881,189.393982)"},"ID":12,"Name":"End
         Customer","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},"Variables":[{"Type":"SharedCustomer","Name":"Customer","IsShared":true}]}'
       fieldSerializationData:
         typeName: []

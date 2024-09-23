@@ -33,8 +33,8 @@ public class Counter : MonoBehaviour
     {
         lineList.Remove(customer);
 
-
         isStart = true;
+        Customer beforeCustomer = null;
         foreach (var customers in lineList)
         {
             if(isStart)
@@ -42,12 +42,24 @@ public class Counter : MonoBehaviour
                 customers.isBuy = true;
                 isStart = false;
             }
-            customers.Agent.SetDestination(new Vector3(
-                customers.transform.position.x,
-                customers.transform.position.y,
-                customers.transform.position.z + lineInterval)
-            );
-            customers.Agent.destination
+
+            if(beforeCustomer == null)
+            {
+                customers.Agent.SetDestination(new Vector3(
+                    customers.Agent.destination.x,
+                    customers.Agent.destination.y,
+                    customers.Agent.destination.z + lineInterval)
+                );
+            }
+            else
+            {
+                customers.Agent.SetDestination(new Vector3(
+                    beforeCustomer.Agent.destination.x,
+                    beforeCustomer.Agent.destination.y,
+                    beforeCustomer.Agent.destination.z - lineInterval)
+                );
+            }
+            beforeCustomer = customers;
         }
     }
 }

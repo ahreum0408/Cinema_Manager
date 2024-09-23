@@ -9,8 +9,12 @@ public class CheckSeat : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if(customer.Value.isSeat && customer.Value.CanSeatChair() != null)
+        if(customer.Value.isSeat && customer.Value.Table.CanSeatChair() != null)
+        {
+            customer.Value.currentChair = customer.Value.Table.CanSeatChair();
+            customer.Value.currentChair.ChangeUsingState(true);
             return TaskStatus.Success;
+        }
         else
             return TaskStatus.Failure;
     }
