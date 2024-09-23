@@ -9,6 +9,23 @@ namespace ObjectPool {
         MoveGlass,
         JumpPad,
         NormalGam,
-        RareGam
+        RareGam,
+
+        // Food
+        Bread,
+        TriangularGimbap,
+        CupRamen,
+        Snack,
+        Jelly,
+
+        Coffee,
+        Coke,
+        Juice,
+        Beer,
+        Soju,
+
+        // Takeable
+        Trash,
+        Money,
     }
 }
