@@ -1,3 +1,4 @@
+using ObjectPooling;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,7 +38,7 @@ public class AgentStackComponent : AgentComponent
 
         foreach (var obj in _takeObjectStack)
         {
-            //PoolManager.Instance.Push(obj as PoolableMono);
+            PoolManager.Instance.Push(obj as PoolableMono);
         }
 
         _takeObjectStack.Clear();

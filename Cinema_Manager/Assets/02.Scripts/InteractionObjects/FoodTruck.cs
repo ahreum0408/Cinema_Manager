@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using ObjectPooling;
+using System;
 
 public class FoodTruck : MonoBehaviour
 {
-    [Header("Food")]
-    [SerializeField] private ObjectPool.PoolObjectType _poolObjType;
+    public Action OnBringFood;
 
     [Header("Truck Move Setting")]
     [SerializeField] private Transform _visualTrm;
@@ -15,11 +15,9 @@ public class FoodTruck : MonoBehaviour
     [SerializeField] private Transform _endTrm;
     [SerializeField] private float _moveTime = 5;
 
-    private FoodBox _foodBox;
-
-    private void Awake()
+    private void Start()
     {
-        _foodBox = GetComponentInParent<FoodBox>();
+        _visualTrm.position = _startTrm.position;
     }
 
     private void Update()
@@ -43,8 +41,6 @@ public class FoodTruck : MonoBehaviour
     // 음식 가져옴
     public void BringBackFood()
     {
-        PoolableMono food = PoolManager.Instance.Pop(_poolObjType);
-        // foodBox한테 food넘겨주기 (함수)
         TruckMove(_endTrm.position);
     }
 
@@ -52,6 +48,11 @@ public class FoodTruck : MonoBehaviour
     {
         if (_visualTrm.position == targetPos) return;
 
-        _visualTrm.DOMove(targetPos, _moveTime).SetEase(Ease.InBack);
+        _visualTrm.DOMove(targetPos, _moveTime)
+            .SetEase(Ease.InBack)
+            .OnComplete(() =>
+        {
+            OnBringFood?.Invoke();
+        });
     }
 }

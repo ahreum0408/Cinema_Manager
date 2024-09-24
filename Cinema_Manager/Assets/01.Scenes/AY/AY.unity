@@ -169,7 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d681e8011be32649bd96e3c9289acbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolObjType: 10
   _visualTrm: {fileID: 1153913648}
   _startTrm: {fileID: 491522376}
   _endTrm: {fileID: 1778545961}
@@ -771,7 +770,7 @@ GameObject:
   - component: {fileID: 701036943}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: Interactionable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -837,7 +836,7 @@ Transform:
   m_GameObject: {fileID: 777087716}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.913, y: 0.118, z: 0.828}
+  m_LocalPosition: {x: -1.405, y: 0.157, z: 1.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1249,7 +1248,7 @@ GameObject:
   - component: {fileID: 1187288696}
   m_Layer: 0
   m_Name: FoodBox
-  m_TagString: Untagged
+  m_TagString: Interactionable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1285,6 +1284,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7644059d59bffe4fbce046b8efdde92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnTrm: {fileID: 777087717}
+  _poolObjType: 10
+  _spacingX: 1
+  _spacingZ: 1
+  _spacingY: 1
 --- !u!1 &1213388282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1649,12 +1653,13 @@ GameObject:
   - component: {fileID: 1754152309}
   - component: {fileID: 1754152313}
   - component: {fileID: 1754152312}
+  - component: {fileID: 1754152317}
   - component: {fileID: 1754152316}
   - component: {fileID: 1754152315}
   - component: {fileID: 1754152314}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1756,8 +1761,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44ea89b84572bb48a99b957fd7201d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _holderTransform: {fileID: 0}
-  _spacingY: 0.4
+  _holderTransform: {fileID: 1940261147}
+  _spacingY: 0.2
   _maxStackCount: 3
 --- !u!114 &1754152315
 MonoBehaviour:
@@ -1785,6 +1790,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   rotateSpeed: 10
+--- !u!114 &1754152317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754152307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c902412669cdab942ac288670665227f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1778545960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,7 +1827,7 @@ Transform:
   m_GameObject: {fileID: 1778545960}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -15.94}
+  m_LocalPosition: {x: 0, y: 0, z: -15.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1840,13 +1857,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940261146}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.4364738, y: -0.5627586, z: -0.5155837, w: -0.47641033}
   m_LocalPosition: {x: -0.03, y: 0.067, z: -0.161}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2143379793}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 74.47, y: 0, z: 0}
 --- !u!1 &2008117233
 GameObject:
   m_ObjectHideFlags: 0
