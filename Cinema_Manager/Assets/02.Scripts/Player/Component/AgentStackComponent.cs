@@ -1,65 +1,64 @@
 using ObjectPooling;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AgentStackComponent : AgentComponent
 {
-    [SerializeField] private Transform holderTransform;
-    [SerializeField] private float spacingY = 0.4f;
-    [SerializeField] private int maxStackCount = 3;
+    [SerializeField] private Transform _holderTransform;
+    [SerializeField] private float _spacingY = 0.4f;
+    [SerializeField] private int _maxStackCount = 3;
 
-    private Stack<ITakeable> takeObjectStack;
+    private Stack<ITakeable> _takeObjectStack;
 
     // Counts
-    public int CurrentStackCount => takeObjectStack.Count;
-    public int RemainingStackCount => maxStackCount - CurrentStackCount;
+    public int CurrentStackCount => _takeObjectStack.Count;
+    public int RemainingStackCount => _maxStackCount - CurrentStackCount;
 
     // Bool
-    public bool IsStackMax => CurrentStackCount >= maxStackCount;
+    public bool IsStackMax => CurrentStackCount >= _maxStackCount;
     public bool IsStacked => CurrentStackCount > 0;
 
-    private readonly Vector3 stackObjectRotation = new Vector3(0, 90, 0);
+    private readonly Vector3 _stackObjectRotation = new Vector3(0, 90, 0);
 
     public override void Init(AgentController controller)
     {
         base.Init(controller);
 
-        takeObjectStack = new Stack<ITakeable>();
+        _takeObjectStack = new Stack<ITakeable>();
     }
 
     private void OnEnable()
     {
-        takeObjectStack ??= new Stack<ITakeable>();
+        _takeObjectStack ??= new Stack<ITakeable>();
 
-        if (takeObjectStack.Count <= 0)
+        if (_takeObjectStack.Count <= 0)
         {
             return;
         }
 
-        foreach (var obj in takeObjectStack)
+        foreach (var obj in _takeObjectStack)
         {
-            //PoolManager.Instance.Push(obj as PoolableMono);
+            PoolManager.Instance.Push(obj as PoolableMono);
         }
 
-        takeObjectStack.Clear();
+        _takeObjectStack.Clear();
     }
 
     public void SetMaxStackCount(int maxStackCount)
     {
         if (false == IsStacked)
         {
-            this.maxStackCount = maxStackCount;
+            this._maxStackCount = maxStackCount;
         }
     }
 
     public void TakeObject(ITakeable takeableObject)
     {
         Vector3 objectPosition = Vector3.zero;
-        objectPosition.y += spacingY * CurrentStackCount;
+        objectPosition.y += _spacingY * CurrentStackCount;
 
-        takeableObject.Take(holderTransform, objectPosition, stackObjectRotation);
-        takeObjectStack.Push(takeableObject);
+        takeableObject.Take(_holderTransform, objectPosition, _stackObjectRotation);
+        _takeObjectStack.Push(takeableObject);
 
         /*
         if (takeableObject is Bread)
@@ -71,7 +70,7 @@ public class AgentStackComponent : AgentComponent
 
     public ITakeable GetTopObject()
     {
-        return takeObjectStack.Pop();
+        return _takeObjectStack.Pop();
     }
 
     public override void ControllerUpdate()
