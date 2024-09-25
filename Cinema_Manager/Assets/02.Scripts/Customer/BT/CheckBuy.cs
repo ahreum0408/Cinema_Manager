@@ -8,6 +8,9 @@ public class CheckBuy : Conditional
 
     public override TaskStatus OnUpdate()
     {
+        if (customer.Value.CurrentCustomerType == CustomerType.Basic && customer.Value.isBad == true)
+            return TaskStatus.Failure;
+
         if (customer.Value.isBuy == true)
             return TaskStatus.Success;
         else

@@ -43,7 +43,13 @@ public class Counter : MonoBehaviour
                 isStart = false;
             }
 
-            if(beforeCustomer == null)
+            if (customer.CurrentCustomerType == CustomerType.Call)
+            {
+                customer.ChangeCustomerMat();
+                break;
+            }
+
+            if (beforeCustomer == null)
             {
                 customers.Agent.SetDestination(new Vector3(
                     customers.Agent.destination.x,

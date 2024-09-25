@@ -19,6 +19,9 @@ public class UseTable : Conditional
     {
         if (currentEat == 0)
         {
+            if(currentEat == 0 && customer.Value.CurrentCustomerType == CustomerType.Sleep)
+                return TaskStatus.Running;
+
             customer.Value.currentChair.ChangeUsingState(false);
             customer.Value.currentChair.ChangeDirtyState(true);
             return TaskStatus.Failure;
