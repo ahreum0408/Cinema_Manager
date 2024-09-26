@@ -1,6 +1,8 @@
 using BehaviorDesigner.Runtime;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public enum CustomerType
 {
@@ -14,6 +16,7 @@ public class Customer : MonoBehaviour
     public bool isBuy = false; // 구매 완료? 물건 다 받았냐
     public bool isSeat; // 식탁을 사용하는 손님인가?
     public bool isBad; // 진상 손님인가?
+    public bool IsStacked => StackCompo.IsStacked;
 
     [Header("Buy Type")]
     // 나중에 물건 타입도 추가?
@@ -24,11 +27,17 @@ public class Customer : MonoBehaviour
     [HideInInspector] public Vector3 startPos;
     [HideInInspector] public Chair currentChair;
 
+    // Components
     public NavMeshAgent Agent { get; private set; }
     public SeoyeonCounter Counter {  get; private set; }
     public Table Table { get; private set; }
     public CustomerType CurrentCustomerType { get; private set; }
     public AgentStackComponent StackCompo { get; private set; }
+    public AgentAnimationComponent AnimationCompo { get; private set; }
+
+    // Events
+    public Action<ITakeable> OnTakeFood;
+    public Func<ITakeable> OnGiveFood;
 
     private MeshRenderer _meshRenderer;
     int i = 0;
@@ -37,8 +46,11 @@ public class Customer : MonoBehaviour
     {
         Agent = GetComponent<NavMeshAgent>();
         StackCompo = GetComponent<AgentStackComponent>();
+        AnimationCompo = GetComponent<AgentAnimationComponent>();
+
         Counter = FindObjectOfType<SeoyeonCounter>();
         Table = FindObjectOfType<Table>();
+
         _meshRenderer = GetComponent<MeshRenderer>();
     }
 
@@ -48,6 +60,9 @@ public class Customer : MonoBehaviour
         SetSeat();
         SetCustomerType();
         SelectBuySum();
+
+        OnTakeFood += HandleTakeFood;
+        OnGiveFood += HandleGiveFood;
     }
 
     private void SetSeat()
@@ -96,17 +111,33 @@ public class Customer : MonoBehaviour
         _meshRenderer.material = mat[i];
     }
 
-    private void Update()
+    #region Handle
+
+    private void HandleTakeFood(ITakeable takeable)
     {
-        // 디버깅용
-        if(Input.GetKeyDown(KeyCode.F))
-            ChangeCustomerType();
+        if (IsStacked == false)
+            AnimationCompo.UpperHoldingAnimation(true);
+
+        StackCompo.TakeObject(takeable);
+
+        // UI Update
+        //OnStackMaxed?.Invoke(IsStackMax);
     }
 
-    public void ChangeCustomerType()
+    private Food HandleGiveFood()
     {
-        CurrentCustomerType = CustomerType.Basic;
+        Food food = StackCompo.GetTopObject() as Food;
+
+        // UI Update
+        //OnStackMaxed?.Invoke(IsStackMax);
+
+        if (IsStacked == false)
+            AnimationCompo.UpperHoldingAnimation(false);
+
+        return food;
     }
+
+    #endregion
 }
 
 public class SharedCustomer : SharedVariable<Customer>

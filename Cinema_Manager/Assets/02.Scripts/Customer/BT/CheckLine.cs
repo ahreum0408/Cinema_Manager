@@ -27,6 +27,8 @@ public class CheckLine : Action
 
     public override TaskStatus OnUpdate()
     {
+        customer.Value.AnimationCompo.SetMovementAnimation(_destination);
+
         if (_isStarted)
         {
             _isStarted = false;

@@ -24,6 +24,8 @@ public class UseTable : Conditional
 
             customer.Value.currentChair.ChangeUsingState(false);
             customer.Value.currentChair.ChangeDirtyState(true);
+
+            customer.Value.AnimationCompo.SeatAnimation(false);
             return TaskStatus.Failure;
         }
 

@@ -24,6 +24,8 @@ public class EndCustomer : Action
 
     public override TaskStatus OnUpdate()
     {
+        customer.Value.AnimationCompo.SetMovementAnimation(_destination);
+
         float threshold = _agent.stoppingDistance + 0.1f;
         if (!_agent.isPathStale && _agent.remainingDistance < threshold)
         {

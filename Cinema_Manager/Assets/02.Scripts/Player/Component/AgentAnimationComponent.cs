@@ -49,4 +49,9 @@ public class AgentAnimationComponent : AgentComponent
             yield return null;
         }
     }
+
+    public void SeatAnimation(bool isSeat)
+    {
+        _animator.SetBool("Seat", isSeat);
+    }
 }
