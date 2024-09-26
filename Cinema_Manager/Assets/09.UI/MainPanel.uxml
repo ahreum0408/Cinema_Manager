@@ -1,6 +1,23 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="MainView" src="project://database/Assets/09.UI/Views/MainView.uxml?fileID=9197481963319205126&amp;guid=ecdbcb2b3f8f29646ad02d3cb0626551&amp;type=3#MainView" />
     <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/09.UI/USS/Main_USS.uss?fileID=7433441132597879392&amp;guid=ac0eb11ece132c14c8283d2efee773c1&amp;type=3#Main_USS" />
-    <ui:Instance template="MainView" name="MainView" />
+    <Style src="project://database/Assets/09.UI/USS/Setting_USS.uss?fileID=7433441132597879392&amp;guid=3e9fde11ccb9f9a4f8fa7fbfaa0ea2b1&amp;type=3#Setting_USS" />
+    <ui:VisualElement name="container" style="flex-grow: 1; justify-content: center; align-items: center;">
+        <ui:VisualElement name="background" style="width: 80%; height: 50%; min-width: 77%; min-height: 50%; max-height: 60%; max-width: 80%; background-color: rgb(255, 255, 255); border-top-left-radius: 35px; border-top-right-radius: 35px; border-bottom-right-radius: 35px; border-bottom-left-radius: 35px; align-items: center; justify-content: space-between;">
+            <ui:VisualElement name="top-container" class="top_bottom-container">
+                <ui:Label tabindex="-1" text="설정" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title-txt" class="text_middle-array_100" />
+            </ui:VisualElement>
+            <ui:VisualElement name="main-container" style="flex-grow: 1; width: 100%; justify-content: center;">
+                <ui:VisualElement name="bgm-content" class="sound-content" style="justify-content: center;">
+                    <ui:VisualElement name="icon" style="width: 180px; height: 180px; background-color: rgb(121, 234, 255); margin-right: 30px;" />
+                    <ui:Slider high-value="100" style="width: 65%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="bottom-container" class="top_bottom-container">
+                <ui:VisualElement name="buttom-content" class="top-bottom-container" style="flex-grow: 1; align-items: center;">
+                    <ui:Button text="닫기" parse-escape-sequences="true" display-tooltip-when-elided="true" name="closee-btn" class="text_middle-array_70" style="width: 60%; flex-grow: 1;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>
