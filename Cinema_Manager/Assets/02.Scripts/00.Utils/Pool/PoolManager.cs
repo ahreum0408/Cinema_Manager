@@ -1,42 +1,123 @@
-using ObjectPool;
-using ObjectPooling;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.Serialization;
 
-public class PoolManager : MonoSingleton<PoolManager> {
-    [SerializeField] private List<PoolingItemSO> mapData;
-    private Dictionary<PoolObjectType, Pool<PoolableMono>> _poolDictionary = new Dictionary<PoolObjectType, Pool<PoolableMono>>();
+public class PoolManager : MonoBehaviour
+{
+    public static PoolManager Instance;
+    Dictionary<string, Queue<GameObject>> poolDic = new Dictionary<string, Queue<GameObject>>();
+    [FormerlySerializedAs("poolingBase")] public SO_PoolingBase PoolingBase;
 
-    protected override void Awake() {
-        base.Awake();
-        foreach (PoolingItemSO item in mapData) {
-            CreatePool(item);
+    public void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+        
+        MakeObj();
+    }
+
+    void MakeObj()
+    {
+        PoolingPair[] poolingPairs = PoolingBase.pairs.ToArray();
+        for (int i = 0; i < poolingPairs.Length; i++)
+        {
+            poolDic.Add(poolingPairs[i].prefabTypeName, new Queue<GameObject>());
+        }
+        
+		for (int i = 0; i < poolingPairs.Length; i++)
+		{
+            for (int j = 0; j < poolingPairs[i].poolCount; j++)
+			{
+                GameObject poolObject = Instantiate(poolingPairs[i].prefab, Vector3.zero, Quaternion.identity);
+                poolObject.name = poolObject.name.Replace("(Clone)","");
+                Push(poolingPairs[i].prefabTypeName, poolObject);
+			}
         }
     }
 
-    private void CreatePool(PoolingItemSO item) {
-        Pool<PoolableMono> pool = new Pool<PoolableMono>(item.prefab, item.prefab.type, transform, item.prefabCount);
-        _poolDictionary.Add(item.prefab.type, pool);
-    }
-    public PoolableMono Pop(PoolObjectType type) {
-        if (_poolDictionary.ContainsKey(type) == false) {
-            Debug.LogError($"Prefab dose not exit on pool : {type.ToString()}");
-            return null;
-        }
-        PoolableMono item = _poolDictionary[type].Pop();
-        item.Reset();
-        return item;
-    }
-    public void Push(PoolableMono obj, bool resetParent = false) {
-        if (!resetParent) {
-            if (!_poolDictionary.ContainsKey(obj.type)) {
-                obj.transform.SetParent(transform);
-                _poolDictionary[obj.type].Push(obj);
+    public GameObject Pop(string type, Vector3 vec, Quaternion rot)
+    {
+        GameObject obj = poolDic[type].Dequeue();
+
+        if (poolDic[type].Count == 0)
+        {
+            for (int i = 0; i < PoolingBase.pairs.Count; i++)
+            {
+                if (PoolingBase.pairs[i].prefabTypeName == type)
+                {
+                    GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab, Vector3.zero, Quaternion.identity);
+                    poolObject.name = poolObject.name.Replace("(Clone)","");
+                    Push(type, poolObject);
+                    break;
+                }
             }
-            else {
-                Debug.LogWarning("너 똥멍청이야? 똑바로 푸시하라고 저번이랑 같은 실수 하고 싶어?? 너의 소중한 3시간이 멍청함으로 날아갔다고");
+        }
+        
+        obj.SetActive(true);
+        obj.transform.position = vec;
+        obj.transform.rotation = rot;
+
+        return obj;
+    }
+    public GameObject Pop(string type, Transform parentTrm)
+    {
+        GameObject obj = poolDic[type].Dequeue();
+
+        if (poolDic[type].Count == 0)
+        {
+            for (int i = 0; i < PoolingBase.pairs.Count; i++)
+            {
+                if (PoolingBase.pairs[i].prefabTypeName == type)
+                {
+                    GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab);
+                    poolObject.transform.localPosition = Vector3.zero;
+                    poolObject.transform.localRotation = Quaternion.identity;
+                    poolObject.name = poolObject.name.Replace("(Clone)","");
+                    Push(type, poolObject);
+                    break;
+                }
             }
         }
+        
+        obj.SetActive(true);
+        obj.transform.SetParent(parentTrm);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
+        return obj;
+    }
+    public GameObject Pop(string type, Transform parentTrm, Vector3 vec, Quaternion rot)
+    {
+        GameObject obj = poolDic[type].Dequeue();
+
+        if (poolDic[type].Count == 0)
+        {
+            for (int i = 0; i < PoolingBase.pairs.Count; i++)
+            {
+                if (PoolingBase.pairs[i].prefabTypeName == type)
+                {
+                    GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab);
+                    poolObject.transform.localPosition = vec;
+                    poolObject.transform.localRotation = rot;
+                    poolObject.name = poolObject.name.Replace("(Clone)","");
+                    Push(type, poolObject);
+                    break;
+                }
+            }
+        }
+        
+        obj.SetActive(true);
+        obj.transform.SetParent(parentTrm);
+        obj.transform.localPosition = vec;
+        obj.transform.localRotation = rot;
+        return obj;
+    }
+    public void Push(string type, GameObject gameObject)
+    {
+        gameObject.transform.SetParent(null);
+        gameObject.SetActive(false);
+        poolDic[type].Enqueue(gameObject);
     }
 }
