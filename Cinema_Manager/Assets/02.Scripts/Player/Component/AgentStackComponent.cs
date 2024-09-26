@@ -18,8 +18,6 @@ public class AgentStackComponent : AgentComponent
     public bool IsStackMax => CurrentStackCount >= _maxStackCount;
     public bool IsStacked => CurrentStackCount > 0;
 
-    private readonly Vector3 _stackObjectRotation = new Vector3(0, 90, 0);
-
     public override void Init(AgentController controller)
     {
         base.Init(controller);
@@ -52,20 +50,13 @@ public class AgentStackComponent : AgentComponent
         }
     }
 
-    public void TakeObject(ITakeable takeableObject)
+    public void TakeObject(ITakeable takeableObject, float spacingY, bool isDrink)
     {
         Vector3 objectPosition = Vector3.zero;
-        objectPosition.y += _spacingY * CurrentStackCount;
-
-        takeableObject.Take(_holderTransform, objectPosition, _stackObjectRotation);
+        objectPosition.y += spacingY * CurrentStackCount;
+        Vector3 rotation = isDrink == false ? new Vector3(90, 0, 0) : Vector3.zero;
+        takeableObject.Take(_holderTransform, objectPosition, rotation);
         _takeObjectStack.Push(takeableObject);
-
-        /*
-        if (takeableObject is Bread)
-        {
-            SoundManager.Instance.Play(UsingAudioClips.TakeObject);
-        }
-        */
     }
 
     public ITakeable GetTopObject()

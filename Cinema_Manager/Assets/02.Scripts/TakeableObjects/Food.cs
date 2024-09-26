@@ -8,16 +8,17 @@ public class Food : PoolableMono, ITakeable
 {
     private Rigidbody _rigid;
     private ObjectMovement _objectMovement;
+    private Vector3 _originScale;
+    private Vector3 _currentScale;
 
     public override void Reset()
     {
-
+        _originScale = transform.localScale;
     }
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody>();
-
         _objectMovement = GetComponent<ObjectMovement>();
     }   
 
@@ -26,7 +27,13 @@ public class Food : PoolableMono, ITakeable
         PhysicsSetting(true);
         transform.SetParent(parentTransform);
         transform.localRotation = Quaternion.Euler(takeRotation);
-        _objectMovement.JumpToPosition(takePosition);
+        _currentScale = transform.localScale;
+
+        Vector3 pos = new Vector3(takePosition.x,
+                                  takePosition.y * (_currentScale.y / _originScale.y),
+                                  takePosition.z);
+        Debug.Log((_currentScale.y / _originScale.y));
+        _objectMovement.JumpToPosition(pos);
     }
 
     private void PhysicsSetting(bool isOn)
