@@ -25,9 +25,10 @@ public class Customer : MonoBehaviour
     [HideInInspector] public Chair currentChair;
 
     public NavMeshAgent Agent { get; private set; }
-    public Counter Counter {  get; private set; }
+    public SeoyeonCounter Counter {  get; private set; }
     public Table Table { get; private set; }
     public CustomerType CurrentCustomerType { get; private set; }
+    public AgentStackComponent StackCompo { get; private set; }
 
     private MeshRenderer _meshRenderer;
     int i = 0;
@@ -35,7 +36,8 @@ public class Customer : MonoBehaviour
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
-        Counter = FindObjectOfType<Counter>();
+        StackCompo = GetComponent<AgentStackComponent>();
+        Counter = FindObjectOfType<SeoyeonCounter>();
         Table = FindObjectOfType<Table>();
         _meshRenderer = GetComponent<MeshRenderer>();
     }

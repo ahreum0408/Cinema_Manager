@@ -1,14 +1,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Counter : MonoBehaviour
+public class SeoyeonCounter : MonoBehaviour
 {
+    [SerializeField] private Transform objectHolder;
     [SerializeField] private float lineInterval;
     public Transform checkPoint;
 
     public List<Customer> lineList = new List<Customer>();
 
     private bool isStart = true; // √π º’¥‘¿Œ∞°?
+
+    private void Start()
+    {
+        PoolManager.Instance.Pop(ObjectPool.PoolObjectType.Bread);
+    }
 
     public void AddCustomer(Customer customer)
     {
