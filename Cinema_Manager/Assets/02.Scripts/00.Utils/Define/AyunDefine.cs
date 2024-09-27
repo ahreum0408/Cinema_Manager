@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -35,5 +36,12 @@ public static class AyunDefine
         public static readonly int JuiceNum_Create = 3; // 林胶
         public static readonly int BeerNum_Create = 3; // 钙林
         public static readonly int SojuNum_Create = 3; // 家林
+    }
+
+    public enum PoolableType
+    {
+        TriangularGimbap, CupRamen, Bread,Snack, Jelly,
+        Coffee, Coke, Juice, Beer, Soju,
+        Money, Trash,
     }
 }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef843ff4ebdeee344a631d7c1ad9917f, type: 3}
+  m_Name: PoolBaseSO
+  m_EditorClassIdentifier: 
+  pairs:
+  - prefab: {fileID: 3352509343377554925, guid: dbb741b60e37f0e429e3d67f6b6ae51d,
+      type: 3}
+    prefabTypeName: Bread
+    poolCount: 6
+  - prefab: {fileID: 678304681266166547, guid: 2d2fa2c9096e19f4aab56c9afee40b6c, type: 3}
+    prefabTypeName: Trash
+    poolCount: 6
+  - prefab: {fileID: 914896148464602540, guid: 869d1c791e028704eb1cd735f141a4c2, type: 3}
+    prefabTypeName: Beer
+    poolCount: 6

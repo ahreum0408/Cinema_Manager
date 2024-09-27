@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static AyunDefine;
 
 public class SeoyeonCounter : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class SeoyeonCounter : MonoBehaviour
 
     private void Start()
     {
-        PoolManager.Instance.Pop(ObjectPool.PoolObjectType.Bread);
+        PoolManager.Instance.Pop(PoolableType.Bread.ToString(), Vector3.zero, Quaternion.identity);
     }
 
     public void AddCustomer(Customer customer)

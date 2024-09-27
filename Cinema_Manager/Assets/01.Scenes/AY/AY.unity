@@ -964,11 +964,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1291088800}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 929979319e351e64c8140853bc96d837, type: 3}
+  m_Script: {fileID: 11500000, guid: 4889394bf6bb225498bb7f1958045b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapData:
-  - {fileID: 11400000, guid: fed6dc004dcaae746abf603732d050aa, type: 2}
+  PoolingBase: {fileID: 11400000, guid: 07952fb6f0d9ac44a978a1d3ac424c0a, type: 2}
 --- !u!1 &1440380363
 GameObject:
   m_ObjectHideFlags: 3

@@ -1,8 +1,8 @@
 using BehaviorDesigner.Runtime.ObjectDrawers;
-using ObjectPooling;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AyunDefine;
 
 public class FoodBox : MonoBehaviour, IIneractionable
 {
@@ -12,7 +12,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
 
     [Header("Food")]
     [SerializeField] private Transform _spawnTrm;
-    [SerializeField] private ObjectPool.PoolObjectType _poolObjType;
+    [SerializeField] private PoolableType _poolObjType;
     [SerializeField] private bool _isDrink;
     [Range(0, 5)] [SerializeField] private float _spacingX;
     [Range(0, 5)] [SerializeField] private float _spacingZ; // 밑으로 내려가야 하기 때문에 음수로 바꿔 사용
@@ -63,9 +63,6 @@ public class FoodBox : MonoBehaviour, IIneractionable
                 yield return null;
             }
 
-            PoolableMono food = PoolManager.Instance.Pop(_poolObjType);
-            _foodStack.Push(food.GetComponent<ITakeable>());
-
             int posInGroup = (_currentFoodCnt - 1) % 4; // 0, 1, 2, 3 순서로 반복
 
             float x = _spacingX * (posInGroup % 2 == 1 ? 1 : 0);
@@ -74,10 +71,11 @@ public class FoodBox : MonoBehaviour, IIneractionable
 
             Vector3 localPos = new Vector3(x, y, z);
             Vector3 spawnPos = _spawnTrm.TransformPoint(localPos); // 로컬 좌표를 월드 좌표로 변환
+            // 음료가 아니라면 90도 돌려서 배치
+            Quaternion quaternion = _isDrink == true? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(90, 0, 0);
 
-            food.transform.position = spawnPos;
-            if (_isDrink == false) // 음료가 아니라면 90도 돌려서 배치
-                food.transform.rotation = Quaternion.Euler(90, 0, 0);
+            GameObject food = PoolManager.Instance.Pop(_poolObjType.ToString(), spawnPos, quaternion);
+            _foodStack.Push(food.GetComponent<ITakeable>());
 
             yield return new WaitForSeconds(0.25f);
         }
