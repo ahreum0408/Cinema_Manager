@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AyunDefine;
 
 public class MoneyDummy : MonoBehaviour, IIneractionable
 {
@@ -50,10 +51,10 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
 
         for (int i = 0; i < newMoneyAmount; i++)
         {
-            Money money = PoolManager.Instance.Pop(ObjectPool.PoolObjectType.LowestLevelGround) as Money;
+            GameObject money = PoolManager.Instance.Pop(PoolableType.Money.ToString(),
+                GetMoneyPosition(), Quaternion.Euler(moneyRotation));
             money.transform.SetParent(transform);
-            money.transform.SetLocalPositionAndRotation(GetMoneyPosition(), Quaternion.Euler(moneyRotation));
-            moneyStack.Push(money);
+            moneyStack.Push(money.transform.GetComponent<Money>());
         }
     }
 

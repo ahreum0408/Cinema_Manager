@@ -1,9 +1,8 @@
-using ObjectPooling;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trash : PoolableMono, ITakeable
+public class Trash : MonoBehaviour, ITakeable
 {
     private Rigidbody _rigid;
     private Animator _animator;
@@ -16,7 +15,7 @@ public class Trash : PoolableMono, ITakeable
         _objectMovement = GetComponent<ObjectMovement>();
     }
 
-    public override void Reset()
+    private void OnEnable()
     {
         _rigid.useGravity = true;
         _rigid.isKinematic = true;

@@ -1,4 +1,3 @@
-using ObjectPooling;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,11 +31,6 @@ public class AgentStackComponent : AgentComponent
         if (_takeObjectStack.Count <= 0)
         {
             return;
-        }
-
-        foreach (var obj in _takeObjectStack)
-        {
-            PoolManager.Instance.Push(obj as PoolableMono);
         }
 
         _takeObjectStack.Clear();
