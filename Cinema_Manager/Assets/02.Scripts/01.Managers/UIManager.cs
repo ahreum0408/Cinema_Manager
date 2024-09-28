@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UIToolkit;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -13,22 +14,24 @@ public class UIManager : MonoBehaviour {
 
     // 
     UIView _mainView;
+    UIView _settingView;
 
 
     public const string mainViewName = "MainView";
+    public const string settingViewName = "SettingView";
 
     void OnEnable() {
         _uiDocument = GetComponent<UIDocument>();
 
         SetupViews();
 
-        SubscribeToEvents();
+        RegisterToEvents();
 
         // Start with the home screen
-        ChangeShowView(_mainView);
+        //ChangeShowView(_mainView);
     }
     void OnDisable() {
-        UnsubscribeFromEvents();
+        UnRegisterToEvents();
 
         foreach (UIView view in _allViews) {
             view.Dispose();
@@ -39,10 +42,13 @@ public class UIManager : MonoBehaviour {
         VisualElement root = _uiDocument.rootVisualElement;
 
         _mainView = new MainView(root.Q<VisualElement>(mainViewName)); // Landing modal screen
+        _settingView = new SettingView(root.Q<VisualElement>(settingViewName)); // Landing modal screen
 
         _allViews.Add(_mainView);
+        _allViews.Add(_settingView);
 
-        _mainView.Show();
+        //_mainView.Show();
+        _settingView.Show();
     }
     private void ChangeShowView(UIView newView) {
         if (_currentView != null) { // 지금 보고 있는 view가 있으면 꺼
@@ -59,10 +65,21 @@ public class UIManager : MonoBehaviour {
     }
 
     // 이벤트 등록 및 해제
-    private void SubscribeToEvents() {
+    private void RegisterToEvents() {
+        MainEvents.MainViewShow += MainSettingView;
+        MainEvents.SettingViewShow += ShowSettingView;
+    }
+
+    private void UnRegisterToEvents() {
 
     }
-    private void UnsubscribeFromEvents() {
 
+    #region ShowViews
+    private void MainSettingView() {
+        ChangeShowView(_mainView);
     }
+    private void ShowSettingView() {
+        ChangeShowView(_settingView);
+    }
+    #endregion
 }
