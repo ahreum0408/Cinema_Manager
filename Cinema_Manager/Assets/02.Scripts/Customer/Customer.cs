@@ -9,7 +9,7 @@ public enum CustomerType
     Basic = 0, Call, Sleep, Thief
 }
 
-public class Customer : MonoBehaviour
+public class Customer : AgentController
 {
     [Header("Customer Type")]
     [SerializeField] private Material[] mat = new Material[2];
@@ -42,16 +42,20 @@ public class Customer : MonoBehaviour
     private MeshRenderer _meshRenderer;
     int i = 0;
 
-    private void Awake()
+    protected override void SetAgentComponents()
     {
         Agent = GetComponent<NavMeshAgent>();
         StackCompo = GetComponent<AgentStackComponent>();
         AnimationCompo = GetComponent<AgentAnimationComponent>();
 
+        _meshRenderer = GetComponent<MeshRenderer>();
+
+    }
+
+    private void Awake()
+    {
         Counter = FindObjectOfType<SeoyeonCounter>();
         Table = FindObjectOfType<Table>();
-
-        _meshRenderer = GetComponent<MeshRenderer>();
     }
 
     private void Start()
@@ -117,8 +121,6 @@ public class Customer : MonoBehaviour
     {
         if (IsStacked == false)
             AnimationCompo.UpperHoldingAnimation(true);
-
-        StackCompo.TakeObject(takeable);
 
         // UI Update
         //OnStackMaxed?.Invoke(IsStackMax);

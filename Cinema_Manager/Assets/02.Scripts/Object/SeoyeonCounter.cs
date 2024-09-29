@@ -11,12 +11,7 @@ public class SeoyeonCounter : MonoBehaviour
     public List<Customer> lineList = new List<Customer>();
 
     private bool isStart = true; // √π º’¥‘¿Œ∞°?
-
-    private void Start()
-    {
-        PoolManager.Instance.Pop(PoolableType.Bread.ToString(), Vector3.zero, Quaternion.identity);
-    }
-
+    
     public void AddCustomer(Customer customer)
     {
         lineList.Add(customer);
