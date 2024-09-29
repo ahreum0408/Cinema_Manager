@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static AyunDefine;
 
 public class AgentStackComponent : AgentComponent
 {
@@ -8,6 +9,8 @@ public class AgentStackComponent : AgentComponent
     [SerializeField] private int _maxStackCount = 3;
 
     private Stack<ITakeable> _takeObjectStack;
+
+    public PoolableType currentHoldType = PoolableType.None;
 
     // Counts
     public int CurrentStackCount => _takeObjectStack.Count;
@@ -44,17 +47,19 @@ public class AgentStackComponent : AgentComponent
         }
     }
 
-    public void TakeObject(ITakeable takeableObject, float spacingY, bool isDrink)
+    public void TakeObject(ITakeable takeableObject, float spacingY, bool isFood)
     {
         Vector3 objectPosition = Vector3.zero;
         objectPosition.y += spacingY * CurrentStackCount;
-        Vector3 rotation = isDrink == false ? new Vector3(90, 0, 0) : Vector3.zero;
+        Vector3 rotation = isFood == true ? new Vector3(90, 0, 0) : Vector3.zero;
         takeableObject.Take(_holderTransform, objectPosition, rotation);
+
         _takeObjectStack.Push(takeableObject);
     }
 
     public ITakeable GetTopObject()
     {
+        if (_takeObjectStack.Count <= 0) currentHoldType = PoolableType.None;
         return _takeObjectStack.Pop();
     }
 
