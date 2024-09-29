@@ -374,8 +374,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.1017823, y: 1.901297, z: 2.4712281}
-  m_Center: {x: -0.7931803, y: 0.65015286, z: -1.082063}
+  m_Size: {x: 3.1017823, y: 1.901297, z: 3.7462866}
+  m_Center: {x: -0.7931802, y: 0.65015286, z: -1.7195922}
 --- !u!1 &4535982521571414201
 GameObject:
   m_ObjectHideFlags: 0
@@ -594,8 +594,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTrm: {fileID: 7770079849750009302}
-  _poolObjType: 10
-  _isDrink: 0
+  _poolObjType: 3
+  _isFood: 1
   _spacingX: 1
   _spacingZ: 0.8
   _spacingY: 0.25

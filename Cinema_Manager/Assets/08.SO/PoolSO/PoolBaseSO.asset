@@ -23,3 +23,33 @@ MonoBehaviour:
   - prefab: {fileID: 914896148464602540, guid: 869d1c791e028704eb1cd735f141a4c2, type: 3}
     prefabTypeName: Beer
     poolCount: 6
+  - prefab: {fileID: 7504222290327166273, guid: 2e4e234a99d66ea45a54fe1574166559,
+      type: 3}
+    prefabTypeName: CupRamen
+    poolCount: 6
+  - prefab: {fileID: 970633525131236045, guid: c6057acdddca839478b30783a72942cb, type: 3}
+    prefabTypeName: Jelly
+    poolCount: 6
+  - prefab: {fileID: 6313550429663624226, guid: 268779c82152b2441a157a4b1868bd2b,
+      type: 3}
+    prefabTypeName: Snack
+    poolCount: 6
+  - prefab: {fileID: 8070077590001228959, guid: 90855a1ece0a5b748ab26cc495ac6989,
+      type: 3}
+    prefabTypeName: TriangleKimbap
+    poolCount: 6
+  - prefab: {fileID: 2729944548273117431, guid: 02b104714dbf9224ca1dcc6e43ce3086,
+      type: 3}
+    prefabTypeName: Coffee
+    poolCount: 6
+  - prefab: {fileID: 2515386145094258856, guid: d0b6cb9afdecc964a953e59b14274754,
+      type: 3}
+    prefabTypeName: Juice
+    poolCount: 6
+  - prefab: {fileID: 467360644644638697, guid: 407cb17b43180ec408d9d13977a6ae6f, type: 3}
+    prefabTypeName: Soju
+    poolCount: 6
+  - prefab: {fileID: 8845506377300020350, guid: 8603a768cf7593245bd3d0c58be8e0d6,
+      type: 3}
+    prefabTypeName: Coke
+    poolCount: 6
