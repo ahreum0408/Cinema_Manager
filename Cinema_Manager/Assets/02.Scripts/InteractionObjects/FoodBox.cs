@@ -104,7 +104,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
 
             if (_playerController.CanTakeFood(_poolObjType) && _currentFoodCnt > 0)
             {
-                _playerController.OnTakeFood?.Invoke(_foodStack.Pop(), _spacingY, _isFood);
+                _playerController.OnTakeFood?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
                 yield return new WaitForSeconds(0.15f);
             }
             yield return null;
