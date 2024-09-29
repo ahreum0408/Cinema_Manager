@@ -1,6 +1,11 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="MainView" src="project://database/Assets/09.UI/Views/MainView.uxml?fileID=9197481963319205126&amp;guid=ecdbcb2b3f8f29646ad02d3cb0626551&amp;type=3#MainView" />
+    <ui:Template name="SettingView" src="project://database/Assets/09.UI/Views/SettingView.uxml?fileID=9197481963319205126&amp;guid=52527d9f8b8cafb45a11f6c15f989ab9&amp;type=3#SettingView" />
     <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/09.UI/USS/Main_USS.uss?fileID=7433441132597879392&amp;guid=ac0eb11ece132c14c8283d2efee773c1&amp;type=3#Main_USS" />
-    <ui:Instance template="MainView" name="MainView" />
+    <Style src="project://database/Assets/09.UI/USS/Setting_USS.uss?fileID=7433441132597879392&amp;guid=3e9fde11ccb9f9a4f8fa7fbfaa0ea2b1&amp;type=3#Setting_USS" />
+    <ui:VisualElement name="container" style="flex-grow: 1; justify-content: center; align-items: center;">
+        <ui:Instance template="MainView" name="MainView" style="flex-grow: 1; width: 100%;" />
+        <ui:Instance template="SettingView" name="SettingView" style="flex-grow: 1; width: 100%; align-items: center; justify-content: center;" />
+    </ui:VisualElement>
 </ui:UXML>

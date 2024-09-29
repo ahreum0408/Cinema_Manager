@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Counter : MonoBehaviour, IIneractionable
+public class AyunCounter : MonoBehaviour, IIneractionable
 {
     //private NotifyImageComponent notifyImageComponent;
 

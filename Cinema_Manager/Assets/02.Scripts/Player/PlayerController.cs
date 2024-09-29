@@ -30,7 +30,7 @@ public class PlayerController : AgentController
     public bool IsStacked => _stackComponent.IsStacked;
 
     // Events
-    public Action<ITakeable> OnTakeFood;
+    public Action<ITakeable, float, bool> OnTakeFood;
     public Func<ITakeable> OnGiveFood;
 
     public Action<int> OnGetPaid;
@@ -102,12 +102,12 @@ public class PlayerController : AgentController
         _agentAnimation.SetMovementAnimation(inputValue);
     }
 
-    private void HandleTakeFood(ITakeable takeable)
+    private void HandleTakeFood(ITakeable takeable, float spacingY, bool isDrink)
     {
         if (IsStacked == false)
             _agentAnimation.UpperHoldingAnimation(true);
 
-        _stackComponent.TakeObject(takeable);
+        _stackComponent.TakeObject(takeable, spacingY, isDrink);
 
         // UI Update
         //OnStackMaxed?.Invoke(IsStackMax);

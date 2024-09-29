@@ -1,0 +1,38 @@
+.top_bottom-container {
+    height: 12%;
+    max-height: 15%;
+    min-height: 150px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.sound-content {
+    height: 35%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(203, 203, 203);
+    flex-direction: row;
+    align-items: center;
+}
+
+.unity-base-slider > VisualElement > #unity-drag-container {
+    justify-content: center;
+}
+
+.unity-base-slider > VisualElement > #unity-drag-container > #unity-tracker {
+    height: 20px;
+    position: relative;
+    top: 0;
+}
+
+.unity-base-slider > VisualElement > #unity-drag-container > #unity-dragger {
+    width: 20px;
+    height: 60px;
+    top: 25%;
+}
+
+.slider {
+    width: 65%;
+    height: 70px;
+}

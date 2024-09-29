@@ -1,10 +1,7 @@
-using ObjectPooling;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
-public class Money : PoolableMono
+public class Money : MonoBehaviour
 {
     private ObjectMovement _objectMovement;
 
@@ -13,7 +10,7 @@ public class Money : PoolableMono
         _objectMovement = GetComponent<ObjectMovement>();
     }
 
-    public override void Reset()
+    private void OnEnable()
     {
         transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(0, 0, 0));
     }
@@ -30,6 +27,6 @@ public class Money : PoolableMono
 
         _objectMovement.JumpToPosition(position, Space.World);
         yield return new WaitForSeconds(_objectMovement.AnimationDuration);
-        PoolManager.Instance.Push(this);
+        PoolManager.Instance.Push(transform.name, this.gameObject);
     }
 }

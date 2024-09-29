@@ -1,32 +1,35 @@
-using ObjectPooling;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Playables;
 using UnityEngine;
 
-public class Food : PoolableMono, ITakeable
+public class Food : MonoBehaviour, ITakeable
 {
     private Rigidbody _rigid;
     private ObjectMovement _objectMovement;
-
-    public override void Reset()
-    {
-
-    }
+    private Vector3 _originScale;
+    private Vector3 _currentScale;
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody>();
-
         _objectMovement = GetComponent<ObjectMovement>();
-    }   
+    }
+
+    private void OnEnable()
+    {
+        _originScale = transform.localScale;
+    }
 
     public void Take(Transform parentTransform, Vector3 takePosition, Vector3 takeRotation)
     {
         PhysicsSetting(true);
         transform.SetParent(parentTransform);
         transform.localRotation = Quaternion.Euler(takeRotation);
-        _objectMovement.JumpToPosition(takePosition);
+        _currentScale = transform.localScale;
+
+        Vector3 pos = new Vector3(takePosition.x,
+                                  takePosition.y * (_currentScale.y / _originScale.y),
+                                  takePosition.z);
+        Debug.Log((_currentScale.y / _originScale.y));
+        _objectMovement.JumpToPosition(pos);
     }
 
     private void PhysicsSetting(bool isOn)
