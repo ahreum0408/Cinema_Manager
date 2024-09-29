@@ -100,12 +100,15 @@ public class FoodBox : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            ITakeable takeable = _foodStack.Peek();
-
-            if (_playerController.CanTakeFood(_poolObjType) && _currentFoodCnt > 0)
+            if (_currentFoodCnt > 0)
             {
-                _playerController.OnTakeFood?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
-                yield return new WaitForSeconds(0.15f);
+                ITakeable takeable = _foodStack.Peek();
+
+                if (_playerController.CanTakeFood(_poolObjType) && _currentFoodCnt > 0)
+                {
+                    _playerController.OnTakeFood?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
+                    yield return new WaitForSeconds(0.15f);
+                }
             }
             yield return null;
         }
