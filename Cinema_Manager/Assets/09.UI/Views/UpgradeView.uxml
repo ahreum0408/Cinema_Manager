@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Template name="UpdradeContent" src="project://database/Assets/09.UI/Views/Upgrade/UpdradeContent.uxml?fileID=9197481963319205126&amp;guid=12d95c6fa85cd7f4aa8c496fe2ac308e&amp;type=3#UpdradeContent" />
+    <ui:VisualElement name="container" style="position: absolute; height: 40%; width: 100%; bottom: 0; background-color: rgb(255, 255, 255);">
+        <ui:VisualElement name="top-container" style="width: 100%; height: 150px; align-items: center;">
+            <ui:VisualElement name="title-content" style="width: 600px; flex-grow: 1; background-color: rgb(255, 241, 173); bottom: 75px;">
+                <ui:Label tabindex="-1" text="직원" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_100" />
+            </ui:VisualElement>
+            <ui:Button text="닫기" parse-escape-sequences="true" display-tooltip-when-elided="true" name="close-btn" class="text_middle-array_50" style="position: absolute; height: 122px; width: 200px; top: -62px; left: 1003px;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="main-container" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: space-around;">
+            <ui:Instance template="UpdradeContent" name="UpdradeContent" style="height: 100%;" />
+            <ui:Instance template="UpdradeContent" name="UpdradeContent" style="height: 100%;" />
+            <ui:Instance template="UpdradeContent" name="UpdradeContent" style="height: 100%;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
