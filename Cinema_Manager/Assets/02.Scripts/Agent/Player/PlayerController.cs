@@ -30,7 +30,7 @@ public class PlayerController : AgentController
     public bool IsStacked => _stackComponent.IsStacked;
 
     // Events
-    public Action<ITakeable, float, bool> OnTakeFood;
+    public Action<ITakeable, PoolableType, float, bool> OnTakeFood;
     public Func<ITakeable> OnGiveFood;
 
     public Action<int> OnGetPaid;
@@ -104,21 +104,18 @@ public class PlayerController : AgentController
 
     public bool CanTakeFood(PoolableType type)
     {
-        bool isSameType = _stackComponent.currentHoldType == PoolableType.None
-            || _stackComponent.currentHoldType == type;
-
-        if (isSameType && !IsStacked)
-            _stackComponent.currentHoldType = type;
+        bool isSameType = _stackComponent.CurrentHoldType == PoolableType.None
+            || _stackComponent.CurrentHoldType == type;
 
         return isSameType && !IsStackMax;
     }
 
-    private void HandleTakeFood(ITakeable takeable, float spacingY, bool isDrink)
+    private void HandleTakeFood(ITakeable takeable, PoolableType type, float spacingY, bool isDrink)
     {
         if (IsStacked == false)
             _agentAnimation.UpperHoldingAnimation(true);
 
-        _stackComponent.TakeObject(takeable, spacingY, isDrink);
+        _stackComponent.TakeObject(takeable, type, spacingY, isDrink);
 
         // UI Update
         //OnStackMaxed?.Invoke(IsStackMax);
@@ -126,7 +123,7 @@ public class PlayerController : AgentController
 
     public bool CanGiveFood(PoolableType type)
     {
-        return _stackComponent.currentHoldType == type && IsStacked;
+        return _stackComponent.CurrentHoldType == type && IsStacked;
     }
 
     private ITakeable HandleGiveFood()
