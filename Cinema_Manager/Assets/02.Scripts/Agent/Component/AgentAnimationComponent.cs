@@ -8,6 +8,8 @@ public class AgentAnimationComponent : AgentComponent
 {
     private Animator _animator;
 
+    private int _isSeat = Animator.StringToHash("IsSeat");
+
     public override void Init(AgentController controller)
     {
         base.Init(controller);
@@ -50,8 +52,8 @@ public class AgentAnimationComponent : AgentComponent
         }
     }
 
-    public void SeatAnimation(bool isSeat)
+    public void SeatAnimation(float value)
     {
-        _animator.SetBool("Seat", isSeat);
+        _animator.SetFloat(_isSeat, value);
     }
 }

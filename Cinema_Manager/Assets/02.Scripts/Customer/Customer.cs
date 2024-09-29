@@ -42,20 +42,18 @@ public class Customer : AgentController
     private MeshRenderer _meshRenderer;
     int i = 0;
 
-    protected override void SetAgentComponents()
+    protected override void Init()
     {
+        Animator = GetComponentInChildren<Animator>();
+
         Agent = GetComponent<NavMeshAgent>();
         StackCompo = GetComponent<AgentStackComponent>();
         AnimationCompo = GetComponent<AgentAnimationComponent>();
 
-        _meshRenderer = GetComponent<MeshRenderer>();
-
-    }
-
-    private void Awake()
-    {
         Counter = FindObjectOfType<SeoyeonCounter>();
         Table = FindObjectOfType<Table>();
+
+        _meshRenderer = GetComponent<MeshRenderer>();
     }
 
     private void Start()

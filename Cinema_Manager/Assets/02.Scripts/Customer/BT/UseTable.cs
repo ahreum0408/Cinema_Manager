@@ -11,6 +11,7 @@ public class UseTable : Conditional
 
     public override void OnStart()
     {
+        customer.Value.AnimationCompo.SeatAnimation(1);
         lastEatTime = Time.time;
         currentEat = customer.Value.wantBuy;
     }
@@ -25,7 +26,7 @@ public class UseTable : Conditional
             customer.Value.currentChair.ChangeUsingState(false);
             customer.Value.currentChair.ChangeDirtyState(true);
 
-            customer.Value.AnimationCompo.SeatAnimation(false);
+            customer.Value.AnimationCompo.SeatAnimation(-1);
             return TaskStatus.Failure;
         }
 

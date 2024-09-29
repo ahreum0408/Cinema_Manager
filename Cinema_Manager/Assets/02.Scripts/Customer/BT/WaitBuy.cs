@@ -1,4 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
+using UnityEngine;
 
 // 구매 대기
 public class WaitBuy : Conditional

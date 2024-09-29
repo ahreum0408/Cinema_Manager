@@ -12,7 +12,9 @@ public class CheckBuy : Conditional
             return TaskStatus.Failure;
 
         if (customer.Value.isBuy == true)
+        {
             return TaskStatus.Success;
+        }
         else
             return TaskStatus.Running;
     }
