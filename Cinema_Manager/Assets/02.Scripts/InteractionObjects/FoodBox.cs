@@ -1,6 +1,7 @@
 using BehaviorDesigner.Runtime.ObjectDrawers;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 
@@ -13,7 +14,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
     [Header("Food")]
     [SerializeField] private Transform _spawnTrm;
     [SerializeField] private PoolableType _poolObjType;
-    [SerializeField] private bool _isDrink;
+    [SerializeField] private bool _isFood;
     [Range(0, 5)] [SerializeField] private float _spacingX;
     [Range(0, 5)] [SerializeField] private float _spacingZ; // 밑으로 내려가야 하기 때문에 음수로 바꿔 사용
     [Range(0, 5)] [SerializeField] private float _spacingY;
@@ -63,18 +64,17 @@ public class FoodBox : MonoBehaviour, IIneractionable
                 yield return null;
             }
 
-            int posInGroup = (_currentFoodCnt - 1) % 4; // 0, 1, 2, 3 순서로 반복
+            int posInGroup = _currentFoodCnt % 4; // 0, 1, 2, 3 순서로 반복
 
             float x = _spacingX * (posInGroup % 2 == 1 ? 1 : 0);
             float z = _spacingZ * (posInGroup < 2 ? 0 : -1);
-            float y = _spawnTrm.position.y + (_spacingY * ((_currentFoodCnt - 1) / 4)); // 4개 마다 위로
+            float y = _spawnTrm.position.y + (_spacingY * (_currentFoodCnt / 4)); // 4개 마다 위로
 
             Vector3 localPos = new Vector3(x, y, z);
-            Vector3 spawnPos = _spawnTrm.TransformPoint(localPos); // 로컬 좌표를 월드 좌표로 변환
             // 음료가 아니라면 90도 돌려서 배치
-            Quaternion quaternion = _isDrink == true? Quaternion.Euler(0, 0, 0) : Quaternion.Euler(90, 0, 0);
+            Quaternion quaternion = _isFood == true? Quaternion.Euler(90, 0, 0) : Quaternion.Euler(0, 0, 0);
 
-            GameObject food = PoolManager.Instance.Pop(_poolObjType.ToString(), spawnPos, quaternion);
+            GameObject food = PoolManager.Instance.Pop(_poolObjType.ToString(), _spawnTrm, localPos, quaternion);
             _foodStack.Push(food.GetComponent<ITakeable>());
 
             yield return new WaitForSeconds(0.25f);
@@ -100,10 +100,11 @@ public class FoodBox : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            if (_currentFoodCnt > 0 && !_playerController.IsStackMax) // && 스택이 다 차지는 않았는지
+            ITakeable takeable = _foodStack.Peek();
+
+            if (_playerController.CanTakeFood(_poolObjType) && _currentFoodCnt > 0)
             {
-                // 가장 위에있는 음식 주기
-                _playerController.OnTakeFood?.Invoke(_foodStack.Pop(), _spacingY, _isDrink);
+                _playerController.OnTakeFood?.Invoke(_foodStack.Pop(), _spacingY, _isFood);
                 yield return new WaitForSeconds(0.15f);
             }
             yield return null;

@@ -102,6 +102,17 @@ public class PlayerController : AgentController
         _agentAnimation.SetMovementAnimation(inputValue);
     }
 
+    public bool CanTakeFood(PoolableType type)
+    {
+        bool isSameType = _stackComponent.currentHoldType == PoolableType.None
+            || _stackComponent.currentHoldType == type;
+
+        if (isSameType && !IsStacked)
+            _stackComponent.currentHoldType = type;
+
+        return isSameType && !IsStackMax;
+    }
+
     private void HandleTakeFood(ITakeable takeable, float spacingY, bool isDrink)
     {
         if (IsStacked == false)
@@ -113,9 +124,14 @@ public class PlayerController : AgentController
         //OnStackMaxed?.Invoke(IsStackMax);
     }
 
-    private Food HandleGiveFood()
+    public bool CanGiveFood(PoolableType type)
     {
-        Food food = _stackComponent.GetTopObject() as Food;
+        return _stackComponent.currentHoldType == type && IsStacked;
+    }
+
+    private ITakeable HandleGiveFood()
+    {
+        ITakeable food = _stackComponent.GetTopObject();
 
         // UI Update
         //OnStackMaxed?.Invoke(IsStackMax);

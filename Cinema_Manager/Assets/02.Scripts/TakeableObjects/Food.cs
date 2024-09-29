@@ -25,10 +25,9 @@ public class Food : MonoBehaviour, ITakeable
         transform.localRotation = Quaternion.Euler(takeRotation);
         _currentScale = transform.localScale;
 
-        Vector3 pos = new Vector3(takePosition.x,
+        Vector3 pos = new Vector3(takePosition.x * (_currentScale.x / _originScale.x),
                                   takePosition.y * (_currentScale.y / _originScale.y),
-                                  takePosition.z);
-        Debug.Log((_currentScale.y / _originScale.y));
+                                  takePosition.z * (_currentScale.z / _originScale.z));
         _objectMovement.JumpToPosition(pos);
     }
 
