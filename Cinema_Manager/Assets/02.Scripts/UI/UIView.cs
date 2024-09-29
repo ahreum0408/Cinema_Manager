@@ -1,5 +1,6 @@
 using UnityEngine.UIElements;
 using System;
+using Debug = UnityEngine.Debug;
 
 namespace UIToolkit {
     public abstract class UIView : IDisposable {
@@ -48,7 +49,7 @@ namespace UIToolkit {
 
         // 이벤트 핸들러를 등록 해제
         public virtual void Dispose() {
-
+            //UnRegisterButtonCallbacks();
         }
     }
 }

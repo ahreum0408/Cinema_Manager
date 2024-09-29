@@ -25,6 +25,7 @@ public class MainView : UIView {
     }
     protected override void SetVisualElements() {
         base.SetVisualElements();
+
         _settingBtn = topElement.Q<Button>("setting-btn");
         _storeBtn = topElement.Q<Button>("store-btn");
 
@@ -68,7 +69,7 @@ public class MainView : UIView {
 
     #region Handle
     private void ClickSettingBtn(ClickEvent evt) {
-        Debug.Log("설정창 켜짐");
+        MainEvents.SettingViewShow?.Invoke();
     }
     private void ClickStoreBtn(ClickEvent evt) {
         Debug.Log("상점창 켜짐");
