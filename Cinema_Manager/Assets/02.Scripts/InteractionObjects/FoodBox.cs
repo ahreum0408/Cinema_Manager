@@ -22,6 +22,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
     private bool _isEnterInteraction = false;
 
     private PlayerController _playerController;
+    private NotifyImageComponent _notifyImageComponent;
     private FoodTruck _foodTruck;
 
     #region 나중에 업그레이드로 빼야할 것들
@@ -33,6 +34,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
     {
         // 플레이어 나중에 싱글톤으로 만들기
         _playerController = FindObjectOfType<PlayerController>();
+        _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _foodTruck = GetComponentInChildren<FoodTruck>();
         _foodStack = new Stack<ITakeable>();
     }
@@ -86,14 +88,14 @@ public class FoodBox : MonoBehaviour, IIneractionable
     public void EnterInteraction()
     {
         _isEnterInteraction = true;
-        //notifyImageComponent.SetNotifySensorImage(1.1f);
+        _notifyImageComponent.SetNotifySensorImage(1.1f);
         StartCoroutine(GetFoodRoutine());
     }   
 
     public void ExitInteraction()
     {
         _isEnterInteraction = false;
-        //notifyImageComponent.SetNotifySensorImage(1.0f);
+        _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
     private IEnumerator GetFoodRoutine()

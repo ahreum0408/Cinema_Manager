@@ -17,21 +17,25 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     private bool _isEnterInteraction = false;
 
     private PlayerController _playerController;
+    private NotifyImageComponent _notifyImageComponent;
 
     private void Awake()
     {
         _playerController = FindObjectOfType<PlayerController>(); // ³ªÁß¿¡ ½Ì±ÛÅæÀ¸·Î
+        _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _foodStack = new Stack<ITakeable>();
     }
 
     public void EnterInteraction()
     {
         _isEnterInteraction = true;
+        _notifyImageComponent.SetNotifySensorImage(1.1f);
         StartCoroutine(TakeFoodRoutine());
     }
 
     public void ExitInteraction()
     {
+        _notifyImageComponent.SetNotifySensorImage(1f);
         _isEnterInteraction = false;
     }
 
