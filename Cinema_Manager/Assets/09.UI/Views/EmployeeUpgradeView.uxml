@@ -20,11 +20,11 @@
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
                         <ui:VisualElement name="image" style="width: 350px; height: 350px; background-color: rgb(247, 255, 92);" />
                         <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="button-container" style="align-items: center; justify-content: center; height: 35%;">
@@ -43,11 +43,11 @@
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
                         <ui:VisualElement name="image" style="width: 350px; height: 350px; background-color: rgb(247, 255, 92);" />
                         <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="button-container" style="align-items: center; justify-content: center; height: 35%;">
@@ -66,11 +66,11 @@
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
                         <ui:VisualElement name="image" style="width: 350px; height: 350px; background-color: rgb(247, 255, 92);" />
                         <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
-                            <ui:VisualElement name="gauge" class="upgrade-gauge" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="button-container" style="align-items: center; justify-content: center; height: 35%;">
