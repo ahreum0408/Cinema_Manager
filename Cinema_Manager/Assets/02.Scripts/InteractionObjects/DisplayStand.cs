@@ -27,7 +27,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     public void EnterInteraction()
     {
         _isEnterInteraction = true;
-        StartCoroutine(GetFoodRoutine());
+        StartCoroutine(TakeFoodRoutine());
     }
 
     public void ExitInteraction()
@@ -35,7 +35,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         _isEnterInteraction = false;
     }
 
-    private IEnumerator GetFoodRoutine()
+    private IEnumerator TakeFoodRoutine()
     {
         while (_isEnterInteraction)
         {
@@ -50,18 +50,22 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     private void TakeFood(ITakeable food)
     {
-        int x = _currentFoodCnt % _columnSpawnCnt;
-        int y = _currentFoodCnt / _columnSpawnCnt;
-        Debug.Log(x + " " + y);
-        
-        Vector3 foodPos = _spawnTrmList[y].position;
+        int col = _currentFoodCnt % _columnSpawnCnt;
+        int row = _currentFoodCnt / _columnSpawnCnt;
 
-        foodPos.x = _spawnTrmList[y].position.x + (_spacingX * x);
-        foodPos.y = _spawnTrmList[y].position.y;
-        Debug.Log(foodPos);
+        Vector3 foodPos = Vector3.zero;
+        foodPos.x += (_spacingX * col);
 
-        food.Take(_spawnTrmList[y].parent, foodPos, Vector3.zero);
-        Debug.Log("-----------------");
+        food.Take(_spawnTrmList[row], foodPos, Vector3.zero);
         _foodStack.Push(food);
+    }
+
+    private IEnumerator GiveBreadRoutine()
+    {
+        while (true)
+        {
+            // 여기서 손님에게 음식 줘야함
+            yield return null;
+        }
     }
 }
