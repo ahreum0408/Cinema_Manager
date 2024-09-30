@@ -12,4 +12,5 @@ public class MainEvents {
 
     public static Action MainViewShow;
     public static Action SettingViewShow;
+    public static Action EmployeeUpgradeViewShow;
 }

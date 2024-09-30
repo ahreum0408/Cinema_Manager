@@ -15,10 +15,12 @@ public class UIManager : MonoBehaviour {
     // 
     UIView _mainView;
     UIView _settingView;
+    UIView _employeeUpgradeView;
 
 
     public const string mainViewName = "MainView";
     public const string settingViewName = "SettingView";
+    public const string upgradeViewName = "EmployeeUpgradeView";
 
     void OnEnable() {
         _uiDocument = GetComponent<UIDocument>();
@@ -43,12 +45,14 @@ public class UIManager : MonoBehaviour {
 
         _mainView = new MainView(root.Q<VisualElement>(mainViewName)); // Landing modal screen
         _settingView = new SettingView(root.Q<VisualElement>(settingViewName)); // Landing modal screen
+        _employeeUpgradeView = new EmployeeUpgradeView(root.Q<VisualElement>(upgradeViewName)); // Landing modal screen
 
         _allViews.Add(_mainView);
         _allViews.Add(_settingView);
+        _allViews.Add(_employeeUpgradeView);
 
         //_mainView.Show();
-        _settingView.Show();
+        _employeeUpgradeView.Show();
     }
     private void ChangeShowView(UIView newView) {
         if (_currentView != null) { // 지금 보고 있는 view가 있으면 꺼
@@ -66,20 +70,25 @@ public class UIManager : MonoBehaviour {
 
     // 이벤트 등록 및 해제
     private void RegisterToEvents() {
-        MainEvents.MainViewShow += MainSettingView;
+        MainEvents.MainViewShow += ShowMainView;
         MainEvents.SettingViewShow += ShowSettingView;
+        MainEvents.EmployeeUpgradeViewShow += ShowEmployeeUpgradeView;
     }
-
     private void UnRegisterToEvents() {
-
+        MainEvents.MainViewShow -= ShowMainView;
+        MainEvents.SettingViewShow -= ShowSettingView;
+        MainEvents.EmployeeUpgradeViewShow -= ShowEmployeeUpgradeView;
     }
 
     #region ShowViews
-    private void MainSettingView() {
+    private void ShowMainView() {
         ChangeShowView(_mainView);
     }
     private void ShowSettingView() {
         ChangeShowView(_settingView);
+    }
+    private void ShowEmployeeUpgradeView() {
+        ChangeShowView(_employeeUpgradeView);
     }
     #endregion
 }
