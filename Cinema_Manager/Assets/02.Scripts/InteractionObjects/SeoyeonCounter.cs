@@ -52,7 +52,6 @@ public class SeoyeonCounter : MonoBehaviour
 
             if (customer.CurrentCustomerType == CustomerType.Call)
             {
-                customer.ChangeCustomerMat();
                 break;
             }
 

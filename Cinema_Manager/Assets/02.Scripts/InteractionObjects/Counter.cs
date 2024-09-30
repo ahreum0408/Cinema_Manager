@@ -74,7 +74,6 @@ public class Counter : MonoBehaviour, IIneractionable
 
             if (customer.CurrentCustomerType == CustomerType.Call)
             {
-                customer.ChangeCustomerMat();
                 break;
             }
 
