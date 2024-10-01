@@ -1,0 +1,84 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/USS/Main_USS.uss?fileID=7433441132597879392&amp;guid=ac0eb11ece132c14c8283d2efee773c1&amp;type=3#Main_USS" />
+    <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/09.UI/USS/Upgrade_USS.uss?fileID=7433441132597879392&amp;guid=bfa203c725e68ca48873f5461d8f68dd&amp;type=3#Upgrade_USS" />
+    <ui:VisualElement name="container" style="position: absolute; height: 40%; width: 100%; bottom: 0; background-color: rgb(255, 255, 255);">
+        <ui:VisualElement name="top-container" style="width: 100%; height: 150px; align-items: center;">
+            <ui:VisualElement name="title-content" style="width: 600px; flex-grow: 1; background-color: rgb(255, 241, 173); bottom: 75px;">
+                <ui:Label tabindex="-1" text="플레이어" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_100" />
+            </ui:VisualElement>
+            <ui:Button text="닫기" parse-escape-sequences="true" display-tooltip-when-elided="true" name="close-btn" class="text_middle-array_50" style="position: absolute; height: 122px; width: 200px; top: -40%; left: 79%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="main-container" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: space-around;">
+            <ui:VisualElement name="upgrade-movespeed-content" style="align-items: center; justify-content: center; height: 100%;">
+                <ui:VisualElement name="updrade-panel" style="width: 400px; height: 80%; background-color: rgb(198, 255, 178); margin-bottom: 40px;">
+                    <ui:VisualElement name="top-container" style="width: 100%; height: 80px;">
+                        <ui:VisualElement name="title-content" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="이동속도 증가" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_50" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
+                        <ui:VisualElement name="image" style="width: 350px; height: 350px; background-color: rgb(247, 255, 92);" />
+                        <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="button-container" style="align-items: center; justify-content: center; height: 35%;">
+                        <ui:Button text="광고 시청" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ect-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
+                        <ui:Button text="구매" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upgrade-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="upgrade-volume-content" style="align-items: center; justify-content: center; height: 100%;">
+                <ui:VisualElement name="updrade-panel" style="width: 400px; height: 80%; background-color: rgb(198, 255, 178); margin-bottom: 40px;">
+                    <ui:VisualElement name="top-container" style="width: 100%; height: 80px;">
+                        <ui:VisualElement name="title-content" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="용량" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_50" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
+                        <ui:VisualElement name="image" style="width: 350px; height: 350px; background-color: rgb(247, 255, 92);" />
+                        <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="button-container" style="align-items: center; justify-content: center; height: 35%;">
+                        <ui:Button text="광고 시청" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ect-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
+                        <ui:Button text="구매" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upgrade-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="upgrade-sellingcost-content" style="align-items: center; justify-content: center; height: 100%;">
+                <ui:VisualElement name="updrade-panel" style="width: 400px; height: 80%; background-color: rgb(198, 255, 178); margin-bottom: 40px;">
+                    <ui:VisualElement name="top-container" style="width: 100%; height: 80px;">
+                        <ui:VisualElement name="title-content" style="flex-grow: 1;">
+                            <ui:Label tabindex="-1" text="판매 비용 증가" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_50" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
+                        <ui:VisualElement name="image" style="width: 350px; height: 350px; background-color: rgb(247, 255, 92);" />
+                        <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                            <ui:VisualElement name="gauge" class="upgrade-gauge off" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="button-container" style="align-items: center; justify-content: center; height: 35%;">
+                        <ui:Button text="광고 시청" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ect-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
+                        <ui:Button text="구매" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upgrade-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

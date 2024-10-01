@@ -16,11 +16,13 @@ public class UIManager : MonoBehaviour {
     UIView _mainView;
     UIView _settingView;
     UIView _employeeUpgradeView;
+    UIView _playerUpgradeView;
 
 
     public const string mainViewName = "MainView";
     public const string settingViewName = "SettingView";
-    public const string upgradeViewName = "EmployeeUpgradeView";
+    public const string upgradeEmployeeViewName = "EmployeeUpgradeView";
+    public const string upgradePlayerViewName = "PlayerUpgradeView";
 
     void OnEnable() {
         _uiDocument = GetComponent<UIDocument>();
@@ -45,14 +47,16 @@ public class UIManager : MonoBehaviour {
 
         _mainView = new MainView(root.Q<VisualElement>(mainViewName)); // Landing modal screen
         _settingView = new SettingView(root.Q<VisualElement>(settingViewName)); // Landing modal screen
-        _employeeUpgradeView = new EmployeeUpgradeView(root.Q<VisualElement>(upgradeViewName)); // Landing modal screen
+        _employeeUpgradeView = new EmployeeUpgradeView(root.Q<VisualElement>(upgradeEmployeeViewName)); // Landing modal screen
+        _playerUpgradeView = new PlayerUpgradeView(root.Q<VisualElement>(upgradePlayerViewName)); // Landing modal screen
 
         _allViews.Add(_mainView);
         _allViews.Add(_settingView);
         _allViews.Add(_employeeUpgradeView);
+        _allViews.Add(_playerUpgradeView);
 
         //_mainView.Show();
-        _employeeUpgradeView.Show();
+        _playerUpgradeView.Show();
     }
     private void ChangeShowView(UIView newView) {
         if (_currentView != null) { // 지금 보고 있는 view가 있으면 꺼
