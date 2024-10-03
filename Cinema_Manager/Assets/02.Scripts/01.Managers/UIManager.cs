@@ -15,10 +15,16 @@ public class UIManager : MonoBehaviour {
     // 
     UIView _mainView;
     UIView _settingView;
+    UIView _employeeUpgradeView;
+    UIView _playerUpgradeView;
+    UIView _machineUpgradeView;
 
 
     public const string mainViewName = "MainView";
     public const string settingViewName = "SettingView";
+    public const string upgradeEmployeeViewName = "EmployeeUpgradeView";
+    public const string upgradePlayerViewName = "PlayerUpgradeView";
+    public const string upgradeMachineViewName = "MachineUpgradeView";
 
     void OnEnable() {
         _uiDocument = GetComponent<UIDocument>();
@@ -43,12 +49,18 @@ public class UIManager : MonoBehaviour {
 
         _mainView = new MainView(root.Q<VisualElement>(mainViewName)); // Landing modal screen
         _settingView = new SettingView(root.Q<VisualElement>(settingViewName)); // Landing modal screen
+        _employeeUpgradeView = new EmployeeUpgradeView(root.Q<VisualElement>(upgradeEmployeeViewName)); // Landing modal screen
+        _playerUpgradeView = new PlayerUpgradeView(root.Q<VisualElement>(upgradePlayerViewName)); // Landing modal screen
+        _machineUpgradeView = new MachinepgradeView(root.Q<VisualElement>(upgradeMachineViewName)); // Landing modal screen
 
         _allViews.Add(_mainView);
         _allViews.Add(_settingView);
+        _allViews.Add(_employeeUpgradeView);
+        _allViews.Add(_playerUpgradeView);
+        _allViews.Add(_machineUpgradeView);
 
         //_mainView.Show();
-        _settingView.Show();
+        _machineUpgradeView.Show();
     }
     private void ChangeShowView(UIView newView) {
         if (_currentView != null) { // 지금 보고 있는 view가 있으면 꺼
@@ -66,20 +78,31 @@ public class UIManager : MonoBehaviour {
 
     // 이벤트 등록 및 해제
     private void RegisterToEvents() {
-        MainEvents.MainViewShow += MainSettingView;
+        MainEvents.MainViewShow += ShowMainView;
         MainEvents.SettingViewShow += ShowSettingView;
+        MainEvents.EmployeeUpgradeViewShow += ShowEmployeeUpgradeView;
+        MainEvents.MachineUpgradeViewShow += ShowMachineUpgradeView;
     }
-
     private void UnRegisterToEvents() {
-
+        MainEvents.MainViewShow -= ShowMainView;
+        MainEvents.SettingViewShow -= ShowSettingView;
+        MainEvents.EmployeeUpgradeViewShow -= ShowEmployeeUpgradeView;
+        MainEvents.MachineUpgradeViewShow -= ShowMachineUpgradeView;
     }
+
 
     #region ShowViews
-    private void MainSettingView() {
+    private void ShowMainView() {
         ChangeShowView(_mainView);
     }
     private void ShowSettingView() {
         ChangeShowView(_settingView);
+    }
+    private void ShowEmployeeUpgradeView() {
+        ChangeShowView(_employeeUpgradeView);
+    }
+    private void ShowMachineUpgradeView() {
+        ChangeShowView(_machineUpgradeView);
     }
     #endregion
 }
