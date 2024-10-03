@@ -1,9 +1,10 @@
 using BehaviorDesigner.Runtime.Tasks;
+using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.AI;
 
 // 구매 줄 체크 & 이동
-public class CheckLine : Action
+public class FindLine : Action
 {
     public SharedCustomer customer;
 
@@ -19,8 +20,8 @@ public class CheckLine : Action
 
     public override void OnStart()
     {
-        customer.Value.Counter.AddCustomer(customer.Value);
-        _destination = customer.Value.Counter.checkPoint.position;
+        ObjectManager.Instance.counter.AddCustomer(customer.Value);
+        _destination = ObjectManager.Instance.counter.checkPoint.position;
         _agent.SetDestination(_destination);
         _isStarted = true;
     }

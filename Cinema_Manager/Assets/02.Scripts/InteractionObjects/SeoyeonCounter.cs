@@ -23,7 +23,7 @@ public class SeoyeonCounter : MonoBehaviour
 
         if (isStart)
         {
-            customer.isBuy = true;
+            customer.customerData.isBuy = true;
             isStart = false;
         }
         else
@@ -46,7 +46,7 @@ public class SeoyeonCounter : MonoBehaviour
         {
             if(isStart)
             {
-                customers.isBuy = true;
+                customers.customerData.isBuy = true;
                 isStart = false;
             }
 

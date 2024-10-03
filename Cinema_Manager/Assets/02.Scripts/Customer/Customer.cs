@@ -14,6 +14,7 @@ public enum CustomerType
 public class CustomerData
 {
     [Header("Customer Type")]
+    public bool isGet = false;
     public bool isBuy = false; // 구매 완료? 물건 다 받았냐
     public bool isSeat; // 식탁을 사용하는 손님인가?
     public bool isBad; // 진상 손님인가?
@@ -32,12 +33,10 @@ public class Customer : AgentController
 
     [HideInInspector] public bool IsStacked => StackCompo.IsStacked;
     [HideInInspector] public Vector3 startPos;
-    [HideInInspector] public Chair currentChair;
+    [HideInInspector] public Point currentChair;
 
     // Components
     public NavMeshAgent Agent { get; private set; }
-    public Counter Counter {  get; private set; }
-    public Table Table { get; private set; }
     public CustomerType CurrentCustomerType { get; private set; }
     public AgentStackComponent StackCompo { get; private set; }
     public AgentAnimationComponent AnimationCompo { get; private set; }
@@ -53,18 +52,17 @@ public class Customer : AgentController
         Agent = GetComponent<NavMeshAgent>();
         StackCompo = GetComponent<AgentStackComponent>();
         AnimationCompo = GetComponent<AgentAnimationComponent>();
-
-        Counter = FindObjectOfType<Counter>();
-        Table = FindObjectOfType<Table>();
     }
 
     private void Start()
     {
+        customerData = new CustomerData();
+
         startPos = transform.position;
         SetSeat();
         SetCustomerType();
-        SelectObjectType();
         SelectBuySum();
+        SelectObjectType();
 
         OnTakeFood += HandleTakeFood;
         OnGiveFood += HandleGiveFood;
@@ -76,9 +74,9 @@ public class Customer : AgentController
     {
         int rand = Random.Range(0, 2);
         if (rand > 0)
-            isSeat = false;
+            customerData.isSeat = false;
         else
-            isSeat = true;
+            customerData.isSeat = true;
     }
     
     // 손님 타입(진상 손님 종류)
@@ -86,11 +84,11 @@ public class Customer : AgentController
     {
         int rand = Random.Range(0, 10);
         if (rand > 0)
-            isBad = false;
+            customerData.isBad = false;
         else
-            isBad = true;
+            customerData.isBad = true;
 
-        if(isBad)
+        if(customerData.isBad)
         {
             rand = Random.Range(1, 3);
             switch(rand)
@@ -108,15 +106,18 @@ public class Customer : AgentController
     }
 
     // 손님 원하는 물건
-    private void SelectObjectType()
+    public void SelectObjectType()
     {
-        objectType = PoolableType.TriangleKimbap;
+        int rand = Random.Range(1, 5);
+        customerData.objectType = (PoolableType)rand;
+        if(ObjectManager.Instance.FindDisplayStand(customerData.objectType).CanStandPoint() == null)
+            SelectObjectType();
     }
 
     // 구매 수량
     private void SelectBuySum()
     {
-        wantBuy = Random.Range(1, maxBuySum + 1);
+        customerData.wantBuy = Random.Range(1, customerData.maxBuySum + 1);
     }
     #endregion
 

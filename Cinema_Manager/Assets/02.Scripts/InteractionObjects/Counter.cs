@@ -45,7 +45,7 @@ public class Counter : MonoBehaviour, IIneractionable
 
         if (isStart)
         {
-            customer.isBuy = true;
+            customer.customerData.isBuy = true;
             isStart = false;
         }
         else
@@ -68,7 +68,7 @@ public class Counter : MonoBehaviour, IIneractionable
         {
             if (isStart)
             {
-                customers.isBuy = true;
+                customers.customerData.isBuy = true;
                 isStart = false;
             }
 

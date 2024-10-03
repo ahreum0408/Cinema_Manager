@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class Table : MonoBehaviour
 {
-    public List<Chair> chairs;
+    public List<Point> points;
 
     private void Awake()
     {
-        chairs = GetComponentsInChildren<Chair>().ToList();
+        points = GetComponentsInChildren<Point>().ToList();
     }
 
-    public Chair CanSeatChair()
+    public Point CanSeatChair()
     {
-        foreach (var chair in chairs)
+        foreach (var chair in points)
         {
             if (!chair.IsUsing && !chair.IsDirty)
             {
