@@ -1,6 +1,7 @@
 using UnityEngine.UIElements;
 using System;
 using Debug = UnityEngine.Debug;
+using UnityEngine;
 
 namespace UIToolkit {
     public abstract class UIView : IDisposable {
