@@ -53,3 +53,7 @@ MonoBehaviour:
       type: 3}
     prefabTypeName: Coke
     poolCount: 6
+  - prefab: {fileID: 6979048886129282941, guid: b02018f2a8979864480acc4aeddfc6fe,
+      type: 3}
+    prefabTypeName: SoundObject
+    poolCount: 6
