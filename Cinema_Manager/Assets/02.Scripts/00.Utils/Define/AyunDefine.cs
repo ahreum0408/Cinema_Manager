@@ -17,6 +17,19 @@ public static class AyunDefine
         public static readonly string InteractionableTag = "Interactionable";
     }
 
+    public static class UsingAudioClips
+    {
+        public static readonly AudioClip Money    = Resources.Load<AudioClip>("Sound/MoneySound");
+        public static readonly AudioClip Stack    = Resources.Load<AudioClip>("Sound/StackSound");
+        public static readonly AudioClip Trashcan = Resources.Load<AudioClip>("Sound/TrashcanSound");
+
+        // Truck
+        public static readonly AudioClip TruckStart  = Resources.Load<AudioClip>("Sound/TruckStartSound");
+        public static readonly AudioClip TruckStop   = Resources.Load<AudioClip>("Sound/TruckStopSound");
+        public static readonly AudioClip TruckEngine = Resources.Load<AudioClip>("Sound/TruckEngineSound");
+        public static readonly AudioClip TruckHorn   = Resources.Load<AudioClip>("Sound/TruckHornSound");
+    }
+
     public static class ObjectPriceInt
     {
         public static readonly int FoodPrice_TakeOut = 5;
