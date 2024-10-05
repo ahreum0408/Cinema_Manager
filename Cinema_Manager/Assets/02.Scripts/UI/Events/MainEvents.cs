@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MainEvents {
+public static class MainEvents {
     // Ã¢ ¶ç¿ì±â
     public static Action ShowSettingWindowEvent;
     public static Action ShowStoreWindowEvent;

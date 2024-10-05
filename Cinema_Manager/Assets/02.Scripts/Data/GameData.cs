@@ -15,4 +15,11 @@ public class GameData {
         this.coin = 0;
         this.gam = 0;
     }
+    public string ToJson() {
+        return JsonUtility.ToJson(this); // 쓰기
+    }
+
+    public void LoadJson(string jsonFilepath) {
+        JsonUtility.FromJsonOverwrite(jsonFilepath, this); // 경로 부분에 덮어 쓰기
+    }
 }
