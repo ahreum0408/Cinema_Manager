@@ -8,6 +8,16 @@ public class GameData {
     public int coin;
     public int gam;
 
+    // player
+    public int p_movespeedLevel; // 플레이어 이속
+    public int p_volumeLevel; // 플레이어 용량
+    public int p_sellingcostLevel; // 플레이어 판매시 재화 획득량
+
+    // employee
+    public int e_movespeedLevel; // 직원 이속
+    public int e_volumeLevel; // 직원 용량
+    public int e_employmentLevel; // 직원 추가
+
     public GameData() {
         this.bgmValue = 1f;
         this.effectValue = 1f;
