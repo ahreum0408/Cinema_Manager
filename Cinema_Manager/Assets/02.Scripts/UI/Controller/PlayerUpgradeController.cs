@@ -21,6 +21,7 @@ public class PlayerUpgradeController : MonoBehaviour{
             return;
         }
         _gameData = data;
+
         PlayerUpgradeEvents.GameDataLoadEvent?.Invoke(_gameData);
     }
     private void GameDataUpdate(GameData data) {
@@ -28,6 +29,7 @@ public class PlayerUpgradeController : MonoBehaviour{
             return;
         }
         _gameData = data;
+
         PlayerUpgradeEvents.PlayerUpgradeUpdatedEvent?.Invoke(_gameData);
     }
 }

@@ -77,7 +77,7 @@ public class SettingView : UIView {
         _bgmSlider.value = _gameData.bgmValue;
         _effctSlider.value = _gameData.effectValue;
 
-        SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
+        //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 
 }

@@ -119,6 +119,6 @@ public class PlayerUpgradeView : UIView {
             }
         }
 
-        PlayerUpgradeEvents.GameDataUpdatEvent.Invoke(_gameData);
+        //PlayerUpgradeEvents.GameDataUpdatEvent.Invoke(_gameData);
     }
 }

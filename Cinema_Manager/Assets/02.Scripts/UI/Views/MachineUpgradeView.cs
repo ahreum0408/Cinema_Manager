@@ -120,6 +120,6 @@ public class MachineUpgradeView : UIView {
                 storageGaugeList[i].RemoveFromClassList("off");
             }
         }
-        MachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
+        //MachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 }
