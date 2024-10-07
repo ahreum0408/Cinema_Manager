@@ -3,23 +3,11 @@ using UnityEngine;
 using UnityEngine.Events;
 using static AyunDefine;
 
-public class PlayerData
-{
-    private int moneyAmount = 100;
-    public int MoneyAmount
-    {
-        get => moneyAmount;
-        set => moneyAmount = value;
-    }
-}
-
 public class PlayerController : AgentController
 {
     [SerializeField] private FloatingJoystick _joystick;
-    private PlayerData _playerData;
 
     private readonly int _maxMoneyAmount = 9999;
-    public int MoneyAmount => _playerData.MoneyAmount;
 
     private AgentMovementComponent _agentMovement;
     private AgentAnimationComponent _agentAnimation;
@@ -37,7 +25,7 @@ public class PlayerController : AgentController
     public Func<int, int> OnPaidCost;
 
     // UnityEvents
-    public UnityEvent<int> OnMoneyAmountValueChanged;
+    //public UnityEvent<int> OnMoneyAmountValueChanged;
     public UnityEvent<bool> OnStackMaxed;
 
     private bool isPlay = false;
@@ -45,8 +33,6 @@ public class PlayerController : AgentController
     #region Main
     protected override void Init()
     {
-        _playerData = new PlayerData();
-
         Rigidbody = GetComponent<Rigidbody>();
         Animator = transform.Find("Visual").GetComponent<Animator>();
     }
@@ -65,13 +51,8 @@ public class PlayerController : AgentController
 
         OnTakeFood += HandleTakeFood;
         OnGiveFood += HandleGiveFood;
-        //OnGetPaid += HandleOnGetPaid;
+        OnGetPaid += HandleOnGetPaid;
         //OnPaidCost += HandleOnPaidCost;
-    }
-
-    private void Start()
-    {
-        OnMoneyAmountValueChanged?.Invoke(_playerData.MoneyAmount);
     }
 
     private void Update()
@@ -85,7 +66,7 @@ public class PlayerController : AgentController
 
         OnTakeFood -= HandleTakeFood;
         OnGiveFood -= HandleGiveFood;
-        //OnGetPaid -= HandleOnGetPaid;
+        OnGetPaid -= HandleOnGetPaid;
         //OnPaidCost -= HandleOnPaidCost;
     }
     #endregion
@@ -141,22 +122,16 @@ public class PlayerController : AgentController
 
     private void HandleOnGetPaid(int moneyAmount)
     {
-        int newMoneyAmount = Mathf.Clamp(_playerData.MoneyAmount + moneyAmount, 0, _maxMoneyAmount);
-        _playerData.MoneyAmount = newMoneyAmount;
-
+        // 돈 받았을 때 이벤트 처리 해주기
         // UI Update
-        OnMoneyAmountValueChanged?.Invoke(_playerData.MoneyAmount);
     }
 
     private int HandleOnPaidCost(int cost)
     {
-        int beforeMoneyAmount = _playerData.MoneyAmount;
-        _playerData.MoneyAmount = _playerData.MoneyAmount - cost;
-
+        // 돈 냈을 때 이벤트 처리 해주기
         // UI Update
-        OnMoneyAmountValueChanged?.Invoke(_playerData.MoneyAmount);
 
-        return beforeMoneyAmount;
+        return 0;
     }
     #endregion
 }

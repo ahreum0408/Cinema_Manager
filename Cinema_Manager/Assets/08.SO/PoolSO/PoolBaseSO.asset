@@ -57,3 +57,7 @@ MonoBehaviour:
       type: 3}
     prefabTypeName: SoundObject
     poolCount: 6
+  - prefab: {fileID: 5244859393215767431, guid: 1bdba985e05e853449aabe11caca7360,
+      type: 3}
+    prefabTypeName: Money
+    poolCount: 6
