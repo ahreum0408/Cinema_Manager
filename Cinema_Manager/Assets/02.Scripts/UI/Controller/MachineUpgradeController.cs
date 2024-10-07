@@ -18,7 +18,7 @@ public class MachineUpgradeController : MonoBehaviour {
         }
         _gameData = data;
 
-        MachineUpgradeEvents.
+        MachineUpgradeEvents.GameDataLoadEvent?.Invoke(_gameData);
     }
     private void GameDataUpdate(GameData data) {
         if (data == null) {
