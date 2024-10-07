@@ -1,73 +1,94 @@
 using BehaviorDesigner.Runtime;
+using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
+
+using static AyunDefine;
 
 public enum CustomerType
 {
     Basic = 0, Call, Sleep, Thief
 }
 
-public class Customer : MonoBehaviour
+public class CustomerData
 {
     [Header("Customer Type")]
-    [SerializeField] private Material[] mat = new Material[2];
+    public bool isGet = false;
     public bool isBuy = false; // 구매 완료? 물건 다 받았냐
     public bool isSeat; // 식탁을 사용하는 손님인가?
     public bool isBad; // 진상 손님인가?
 
+
     [Header("Buy Type")]
-    // 나중에 물건 타입도 추가?
-    [SerializeField] private int maxBuySum = 3;
+    public PoolableType objectType;
+    public int maxBuySum = 3;
     public int wantBuy; // 원하는 수량
-    public int currentBuy; // 현재 받은 수량
+}
 
+public class Customer : AgentController
+{
+    public CustomerData customerData;
+    public int currentBuy; // 현재 가진 수량
+
+    [HideInInspector] public bool IsStacked => StackCompo.IsStacked;
     [HideInInspector] public Vector3 startPos;
-    [HideInInspector] public Chair currentChair;
+    [HideInInspector] public Point currentChair;
 
+    // Components
     public NavMeshAgent Agent { get; private set; }
-    public SeoyeonCounter Counter {  get; private set; }
-    public Table Table { get; private set; }
     public CustomerType CurrentCustomerType { get; private set; }
     public AgentStackComponent StackCompo { get; private set; }
+    public AgentAnimationComponent AnimationCompo { get; private set; }
 
-    private MeshRenderer _meshRenderer;
-    int i = 0;
+    // Events
+    public Action<ITakeable> OnTakeFood;
+    public Func<ITakeable> OnGiveFood;
 
-    private void Awake()
+    protected override void Init()
     {
+        Animator = GetComponentInChildren<Animator>();
+
         Agent = GetComponent<NavMeshAgent>();
         StackCompo = GetComponent<AgentStackComponent>();
-        Counter = FindObjectOfType<SeoyeonCounter>();
-        Table = FindObjectOfType<Table>();
-        _meshRenderer = GetComponent<MeshRenderer>();
+        AnimationCompo = GetComponent<AgentAnimationComponent>();
     }
 
     private void Start()
     {
+        customerData = new CustomerData();
+
         startPos = transform.position;
         SetSeat();
         SetCustomerType();
         SelectBuySum();
+        SelectObjectType();
+
+        OnTakeFood += HandleTakeFood;
+        OnGiveFood += HandleGiveFood;
     }
 
+    #region Set Customer Type
+    // 먹고 가는 손님
     private void SetSeat()
     {
         int rand = Random.Range(0, 2);
         if (rand > 0)
-            isSeat = false;
+            customerData.isSeat = false;
         else
-            isSeat = true;
+            customerData.isSeat = true;
     }
-
+    
+    // 손님 타입(진상 손님 종류)
     private void SetCustomerType()
     {
         int rand = Random.Range(0, 10);
         if (rand > 0)
-            isBad = false;
+            customerData.isBad = false;
         else
-            isBad = true;
+            customerData.isBad = true;
 
-        if(isBad)
+        if(customerData.isBad)
         {
             rand = Random.Range(1, 3);
             switch(rand)
@@ -84,29 +105,48 @@ public class Customer : MonoBehaviour
             CurrentCustomerType = CustomerType.Basic;
     }
 
+    // 손님 원하는 물건
+    public void SelectObjectType()
+    {
+        int rand = Random.Range(1, 5);
+        customerData.objectType = (PoolableType)rand;
+        if(ObjectManager.Instance.FindDisplayStand(customerData.objectType).CanStandPoint() == null)
+            SelectObjectType();
+    }
+
+    // 구매 수량
     private void SelectBuySum()
     {
-        wantBuy = Random.Range(1, maxBuySum + 1);
+        customerData.wantBuy = Random.Range(1, customerData.maxBuySum + 1);
     }
+    #endregion
 
-    public void ChangeCustomerMat()
+
+    #region Handle
+
+    private void HandleTakeFood(ITakeable takeable)
     {
-        i = ++i % 2;
+        if (IsStacked == false)
+            AnimationCompo.UpperHoldingAnimation(true);
 
-        _meshRenderer.material = mat[i];
+        // UI Update
+        //OnStackMaxed?.Invoke(IsStackMax);
     }
 
-    private void Update()
+    private Food HandleGiveFood()
     {
-        // 디버깅용
-        if(Input.GetKeyDown(KeyCode.F))
-            ChangeCustomerType();
+        Food food = StackCompo.GetTopObject() as Food;
+
+        // UI Update
+        //OnStackMaxed?.Invoke(IsStackMax);
+
+        if (IsStacked == false)
+            AnimationCompo.UpperHoldingAnimation(false);
+
+        return food;
     }
 
-    public void ChangeCustomerType()
-    {
-        CurrentCustomerType = CustomerType.Basic;
-    }
+    #endregion
 }
 
 public class SharedCustomer : SharedVariable<Customer>

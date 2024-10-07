@@ -1,15 +1,15 @@
 using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EndCustomer : Action
+public class FindChair : Action
 {
     public SharedCustomer customer;
 
     private Vector3 _destination;
     private NavMeshAgent _agent;
+
+    private bool _isStarted;
 
     public override void OnAwake()
     {
@@ -18,15 +18,25 @@ public class EndCustomer : Action
 
     public override void OnStart()
     {
-        _destination = customer.Value.startPos;
+        _destination = customer.Value.currentChair.transform.position;
         _agent.SetDestination(_destination);
+        _isStarted = true;
     }
 
     public override TaskStatus OnUpdate()
     {
+        customer.Value.AnimationCompo.SetMovementAnimation(_destination);
+
+        if (_isStarted)
+        {
+            _isStarted = false;
+            return TaskStatus.Running;
+        }
+
         float threshold = _agent.stoppingDistance + 0.1f;
         if (!_agent.isPathStale && _agent.remainingDistance < threshold)
         {
+            customer.Value.AnimationCompo.SetMovementAnimation(Vector3.zero);
             return TaskStatus.Success;
         }
         return TaskStatus.Running;

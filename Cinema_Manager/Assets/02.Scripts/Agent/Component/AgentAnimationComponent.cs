@@ -8,6 +8,8 @@ public class AgentAnimationComponent : AgentComponent
 {
     private Animator _animator;
 
+    private int _isSeat = Animator.StringToHash("IsSeat");
+
     public override void Init(AgentController controller)
     {
         base.Init(controller);
@@ -48,5 +50,10 @@ public class AgentAnimationComponent : AgentComponent
             _animator.SetLayerWeight(1, newWeight);
             yield return null;
         }
+    }
+
+    public void SeatAnimation(float value)
+    {
+        _animator.SetFloat(_isSeat, value);
     }
 }
