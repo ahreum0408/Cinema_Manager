@@ -44,6 +44,21 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
 
     public void ExitInteraction() { }
 
+    public IEnumerator ClearMoneyObject()
+    {
+        isClearing = true;
+
+        foreach (Money money in moneyStack)
+        {
+            money.JumpToPositionAndDestory(playerTransform.localPosition);
+            yield return new WaitForSeconds(0.02f);
+        }
+
+        moneyStack.Clear();
+        isClearing = false;
+    }
+
+    // 지불 (돈 생성)
     public void AddMoneyObject(int newMoneyAmount)
     {
         // isClearing 될 때 까지 기다려야함
@@ -71,19 +86,5 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
         moneyPosition.z = -spacingZ * row;
 
         return moneyPosition;
-    }
-
-    public IEnumerator ClearMoneyObject()
-    {
-        isClearing = true;
-
-        foreach (Money money in moneyStack)
-        {
-            money.JumpToPositionAndDestory(playerTransform.localPosition);
-            yield return new WaitForSeconds(0.02f);
-        }
-
-        moneyStack.Clear();
-        isClearing = false;
     }
 }
