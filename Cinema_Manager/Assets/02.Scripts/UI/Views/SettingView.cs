@@ -5,62 +5,79 @@ using UnityEngine.UIElements;
 
 public class SettingView : UIView {
 
-    private Slider bgmSlider;
-    private Slider effctSlider;
+    private Slider _bgmSlider;
+    private Slider _effctSlider;
 
-    private Button closeBtn;
+    private Button _closeBtn;
+
+    private GameData _gameData = new GameData();
 
     public SettingView(VisualElement topElement) : base(topElement) {
+        SettingEvents.GameDataLoadEvent += GameDataLoad;
     }
-
     public override void Dispose() {
         base.Dispose();
+        SettingEvents.GameDataLoadEvent-= GameDataLoad;
+    }
+
+    public override void Show() {
+        base.Show();
+        SettingEvents.ShowEvent?.Invoke();
     }
 
     protected override void SetVisualElements() {
         base.SetVisualElements();
 
-        bgmSlider = topElement.Q<Slider>("bgm-slider");
-        effctSlider = topElement.Q<Slider>("effect-slider");
+        _bgmSlider = topElement.Q<Slider>("bgm-slider");
+        _effctSlider = topElement.Q<Slider>("effect-slider");
 
-        closeBtn = topElement.Q<Button>("closee-btn");
+        _closeBtn = topElement.Q<Button>("closee-btn");
     }
 
     protected override void RegisterButtonCallbacks() {
         base.RegisterButtonCallbacks();
 
-        bgmSlider.RegisterCallback<ChangeEvent<float>>(ChangBgmValue);
-        effctSlider.RegisterCallback<ChangeEvent<float>>(ChangEffectValue);
+        _bgmSlider.RegisterCallback<ChangeEvent<float>>(ChangBgmValue);
+        _effctSlider.RegisterCallback<ChangeEvent<float>>(ChangEffectValue);
 
-        closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
+        _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
     }
-
-
     protected override void UnRegisterButtonCallbacks() {
         base.UnRegisterButtonCallbacks();
-        bgmSlider.UnregisterCallback<ChangeEvent<float>>(ChangBgmValue);
-        effctSlider.UnregisterCallback<ChangeEvent<float>>(ChangEffectValue);
+        _bgmSlider.UnregisterCallback<ChangeEvent<float>>(ChangBgmValue);
+        _effctSlider.UnregisterCallback<ChangeEvent<float>>(ChangEffectValue);
 
-        closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
+        _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
     }
 
     #region Handle
     private void ChangBgmValue(ChangeEvent<float> evt) {
-        Debug.Log($"bgm value : {evt.newValue}");
-        SettingEvents.UIGameDataChange?.Invoke();
-        // 값 변한거 저장해줘야 하고
-        // sound변경된거 재생 부분에서 처리하기
+        evt.StopPropagation();
+        _gameData.bgmValue = evt.newValue;
+        SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ChangEffectValue(ChangeEvent<float> evt) {
-        Debug.Log($"effect value : {evt.newValue}");
-        SettingEvents.UIGameDataChange?.Invoke();
-        // 값 변한거 저장해줘야 하고
-        // sound변경된거 재생 부분에서 처리하기
+        evt.StopPropagation();
+        _gameData.effectValue = evt.newValue;
+        SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 
     private void ClickCloseBtn(ClickEvent evt) {
         MainEvents.MainViewShow?.Invoke();
         // 창 변경 됬다는거 uimanager한테 안알려줬음 주의 할 것
     }
+
+    private void GameDataLoad(GameData data) {
+        if (data == null) {
+            return;
+        }
+        _gameData = data;
+
+        _bgmSlider.value = _gameData.bgmValue;
+        _effctSlider.value = _gameData.effectValue;
+
+        SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
+    }
     #endregion
+
 }

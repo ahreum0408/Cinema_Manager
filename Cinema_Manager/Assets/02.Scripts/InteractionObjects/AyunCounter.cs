@@ -5,9 +5,6 @@ public class AyunCounter : MonoBehaviour, IIneractionable
 {
     //private NotifyImageComponent notifyImageComponent;
 
-    //private WaitingPointContainer waitingPointContainer;
-    //public WaitingPointContainer WaitingPointContainer => waitingPointContainer;
-
     private MoneyDummy moneyDummy;
 
     private bool isLooping = false;
@@ -15,7 +12,6 @@ public class AyunCounter : MonoBehaviour, IIneractionable
     private void Awake()
     {
         //notifyImageComponent = GetComponent<NotifyImageComponent>();
-        //waitingPointContainer = GetComponent<WaitingPointContainer>();
         moneyDummy = transform.Find("MoneyDummy").GetComponent<MoneyDummy>();
     }
 
