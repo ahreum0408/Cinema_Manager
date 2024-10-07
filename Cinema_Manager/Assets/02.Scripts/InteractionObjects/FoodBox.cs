@@ -19,6 +19,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
     [Range(0, 5)] [SerializeField] private float _spacingZ; // 밑으로 내려가야 하기 때문에 음수로 바꿔 사용
     [Range(0, 5)] [SerializeField] private float _spacingY;
 
+    private bool _isFoodFilling = false;
     private bool _isEnterInteraction = false;
 
     private PlayerController _playerController;
@@ -53,6 +54,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
 
     public void HandleBringFood()
     {
+        _isFoodFilling = true;
         StartCoroutine(FillingFoodRoutine());
     }
 
@@ -81,7 +83,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
 
             yield return new WaitForSeconds(0.25f);
         }
-
+        _isFoodFilling = false;
         _foodTruck.GoTakeFood();
     }
 
@@ -102,7 +104,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            if (_currentFoodCnt > 0)
+            if (_isFoodFilling == false && _currentFoodCnt > 0)
             {
                 ITakeable takeable = _foodStack.Peek();
 
