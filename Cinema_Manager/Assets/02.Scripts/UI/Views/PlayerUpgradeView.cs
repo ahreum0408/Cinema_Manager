@@ -17,11 +17,18 @@ public class PlayerUpgradeView : UIView {
     private List<VisualElement> volumeGaugeList;
     private List<VisualElement> sellingCostGaugeList;
 
-    public PlayerUpgradeView(VisualElement topElement) : base(topElement) {
+    private GameData _gameData;
 
+    public PlayerUpgradeView(VisualElement topElement) : base(topElement) {
+        PlayerUpgradeEvents.GameDataLoadEvent += GameDataLoad;
     }
     public override void Dispose() {
         base.Dispose();
+        PlayerUpgradeEvents.GameDataLoadEvent -= GameDataLoad;
+    }
+    public override void Show() {
+        base.Show();
+        PlayerUpgradeEvents.ShowEvent.Invoke();
     }
     protected override void SetVisualElements() {
         base.SetVisualElements();
@@ -40,7 +47,6 @@ public class PlayerUpgradeView : UIView {
         upgradeVolumeBtn = upgradeVolumeContent.Q<Button>("upgrade-btn");
         upgradeSellingCostBtn = upgradeEmploymentContent.Q<Button>("upgrade-btn");
     }
-
     protected override void RegisterButtonCallbacks() {
         base.RegisterButtonCallbacks();
 
@@ -58,37 +64,61 @@ public class PlayerUpgradeView : UIView {
         upgradeSellingCostBtn.UnregisterCallback<ClickEvent>(ClickSellingCostBtn);
     }
 
-    #region Handle
+    #region registercallback
     private void ClickUpgradeMoveSpeedBtn(ClickEvent evt) {
-        PlayerUpgradeEvents.UpgradeMoveSpeedEvent?.Invoke();
         foreach(VisualElement gauge in moveSpeedGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
+                _gameData.p_movespeedLevel++;
                 return;
             }
         }
+        PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickVolumeBtn(ClickEvent evt) {
-        PlayerUpgradeEvents.UpgradekVolumeEvent?.Invoke();
         foreach (VisualElement gauge in volumeGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
+                _gameData.p_volumeLevel++;
                 return;
             }
         }
+        PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickSellingCostBtn(ClickEvent evt) {
-        PlayerUpgradeEvents.UpgradeSellingCostEvent?.Invoke();
         foreach (VisualElement gauge in sellingCostGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
+                _gameData.p_sellingcostLevel++;
                 return;
             }
         }
+        PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 
     private void ClickCloseBtn(ClickEvent evt) {
         MainEvents.MainViewShow?.Invoke();
     }
     #endregion
+
+    private void GameDataLoad(GameData data) {
+        if (data == null) {
+            return;
+        }
+        _gameData = data;
+
+        for(int i = 0; i < 5; i++) {
+            if(_gameData.p_movespeedLevel < i) {
+                moveSpeedGaugeList[i].RemoveFromClassList("off");
+            }
+            if (_gameData.p_volumeLevel < i) {
+                volumeGaugeList[i].RemoveFromClassList("off");
+            }
+            if (_gameData.p_sellingcostLevel < i) {
+                sellingCostGaugeList[i].RemoveFromClassList("off");
+            }
+        }
+
+        PlayerUpgradeEvents.GameDataUpdatEvent.Invoke(_gameData);
+    }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 using UnityEngine.Video;
 
 [Serializable]
-public class MachinepgradeView : UIView {
+public class MachineUpgradeView : UIView {
     private Button closeBtn;
 
     private Button upgradeProductionSpeedBtn;
@@ -17,12 +17,20 @@ public class MachinepgradeView : UIView {
     private List<VisualElement> volumeGaugeList;
     private List<VisualElement> storageGaugeList;
 
-    public MachinepgradeView(VisualElement topElement) : base(topElement) {
+    private GameData _gameData;
 
+    public MachineUpgradeView(VisualElement topElement) : base(topElement) {
+        MachineUpgradeEvents.GameDataLoadEvent += GameDataLoad;
     }
     public override void Dispose() {
         base.Dispose();
+        MachineUpgradeEvents.GameDataLoadEvent -= GameDataLoad;
     }
+    public override void Show() {
+        base.Show();
+        MachineUpgradeEvents.ShowEvent?.Invoke();
+    }
+
     protected override void SetVisualElements() {
         base.SetVisualElements();
 
@@ -46,49 +54,72 @@ public class MachinepgradeView : UIView {
 
         closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
 
-        upgradeProductionSpeedBtn.RegisterCallback<ClickEvent>(ClickUpgradeMoveSpeedBtn);
+        upgradeProductionSpeedBtn.RegisterCallback<ClickEvent>(ClickProductionSpeedBtn);
         upgradeVolumeBtn.RegisterCallback<ClickEvent>(ClickVolumeBtn);
-        upgradeStorageBtn.RegisterCallback<ClickEvent>(ClickSellingCostBtn);
+        upgradeStorageBtn.RegisterCallback<ClickEvent>(ClickStorageBtn);
     }
     protected override void UnRegisterButtonCallbacks() {
         base.UnRegisterButtonCallbacks();
 
-        upgradeProductionSpeedBtn.UnregisterCallback<ClickEvent>(ClickUpgradeMoveSpeedBtn);
+        upgradeProductionSpeedBtn.UnregisterCallback<ClickEvent>(ClickProductionSpeedBtn);
         upgradeVolumeBtn.UnregisterCallback<ClickEvent>(ClickVolumeBtn);
-        upgradeStorageBtn.UnregisterCallback<ClickEvent>(ClickSellingCostBtn);
+        upgradeStorageBtn.UnregisterCallback<ClickEvent>(ClickStorageBtn);
     }
 
-    #region Handle
-    private void ClickUpgradeMoveSpeedBtn(ClickEvent evt) {
-        MachineUpgradeEvents.UpgradeProductionSpeedEvent?.Invoke();
+    #region registercallback
+    private void ClickProductionSpeedBtn(ClickEvent evt) {
         foreach(VisualElement gauge in productionSpeedGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
+                _gameData.m_productionspeedLevel++;
                 return;
             }
         }
+        MachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickVolumeBtn(ClickEvent evt) {
-        MachineUpgradeEvents.UpgradekVolumeEvent?.Invoke();
         foreach (VisualElement gauge in volumeGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
+                _gameData.e_volumeLevel++;
                 return;
             }
         }
+        MachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void ClickSellingCostBtn(ClickEvent evt) {
-        MachineUpgradeEvents.UpgradeStorageEvent?.Invoke();
+    private void ClickStorageBtn(ClickEvent evt) {
         foreach (VisualElement gauge in storageGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
+                _gameData.m_storageLevel++;
                 return;
             }
         }
+        MachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 
     private void ClickCloseBtn(ClickEvent evt) {
         MainEvents.MainViewShow?.Invoke();
     }
     #endregion
+
+    private void GameDataLoad(GameData data) {
+        if (data == null) {
+            return;
+        }
+        _gameData = data;
+
+        for (int i = 0; i < 5; i++) {
+            if (_gameData.m_productionspeedLevel < i) {
+                productionSpeedGaugeList[i].RemoveFromClassList("off");
+            }
+            if (_gameData.m_volumeLevel < i) {
+                volumeGaugeList[i].RemoveFromClassList("off");
+            }
+            if (_gameData.m_storageLevel < i) {
+                storageGaugeList[i].RemoveFromClassList("off");
+            }
+        }
+        MachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
+    }
 }

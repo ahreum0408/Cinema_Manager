@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour {
         _settingView = new SettingView(root.Q<VisualElement>(settingViewName)); // Landing modal screen
         _employeeUpgradeView = new EmployeeUpgradeView(root.Q<VisualElement>(upgradeEmployeeViewName)); // Landing modal screen
         _playerUpgradeView = new PlayerUpgradeView(root.Q<VisualElement>(upgradePlayerViewName)); // Landing modal screen
-        _machineUpgradeView = new MachinepgradeView(root.Q<VisualElement>(upgradeMachineViewName)); // Landing modal screen
+        _machineUpgradeView = new MachineUpgradeView(root.Q<VisualElement>(upgradeMachineViewName)); // Landing modal screen
 
         _allViews.Add(_mainView);
         _allViews.Add(_settingView);

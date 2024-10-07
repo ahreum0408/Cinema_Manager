@@ -23,11 +23,23 @@ public class SaveManager : MonoBehaviour {
     void OnEnable() {
         SettingEvents.ShowEvent += SettingViewShown;
         SettingEvents.SettingUpdatedEvent += SettingViewUpdated;
+
+        PlayerUpgradeEvents.ShowEvent += PlayerUpgradeViewShown;
+        PlayerUpgradeEvents.PlayerUpgradeUpdatedEvent += PlayerUpgradeViewUpdated;
+
+        MachineUpgradeEvents.ShowEvent += MachineUpgradeViewShown;
+        MachineUpgradeEvents.MachineUpgradeUpdatedEvent += MachineUpgradeViewUpdated;
     }
 
     void OnDisable() {
         SettingEvents.ShowEvent -= SettingViewShown;
         SettingEvents.SettingUpdatedEvent -= SettingViewUpdated;
+
+        PlayerUpgradeEvents.ShowEvent-= PlayerUpgradeViewShown;
+        PlayerUpgradeEvents.PlayerUpgradeUpdatedEvent -= PlayerUpgradeViewUpdated;
+
+        MachineUpgradeEvents.ShowEvent -= MachineUpgradeViewShown;
+        MachineUpgradeEvents.MachineUpgradeUpdatedEvent -= MachineUpgradeViewUpdated;
     }
     public GameData NewData() {
         return new GameData();
@@ -50,6 +62,8 @@ public class SaveManager : MonoBehaviour {
         string jsonFile = gameDataManager.GameData.ToJson();
         FileManager.WriteToFile(_saveFilename, jsonFile);
     }
+
+    #region handle
     void SettingViewShown() {
         if (gameDataManager.GameData != null) {
             GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
@@ -59,4 +73,25 @@ public class SaveManager : MonoBehaviour {
         gameDataManager.GameData = gameData;
         SaveGameData();
     }
+
+    void PlayerUpgradeViewShown() {
+        if (gameDataManager.GameData != null) {
+            GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
+        }
+    }
+    void PlayerUpgradeViewUpdated(GameData gameData) {
+        gameDataManager.GameData = gameData;
+        SaveGameData();
+    }
+
+    void MachineUpgradeViewShown() {
+        if (gameDataManager.GameData != null) {
+            GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
+        }
+    }
+    void MachineUpgradeViewUpdated(GameData gameData) {
+        gameDataManager.GameData = gameData;
+        SaveGameData();
+    }
+    #endregion
 }

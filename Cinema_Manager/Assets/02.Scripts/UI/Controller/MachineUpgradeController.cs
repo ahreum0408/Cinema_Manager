@@ -1,32 +1,31 @@
 using System;
 using UnityEngine;
 
-public class SettingController : MonoBehaviour {
+public class MachineUpgradeController : MonoBehaviour {
     private GameData _gameData;
-
     private void OnEnable() {
         SaveManager.GameDataLoadedEvent += GameDataLoad;
-        SettingEvents.GameDataUpdatEvent += SettingUpdate;
-    }
-    private void OnDisable() {
-        SaveManager.GameDataLoadedEvent -= GameDataLoad;
-        SettingEvents.GameDataUpdatEvent -= SettingUpdate;
+        MachineUpgradeEvents.GameDataUpdatEvent += GameDataUpdate;
     }
 
+    private void OnDisable() {
+        SaveManager.GameDataLoadedEvent -= GameDataLoad;
+        MachineUpgradeEvents.GameDataUpdatEvent -= GameDataUpdate;
+    }
     private void GameDataLoad(GameData data) {
         if (data == null) {
             return;
         }
         _gameData = data;
 
-        SettingEvents.GameDataLoadEvent?.Invoke(_gameData);
+        MachineUpgradeEvents.
     }
-    private void SettingUpdate(GameData data) {
+    private void GameDataUpdate(GameData data) {
         if (data == null) {
             return;
         }
         _gameData = data;
 
-        SettingEvents.SettingUpdatedEvent?.Invoke(_gameData);
+        MachineUpgradeEvents.GameDataLoadEvent?.Invoke(_gameData);
     }
 }
