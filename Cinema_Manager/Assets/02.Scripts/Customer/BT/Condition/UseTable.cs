@@ -13,7 +13,7 @@ public class UseTable : Conditional
     {
         customer.Value.AnimationCompo.SeatAnimation(1);
         lastEatTime = Time.time;
-        currentEat = customer.Value.customerData.wantBuy;
+        //currentEat = customer.Value.customerData.wantBuy;
     }
 
     public override TaskStatus OnUpdate()

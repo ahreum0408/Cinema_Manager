@@ -22,8 +22,9 @@ public class FindFood : Action
     {
         stand = ObjectManager.Instance.FindDisplayStand(customer.Value.customerData.objectType);
         stand.AddCustomer(customer.Value);
+        customer.Value.currentStand = stand;
 
-        _destination = stand.CanStandPoint().transform.position;
+        _destination = customer.Value.Agent.destination;
         _agent.SetDestination(_destination);
         _isStarted = true;
     }

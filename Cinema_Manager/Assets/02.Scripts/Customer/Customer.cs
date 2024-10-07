@@ -14,7 +14,7 @@ public enum CustomerType
 public class CustomerData
 {
     [Header("Customer Type")]
-    public bool isGet = false;
+    public bool isGet = false; // 물건을 다 받았는가?
     public bool isBuy = false; // 구매 완료? 물건 다 받았냐
     public bool isSeat; // 식탁을 사용하는 손님인가?
     public bool isBad; // 진상 손님인가?
@@ -23,16 +23,15 @@ public class CustomerData
     [Header("Buy Type")]
     public PoolableType objectType;
     public int maxBuySum = 3;
-    public int wantBuy; // 원하는 수량
 }
 
 public class Customer : AgentController
 {
     public CustomerData customerData;
-    public int currentBuy; // 현재 가진 수량
 
     [HideInInspector] public bool IsStacked => StackCompo.IsStacked;
     [HideInInspector] public Vector3 startPos;
+    [HideInInspector] public DisplayStand currentStand;
     [HideInInspector] public Point currentChair;
 
     // Components
@@ -117,7 +116,7 @@ public class Customer : AgentController
     // 구매 수량
     private void SelectBuySum()
     {
-        customerData.wantBuy = Random.Range(1, customerData.maxBuySum + 1);
+        StackCompo.SetMaxStackCount(Random.Range(1, customerData.maxBuySum + 1));
     }
     #endregion
 
@@ -128,17 +127,11 @@ public class Customer : AgentController
     {
         if (IsStacked == false)
             AnimationCompo.UpperHoldingAnimation(true);
-
-        // UI Update
-        //OnStackMaxed?.Invoke(IsStackMax);
     }
 
     private Food HandleGiveFood()
     {
         Food food = StackCompo.GetTopObject() as Food;
-
-        // UI Update
-        //OnStackMaxed?.Invoke(IsStackMax);
 
         if (IsStacked == false)
             AnimationCompo.UpperHoldingAnimation(false);

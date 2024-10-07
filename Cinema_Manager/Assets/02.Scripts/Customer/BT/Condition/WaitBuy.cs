@@ -8,7 +8,7 @@ public class WaitBuy : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if (customer.Value.customerData.wantBuy == customer.Value.currentBuy)
+        if (customer.Value.StackCompo.RemainingStackCount == 0)
         {
             ObjectManager.Instance.counter.RemoveCustomer(customer.Value);
             return TaskStatus.Failure;

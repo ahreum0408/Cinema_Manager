@@ -21,18 +21,23 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     private PlayerController _playerController;
     private NotifyImageComponent _notifyImageComponent;
 
-    private Dictionary<Customer, int> _customerList;
-    private bool _isStart = true;
-    private int i;
+    private Customer _currentCustomer;
+
+    private Dictionary<Customer, int> _customerDic;
+    private bool _isStart;
 
     private void Awake()
     {
-        i = 0;
-        _customerList = new Dictionary<Customer, int>();
+        _customerDic = new Dictionary<Customer, int>();
 
         _playerController = FindObjectOfType<PlayerController>(); // ³ªÁß¿¡ ½Ì±ÛÅæÀ¸·Î
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _foodStack = new Stack<ITakeable>();
+    }
+
+    private void Start()
+    {
+        _isStart = true;
     }
 
     public void EnterInteraction()
@@ -75,10 +80,13 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     private IEnumerator GiveBreadRoutine()
     {
-        while (true)
+        while (_currentFoodCnt > 0 && _currentCustomer != null)
         {
-            // ¿©±â¼­ ¼Õ´Ô¿¡°Ô À½½Ä Áà¾ßÇÔ
-            yield return null;
+            if (_currentCustomer.StackCompo.RemainingStackCount == 0)
+            {
+                _currentCustomer.OnTakeFood?.Invoke(_foodStack.Pop());
+            }
+            yield return new WaitForSeconds(0.15f);
         }
     }
 
@@ -97,35 +105,33 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     public void AddCustomer(Customer customer)
     {
-        _customerList.Add(customer, i);
-        i++;
+        _customerDic.Add(customer, _customerDic.Count);
         if (_isStart)
         {
+            _currentCustomer = customer;
             customer.customerData.isBuy = true;
             _isStart = false;
         }
-        else
-        {
-            customer.Agent.SetDestination(points[_customerList[customer]].transform.position);
-        }
+        customer.Agent.SetDestination(points[_customerDic[customer]].transform.position);
     }
 
     public void RemoveCustomer(Customer customer)
     {
-        _customerList.Remove(customer);
-        i--;
+        _customerDic.Remove(customer);
         _isStart = true;
-        foreach (var customers in _customerList.Keys)
+        foreach (var customers in _customerDic.Keys)
         {
             if (_isStart)
             {
+                _currentCustomer = customers;
                 customers.customerData.isGet = true;
                 _isStart = false;
             }
-
-            customers.Agent.SetDestination(points[_customerList[customer]].transform.position);
+            customers.Agent.SetDestination(points[_customerDic[customer] -1].transform.position);
         }
+        _currentCustomer = null;
     }
 
     public PoolableType GetPoolObjType() => _poolObjType;
+    public int GetFoodStack() => _currentFoodCnt;
 }
