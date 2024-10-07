@@ -22,7 +22,7 @@ public class Money : MonoBehaviour
 
     private IEnumerator JumpRoutine(Vector3 position)
     {
-        _objectMovement.JumpToPosition(position);
+        _objectMovement.JumpToPosition(position, Space.World);
         yield return new WaitForSeconds(_objectMovement.AnimationDuration);
         PoolManager.Instance.Push(transform.name, gameObject);
     }

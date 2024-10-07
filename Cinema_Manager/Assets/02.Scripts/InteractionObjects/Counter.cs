@@ -5,7 +5,6 @@ using UnityEngine;
 public class Counter : MonoBehaviour, IIneractionable
 {
     #region 서연
-    [SerializeField] private Transform objectHolder;
     [SerializeField] private float lineInterval;
     public Transform checkPoint;
 
@@ -16,17 +15,26 @@ public class Counter : MonoBehaviour, IIneractionable
 
     private bool _isEnterInteraction = false;
 
+    private MoneyDummy _moneyDummy;
+    private NotifyImageComponent _notifyImageComponent;
+
+    private void Awake()
+    {
+        _moneyDummy = transform.GetComponentInChildren<MoneyDummy>();
+        _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
+    }
+
     public void EnterInteraction()
     {
-        Debug.Log("들어옴");
         _isEnterInteraction = true;
+        _notifyImageComponent.SetNotifySensorImage(1.1f);
         StartCoroutine(CheckPayLoop());
     }
 
     public void ExitInteraction()
     {
         _isEnterInteraction = false;
-        Debug.Log("나감");
+        _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
     // 지불 확인 작업 (플레이어가 카운터에 상호작용하고 있을 때만 실행)
@@ -35,6 +43,12 @@ public class Counter : MonoBehaviour, IIneractionable
         while (_isEnterInteraction)
         {
             // 여기서 계산 하는거 해주면 됨
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _moneyDummy.AddMoneyObject(1);
+            }
+
             yield return null;
         }
     }
