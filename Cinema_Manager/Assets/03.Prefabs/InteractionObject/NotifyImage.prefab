@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684456153213672901}
   - component: {fileID: 8422778340864195357}
+  - component: {fileID: 7826676917690280844}
   m_Layer: 0
   m_Name: NotifyImage
   m_TagString: Untagged
@@ -84,3 +85,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7826676917690280844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4867679142311227240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2aadaea67cd5354489c1669575aebbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notifyImageObject: {fileID: 4867679142311227240}
+  animationDuration: 0.2
