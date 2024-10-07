@@ -22,7 +22,7 @@ public class SettingView : UIView {
 
     public override void Show() {
         base.Show();
-        SettingEvents.ShowEvent?.Invoke();
+        MainEvents.ShowViewEvent?.Invoke();
     }
 
     protected override void SetVisualElements() {

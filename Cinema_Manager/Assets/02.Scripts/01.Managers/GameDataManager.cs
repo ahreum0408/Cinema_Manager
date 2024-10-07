@@ -5,6 +5,15 @@ public class GameDataManager : MonoBehaviour {
     [SerializeField] private GameData _gameData;
     public GameData GameData { set => _gameData = value; get => _gameData; }
 
+    private SaveManager _saveManager;
+
+    private void Awake() {
+        _saveManager = GetComponent<SaveManager>();
+    }
+    private void Start() {
+        _saveManager.LoadGame();
+    }
+
     private void OnEnable() {
         SettingEvents.GameDataUpdatEvent += SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent += PlayerDataUpdate;

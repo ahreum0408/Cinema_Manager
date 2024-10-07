@@ -28,7 +28,7 @@ public class PlayerUpgradeView : UIView {
     }
     public override void Show() {
         base.Show();
-        PlayerUpgradeEvents.ShowEvent.Invoke();
+        MainEvents.ShowViewEvent?.Invoke();
     }
     protected override void SetVisualElements() {
         base.SetVisualElements();
@@ -108,13 +108,13 @@ public class PlayerUpgradeView : UIView {
         _gameData = data;
 
         for(int i = 0; i < 5; i++) {
-            if(_gameData.p_movespeedLevel < i) {
+            if(_gameData.p_movespeedLevel <= i) {
                 moveSpeedGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.p_volumeLevel < i) {
+            if (_gameData.p_volumeLevel <= i) {
                 volumeGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.p_sellingcostLevel < i) {
+            if (_gameData.p_sellingcostLevel <= i) {
                 sellingCostGaugeList[i].RemoveFromClassList("off");
             }
         }

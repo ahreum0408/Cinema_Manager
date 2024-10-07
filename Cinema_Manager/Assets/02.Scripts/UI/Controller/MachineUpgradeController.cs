@@ -25,7 +25,5 @@ public class MachineUpgradeController : MonoBehaviour {
             return;
         }
         _gameData = data;
-
-        MachineUpgradeEvents.GameDataLoadEvent?.Invoke(_gameData);
     }
 }

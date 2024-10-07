@@ -29,7 +29,5 @@ public class PlayerUpgradeController : MonoBehaviour{
             return;
         }
         _gameData = data;
-
-        PlayerUpgradeEvents.PlayerUpgradeUpdatedEvent?.Invoke(_gameData);
     }
 }

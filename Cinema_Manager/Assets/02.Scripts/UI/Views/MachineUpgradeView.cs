@@ -28,7 +28,7 @@ public class MachineUpgradeView : UIView {
     }
     public override void Show() {
         base.Show();
-        MachineUpgradeEvents.ShowEvent?.Invoke();
+        MainEvents.ShowViewEvent?.Invoke();
     }
 
     protected override void SetVisualElements() {
@@ -110,13 +110,13 @@ public class MachineUpgradeView : UIView {
         _gameData = data;
 
         for (int i = 0; i < 5; i++) {
-            if (_gameData.m_productionspeedLevel < i) {
+            if (_gameData.m_productionspeedLevel <= i) {
                 productionSpeedGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.m_volumeLevel < i) {
+            if (_gameData.m_volumeLevel <= i) {
                 volumeGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.m_storageLevel < i) {
+            if (_gameData.m_storageLevel <= i) {
                 storageGaugeList[i].RemoveFromClassList("off");
             }
         }

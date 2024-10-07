@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
+using Cysharp.Threading.Tasks.Triggers;
 
 
 [RequireComponent(typeof(GameDataManager))]
@@ -21,25 +22,13 @@ public class SaveManager : MonoBehaviour {
     }
 
     void OnEnable() {
-        SettingEvents.ShowEvent += SettingViewShown;
-        SettingEvents.SettingUpdatedEvent += SettingViewUpdated;
-
-        PlayerUpgradeEvents.ShowEvent += PlayerUpgradeViewShown;
-        PlayerUpgradeEvents.PlayerUpgradeUpdatedEvent += PlayerUpgradeViewUpdated;
-
-        MachineUpgradeEvents.ShowEvent += MachineUpgradeViewShown;
-        MachineUpgradeEvents.MachineUpgradeUpdatedEvent += MachineUpgradeViewUpdated;
+        MainEvents.ShowViewEvent += ViewShown;
+        MainEvents.UpdateViewEvent += ViewUpdated;
     }
 
     void OnDisable() {
-        SettingEvents.ShowEvent -= SettingViewShown;
-        SettingEvents.SettingUpdatedEvent -= SettingViewUpdated;
-
-        PlayerUpgradeEvents.ShowEvent-= PlayerUpgradeViewShown;
-        PlayerUpgradeEvents.PlayerUpgradeUpdatedEvent -= PlayerUpgradeViewUpdated;
-
-        MachineUpgradeEvents.ShowEvent -= MachineUpgradeViewShown;
-        MachineUpgradeEvents.MachineUpgradeUpdatedEvent -= MachineUpgradeViewUpdated;
+        MainEvents.ShowViewEvent -= ViewShown;
+        MainEvents.UpdateViewEvent -= ViewUpdated;
     }
     public GameData NewData() {
         return new GameData();
@@ -64,32 +53,12 @@ public class SaveManager : MonoBehaviour {
     }
 
     #region handle
-    void SettingViewShown() {
+    void ViewShown() {
         if (gameDataManager.GameData != null) {
             GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
         }
     }
-    void SettingViewUpdated(GameData gameData) {
-        gameDataManager.GameData = gameData;
-        SaveGameData();
-    }
-
-    void PlayerUpgradeViewShown() {
-        if (gameDataManager.GameData != null) {
-            GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
-        }
-    }
-    void PlayerUpgradeViewUpdated(GameData gameData) {
-        gameDataManager.GameData = gameData;
-        SaveGameData();
-    }
-
-    void MachineUpgradeViewShown() {
-        if (gameDataManager.GameData != null) {
-            GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
-        }
-    }
-    void MachineUpgradeViewUpdated(GameData gameData) {
+    void ViewUpdated(GameData gameData) {
         gameDataManager.GameData = gameData;
         SaveGameData();
     }
