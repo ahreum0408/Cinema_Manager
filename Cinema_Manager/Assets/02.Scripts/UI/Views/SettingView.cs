@@ -22,7 +22,7 @@ public class SettingView : UIView {
 
     public override void Show() {
         base.Show();
-        SettingEvents.ShowEvent?.Invoke();
+        MainEvents.ShowViewEvent?.Invoke();
     }
 
     protected override void SetVisualElements() {
@@ -50,7 +50,7 @@ public class SettingView : UIView {
         _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
     }
 
-    #region Handle
+    #region registercallback
     private void ChangBgmValue(ChangeEvent<float> evt) {
         evt.StopPropagation();
         _gameData.bgmValue = evt.newValue;
@@ -67,6 +67,7 @@ public class SettingView : UIView {
         // 창 변경 됬다는거 uimanager한테 안알려줬음 주의 할 것
     }
 
+    #endregion
     private void GameDataLoad(GameData data) {
         if (data == null) {
             return;
@@ -76,8 +77,7 @@ public class SettingView : UIView {
         _bgmSlider.value = _gameData.bgmValue;
         _effctSlider.value = _gameData.effectValue;
 
-        SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
+        //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    #endregion
 
 }

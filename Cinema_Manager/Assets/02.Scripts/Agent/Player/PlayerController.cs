@@ -52,7 +52,7 @@ public class PlayerController : AgentController
         OnTakeFood += HandleTakeFood;
         OnGiveFood += HandleGiveFood;
         OnGetPaid += HandleOnGetPaid;
-        //OnPaidCost += HandleOnPaidCost;
+        OnPaidCost += HandleOnPaidCost;
     }
 
     private void Update()
@@ -67,7 +67,7 @@ public class PlayerController : AgentController
         OnTakeFood -= HandleTakeFood;
         OnGiveFood -= HandleGiveFood;
         OnGetPaid -= HandleOnGetPaid;
-        //OnPaidCost -= HandleOnPaidCost;
+        OnPaidCost -= HandleOnPaidCost;
     }
     #endregion
 
@@ -99,7 +99,7 @@ public class PlayerController : AgentController
         _stackComponent.TakeObject(takeable, type, spacingY, isDrink);
 
         // UI Update
-        //OnStackMaxed?.Invoke(IsStackMax);
+        OnStackMaxed?.Invoke(IsStackMax);
     }
 
     public bool CanGiveFood(PoolableType type)
@@ -112,7 +112,7 @@ public class PlayerController : AgentController
         ITakeable food = _stackComponent.GetTopObject();
 
         // UI Update
-        //OnStackMaxed?.Invoke(IsStackMax);
+        OnStackMaxed?.Invoke(IsStackMax);
 
         if (IsStacked == false)
             _agentAnimation.UpperHoldingAnimation(false);

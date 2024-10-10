@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
+using Cysharp.Threading.Tasks.Triggers;
 
 
 [RequireComponent(typeof(GameDataManager))]
@@ -21,13 +22,13 @@ public class SaveManager : MonoBehaviour {
     }
 
     void OnEnable() {
-        SettingEvents.ShowEvent += SettingViewShown;
-        SettingEvents.SettingUpdatedEvent += SettingViewUpdated;
+        MainEvents.ShowViewEvent += ViewShown;
+        MainEvents.UpdateViewEvent += ViewUpdated;
     }
 
     void OnDisable() {
-        SettingEvents.ShowEvent -= SettingViewShown;
-        SettingEvents.SettingUpdatedEvent -= SettingViewUpdated;
+        MainEvents.ShowViewEvent -= ViewShown;
+        MainEvents.UpdateViewEvent -= ViewUpdated;
     }
     public GameData NewData() {
         return new GameData();
@@ -50,13 +51,16 @@ public class SaveManager : MonoBehaviour {
         string jsonFile = gameDataManager.GameData.ToJson();
         FileManager.WriteToFile(_saveFilename, jsonFile);
     }
-    void SettingViewShown() {
+
+    #region handle
+    void ViewShown() {
         if (gameDataManager.GameData != null) {
             GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
         }
     }
-    void SettingViewUpdated(GameData gameData) {
+    void ViewUpdated(GameData gameData) {
         gameDataManager.GameData = gameData;
         SaveGameData();
     }
+    #endregion
 }

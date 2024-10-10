@@ -17,12 +17,21 @@ public class EmployeeUpgradeView : UIView {
     private List<VisualElement> volumeGaugeList;
     private List<VisualElement> employmentGaugeList;
 
-    public EmployeeUpgradeView(VisualElement topElement) : base(topElement) {
+    private GameData _gameData;
 
+    public EmployeeUpgradeView(VisualElement topElement) : base(topElement) {
+        EmployeeUpgradeEvents.GameDataLoadEvent += GameDataLoad;
     }
     public override void Dispose() {
         base.Dispose();
+        EmployeeUpgradeEvents.GameDataLoadEvent -= GameDataLoad;
     }
+
+    public override void Show() {
+        base.Show();
+        MainEvents.ShowViewEvent?.Invoke();
+    }
+
     protected override void SetVisualElements() {
         base.SetVisualElements();
 
@@ -58,37 +67,59 @@ public class EmployeeUpgradeView : UIView {
         upgradeEmploymentBtn.UnregisterCallback<ClickEvent>(ClickEmploymentBtn);
     }
 
-    #region Handle
+    #region registercallback
     private void ClickUpgradeMoveSpeedBtn(ClickEvent evt) {
-        EmployeeUpgradeEvents.UpgradeMoveSpeedEvent?.Invoke();
         foreach(VisualElement gauge in moveSpeedGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
+                _gameData.e_movespeedLevel++;
                 return;
             }
         }
+        EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickVolumeBtn(ClickEvent evt) {
-        EmployeeUpgradeEvents.UpgradekVolumeEvent?.Invoke();
         foreach (VisualElement gauge in volumeGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
+                _gameData.e_volumeLevel++;
                 return;
             }
         }
+        EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickEmploymentBtn(ClickEvent evt) {
-        EmployeeUpgradeEvents.UpgradeEmploymentEvent?.Invoke();
         foreach (VisualElement gauge in employmentGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
+                _gameData.e_employmentLevel++;
                 return;
             }
         }
+        EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 
     private void ClickCloseBtn(ClickEvent evt) {
         MainEvents.MainViewShow?.Invoke();
     }
     #endregion
+
+    private void GameDataLoad(GameData data) {
+        if (data == null) {
+            return;
+        }
+        _gameData = data;
+
+        for (int i = 0; i < 5; i++) {
+            if (_gameData.e_movespeedLevel <= i) {
+                moveSpeedGaugeList[i].RemoveFromClassList("off");
+            }
+            if (_gameData.e_volumeLevel<= i) {
+                volumeGaugeList[i].RemoveFromClassList("off");
+            }
+            if (_gameData.e_employmentLevel <= i) {
+                employmentGaugeList[i].RemoveFromClassList("off");
+            }
+        }
+    }
 }

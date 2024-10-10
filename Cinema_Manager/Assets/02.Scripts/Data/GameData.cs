@@ -18,6 +18,11 @@ public class GameData {
     public int e_volumeLevel; // 직원 용량
     public int e_employmentLevel; // 직원 추가
 
+    // machine
+    public int m_productionspeedLevel; //  생산속도 증가
+    public int m_volumeLevel; // 기계 용량 증가
+    public int m_storageLevel; // 창고 용량
+
     public GameData() {
         this.bgmValue = 1f;
         this.effectValue = 1f;

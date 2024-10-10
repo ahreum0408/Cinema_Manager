@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 
 public static class MachineUpgradeEvents {
-    public static Action UpgradeProductionSpeedEvent;
-    public static Action UpgradekVolumeEvent;
-    public static Action UpgradeStorageEvent;
+    public static Action<GameData> GameDataUpdatEvent;
+    public static Action<GameData> GameDataLoadEvent;
 }
