@@ -14,7 +14,10 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     [SerializeField] private PoolableType _poolObjType;
     [SerializeField] private int _columnSpawnCnt;
     [SerializeField] private List<Transform> _spawnTrmList = new List<Transform>();
+
+    [Range(0, 5)][SerializeField] private float _spacingY;
     [Range(0, 5)] [SerializeField] private float _spacingX;
+    [SerializeField] private bool _isFood;
 
     private bool _isEnterInteraction = false;
 
@@ -78,13 +81,18 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         _foodStack.Push(food);
     }
 
-    private IEnumerator GiveBreadRoutine()
+    public void GiveFood()
+    {
+        StartCoroutine(GiveFoodRoutine());
+    }
+
+    private IEnumerator GiveFoodRoutine()
     {
         while (_currentFoodCnt > 0 && _currentCustomer != null)
         {
-            if (_currentCustomer.StackCompo.RemainingStackCount == 0)
+            if (_currentCustomer.StackCompo.RemainingStackCount != 0)
             {
-                _currentCustomer.OnTakeFood?.Invoke(_foodStack.Pop());
+                _currentCustomer.OnTakeFood?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
             }
             yield return new WaitForSeconds(0.15f);
         }
@@ -109,7 +117,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         if (_isStart)
         {
             _currentCustomer = customer;
-            customer.customerData.isBuy = true;
             _isStart = false;
         }
         customer.Agent.SetDestination(points[_customerDic[customer]].transform.position);
@@ -124,7 +131,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable
             if (_isStart)
             {
                 _currentCustomer = customers;
-                customers.customerData.isGet = true;
                 _isStart = false;
             }
             customers.Agent.SetDestination(points[_customerDic[customer] -1].transform.position);

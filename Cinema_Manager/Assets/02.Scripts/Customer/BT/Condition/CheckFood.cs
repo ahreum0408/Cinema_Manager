@@ -9,11 +9,14 @@ public class CheckFood : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if (customer.Value.customerData.isGet == true)
+        if (customer.Value.StackCompo.RemainingStackCount == 0)
         {
-            return TaskStatus.Success;
+            return TaskStatus.Failure;
         }
         else
+        {
+            customer.Value.currentStand.GiveFood();
             return TaskStatus.Running;
+        }
     }
 }

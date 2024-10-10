@@ -14,8 +14,8 @@ public enum CustomerType
 public class CustomerData
 {
     [Header("Customer Type")]
-    public bool isGet = false; // 물건을 다 받았는가?
-    public bool isBuy = false; // 구매 완료? 물건 다 받았냐
+    public bool isBuy = false; // 구매 가능한 상태인가?
+    public bool isCalculate = false; // 계산을 해줬는가?
     public bool isSeat; // 식탁을 사용하는 손님인가?
     public bool isBad; // 진상 손님인가?
 
@@ -41,7 +41,7 @@ public class Customer : AgentController
     public AgentAnimationComponent AnimationCompo { get; private set; }
 
     // Events
-    public Action<ITakeable> OnTakeFood;
+    public Action<ITakeable, PoolableType, float, bool> OnTakeFood;
     public Func<ITakeable> OnGiveFood;
 
     protected override void Init()
@@ -123,10 +123,11 @@ public class Customer : AgentController
 
     #region Handle
 
-    private void HandleTakeFood(ITakeable takeable)
+    private void HandleTakeFood(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
     {
         if (IsStacked == false)
             AnimationCompo.UpperHoldingAnimation(true);
+        StackCompo.TakeObject(takeable, type, spacingY, isFood);
     }
 
     private Food HandleGiveFood()

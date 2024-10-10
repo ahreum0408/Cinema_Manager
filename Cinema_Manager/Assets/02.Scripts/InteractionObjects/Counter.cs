@@ -43,7 +43,8 @@ public class Counter : MonoBehaviour, IIneractionable
         while (_isEnterInteraction)
         {
             // 여기서 계산 하는거 해주면 됨
-
+            lineList[0].customerData.isCalculate = true;
+            RemoveCustomer(lineList[0]);
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _moneyDummy.AddMoneyObject(1);
