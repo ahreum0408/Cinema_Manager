@@ -53,11 +53,15 @@ MonoBehaviour:
       type: 3}
     prefabTypeName: Coke
     poolCount: 6
-  - prefab: {fileID: 6979048886129282941, guid: b02018f2a8979864480acc4aeddfc6fe,
-      type: 3}
-    prefabTypeName: SoundObject
-    poolCount: 6
   - prefab: {fileID: 5244859393215767431, guid: 1bdba985e05e853449aabe11caca7360,
       type: 3}
     prefabTypeName: Money
+    poolCount: 6
+  - prefab: {fileID: 6060957178933513112, guid: c8fafda8102694942981ab108ebb6377,
+      type: 3}
+    prefabTypeName: Box
+    poolCount: 6
+  - prefab: {fileID: 6979048886129282941, guid: b02018f2a8979864480acc4aeddfc6fe,
+      type: 3}
+    prefabTypeName: SoundObject
     poolCount: 6
