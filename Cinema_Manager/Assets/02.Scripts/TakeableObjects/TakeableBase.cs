@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trash : MonoBehaviour, ITakeable
+public class TakeableBase : MonoBehaviour, ITakeable
 {
     private Rigidbody _rigid;
     private Animator _animator;

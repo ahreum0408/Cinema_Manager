@@ -96,7 +96,7 @@ public class PlayerController : AgentController
         if (IsStacked == false)
             _agentAnimation.UpperHoldingAnimation(true);
 
-        _stackComponent.TakeObject(takeable, type, spacingY, isDrink);
+        _stackComponent.TakeObject(takeable, type, spacingY, isDrink); 
 
         // UI Update
         OnStackMaxed?.Invoke(IsStackMax);

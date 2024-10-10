@@ -44,7 +44,7 @@ public class AgentStackComponent : AgentComponent
     {
         if (false == IsStacked)
         {
-            this._maxStackCount = maxStackCount;
+            _maxStackCount = maxStackCount;
         }
     }
 
@@ -63,8 +63,11 @@ public class AgentStackComponent : AgentComponent
 
     public ITakeable GetTopObject()
     {
+        if (false == IsStacked) return null;
+
+        ITakeable takeable = _takeObjectStack.Pop();
         if (_takeObjectStack.Count <= 0) _currentHoldType = PoolableType.None;
-        return _takeObjectStack.Pop();
+        return takeable;
     }
 
     public void ChangeHoldType(PoolableType holdType)
