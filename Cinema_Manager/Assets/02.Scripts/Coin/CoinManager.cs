@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 public class CoinManager : MonoSingleton<CoinManager> {
-    private int _coin = 0;
+    public int _coin = 0;
     private int _gam = 0;
 
     public int Coin {
@@ -10,10 +10,11 @@ public class CoinManager : MonoSingleton<CoinManager> {
             return _coin;
         }
         set {
-            _coin += value;
+            _coin = value;
             MainEvents.ChangeCoinEvent?.Invoke(_coin);
 
             if(_coin < 0) {
+                //_coin = 0;
                 Debug.LogWarning("[주의] 현재 코인이 -임");
             }
         }
@@ -23,10 +24,11 @@ public class CoinManager : MonoSingleton<CoinManager> {
             return _gam;
         }
         set {
-            _gam += value;
+            _gam = value;
             MainEvents.ChangeGamEvent?.Invoke(_gam);
             
             if (_gam < 0) {
+               // _gam = 0;
                 Debug.LogWarning("[주의] 현재 잼이 -임");
             }
         }

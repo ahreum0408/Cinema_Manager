@@ -13,7 +13,6 @@ public class UpgradeArea : MonoBehaviour, IIneractionable {
         _priceTxt.text = _price.ToString();
     }
     public void EnterInteraction() {
-        Debug.Log("stay");
         int coin = 2 * _calculateWeight;
         if(CoinManager.Instance.Coin - coin < 0) {
             coin = 1;
