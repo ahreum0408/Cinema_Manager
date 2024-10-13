@@ -419,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &178915042
 Transform:
   m_ObjectHideFlags: 0
@@ -2577,7 +2577,7 @@ PrefabInstance:
     - target: {fileID: 5002195067618426230, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.34
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5002195067618426230, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
@@ -2622,12 +2622,17 @@ PrefabInstance:
     - target: {fileID: 6684588582710230831, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
       propertyPath: _price
-      value: 300
+      value: 1000
       objectReference: {fileID: 0}
-    - target: {fileID: 6684588582710230831, guid: 97b11d17023763d47a9114828a563509,
+    - target: {fileID: 6967606078705620579, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
-      propertyPath: _calculateWeight
-      value: 5
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6967606078705620579, guid: 97b11d17023763d47a9114828a563509,
+        type: 3}
+      propertyPath: m_fontStyle
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

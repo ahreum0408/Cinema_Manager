@@ -56,3 +56,16 @@
     height: 100%;
     background-color: rgb(255, 182, 75);
 }
+
+.button {
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/10.Fonts/Rix%20X%20ladywatermelon%20Regular.ttf?fileID=12800000&guid=060932080ae844041bd53088467dfd1f&type=3#Rix X ladywatermelon Regular");
+    width: 120px;
+    height: 120px;
+    margin-left: 30px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
