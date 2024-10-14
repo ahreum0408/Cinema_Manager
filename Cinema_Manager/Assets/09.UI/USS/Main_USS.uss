@@ -51,12 +51,6 @@
     margin-bottom: 10px;
 }
 
-.upgrade-gauge.off {
-    width: 18%;
-    height: 100%;
-    background-color: rgb(255, 182, 75);
-}
-
 .button {
     -unity-font-definition: initial;
     -unity-font: url("project://database/Assets/10.Fonts/Rix%20X%20ladywatermelon%20Regular.ttf?fileID=12800000&guid=060932080ae844041bd53088467dfd1f&type=3#Rix X ladywatermelon Regular");

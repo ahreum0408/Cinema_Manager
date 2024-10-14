@@ -18,8 +18,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
-                        <ui:VisualElement name="image" class="upgrade-icon" />
-                        <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
+                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade/upgrade_employee_movespeed_icon.png?fileID=21300000&amp;guid=de61bee737ee1e0408e7d7da0bf6d5ab&amp;type=3#upgrade_employee_movespeed_icon&quot;);" />
+                        <ui:VisualElement name="upgrade-content" class="upgrade-content">
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
@@ -41,8 +41,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
-                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade_storage_icon.png?fileID=21300000&amp;guid=60e6a04c4b552f74c9233652b969b796&amp;type=3#upgrade_storage_icon&quot;);" />
-                        <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
+                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade/upgrade_storage_icon.png?fileID=21300000&amp;guid=b2376572bd48a8a4b98fede3a82f5368&amp;type=3#upgrade_storage_icon&quot;);" />
+                        <ui:VisualElement name="upgrade-content" class="upgrade-content">
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
@@ -64,8 +64,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
-                        <ui:VisualElement name="image" class="upgrade-icon" />
-                        <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
+                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade/upgrade_employment_icon.png?fileID=21300000&amp;guid=f133017309f7b574782a2d88839ad780&amp;type=3#upgrade_employment_icon&quot;);" />
+                        <ui:VisualElement name="upgrade-content" class="upgrade-content">
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
