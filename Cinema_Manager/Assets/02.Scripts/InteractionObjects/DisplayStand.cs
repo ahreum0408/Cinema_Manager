@@ -21,6 +21,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     private PlayerController _playerController;
     private NotifyImageComponent _notifyImageComponent;
 
+    // ¼­¿¬
     private Dictionary<Customer, int> _customerList;
     private bool _isStart = true;
     private int i;
@@ -44,8 +45,9 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     public void ExitInteraction()
     {
-        _notifyImageComponent.SetNotifySensorImage(1f);
         _isEnterInteraction = false;
+        StopCoroutine(TakeFoodRoutine());
+        _notifyImageComponent.SetNotifySensorImage(1f);
     }
 
     private IEnumerator TakeFoodRoutine()

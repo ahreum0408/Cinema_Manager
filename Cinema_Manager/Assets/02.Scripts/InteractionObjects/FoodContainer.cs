@@ -5,11 +5,11 @@ using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 
-public class FoodBox : MonoBehaviour, IIneractionable
+public class FoodContainer : MonoBehaviour, IIneractionable
 {
     private Stack<ITakeable> _foodStack;
     private int _currentFoodCnt => _foodStack.Count;
-    public int StackMaxCnt => _stackMaxCnt;
+    public bool IsStackMax => _currentFoodCnt >= _stackMaxCnt;
 
     [Header("Food")]
     [SerializeField] private Transform _spawnTrm;
@@ -62,7 +62,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
     {
         for (int i = 0; i < _spawnFoodCnt; ++i)
         {
-            while (_currentFoodCnt >= StackMaxCnt)
+            while (false == IsStackMax)
             {
                 // StackMaxCnt가 안 넘을 때 까지 대기
                 yield return null;
@@ -97,6 +97,7 @@ public class FoodBox : MonoBehaviour, IIneractionable
     public void ExitInteraction()
     {
         _isEnterInteraction = false;
+        StopCoroutine(GetFoodRoutine());
         _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
