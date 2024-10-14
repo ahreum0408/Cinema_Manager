@@ -9,6 +9,9 @@ public class AgentAnimationComponent : AgentComponent
     private Animator _animator;
 
     private int _isSeat = Animator.StringToHash("IsSeat");
+    private int _isPack = Animator.StringToHash("IsPack");
+    private int _isCall = Animator.StringToHash("IsCall");
+    private int _isSleep = Animator.StringToHash("IsSleep");
 
     public override void Init(AgentController controller)
     {
@@ -55,5 +58,20 @@ public class AgentAnimationComponent : AgentComponent
     public void SeatAnimation(float value)
     {
         _animator.SetFloat(_isSeat, value);
+    }
+
+    public void PackAnimation(float value)
+    {
+        _animator.SetFloat(_isPack, value);
+    }
+
+    public void CallAnimation(float value)
+    {
+        _animator.SetFloat(_isCall, value);
+    }
+
+    public void SleepAnimation(float value)
+    {
+        _animator.SetFloat(_isSleep, value);
     }
 }

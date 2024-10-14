@@ -8,7 +8,7 @@ using static AyunDefine;
 
 public enum CustomerType
 {
-    Basic = 0, Call, Sleep, Thief
+    Basic = 0, Parcel, Call, Sleep, Thief
 }
 
 public class CustomerData
@@ -29,14 +29,16 @@ public class Customer : AgentController
 {
     public CustomerData customerData;
 
+    public CustomerType CurrentCustomerType;
+
     [HideInInspector] public bool IsStacked => StackCompo.IsStacked;
     [HideInInspector] public Vector3 startPos;
+
     [HideInInspector] public DisplayStand currentStand;
     [HideInInspector] public Point currentChair;
 
     // Components
     public NavMeshAgent Agent { get; private set; }
-    public CustomerType CurrentCustomerType { get; private set; }
     public AgentStackComponent StackCompo { get; private set; }
     public AgentAnimationComponent AnimationCompo { get; private set; }
 
@@ -81,27 +83,10 @@ public class Customer : AgentController
     // 손님 타입(진상 손님 종류)
     private void SetCustomerType()
     {
-        int rand = Random.Range(0, 10);
-        if (rand > 0)
-            customerData.isBad = false;
-        else
-            customerData.isBad = true;
+        if (CurrentCustomerType == CustomerType.Basic || CurrentCustomerType == CustomerType.Parcel)
+            return;
 
-        if(customerData.isBad)
-        {
-            rand = Random.Range(1, 3);
-            switch(rand)
-            {
-                case 1:
-                    CurrentCustomerType = CustomerType.Call;
-                    break;
-                case 2:
-                    CurrentCustomerType = CustomerType.Sleep;
-                    break;
-            }
-        }
-        else
-            CurrentCustomerType = CustomerType.Basic;
+        customerData.isBad = true;
     }
 
     // 손님 원하는 물건

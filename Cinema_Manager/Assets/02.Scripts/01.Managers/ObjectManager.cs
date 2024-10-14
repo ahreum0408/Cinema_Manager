@@ -9,6 +9,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     public List<DisplayStand> displayStands;
     public List<Table> tables;
     public Counter counter;
+    public ParcelService parcelService;
 
     protected override void Awake()
     {

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
+  m_Name: ParcelCustomer
+  m_EditorClassIdentifier: 
+  mBehaviorSource:
+    behaviorName: Behavior
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(294.400024,136.400024)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(4.40002441,116.400024)"},"ID":1,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-51.34221,270.103241)"},"ID":2,"Name":"\uad6c\ub9e4
+        \uc904\uc11c\uae30","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"FindLine","NodeData":{"Offset":"(-74.45502,194.96228)"},"ID":3,"Name":"Find
+        Line","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(97.69815,213.0694)"},"ID":4,"Name":"Inverter","Instant":true,"Children":[{"Type":"CheckBuy","NodeData":{"Offset":"(-2.35300827,138.235229)"},"ID":5,"Name":"Check
+        Buy","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]}]},{"Type":"UseParcel","NodeData":{"Offset":"(310,288.823669)"},"ID":6,"Name":"Use
+        Parcel","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true},"SingleparcelTime":3},{"Type":"EndCustomer","NodeData":{"Offset":"(560.9348,271.0472)"},"ID":7,"Name":"End
+        Customer","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},"Variables":[{"Type":"SharedCustomer","Name":"Customer","IsShared":true}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects: []
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.10

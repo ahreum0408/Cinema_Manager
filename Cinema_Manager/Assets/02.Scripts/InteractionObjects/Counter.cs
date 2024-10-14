@@ -34,6 +34,7 @@ public class Counter : MonoBehaviour, IIneractionable
     public void ExitInteraction()
     {
         _isEnterInteraction = false;
+        StopCoroutine(CheckPayLoop());
         _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
