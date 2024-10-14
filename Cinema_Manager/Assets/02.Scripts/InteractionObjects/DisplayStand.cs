@@ -54,6 +54,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     {
         _notifyImageComponent.SetNotifySensorImage(1f);
         _isEnterInteraction = false;
+        StopCoroutine(TakeFoodRoutine());
     }
 
     private IEnumerator TakeFoodRoutine()
@@ -75,7 +76,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         int row = _currentFoodCnt / _columnSpawnCnt;
 
         Vector3 foodPos = Vector3.zero;
-        foodPos.x += (_spacingX * col);
+        foodPos.x += (-_spacingX * col);
 
         food.Take(_spawnTrmList[row], foodPos, Vector3.zero);
         _foodStack.Push(food);

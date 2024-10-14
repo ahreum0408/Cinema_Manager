@@ -49,7 +49,6 @@ public class BoxContainer : MonoBehaviour, IIneractionable
 
     public void HandleTruckArrival()
     {
-        _isBoxTaking = true;
         StartCoroutine(GiveBoxRoutine());
     }
 
@@ -58,20 +57,21 @@ public class BoxContainer : MonoBehaviour, IIneractionable
     {
         for (int i = 0; i < _takeBoxCnt; ++i)
         {
-            while (false == _boxStack.Count <= 0 && _isBoxTaking == true)
-            {
-                // StackMaxCnt가 안 넘을 때 까지 대기
-                yield return null;
-            }
+            yield return new WaitUntil(() => _boxStack.Count > 0 && false == _isBoxTaking);
+            _isBoxTaking = true;
 
-            ITakeable takeable = _boxStack.Peek();
-            takeable.Take(_boxTruck.transform, _boxTruck.EndTrm.position, Vector3.zero);
-            yield return new WaitForSeconds(1f);
+            ITakeable takeable = _boxStack.Pop();
+            takeable.Take(_boxTruck.EndTrm, Vector3.zero, Vector3.zero);
+
+            yield return new WaitForSeconds(0.5f);
+
             GameObject go = (takeable as MonoBehaviour)?.gameObject;
             PoolManager.Instance.Push(_poolObjType.ToString(), go);
+
+            _isBoxTaking = false;
         }
-        _isBoxTaking = false;
         _boxTruck.GoWithBox();
+        // 이때 돈 받으면 될 듯 (택배비)
     }
 
     public void EnterInteraction()
@@ -103,9 +103,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable
 
     private void TakeBox(ITakeable food)
     {
-        Vector3 foodPos = new Vector3(0,
-                                      _spawnTrm.position.y + (_spacingY * _boxStack.Count),
-                                      0);
+        Vector3 foodPos = new Vector3(0, _spacingY * _boxStack.Count, 0);
         food.Take(_spawnTrm, foodPos, Vector3.zero);
         _boxStack.Push(food);
     }

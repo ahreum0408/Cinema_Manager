@@ -55,7 +55,7 @@ public class AgentStackComponent : AgentComponent
 
         Vector3 objectPosition = Vector3.zero;
         objectPosition.y += spacingY * CurrentStackCount;
-        Vector3 rotation = isFood == true ? new Vector3(90, 0, 0) : Vector3.zero;
+        Vector3 rotation = isFood == true ? new Vector3(-90, 0, 0) : Vector3.zero;
         takeableObject.Take(_holderTransform, objectPosition, rotation);
 
         _takeObjectStack.Push(takeableObject);
