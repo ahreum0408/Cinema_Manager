@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static AyunDefine;
 
 public class ParcelService : MonoBehaviour, IIneractionable
 {
+    #region 서연
+    [SerializeField] private float lineInterval;
+    public Transform checkPoint;
+
+    public List<Customer> lineList = new List<Customer>();
+
+    private bool isStart = true; // 첫 손님인가?
+    #endregion
+
     private Stack<ITakeable> _boxStack;
     private int _currentBoxCnt => _boxStack.Count;
     public int StackMaxCnt => _stackMaxCnt;
@@ -87,6 +97,64 @@ public class ParcelService : MonoBehaviour, IIneractionable
                 }
             }
             yield return null;
+        }
+    }
+
+    public void AddCustomer(Customer customer)
+    {
+        lineList.Add(customer);
+
+        if (isStart)
+        {
+            customer.customerData.isBuy = true;
+            isStart = false;
+        }
+        else
+        {
+            checkPoint.position = new Vector3(
+                checkPoint.position.x + lineInterval,
+                checkPoint.position.y,
+                checkPoint.position.z
+            );
+        }
+    }
+
+    public void RemoveCustomer(Customer customer)
+    {
+        lineList.Remove(customer);
+
+        isStart = true;
+        Customer beforeCustomer = null;
+        foreach (var customers in lineList)
+        {
+            if (isStart)
+            {
+                customers.customerData.isBuy = true;
+                isStart = false;
+            }
+
+            if (customer.CurrentCustomerType == CustomerType.Call)
+            {
+                break;
+            }
+
+            if (beforeCustomer == null)
+            {
+                customers.Agent.SetDestination(new Vector3(
+                    customers.Agent.destination.x - lineInterval,
+                    customers.Agent.destination.y,
+                    customers.Agent.destination.z)
+                );
+            }
+            else
+            {
+                customers.Agent.SetDestination(new Vector3(
+                    beforeCustomer.Agent.destination.x + lineInterval,
+                    beforeCustomer.Agent.destination.y,
+                    beforeCustomer.Agent.destination.z)
+                );
+            }
+            beforeCustomer = customers;
         }
     }
 }

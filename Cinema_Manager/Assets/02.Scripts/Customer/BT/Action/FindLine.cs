@@ -20,8 +20,17 @@ public class FindLine : Action
 
     public override void OnStart()
     {
-        ObjectManager.Instance.counter.AddCustomer(customer.Value);
-        _destination = ObjectManager.Instance.counter.checkPoint.position;
+        if(customer.Value.CurrentCustomerType == CustomerType.Parcel)
+        {
+            ObjectManager.Instance.parcelService.AddCustomer(customer.Value);
+            _destination = ObjectManager.Instance.parcelService.checkPoint.position;
+        }
+        else
+        {
+            ObjectManager.Instance.counter.AddCustomer(customer.Value);
+            _destination = ObjectManager.Instance.counter.checkPoint.position;
+        }
+        
         _agent.SetDestination(_destination);
         _isStarted = true;
     }
