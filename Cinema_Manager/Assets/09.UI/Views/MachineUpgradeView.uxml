@@ -18,7 +18,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
-                        <ui:VisualElement name="image" style="width: 350px; height: 350px; background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/5a5780c7fa068488.png?fileID=21300000&amp;guid=34393c6d479445e49926fc832ef2f17b&amp;type=3#5a5780c7fa068488&quot;);" />
+                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade_volume_icon.png?fileID=21300000&amp;guid=34393c6d479445e49926fc832ef2f17b&amp;type=3#upgrade_volume_icon&quot;);" />
                         <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
@@ -41,7 +41,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
-                        <ui:VisualElement name="image" style="width: 350px; height: 350px; background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/5b179d35efcabb63.png?fileID=21300000&amp;guid=60e6a04c4b552f74c9233652b969b796&amp;type=3#5b179d35efcabb63&quot;);" />
+                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade_storage_icon.png?fileID=21300000&amp;guid=60e6a04c4b552f74c9233652b969b796&amp;type=3#upgrade_storage_icon&quot;);" />
                         <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
@@ -64,7 +64,7 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
-                        <ui:VisualElement name="image" style="width: 350px; height: 350px; background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/0caea67c3c3ffe36.png?fileID=21300000&amp;guid=7a646d68ef2b297468a1fb4bfeb0145d&amp;type=3#0caea67c3c3ffe36&quot;);" />
+                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade_productionspeed_icon.png?fileID=21300000&amp;guid=7a646d68ef2b297468a1fb4bfeb0145d&amp;type=3#upgrade_productionspeed_icon&quot;);" />
                         <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />

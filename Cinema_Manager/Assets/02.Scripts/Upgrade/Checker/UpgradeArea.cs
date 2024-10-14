@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UpgradeArea : MonoBehaviour, IIneractionable {
@@ -12,8 +13,11 @@ public class UpgradeArea : MonoBehaviour, IIneractionable {
     private int _minusCoin;
     private bool _isCalaulate;
 
+    private char kilo = 'K';
+    private char mega = 'M';
+
     private void Awake() {
-        _priceTxt.text = _price.ToString();
+        _priceTxt.text = CalculatePriceText(_price);
         _minusCoin = 1 * _calculateWeight;
     }
     public void EnterInteraction() {
@@ -42,7 +46,21 @@ public class UpgradeArea : MonoBehaviour, IIneractionable {
         _isCalaulate = false;
         StopCoroutine(CalculateCoin());
     }
+    private string CalculatePriceText(int price) {
+        int m = 1000000;
+        int k = 1000;
+        string calP = "";
+
+        if (price / m > 0) { // �鸸
+            calP = (price / m).ToString() + mega;
+        }
+        else if(price / k > 0) { // õ
+            calP = (price / k).ToString() + kilo;
+        }
+
+        return calP;
+    }
     private void UpdatePriceText(int price) {
-        _priceTxt.text = price.ToString();
+        _priceTxt.text = CalculatePriceText(price);
     }
 }

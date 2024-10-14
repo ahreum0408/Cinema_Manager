@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61badecb9d577fd43989ff67021635b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _calculateWeight: 1
-  _price: 100
+  _calculateWeight: 5
+  _price: 300
   _priceTxt: {fileID: 6967606078705620579}
 --- !u!1 &2837216399462786531
 GameObject:
