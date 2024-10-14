@@ -48,7 +48,7 @@ GameObject:
   m_Layer: 0
   m_Name: Floor4
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 926327355980295313}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.567, y: 3.891, z: -0.95}
+  m_LocalPosition: {x: -0.5, y: 3.981, z: 0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125,7 +125,9 @@ MonoBehaviour:
   - {fileID: 4883181988716710746}
   - {fileID: 7038209009029135353}
   - {fileID: 1320388415795264132}
+  _spacingY: 0
   _spacingX: 0.5
+  _isFood: 0
 --- !u!114 &7376764369386624980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,13 +169,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757987660789551161}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5254084575954359248}
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &6976865173162621331
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -257,7 +259,7 @@ GameObject:
   m_Layer: 0
   m_Name: Floor1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -270,7 +272,7 @@ Transform:
   m_GameObject: {fileID: 1788295201705981276}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.567, y: 0.58, z: -0.95}
+  m_LocalPosition: {x: -0.5, y: 0.67, z: 0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -302,7 +304,7 @@ Transform:
   m_GameObject: {fileID: 5125128306460923253}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.89, y: -0, z: 5.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -341,7 +343,7 @@ GameObject:
   m_Layer: 0
   m_Name: Floor2
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -354,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 6698355151163316946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.567, y: 1.651, z: -0.95}
+  m_LocalPosition: {x: -0.5, y: 1.741, z: 0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -372,7 +374,7 @@ GameObject:
   m_Layer: 0
   m_Name: Floor5
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -385,7 +387,7 @@ Transform:
   m_GameObject: {fileID: 7308728144118440862}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.567, y: 5.0369997, z: -0.95}
+  m_LocalPosition: {x: -0.5, y: 5.127, z: 0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -403,7 +405,7 @@ GameObject:
   m_Layer: 0
   m_Name: Floor3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -416,7 +418,7 @@ Transform:
   m_GameObject: {fileID: 8033318191992892066}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.567, y: 2.7849998, z: -0.95}
+  m_LocalPosition: {x: -0.5, y: 2.875, z: 0.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -433,7 +435,7 @@ PrefabInstance:
     - target: {fileID: 1684456153213672901, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 1684456153213672901, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}
@@ -443,7 +445,7 @@ PrefabInstance:
     - target: {fileID: 1684456153213672901, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.34
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1684456153213672901, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}

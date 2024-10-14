@@ -62,11 +62,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable
     {
         for (int i = 0; i < _spawnFoodCnt; ++i)
         {
-            while (false == IsStackMax)
-            {
-                // StackMaxCnt가 안 넘을 때 까지 대기
-                yield return null;
-            }
+            yield return new WaitUntil(() => false == IsStackMax);
 
             int posInGroup = _currentFoodCnt % 4; // 0, 1, 2, 3 순서로 반복
 
