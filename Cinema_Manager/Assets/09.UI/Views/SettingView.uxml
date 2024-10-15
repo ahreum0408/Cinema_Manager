@@ -8,11 +8,11 @@
         </ui:VisualElement>
         <ui:VisualElement name="main-container" style="flex-grow: 1; width: 100%; justify-content: center;">
             <ui:VisualElement name="bgm-content" class="sound-content" style="justify-content: center;">
-                <ui:VisualElement name="icon" style="width: 170px; height: 170px; background-color: rgb(121, 234, 255); margin-right: 30px;" />
+                <ui:VisualElement name="icon" class="icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/bgm_icon.png?fileID=21300000&amp;guid=fc6584fcfe34ffa4fb6c7c56fbbda164&amp;type=3#bgm_icon&quot;);" />
                 <ui:Slider high-value="1" name="bgm-slider" class="slider" />
             </ui:VisualElement>
             <ui:VisualElement name="effect-content" class="sound-content" style="justify-content: center;">
-                <ui:VisualElement name="icon" style="width: 170px; height: 170px; background-color: rgb(121, 234, 255); margin-right: 30px;" />
+                <ui:VisualElement name="icon" class="icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/effect_icon.png?fileID=21300000&amp;guid=5a9d249cf767ee94985feb3dca36d5c4&amp;type=3#effect_icon&quot;);" />
                 <ui:Slider high-value="1" name="effect-slider" class="slider" />
             </ui:VisualElement>
         </ui:VisualElement>

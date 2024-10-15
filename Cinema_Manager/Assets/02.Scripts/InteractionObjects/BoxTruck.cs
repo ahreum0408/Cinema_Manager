@@ -13,7 +13,7 @@ public class BoxTruck : MonoBehaviour
     public Transform EndTrm =>_endTrm;
     [SerializeField] private float _moveTime = 3;
 
-    private bool _isWithBox = false;
+    private bool _isWithBox = true;
 
     #region 나중에 업그레이드로 빼야할 것들
     private float _truckBringTime = 8f; // 음식 가져오는데 걸리는 시간

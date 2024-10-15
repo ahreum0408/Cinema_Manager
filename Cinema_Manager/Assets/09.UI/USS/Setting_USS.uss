@@ -36,3 +36,9 @@
     width: 65%;
     height: 70px;
 }
+
+.icon {
+    width: 200px;
+    height: 200px;
+    margin-right: 30px;
+}

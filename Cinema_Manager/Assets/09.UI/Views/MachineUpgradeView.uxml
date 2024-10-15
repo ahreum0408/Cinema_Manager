@@ -18,8 +18,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
-                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade_volume_icon.png?fileID=21300000&amp;guid=34393c6d479445e49926fc832ef2f17b&amp;type=3#upgrade_volume_icon&quot;);" />
-                        <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
+                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade/upgrade_volume_icon.png?fileID=21300000&amp;guid=0c6405dc5de586b46a04c2782df01880&amp;type=3#upgrade_volume_icon&quot;);" />
+                        <ui:VisualElement name="upgrade-content" class="upgrade-content">
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
@@ -41,8 +41,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
-                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade_storage_icon.png?fileID=21300000&amp;guid=60e6a04c4b552f74c9233652b969b796&amp;type=3#upgrade_storage_icon&quot;);" />
-                        <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
+                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade/upgrade_storage_icon.png?fileID=21300000&amp;guid=b2376572bd48a8a4b98fede3a82f5368&amp;type=3#upgrade_storage_icon&quot;);" />
+                        <ui:VisualElement name="upgrade-content" class="upgrade-content">
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
@@ -64,8 +64,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="main-container" style="flex-grow: 1; align-items: center; justify-content: center;">
-                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade_productionspeed_icon.png?fileID=21300000&amp;guid=7a646d68ef2b297468a1fb4bfeb0145d&amp;type=3#upgrade_productionspeed_icon&quot;);" />
-                        <ui:VisualElement name="upgrade-content" style="width: 350px; height: 30px; background-color: rgb(247, 255, 92); flex-direction: row; justify-content: space-between;">
+                        <ui:VisualElement name="image" class="upgrade-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/upgrade/upgrade_productionspeed_icon.png?fileID=21300000&amp;guid=eb0955d977b60ec4abcd34ce4f2e60f3&amp;type=3#upgrade_productionspeed_icon&quot;);" />
+                        <ui:VisualElement name="upgrade-content" class="upgrade-content">
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
                             <ui:VisualElement name="gauge" class="upgrade-gauge off" />
