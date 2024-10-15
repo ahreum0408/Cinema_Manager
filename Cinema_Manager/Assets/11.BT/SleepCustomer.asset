@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b23f08d2ae4cba14087c1ed36193d82b, type: 3}
-  m_Name: BasicCustomer
+  m_Name: SleepCustomer
   m_EditorClassIdentifier: 
   mBehaviorSource:
     behaviorName: Behavior
@@ -32,7 +32,7 @@ MonoBehaviour:
         \uac00\ub294\uc9c0 \uccb4\ud06c","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"CheckSeat","NodeData":{"Offset":"(-60.29199,181.6905)"},"ID":12,"Name":"Check
         Seat","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"FindChair","NodeData":{"Offset":"(74.52749,173.939453)"},"ID":13,"Name":"Find
         Chair","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}},{"Type":"UseTable","NodeData":{"Offset":"(209.401718,177.444427)"},"ID":14,"Name":"Use
-        Table","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true},"SingleeatTime":2,"SingleclearTime":3}]},{"Type":"EndCustomer","NodeData":{"Offset":"(846.6487,271.0472)"},"ID":15,"Name":"End
+        Table","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true},"SingleeatTime":2}]},{"Type":"EndCustomer","NodeData":{"Offset":"(846.6487,271.0472)"},"ID":15,"Name":"End
         Customer","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},"Variables":[{"Type":"SharedCustomer","Name":"Customer","IsShared":true}]}'
       fieldSerializationData:
         typeName: []
