@@ -16,11 +16,14 @@ public class UseTable : Conditional
     {
         customer.Value.AnimationCompo.SeatAnimation(1);
         startEatTime = Time.time;
-        //currentEat = customer.Value.customerData.wantBuy;
+        currentEat = customer.Value.StackCompo.CurrentStackCount;
     }
 
     public override TaskStatus OnUpdate()
     {
+        if (customer.Value.StackCompo.CurrentStackCount > 0)
+            customer.Value.currentChair.TakeFood(customer.Value, 1f);
+
         if (currentEat == 0)
         {
             if(customer.Value.CurrentCustomerType == CustomerType.Sleep)
@@ -36,19 +39,21 @@ public class UseTable : Conditional
                         customer.Value.CurrentCustomerType = CustomerType.Basic;
                     }
                 }
-                return TaskStatus.Running;
             }
+            else
+            {
+                customer.Value.currentChair.ChangeUsingState(false);
+                customer.Value.currentChair.ChangeDirtyState(true);
 
-            customer.Value.currentChair.ChangeUsingState(false);
-            customer.Value.currentChair.ChangeDirtyState(true);
-
-            customer.Value.AnimationCompo.SeatAnimation(-1);
-            return TaskStatus.Failure;
+                customer.Value.AnimationCompo.SeatAnimation(-1);
+                return TaskStatus.Failure;
+            }
         }
 
         if (eatTime <= Time.time - startEatTime)
         {
             currentEat--;
+            customer.Value.currentChair.EatFood();
             startEatTime = Time.time;
         }
         return TaskStatus.Running;

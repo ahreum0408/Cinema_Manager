@@ -41,7 +41,7 @@ public class Counter : MonoBehaviour, IIneractionable
     // 지불 확인 작업 (플레이어가 카운터에 상호작용하고 있을 때만 실행)
     private IEnumerator CheckPayLoop()
     {
-        while (_isEnterInteraction)
+        while (_isEnterInteraction && lineList.Count > 0)
         {
             // 여기서 계산 하는거 해주면 됨
             lineList[0].customerData.isCalculate = true;
