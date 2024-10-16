@@ -72,7 +72,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable
 
             Vector3 localPos = new Vector3(x, y, z);
             // 음료가 아니라면 90도 돌려서 배치
-            Quaternion quaternion = _isFood == true? Quaternion.Euler(90, 0, 0) : Quaternion.Euler(0, 0, 0);
+            Quaternion quaternion = _isFood == true? Quaternion.Euler(-90, 0, 0) : Quaternion.Euler(0, 0, 0);
 
             GameObject food = PoolManager.Instance.Pop(_poolObjType.ToString(), _spawnTrm, localPos, quaternion);
             _foodStack.Push(food.GetComponent<ITakeable>());
@@ -101,7 +101,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            if (_isFoodFilling == false && _currentFoodCnt > 0)
+            if (_currentFoodCnt > 0)
             {
                 ITakeable takeable = _foodStack.Peek();
 

@@ -15,7 +15,8 @@ public class BoxContainer : MonoBehaviour, IIneractionable
     [Range(0, 5)][SerializeField] private float _spacingY;
 
     private bool _isEnterInteraction = false;
-    private bool _isBoxTaking = false;
+    private bool _isBoxGiving = false; // 플레이어가 박스 주고있는지
+    private bool _isBoxTaking = false; // 박스 가지고 오고 있는지
 
     private PlayerController _playerController;
     private NotifyImageComponent _notifyImageComponent;
@@ -57,7 +58,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable
     {
         for (int i = 0; i < _takeBoxCnt; ++i)
         {
-            yield return new WaitUntil(() => _boxStack.Count > 0 && false == _isBoxTaking);
+            yield return new WaitUntil(() => _currentBoxCnt > 0 && !_isBoxTaking && !_isBoxGiving);
             _isBoxTaking = true;
 
             ITakeable takeable = _boxStack.Pop();
@@ -94,10 +95,12 @@ public class BoxContainer : MonoBehaviour, IIneractionable
         {
             if (_playerController.CanGiveFood(_poolObjType) && false == IsStackMax)
             {
+                _isBoxGiving = true;
                 ITakeable food = _playerController.OnGiveFood?.Invoke();
                 TakeBox(food);
             }
             yield return new WaitForSeconds(0.15f);
+            _isBoxGiving = false;
         }
     }
 
