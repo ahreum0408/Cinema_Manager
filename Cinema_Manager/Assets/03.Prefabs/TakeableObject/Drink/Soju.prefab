@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6119013944522370354}
   - component: {fileID: -1408849143620172576}
-  - component: {fileID: 6864603168892015088}
+  - component: {fileID: 5683587510295507855}
   - component: {fileID: 3595395924790841848}
   m_Layer: 0
   m_Name: Soju
@@ -62,7 +62,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6864603168892015088
+--- !u!114 &5683587510295507855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 467360644644638697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ff3c4a5061d144d9795a99953abafc, type: 3}
+  m_Script: {fileID: 11500000, guid: b404225d4d0c8e946abeccc17ea867d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3595395924790841848

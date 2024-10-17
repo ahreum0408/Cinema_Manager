@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9151914524434302542}
   - component: {fileID: -7110766872034473342}
-  - component: {fileID: 161842545121441552}
+  - component: {fileID: 7935462807522574339}
   - component: {fileID: 2116740943565344312}
   m_Layer: 0
   m_Name: Juice
@@ -62,7 +62,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &161842545121441552
+--- !u!114 &7935462807522574339
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2515386145094258856}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ff3c4a5061d144d9795a99953abafc, type: 3}
+  m_Script: {fileID: 11500000, guid: b404225d4d0c8e946abeccc17ea867d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2116740943565344312

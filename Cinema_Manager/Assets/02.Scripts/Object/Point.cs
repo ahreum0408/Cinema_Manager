@@ -40,7 +40,7 @@ public class Point : MonoBehaviour
         while (_isEnterInteraction)
         {
             _currentFoodCnt++;
-            ITakeable food = customer.OnGiveFood?.Invoke();
+            ITakeable food = customer.OnGiveTakeable?.Invoke();
 
             Vector3 foodPos = new Vector3
                 (customer.currentChair.holder.position.x,
