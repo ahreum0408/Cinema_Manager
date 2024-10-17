@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8367156362292110089}
   - component: {fileID: 8648533367753344190}
-  - component: {fileID: 3023314385541860406}
+  - component: {fileID: 3871918593488592381}
   - component: {fileID: 920119514441004544}
   m_Layer: 0
   m_Name: Bread
@@ -62,7 +62,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3023314385541860406
+--- !u!114 &3871918593488592381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -71,7 +71,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3352509343377554925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ff3c4a5061d144d9795a99953abafc, type: 3}
+  m_Script: {fileID: 11500000, guid: b404225d4d0c8e946abeccc17ea867d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &920119514441004544

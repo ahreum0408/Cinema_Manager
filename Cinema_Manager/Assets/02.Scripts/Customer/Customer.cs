@@ -45,8 +45,8 @@ public class Customer : AgentController
     public AgentAnimationComponent AnimationCompo { get; private set; }
 
     // Events
-    public Action<ITakeable, PoolableType, float, bool> OnTakeFood;
-    public Func<ITakeable> OnGiveFood;
+    public Action<ITakeable, PoolableType, float, bool> OnTakeTakeable;
+    public Func<ITakeable> OnGiveTakeable;
 
     protected override void Init()
     {
@@ -67,8 +67,8 @@ public class Customer : AgentController
         SelectObjectType();
         SetCustomerType();
 
-        OnTakeFood += HandleTakeFood;
-        OnGiveFood += HandleGiveFood;
+        OnTakeTakeable += HandleTakeTakeable;
+        OnGiveTakeable += HandleGiveTakeable;
     }
 
     public bool CheckPlayer()
@@ -122,21 +122,21 @@ public class Customer : AgentController
 
     #region Handle
 
-    private void HandleTakeFood(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
+    private void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
     {
         if (IsStacked == false)
             AnimationCompo.UpperHoldingAnimation(true);
         StackCompo.TakeObject(takeable, type, spacingY, isFood);
     }
 
-    private Food HandleGiveFood()
+    private ITakeable HandleGiveTakeable()
     {
-        Food food = StackCompo.GetTopObject() as Food;
+        ITakeable takeable = StackCompo.GetTopObject();
 
         if (IsStacked == false)
             AnimationCompo.UpperHoldingAnimation(false);
 
-        return food;
+        return takeable;
     }
 
     #endregion

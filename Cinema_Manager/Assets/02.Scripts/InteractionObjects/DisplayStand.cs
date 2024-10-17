@@ -63,7 +63,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         {
             if (_playerController.CanGiveFood(_poolObjType) && _foodStack.Count < StackMaxCnt)
             {
-                ITakeable food = _playerController.OnGiveFood?.Invoke();
+                ITakeable food = _playerController.OnGiveTakeable?.Invoke();
                 TakeFood(food);
             }
             yield return new WaitForSeconds(0.15f);
@@ -93,7 +93,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         {
             if (_currentCustomer.StackCompo.RemainingStackCount != 0)
             {
-                _currentCustomer.OnTakeFood?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
+                _currentCustomer.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
             }
             yield return new WaitForSeconds(0.15f);
         }

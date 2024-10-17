@@ -90,7 +90,7 @@ public class ParcelService : MonoBehaviour, IIneractionable
 
                 if (_playerController.CanTakeFood(_poolObjType))
                 {
-                    _playerController.OnTakeFood?.Invoke(_boxStack.Pop(), _poolObjType, _spacingY, false);
+                    _playerController.OnTakeTakeable?.Invoke(_boxStack.Pop(), _poolObjType, _spacingY, false);
                     yield return new WaitForSeconds(0.15f);
                 }
             }

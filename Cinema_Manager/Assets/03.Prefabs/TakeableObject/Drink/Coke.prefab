@@ -115,7 +115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4897753535414148050}
   - component: {fileID: -977952130719389278}
-  - component: {fileID: 7861109498860616913}
+  - component: {fileID: -3925050307337296889}
   - component: {fileID: 8500330737445416995}
   m_Layer: 0
   m_Name: Coke
@@ -167,7 +167,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7861109498860616913
+--- !u!114 &-3925050307337296889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8845506377300020350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36ff3c4a5061d144d9795a99953abafc, type: 3}
+  m_Script: {fileID: 11500000, guid: b404225d4d0c8e946abeccc17ea867d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &8500330737445416995

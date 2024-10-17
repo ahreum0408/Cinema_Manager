@@ -96,7 +96,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable
             if (_playerController.CanGiveFood(_poolObjType) && false == IsStackMax)
             {
                 _isBoxGiving = true;
-                ITakeable food = _playerController.OnGiveFood?.Invoke();
+                ITakeable food = _playerController.OnGiveTakeable?.Invoke();
                 TakeBox(food);
             }
             yield return new WaitForSeconds(0.15f);
