@@ -5,20 +5,24 @@ public class CoinManager : MonoSingleton<CoinManager> {
     public int _coin = 0;
     private int _gam = 0;
 
+    private char kilo = 'K';
+    private char mega = 'M';
+
     public int Coin {
         get {
             return _coin;
         }
         set {
             _coin = value;
-            MainEvents.ChangeCoinEvent?.Invoke(_coin);
+            string coin = CalculatePriceText(_coin);
+            MainEvents.ChangeCoinEvent?.Invoke(coin);
 
             if(_coin < 0) {
-                //_coin = 0;
+                _coin = 0;
                 Debug.LogWarning("[주의] 현재 코인이 -임");
             }
         }
-    }
+    }   
     public int Gam {
         get {
             return _gam;
@@ -28,12 +32,28 @@ public class CoinManager : MonoSingleton<CoinManager> {
             MainEvents.ChangeGamEvent?.Invoke(_gam);
             
             if (_gam < 0) {
-               // _gam = 0;
+                _gam = 0;
                 Debug.LogWarning("[주의] 현재 잼이 -임");
             }
         }
     }
+    public string CalculatePriceText(int price) {
+        int m = 1000000;
+        int k = 1000;
+        string calP = "";
 
+        if (price / m > 0) { // 백만
+            calP = (price / m).ToString() + mega;
+        }
+        else if (price / k > 0) { // 천
+            calP = (price / k).ToString() + kilo;
+        }
+        else {
+            calP = price.ToString();
+        }
+
+        return calP;
+    }
     public void ResetGoods() {
         _coin = 0;
         _gam = 0;

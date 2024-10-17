@@ -2,6 +2,7 @@ using System;
 using UIToolkit;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class MainView : UIView {
     private Button _settingBtn;
@@ -11,6 +12,7 @@ public class MainView : UIView {
     private Label _gamTxt;
 
     private ProgressBar _levelBar;
+
 
     public MainView(VisualElement topElement) : base(topElement) {
         MainEvents.ChangeCoinEvent += UpdateCoinTxt;
@@ -75,10 +77,10 @@ public class MainView : UIView {
         Debug.Log("»óÁ¡Ã¢ ÄÑÁü");
     }
     #endregion
-
-    private void UpdateCoinTxt(int coin) {
-        _coinTxt.text = coin.ToString();    
+    private void UpdateCoinTxt(string coin) {
+        _coinTxt.text = coin;
     }
+   
     private void UpdateGamTxt(int gam) {
         _gamTxt.text = gam.ToString();
     }

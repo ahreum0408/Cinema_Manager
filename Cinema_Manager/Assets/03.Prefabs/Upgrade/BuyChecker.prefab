@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5002195067618426230}
-  - component: {fileID: 6684588582710230831}
+  - component: {fileID: 4438593976502070005}
   m_Layer: 0
-  m_Name: UpgradeTriggerChecker
+  m_Name: BuyChecker
   m_TagString: Interactionable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 6196538350105945338}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6684588582710230831
+--- !u!114 &4438593976502070005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1598462775363953796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61badecb9d577fd43989ff67021635b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 02df03338fb8f434eb4afeed42e31852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _calculateWeight: 5
-  _price: 300
+  _calculateWeight: 50
+  _price: 1000
   _priceTxt: {fileID: 6967606078705620579}
 --- !u!1 &2837216399462786531
 GameObject:
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
