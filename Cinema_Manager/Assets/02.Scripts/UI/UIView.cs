@@ -1,9 +1,19 @@
 using UnityEngine.UIElements;
 using System;
-using Debug = UnityEngine.Debug;
-using UnityEngine;
 
 namespace UIToolkit {
+    public enum ViewType {
+        MainView,
+        SettingView,
+        PlayerUpgradeView,
+        EmployeeUpgradeView,
+        MachineUpgradeView
+    }
+    public enum UpgradeViewType {
+        PlayerUpgradeView,
+        EmployeeUpgradeView,
+        MachineUpgradeView
+    }
     public abstract class UIView : IDisposable {
         protected bool isOverlay; // 부분 투명 여부
         protected bool hideOnAwake = true;

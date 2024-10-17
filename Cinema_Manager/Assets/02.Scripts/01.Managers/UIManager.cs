@@ -59,14 +59,13 @@ public class UIManager : MonoBehaviour {
         _allViews.Add(_playerUpgradeView);
         _allViews.Add(_machineUpgradeView);
 
-        //_mainView.Show();
-        _machineUpgradeView.Show();
+        _mainView.Show();
     }
     private void ChangeShowView(UIView newView) {
-        if (_currentView != null) { // 지금 보고 있는 view가 있으면 꺼
+        if (_currentView != null && _currentView != _mainView) { // 지금 보고 있는 view가 있으면 꺼
             _currentView.Hide();
         }
-
+        Debug.Log(newView);
         _previousView = _currentView;
         _currentView = newView;
 
@@ -75,21 +74,32 @@ public class UIManager : MonoBehaviour {
             //MainMenuUIEvents.CurrentViewChanged?.Invoke(_currentView.GetType().Name);
         }
     }
+    private void CloseCurrentView() {
+        if(_currentView != null && _currentView != _mainView) {
+            _currentView.Hide();
+        }
+    }
 
     // 이벤트 등록 및 해제
     private void RegisterToEvents() {
         MainEvents.MainViewShow += ShowMainView;
         MainEvents.SettingViewShow += ShowSettingView;
+        MainEvents.PlayerUpgradeViewShow += ShowPlayerView;
         MainEvents.EmployeeUpgradeViewShow += ShowEmployeeUpgradeView;
         MainEvents.MachineUpgradeViewShow += ShowMachineUpgradeView;
+
+        MainEvents.CloseCurrentEvent += CloseCurrentView;
     }
+
     private void UnRegisterToEvents() {
         MainEvents.MainViewShow -= ShowMainView;
         MainEvents.SettingViewShow -= ShowSettingView;
+        MainEvents.PlayerUpgradeViewShow -= ShowPlayerView;
         MainEvents.EmployeeUpgradeViewShow -= ShowEmployeeUpgradeView;
         MainEvents.MachineUpgradeViewShow -= ShowMachineUpgradeView;
-    }
 
+        MainEvents.CloseCurrentEvent += CloseCurrentView;
+    }
 
     #region ShowViews
     private void ShowMainView() {
@@ -97,6 +107,9 @@ public class UIManager : MonoBehaviour {
     }
     private void ShowSettingView() {
         ChangeShowView(_settingView);
+    }
+    private void ShowPlayerView() {
+        ChangeShowView(_playerUpgradeView);
     }
     private void ShowEmployeeUpgradeView() {
         ChangeShowView(_employeeUpgradeView);

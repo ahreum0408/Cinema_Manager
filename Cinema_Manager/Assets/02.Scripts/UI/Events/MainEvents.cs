@@ -12,10 +12,12 @@ public static class MainEvents {
 
     public static Action MainViewShow;
     public static Action SettingViewShow;
+    public static Action PlayerUpgradeViewShow;
     public static Action EmployeeUpgradeViewShow;
     public static Action MachineUpgradeViewShow;
 
     // 각 view에서 사용
     public static Action ShowViewEvent;
+    public static Action CloseCurrentEvent;
     public static Action<GameData> UpdateViewEvent;
 }
