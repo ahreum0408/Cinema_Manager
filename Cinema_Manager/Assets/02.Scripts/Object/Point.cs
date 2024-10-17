@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Point : MonoBehaviour
 {
-    public Transform holder;
+    [SerializeField] private Transform holder;
 
     public bool IsUsing; //손님이 사용 중?
     public bool IsDirty; //이 자리가 더러운가?
 
     private Stack<ITakeable> _foodStack;
-
-    private bool _isEnterInteraction = false;
     private int _currentFoodCnt;
 
     private Customer _currentCustomer;
@@ -21,7 +19,6 @@ public class Point : MonoBehaviour
     private void Awake()
     {
         _foodStack = new Stack<ITakeable>();
-        holder = GetComponentInChildren<Transform>();
     }
 
     private void Start()
@@ -37,26 +34,25 @@ public class Point : MonoBehaviour
 
     private IEnumerator TakeFoodRoutine(Customer customer, float spacingY)
     {
-        while (_isEnterInteraction)
-        {
-            _currentFoodCnt++;
-            ITakeable food = customer.OnGiveFood?.Invoke();
+        Debug.Log("Take Food On Table");
+        _currentFoodCnt++;
+        ITakeable food = customer.OnGiveFood?.Invoke();
+        
+        Vector3 foodPos = Vector3.zero;
+        foodPos.z += spacingY * _currentFoodCnt;
 
-            Vector3 foodPos = new Vector3
-                (customer.currentChair.holder.position.x,
-                customer.currentChair.holder.position.y + _currentFoodCnt * spacingY,
-                customer.currentChair.holder.position.z);
-
-            food.Take(customer.transform, foodPos, Vector3.zero);
-            _foodStack.Push(food);
-
-            yield return new WaitForSeconds(0.15f);
-        }
+        food.Take(holder.transform, foodPos, Vector3.zero);
+        _foodStack.Push(food);
+        
+        yield return new WaitForSeconds(1f);
     }
 
     public void EatFood()
     {
-        _foodStack.Pop();
+        if(_foodStack != null)
+        {
+            // 음식 먹으면 줄어들기
+        }
     }
 
     public void ChangeUsingState(bool isUse)

@@ -21,23 +21,30 @@ public class UseTable : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if (customer.Value.StackCompo.CurrentStackCount > 0)
-            customer.Value.currentChair.TakeFood(customer.Value, 1f);
+        if(customer.Value.StackCompo.IsStacked)
+            customer.Value.currentChair.TakeFood(customer.Value, 0.25f);
 
         if (currentEat == 0)
         {
             if(customer.Value.CurrentCustomerType == CustomerType.Sleep)
             {
+                customer.Value.AnimationCompo.SeatAnimation(-1);
                 customer.Value.AnimationCompo.SleepAnimation(1);
 
                 if (customer.Value.CheckPlayer())
                 {
-                    startTime = Time.time;
-                    if(clearTime <= Time.time - startTime)
+                    startTime += Time.deltaTime;
+                    if (clearTime <= startTime)
                     {
                         customer.Value.AnimationCompo.SleepAnimation(-1);
                         customer.Value.CurrentCustomerType = CustomerType.Basic;
+                        return TaskStatus.Failure;
                     }
+                }
+                else
+                {
+                    if(startTime >= 0)
+                        startTime -= Time.deltaTime;
                 }
             }
             else
@@ -48,13 +55,14 @@ public class UseTable : Conditional
                 customer.Value.AnimationCompo.SeatAnimation(-1);
                 return TaskStatus.Failure;
             }
+            return TaskStatus.Running;
         }
 
         if (eatTime <= Time.time - startEatTime)
         {
             currentEat--;
-            customer.Value.currentChair.EatFood();
             startEatTime = Time.time;
+            customer.Value.currentChair.EatFood();
         }
         return TaskStatus.Running;
     }

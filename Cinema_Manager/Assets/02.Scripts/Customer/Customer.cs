@@ -140,12 +140,6 @@ public class Customer : AgentController
     }
 
     #endregion
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(transform.position, 4f);
-    }
 }
 
 public class SharedCustomer : SharedVariable<Customer>
