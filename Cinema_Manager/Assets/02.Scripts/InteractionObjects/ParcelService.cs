@@ -61,11 +61,9 @@ public class ParcelService : MonoBehaviour, IIneractionable
     {
         if (false == BoxStackCheck()) return;
 
-        Vector3 spawnPos = new Vector3(
-                           _spawnTrm.position.x,
-                           _spawnTrm.position.y + (_spacingY * _currentBoxCnt),
-                           _spawnTrm.position.z);
-        GameObject go = PoolManager.Instance.Pop(_poolObjType.ToString(), spawnPos, Quaternion.Euler(0, 0, 0));
+        Vector3 spawnPos = Vector3.zero;
+        spawnPos.y = _spacingY * _currentBoxCnt;
+        GameObject go = PoolManager.Instance.Pop(_poolObjType.ToString(), _spawnTrm, spawnPos, Quaternion.Euler(0, 0, 0));
         _boxStack.Push(go.GetComponent<ITakeable>());
     }
 

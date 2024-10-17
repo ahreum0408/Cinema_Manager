@@ -31,6 +31,8 @@ public class Customer : AgentController
 
     public CustomerType CurrentCustomerType;
 
+    [SerializeField] private LayerMask _whatIsPlayer;
+
     [HideInInspector] public bool IsStacked => StackCompo.IsStacked;
     [HideInInspector] public Vector3 startPos;
 
@@ -61,12 +63,21 @@ public class Customer : AgentController
 
         startPos = transform.position;
         SetSeat();
-        SetCustomerType();
         SelectBuySum();
         SelectObjectType();
+        SetCustomerType();
 
         OnTakeFood += HandleTakeFood;
         OnGiveFood += HandleGiveFood;
+    }
+
+    public bool CheckPlayer()
+    {
+        Collider[] col = Physics.OverlapSphere(transform.position, 4f, _whatIsPlayer);
+        if (col.Length > 0)
+            return true;
+        else
+            return false;
     }
 
     #region Set Customer Type
@@ -80,11 +91,14 @@ public class Customer : AgentController
             customerData.isSeat = true;
     }
     
-    // 손님 타입(진상 손님 종류)
+    // 손님 타입
     private void SetCustomerType()
     {
         if (CurrentCustomerType == CustomerType.Basic || CurrentCustomerType == CustomerType.Parcel)
             return;
+
+        if(CurrentCustomerType == CustomerType.Sleep)
+            customerData.isSeat = true;
 
         customerData.isBad = true;
     }
@@ -92,7 +106,7 @@ public class Customer : AgentController
     // 손님 원하는 물건
     public void SelectObjectType()
     {
-        int rand = Random.Range(1, 5);
+        int rand = Random.Range(1, 2);
         customerData.objectType = (PoolableType)rand;
         if(ObjectManager.Instance.FindDisplayStand(customerData.objectType).CanStandPoint() == null)
             SelectObjectType();
