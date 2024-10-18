@@ -84,6 +84,7 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
     {
         Vector3 moneyPosition = Vector3.zero;
 
+        // 3x3
         int row = (_moneyAmount % 9) / 3;
         int columun = (_moneyAmount % 9) % 3;
         int height = _moneyAmount / 9;
