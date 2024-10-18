@@ -107,7 +107,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable
 
                 if (_playerController.CanTakeFood(_poolObjType))
                 {
-                    _playerController.OnTakeFood?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
+                    _playerController.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
                     yield return new WaitForSeconds(0.15f);
                 }
             }

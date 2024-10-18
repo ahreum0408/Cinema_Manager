@@ -36,7 +36,7 @@ public class Point : MonoBehaviour
     {
         Debug.Log("Take Food On Table");
         _currentFoodCnt++;
-        ITakeable food = customer.OnGiveFood?.Invoke();
+        ITakeable food = customer.OnGiveTakeable?.Invoke();
         
         Vector3 foodPos = Vector3.zero;
         foodPos.z += spacingY * _currentFoodCnt;
