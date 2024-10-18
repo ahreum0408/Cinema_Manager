@@ -7,8 +7,43 @@
 }
 
 #gaugebar > #unity-progress-bar {
-    height: 100%;
     max-height: 100%;
+    background-image: url("project://database/Assets/04.Sprites/UI/star_bar_grey.png?fileID=21300000&guid=2d20a056e6f59a0408b0d58d266c36b9&type=3#star_bar_grey");
+}
+
+#gaugebar > #unity-progress-bar > VisualElement {
+    background-image: url("project://database/Assets/04.Sprites/UI/star_bar_grey.png?fileID=21300000&guid=2d20a056e6f59a0408b0d58d266c36b9&type=3#star_bar_grey");
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#gaugebar > #unity-progress-bar > VisualElement > .unity-progress-bar__progress {
+    background-image: url("project://database/Assets/04.Sprites/UI/star_bar_color.png?fileID=21300000&guid=eca9da2f1aa365042ac201c38e35ab6e&type=3#star_bar_color");
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.star-icon {
+    width: 120px;
+    height: 120px;
+    overflow: visible;
+    left: -15px;
+    background-image: url("project://database/Assets/04.Sprites/UI/Icon/star_icon.png?fileID=21300000&guid=c935a904c587f2649937d4175657b00f&type=3#star_icon");
+    position: absolute;
+}
+
+.level-bar {
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 18%;
+    width: 92%;
+    justify-content: flex-end;
+}
+
+.gauge-bar {
+    width: 80%;
+    justify-content: center;
+    height: 100%;
+    flex-grow: 1;
+    background-image: url('project://database/Assets/04.Sprites/UI/star_bar.png?fileID=21300000&guid=d39c9b4031118474ca4227acb0fe1111&type=3#star_bar');
 }
 
 .left-border {
@@ -62,4 +97,9 @@
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
     background-color: rgba(0, 0, 0, 0);
+}
+
+.icon {
+    width: 80px;
+    height: 80px;
 }

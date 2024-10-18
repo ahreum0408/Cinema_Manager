@@ -11,7 +11,7 @@
         </ui:VisualElement>
         <ui:VisualElement name="main-container" style="flex-grow: 1; flex-direction: row; align-items: center; justify-content: space-around;">
             <ui:VisualElement name="upgrade-productionspeed-content" style="align-items: center; justify-content: center; height: 100%;">
-                <ui:VisualElement name="updrade-panel" style="width: 400px; height: 80%; background-color: rgb(198, 255, 178); margin-bottom: 40px;">
+                <ui:VisualElement name="updrade-panel" class="upgrade-panel">
                     <ui:VisualElement name="top-container" style="width: 100%; height: 80px;">
                         <ui:VisualElement name="title-content" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="배달 속도 증가" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_50" />
@@ -34,7 +34,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="upgrade-volume-content" style="align-items: center; justify-content: center; height: 100%;">
-                <ui:VisualElement name="updrade-panel" style="width: 400px; height: 80%; background-color: rgb(198, 255, 178); margin-bottom: 40px;">
+                <ui:VisualElement name="updrade-panel" class="upgrade-panel">
                     <ui:VisualElement name="top-container" style="width: 100%; height: 80px;">
                         <ui:VisualElement name="title-content" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="용량" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_50" />
@@ -57,7 +57,7 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="upgrade-storage-content" style="align-items: center; justify-content: center; height: 100%;">
-                <ui:VisualElement name="updrade-panel" style="width: 400px; height: 80%; background-color: rgb(198, 255, 178); margin-bottom: 40px;">
+                <ui:VisualElement name="updrade-panel" class="upgrade-panel">
                     <ui:VisualElement name="top-container" style="width: 100%; height: 80px;">
                         <ui:VisualElement name="title-content" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="트럭 용량 증가" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_50" />

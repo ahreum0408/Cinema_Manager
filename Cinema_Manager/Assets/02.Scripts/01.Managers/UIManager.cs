@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour {
         if (_currentView != null && _currentView != _mainView) { // 지금 보고 있는 view가 있으면 꺼
             _currentView.Hide();
         }
-        Debug.Log(newView);
+
         _previousView = _currentView;
         _currentView = newView;
 

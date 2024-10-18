@@ -8,12 +8,13 @@
 }
 
 .sound-content {
-    height: 35%;
+    height: 25%;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: rgb(203, 203, 203);
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 .unity-base-slider > VisualElement > #unity-drag-container {
@@ -32,12 +33,17 @@
     top: 25%;
 }
 
+#haptic-toggle > VisualElement > #unity-checkmark {
+    width: 100%;
+    height: 100%;
+}
+
 .slider {
     width: 65%;
     height: 70px;
 }
 
-.icon {
+.settingView-icon {
     width: 200px;
     height: 200px;
     margin-right: 30px;

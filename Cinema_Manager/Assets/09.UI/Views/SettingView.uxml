@@ -2,18 +2,22 @@
     <Style src="project://database/Assets/09.UI/USS/Setting_USS.uss?fileID=7433441132597879392&amp;guid=3e9fde11ccb9f9a4f8fa7fbfaa0ea2b1&amp;type=3#Setting_USS" />
     <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/09.UI/USS/Main_USS.uss?fileID=7433441132597879392&amp;guid=ac0eb11ece132c14c8283d2efee773c1&amp;type=3#Main_USS" />
-    <ui:VisualElement name="background" style="width: 80%; height: 50%; min-width: 77%; min-height: 50%; max-height: 60%; max-width: 80%; background-color: rgb(255, 255, 255); border-top-left-radius: 35px; border-top-right-radius: 35px; border-bottom-right-radius: 35px; border-bottom-left-radius: 35px; align-items: center; justify-content: space-between;">
+    <ui:VisualElement name="background" style="width: 80%; height: 84%; min-width: 77%; min-height: 50%; max-height: 60%; max-width: 80%; background-color: rgb(255, 255, 255); border-top-left-radius: 35px; border-top-right-radius: 35px; border-bottom-right-radius: 35px; border-bottom-left-radius: 35px; align-items: center; justify-content: space-between;">
         <ui:VisualElement name="top-container" class="top_bottom-container">
             <ui:Label tabindex="-1" text="설정" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title-txt" class="text_middle-array_100" />
         </ui:VisualElement>
         <ui:VisualElement name="main-container" style="flex-grow: 1; width: 100%; justify-content: center;">
-            <ui:VisualElement name="bgm-content" class="sound-content" style="justify-content: center;">
-                <ui:VisualElement name="icon" class="icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/bgm_icon.png?fileID=21300000&amp;guid=fc6584fcfe34ffa4fb6c7c56fbbda164&amp;type=3#bgm_icon&quot;);" />
+            <ui:VisualElement name="bgm-content" class="sound-content">
+                <ui:VisualElement name="icon" class="settingView-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/bgm_icon.png?fileID=21300000&amp;guid=3b73f2a7a7daa004c8a3dab2b212af10&amp;type=3#bgm_icon&quot;);" />
                 <ui:Slider high-value="1" name="bgm-slider" class="slider" />
             </ui:VisualElement>
-            <ui:VisualElement name="effect-content" class="sound-content" style="justify-content: center;">
-                <ui:VisualElement name="icon" class="icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/effect_icon.png?fileID=21300000&amp;guid=5a9d249cf767ee94985feb3dca36d5c4&amp;type=3#effect_icon&quot;);" />
+            <ui:VisualElement name="effect-content" class="sound-content">
+                <ui:VisualElement name="icon" class="settingView-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/effect_icon.png?fileID=21300000&amp;guid=5a9d249cf767ee94985feb3dca36d5c4&amp;type=3#effect_icon&quot;);" />
                 <ui:Slider high-value="1" name="effect-slider" class="slider" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ect-content" class="sound-content">
+                <ui:VisualElement name="icon" class="settingView-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/haptic_icon.png?fileID=21300000&amp;guid=91f6ca1dff29e7c409eee68d1b3fb718&amp;type=3#haptic_icon&quot;);" />
+                <ui:Toggle name="haptic-toggle" style="width: 80px; height: 80px;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="bottom-container" class="top_bottom-container">
