@@ -45,7 +45,11 @@ public class Counter : MonoBehaviour, IIneractionable
         {
             // 여기서 계산 하는거 해주면 됨
             lineList[0].customerData.isCalculate = true;
-            RemoveCustomer(lineList[0]);
+
+            float distance = Vector3.Distance(lineList[0].transform.position, lineList[0].Agent.destination);
+            if (distance < lineList[0].Agent.stoppingDistance) 
+                RemoveCustomer(lineList[0]);
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _moneyDummy.AddMoneyObject(1);
@@ -69,7 +73,7 @@ public class Counter : MonoBehaviour, IIneractionable
             checkPoint.position = new Vector3(
                 checkPoint.position.x,
                 checkPoint.position.y,
-                checkPoint.position.z - lineInterval
+                checkPoint.position.z + lineInterval
             );
         }
     }
@@ -98,7 +102,7 @@ public class Counter : MonoBehaviour, IIneractionable
                 customers.Agent.SetDestination(new Vector3(
                     customers.Agent.destination.x,
                     customers.Agent.destination.y,
-                    customers.Agent.destination.z + lineInterval)
+                    customers.Agent.destination.z - lineInterval)
                 );
             }
             else
@@ -106,7 +110,7 @@ public class Counter : MonoBehaviour, IIneractionable
                 customers.Agent.SetDestination(new Vector3(
                     beforeCustomer.Agent.destination.x,
                     beforeCustomer.Agent.destination.y,
-                    beforeCustomer.Agent.destination.z - lineInterval)
+                    beforeCustomer.Agent.destination.z + lineInterval)
                 );
             }
             beforeCustomer = customers;

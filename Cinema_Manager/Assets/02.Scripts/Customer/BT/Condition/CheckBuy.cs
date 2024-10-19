@@ -14,7 +14,7 @@ public class CheckBuy : Conditional
             return TaskStatus.Success;
         }
 
-        if (customer.Value.customerData.isBuy == true)
+        if (customer.Value.customerData.isBuy == true && customer.Value.CanSetDestination())
         {
             return TaskStatus.Success;
         }
