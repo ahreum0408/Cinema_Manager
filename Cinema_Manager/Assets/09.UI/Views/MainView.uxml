@@ -9,9 +9,11 @@
             </ui:VisualElement>
             <ui:VisualElement name="middle-border" class="middle-border" style="flex-direction: row; justify-content: flex-end; width: 50%;">
                 <ui:VisualElement name="levelbar" class="level-bar">
-                    <ui:ProgressBar value="69.9" title="10%" name="gaugebar" class="text_middle-array_50 gauge-bar" />
+                    <ui:ProgressBar title="10%" name="gaugebar" value="33.56" class="text_middle-array_50 gauge-bar" />
                 </ui:VisualElement>
-                <ui:VisualElement name="icon" class="star-icon" />
+                <ui:VisualElement name="star" class="star-icon">
+                    <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="level-txt" class="text_middle-array_50" />
+                </ui:VisualElement>
             </ui:VisualElement>
             <ui:VisualElement name="right-border" class="right-border">
                 <ui:VisualElement name="coin-border" class="good-border">

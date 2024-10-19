@@ -10,7 +10,7 @@ public class SettingView : UIView {
 
     private Button _closeBtn;
 
-    private GameData _gameData = new GameData();
+    private GameData _gameData;
 
     public SettingView(VisualElement topElement) : base(topElement) {
         SettingEvents.GameDataLoadEvent += GameDataLoad;
@@ -79,5 +79,4 @@ public class SettingView : UIView {
 
         //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-
 }

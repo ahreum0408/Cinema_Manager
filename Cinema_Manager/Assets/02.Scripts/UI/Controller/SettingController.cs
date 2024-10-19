@@ -6,11 +6,11 @@ public class SettingController : MonoBehaviour {
 
     private void OnEnable() {
         SaveManager.GameDataLoadedEvent += GameDataLoad;
-        SettingEvents.GameDataUpdatEvent += SettingUpdate;
+        SettingEvents.GameDataUpdatEvent += GameDataUpgdate;
     }
     private void OnDisable() {
         SaveManager.GameDataLoadedEvent -= GameDataLoad;
-        SettingEvents.GameDataUpdatEvent -= SettingUpdate;
+        SettingEvents.GameDataUpdatEvent -= GameDataUpgdate;
     }
 
     private void GameDataLoad(GameData data) {
@@ -21,7 +21,7 @@ public class SettingController : MonoBehaviour {
 
         SettingEvents.GameDataLoadEvent?.Invoke(_gameData);
     }
-    private void SettingUpdate(GameData data) {
+    private void GameDataUpgdate(GameData data) {
         if (data == null) {
             return;
         }

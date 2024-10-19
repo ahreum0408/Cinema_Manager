@@ -8,11 +8,11 @@
 
 #gaugebar > #unity-progress-bar {
     max-height: 100%;
-    background-image: url("project://database/Assets/04.Sprites/UI/star_bar_grey.png?fileID=21300000&guid=2d20a056e6f59a0408b0d58d266c36b9&type=3#star_bar_grey");
+    background-image: url('project://database/Assets/04.Sprites/UI/star_bar_grey.png?fileID=21300000&guid=2d20a056e6f59a0408b0d58d266c36b9&type=3#star_bar_grey');
 }
 
 #gaugebar > #unity-progress-bar > VisualElement {
-    background-image: url("project://database/Assets/04.Sprites/UI/star_bar_grey.png?fileID=21300000&guid=2d20a056e6f59a0408b0d58d266c36b9&type=3#star_bar_grey");
+    background-image: url("project://database/Assets/04.Sprites/UI/star_bar_gray.png?fileID=21300000&guid=b1d97a10b8496f1428eeaf85122a6326&type=3#star_bar_gray");
     background-color: rgba(0, 0, 0, 0);
 }
 
@@ -28,6 +28,8 @@
     left: -15px;
     background-image: url("project://database/Assets/04.Sprites/UI/Icon/star_icon.png?fileID=21300000&guid=c935a904c587f2649937d4175657b00f&type=3#star_icon");
     position: absolute;
+    align-items: center;
+    justify-content: center;
 }
 
 .level-bar {
