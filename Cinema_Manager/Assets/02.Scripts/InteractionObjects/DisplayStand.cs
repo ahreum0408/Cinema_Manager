@@ -15,6 +15,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     [SerializeField] private int _columnSpawnCnt;
     [SerializeField] private List<Transform> _spawnTrmList = new List<Transform>();
 
+    #region ¼­¿¬
     [Range(0, 5)][SerializeField] private float _spacingY;
     [Range(0, 5)] [SerializeField] private float _spacingX;
     [SerializeField] private bool _isFood;
@@ -28,6 +29,8 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     private Dictionary<Customer, int> _customerDic;
     private bool _isStart;
+    private int _customerCount = 0;
+    #endregion
 
     private void Awake()
     {
@@ -84,7 +87,10 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     public void GiveFood()
     {
-        StartCoroutine(GiveFoodRoutine());
+        if(_currentFoodCnt > 0)
+        {
+            StartCoroutine(GiveFoodRoutine());
+        }
     }
 
     private IEnumerator GiveFoodRoutine()
@@ -114,29 +120,70 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     public void AddCustomer(Customer customer)
     {
-        _customerDic.Add(customer, _customerDic.Count);
+        _customerDic.Add(customer, _customerCount);
+        _customerCount++;
+
         if (_isStart)
         {
             _currentCustomer = customer;
+            _currentCustomer.customerData.isGive = true;
             _isStart = false;
         }
         customer.Agent.SetDestination(points[_customerDic[customer]].transform.position);
     }
 
+    //public void RemoveRoutine(Customer cutomer)
+    //{
+    //    StartCoroutine(RemoveCustomer(cutomer));
+    //}
+
     public void RemoveCustomer(Customer customer)
     {
+        Debug.Log("RemoveCustomer");
         _customerDic.Remove(customer);
+        _customerCount--;
+
         _isStart = true;
-        foreach (var customers in _customerDic.Keys)
+        //foreach (var customers in _customerDic.Keys)
+        //{
+        //    if (_isStart)
+        //    {
+        //        _currentCustomer = customers;
+        //        _currentCustomer.customerData.isGive = true; 
+        //        _isStart = false;
+        //    }
+        //    _customerDic[customers] = _customerDic[customers] - 1;
+        //    Debug.Log(_customerDic[customers].ToString());
+        //    customers.Agent.SetDestination(points[_customerDic[customers]].transform.position);
+        //    yield return null;
+        //}
+
+        List<Customer> customerKeys = new List<Customer>(_customerDic.Keys);
+
+        for (int i = 0; i < customerKeys.Count; i++)
         {
+            Customer currentCustomer = customerKeys[i];
+
+            if (currentCustomer == customer)
+            {
+                _customerDic.Remove(currentCustomer);
+                continue;
+            }
+
+            if (_customerDic.ContainsKey(currentCustomer))
+            {
+                _customerDic[currentCustomer] = _customerDic[currentCustomer] - 1;
+            }
+
             if (_isStart)
             {
-                _currentCustomer = customers;
+                _currentCustomer = currentCustomer;
+                _currentCustomer.customerData.isGive = true;
                 _isStart = false;
             }
-            customers.Agent.SetDestination(points[_customerDic[customer] -1].transform.position);
+
+            currentCustomer.Agent.SetDestination(points[_customerDic[currentCustomer]].transform.position);
         }
-        _currentCustomer = null;
     }
 
     public PoolableType GetPoolObjType() => _poolObjType;

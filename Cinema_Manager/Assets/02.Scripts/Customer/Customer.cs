@@ -14,6 +14,7 @@ public enum CustomerType
 public class CustomerData
 {
     [Header("Customer Type")]
+    public bool isGive = false; // 물건을 선택 할 수 있나
     public bool isBuy = false; // 구매 가능한 상태인가?
     public bool isCalculate = false; // 계산을 해줬는가?
     public bool isSeat; // 식탁을 사용하는 손님인가?
@@ -30,6 +31,8 @@ public class Customer : AgentController
     public CustomerData customerData;
 
     public CustomerType CurrentCustomerType;
+
+    public float defualtSpeed = 3.5f;
 
     [SerializeField] private LayerMask _whatIsPlayer;
 
@@ -61,6 +64,8 @@ public class Customer : AgentController
     {
         customerData = new CustomerData();
 
+        Agent.speed = defualtSpeed;
+
         startPos = transform.position;
         SetSeat();
         SelectBuySum();
@@ -75,6 +80,15 @@ public class Customer : AgentController
     {
         Collider[] col = Physics.OverlapSphere(transform.position, 4f, _whatIsPlayer);
         if (col.Length > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public bool CanSetDestination()
+    {
+        float distance = Vector3.Distance(transform.position, Agent.destination);
+        if (distance == 0)
             return true;
         else
             return false;
