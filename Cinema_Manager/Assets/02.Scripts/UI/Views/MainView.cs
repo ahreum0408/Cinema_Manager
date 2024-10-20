@@ -1,8 +1,6 @@
-using System;
 using UIToolkit;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class MainView : UIView {
     private Button _settingBtn;
@@ -12,18 +10,29 @@ public class MainView : UIView {
     private Label _gamTxt;
 
     private ProgressBar _levelBar;
+    private Label _levelTxt;
+
+    private GameData _gameData;
 
 
     public MainView(VisualElement topElement) : base(topElement) {
+        MainEvents.GameDataLoadEvent += GameDataLoad;
+
         MainEvents.ChangeCoinEvent += UpdateCoinTxt;
         MainEvents.ChangeGamEvent += UpdateGamTxt;
+
+        MainEvents.GetExpEvent += UpdateExp;
+        MainEvents.UpgradeLevelEvent += UpdateLevel;
     }
-    
     public override void Dispose() {
         base.Dispose();
+        MainEvents.GameDataLoadEvent -= GameDataLoad;
 
         MainEvents.ChangeCoinEvent -= UpdateCoinTxt;
         MainEvents.ChangeGamEvent -= UpdateGamTxt;
+
+        MainEvents.GetExpEvent -= UpdateExp;
+        MainEvents.UpgradeLevelEvent -= UpdateLevel;
     }
     protected override void SetVisualElements() {
         base.SetVisualElements();
@@ -35,6 +44,7 @@ public class MainView : UIView {
         _gamTxt = topElement.Q<Label>("gam-txt");
 
         _levelBar = topElement.Q<ProgressBar>("gaugebar");
+        _levelTxt = topElement.Q<Label>("level-txt");
     }
     protected override void RegisterButtonCallbacks() {
         base.RegisterButtonCallbacks();
@@ -50,22 +60,23 @@ public class MainView : UIView {
     }
 
     #region level-bar
-    private void SetLevelBarMinMaxValue(float minValue, float maxValue) {
-        _levelBar.lowValue = minValue;
-        _levelBar.highValue = maxValue;
+    private void UpdateExp(int exp) {
+        _levelBar.value = exp;
+        _levelBar.title = $"{exp} / {_gameData.level.highValue}";
+        _gameData.exp = exp;
+        MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void LevelUp() {
-        Debug.Log("levelUp");
-        // 레벨에 맞게 텍스트도 변경
-        SetLevelBarMinMaxValue(0, 110); // 다음 레벨에 맞도록 변경하고 
-        float remainingValue = _levelBar.value - _levelBar.highValue;
-        _levelBar.value = remainingValue;
+    private void UpdateLevel(Level data) {
+        _levelTxt.text = data.levelNumder.ToString();
+        _gameData.level = data;
+        SetLevelBarMinMaxValue(data);
+        MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    public void GetEx() {
-        _levelBar.value += 90;
-        if(_levelBar.value >= _levelBar.highValue) {
-            LevelUp();
-        }
+    private void SetLevelBarMinMaxValue(Level data) {
+        _levelBar.lowValue = data.lowValue;
+        _levelBar.highValue = data.highValue;
+        Debug.Log(_levelBar.lowValue);
+        Debug.Log(_levelBar.highValue);
     }
     #endregion
 
@@ -77,10 +88,21 @@ public class MainView : UIView {
         Debug.Log("상점창 켜짐");
     }
     #endregion
+    private void GameDataLoad(GameData data) {
+        if (data == null) {
+            return;
+        }
+        _gameData = data;
+
+        _levelBar.value = data.exp;
+        _levelBar.title = $"{data.exp} / {_gameData.level.highValue}";
+        _levelTxt.text = data.level.levelNumder.ToString();
+
+        //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
+    }
     private void UpdateCoinTxt(string coin) {
         _coinTxt.text = coin;
     }
-   
     private void UpdateGamTxt(int gam) {
         _gamTxt.text = gam.ToString();
     }

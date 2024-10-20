@@ -5,8 +5,13 @@ public class GameData {
     public float bgmValue;
     public float effectValue;
 
+    // main view
     public int coin;
     public int gam;
+
+    public Level level;
+    public int levelIndez;
+    public int exp;
 
     // player
     public int p_movespeedLevel; // 플레이어 이속
@@ -29,6 +34,8 @@ public class GameData {
 
         this.coin = 0;
         this.gam = 0;
+
+        this.level = new Level();
     }
     public string ToJson() {
         return JsonUtility.ToJson(this); // 쓰기

@@ -2028,7 +2028,7 @@ MonoBehaviour:
     highValue: 40
   - levelNumder: 3
     lowValue: 0
-    highValue: 50
+    highValue: 60
 --- !u!1 &1565740980
 GameObject:
   m_ObjectHideFlags: 0

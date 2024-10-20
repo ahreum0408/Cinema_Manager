@@ -18,6 +18,7 @@ public class FileManager : MonoBehaviour {
 
     public static bool LoadFromFile(string fileName, out string result) {
         var fullPath = Path.Combine(Application.persistentDataPath, fileName);
+        Debug.Log(fullPath);
         if (!File.Exists(fullPath)) { // 경로에 파일이 없다면
             File.WriteAllText(fullPath, ""); // 비워주고
         }

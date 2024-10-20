@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 
 public static class MainEvents {
+    public static Action<GameData> GameDataUpdatEvent;
+    public static Action<GameData> GameDataLoadEvent;
+
     // 창 띄우기
     public static Action ShowSettingWindowEvent;
     public static Action ShowStoreWindowEvent;
@@ -9,6 +12,9 @@ public static class MainEvents {
     // 각 재화 수치 변경 시 호출
     public static Action<string> ChangeCoinEvent;
     public static Action<int> ChangeGamEvent;
+
+    public static Action<Level> UpgradeLevelEvent;
+    public static Action<int> GetExpEvent;
 
     public static Action MainViewShow;
     public static Action SettingViewShow;

@@ -38,10 +38,9 @@ public class SaveManager : MonoBehaviour {
         if (gameDataManager.GameData == null) {
             gameDataManager.GameData = NewData();
         }
-        else if (FileManager.LoadFromFile(_saveFilename, out var jsonString)){ // jsonString : 데이터 내용
+        if (FileManager.LoadFromFile(_saveFilename, out var jsonString)){ // jsonString : 데이터 내용
             gameDataManager.GameData.LoadJson(jsonString);
         }
-
         if (gameDataManager.GameData != null) {
             GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
         }
