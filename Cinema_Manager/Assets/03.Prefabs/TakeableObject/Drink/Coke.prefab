@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4873212540685960965}
   - component: {fileID: 5942495441831368492}
   - component: {fileID: 7768961314751033271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: -977952130719389278}
   - component: {fileID: -3925050307337296889}
   - component: {fileID: 8500330737445416995}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Coke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
