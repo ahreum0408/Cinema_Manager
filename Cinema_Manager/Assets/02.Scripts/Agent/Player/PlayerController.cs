@@ -1,11 +1,13 @@
 using System;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UIElements;
 using static AyunDefine;
 
 public class PlayerController : AgentController
 {
     [SerializeField] private FloatingJoystick _joystick;
+    [SerializeField] private TextMeshProUGUI _stackMaxText;
 
     private readonly int _maxMoneyAmount = 9999;
 
@@ -24,9 +26,10 @@ public class PlayerController : AgentController
     public Action<int> OnGetPaid;
     public Func<int, int> OnPaidCost;
 
+    public Action<bool> OnStackMaxed;
+
     // UnityEvents
-    //public UnityEvent<int> OnMoneyAmountValueChanged;
-    public UnityEvent<bool> OnStackMaxed;
+    //public UnityEvent<bool> OnStackMaxed;
 
     private bool isPlay = false;
 
@@ -53,6 +56,7 @@ public class PlayerController : AgentController
         OnGiveTakeable += HandleGiveTakeable;
         OnGetPaid += HandleOnGetPaid;
         OnPaidCost += HandleOnPaidCost;
+        OnStackMaxed += HandleStackMaxed;
     }
 
     private void Update()
@@ -68,6 +72,7 @@ public class PlayerController : AgentController
         OnGiveTakeable -= HandleGiveTakeable;
         OnGetPaid -= HandleOnGetPaid;
         OnPaidCost -= HandleOnPaidCost;
+        OnStackMaxed -= HandleStackMaxed;
     }
     #endregion
 
@@ -119,6 +124,22 @@ public class PlayerController : AgentController
 
         return food;
     }
+
+    private void HandleStackMaxed(bool isStackMax)
+    {
+        _stackMaxText.enabled = isStackMax;
+        if (isStackMax)
+        {
+            // 위치 제발....
+            Debug.Log(_stackComponent.TopObjPos);
+            Camera mainCam = Camera.main;
+            Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(mainCam, _stackComponent.TopObjPos);
+            _stackMaxText.transform.localPosition = screenPos;
+            //_stackMaxText.rectTransform.localPosition = new Vector2(screenPos.x / 2, screenPos.y) / 2;
+            //_stackMaxText.rectTransform.localPosition = new Vector2(_stackMaxText.rectTransform.anchoredPosition.x, screenPos.y);
+        }
+    }
+
 
     private void HandleOnGetPaid(int moneyAmount)
     {

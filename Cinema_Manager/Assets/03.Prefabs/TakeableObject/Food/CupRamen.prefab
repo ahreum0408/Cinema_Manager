@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7955531704432609296}
   - component: {fileID: 1234850227688081538}
   - component: {fileID: 528024144266879771}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: -7519283558227964311}
   - component: {fileID: 2883035349737964603}
   - component: {fileID: 2137409051979413457}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CupRamen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
