@@ -34,7 +34,7 @@
                         <ui:VisualElement name="icon" class="settingView-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/haptic_icon.png?fileID=21300000&amp;guid=91f6ca1dff29e7c409eee68d1b3fb718&amp;type=3#haptic_icon&quot;);" />
                         <ui:Label tabindex="-1" text="진동" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text_middle-array_50" />
                     </ui:VisualElement>
-                    <ui:Toggle name="haptic-toggle" style="width: 80px; height: 80px;" />
+                    <ui:Toggle name="ect-toggle" style="width: 80px; height: 80px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>

@@ -4,6 +4,7 @@ public class GameData {
     // setting view
     public float bgmValue;
     public float effectValue;
+    public bool haptic = true;
 
     // main view
     public int coin;
