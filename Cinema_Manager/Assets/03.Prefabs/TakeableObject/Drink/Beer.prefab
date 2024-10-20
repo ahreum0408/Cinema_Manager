@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5350315602495179134}
   - component: {fileID: 2579327655545477828}
   - component: {fileID: 8590593588853089211}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: -2547007337943141711}
   - component: {fileID: -989513040297310980}
   - component: {fileID: 4443585000544884941}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Beer
   m_TagString: Untagged
   m_Icon: {fileID: 0}

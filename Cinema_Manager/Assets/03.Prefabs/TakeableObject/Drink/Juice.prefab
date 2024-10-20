@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -7110766872034473342}
   - component: {fileID: 7935462807522574339}
   - component: {fileID: 2116740943565344312}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Juice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 3595792337603587317}
   - component: {fileID: 582475629335019194}
   - component: {fileID: 4009589906236127107}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

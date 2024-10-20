@@ -13,6 +13,9 @@ public class AgentStackComponent : AgentComponent
     private PoolableType _currentHoldType = PoolableType.None;
     public PoolableType CurrentHoldType => _currentHoldType;
 
+    private Vector3 _topObjPos = Vector3.zero;
+    public Vector3 TopObjPos => _topObjPos;
+
     // Counts
     public int CurrentStackCount => _takeObjectStack.Count;
     public int RemainingStackCount => _maxStackCount - CurrentStackCount;
@@ -50,8 +53,6 @@ public class AgentStackComponent : AgentComponent
 
     public void TakeObject(ITakeable takeableObject, PoolableType type, float spacingY, bool isFood)
     {
-        Debug.Log(spacingY);
-
         if (_currentHoldType == PoolableType.None)
             _currentHoldType = type;
 
@@ -61,6 +62,7 @@ public class AgentStackComponent : AgentComponent
         takeableObject.Take(_holderTransform, objectPosition, rotation);
 
         _takeObjectStack.Push(takeableObject);
+        _topObjPos = objectPosition;
     }
 
     public ITakeable GetTopObject()
@@ -77,7 +79,5 @@ public class AgentStackComponent : AgentComponent
         _currentHoldType = holdType;
     }
 
-    public override void ControllerUpdate()
-    {
-    }
+    public override void ControllerUpdate() {}
 }
