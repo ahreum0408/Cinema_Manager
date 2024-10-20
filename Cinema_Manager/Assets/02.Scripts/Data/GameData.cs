@@ -10,7 +10,7 @@ public class GameData {
     public int gam;
 
     public Level level;
-    public int levelIndez;
+    public int levelIndex;
     public int exp;
 
     // player
@@ -35,7 +35,9 @@ public class GameData {
         this.coin = 0;
         this.gam = 0;
 
-        this.level = new Level();
+        this.level = new Level(); 
+        this.levelIndex = 0;
+        this.exp = 0;
     }
     public string ToJson() {
         return JsonUtility.ToJson(this); // ¾²±â

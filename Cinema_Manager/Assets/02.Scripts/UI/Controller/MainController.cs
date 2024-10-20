@@ -17,7 +17,6 @@ public class MainController : MonoBehaviour {
             return;
         }
         _gameData = data;
-
         MainEvents.GameDataLoadEvent?.Invoke(_gameData);
     }
     private void GameDataUpdate(GameData data) {

@@ -13,7 +13,7 @@ public static class MainEvents {
     public static Action<string> ChangeCoinEvent;
     public static Action<int> ChangeGamEvent;
 
-    public static Action<Level> UpgradeLevelEvent;
+    public static Action<Level, int> UpgradeLevelEvent;
     public static Action<int> GetExpEvent;
 
     public static Action MainViewShow;

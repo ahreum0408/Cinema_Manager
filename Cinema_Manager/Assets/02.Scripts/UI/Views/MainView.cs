@@ -66,17 +66,16 @@ public class MainView : UIView {
         _gameData.exp = exp;
         MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void UpdateLevel(Level data) {
+    private void UpdateLevel(Level data, int index) {
         _levelTxt.text = data.levelNumder.ToString();
-        _gameData.level = data;
         SetLevelBarMinMaxValue(data);
+        _gameData.level = data;
+        _gameData.levelIndex = index;
         MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void SetLevelBarMinMaxValue(Level data) {
         _levelBar.lowValue = data.lowValue;
         _levelBar.highValue = data.highValue;
-        Debug.Log(_levelBar.lowValue);
-        Debug.Log(_levelBar.highValue);
     }
     #endregion
 
@@ -97,6 +96,7 @@ public class MainView : UIView {
         _levelBar.value = data.exp;
         _levelBar.title = $"{data.exp} / {_gameData.level.highValue}";
         _levelTxt.text = data.level.levelNumder.ToString();
+        SetLevelBarMinMaxValue(_gameData.level);
 
         //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
