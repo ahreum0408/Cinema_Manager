@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static AyunDefine;
 
@@ -6,6 +7,7 @@ public class AgentStackComponent : AgentComponent
 {
     [SerializeField] private Transform _holderTransform;
     [SerializeField] private float _spacingY = 0.4f;
+    public float SpacingY = 0.4f;
     [SerializeField] private int _maxStackCount = 3;
 
     private Stack<ITakeable> _takeObjectStack;
@@ -77,6 +79,11 @@ public class AgentStackComponent : AgentComponent
     public void ChangeHoldType(PoolableType holdType)
     {
         _currentHoldType = holdType;
+    }
+
+    public Transform GetTopObjectTrm()
+    {
+        return _holderTransform.GetChild(_holderTransform.childCount - 1).GetComponent<Transform>();
     }
 
     public override void ControllerUpdate() {}
