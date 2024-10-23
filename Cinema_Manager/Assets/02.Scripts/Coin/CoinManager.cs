@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class CoinManager : MonoSingleton<CoinManager> {
     public int _coin = 0;
@@ -7,6 +8,8 @@ public class CoinManager : MonoSingleton<CoinManager> {
 
     private char kilo = 'K';
     private char mega = 'M';
+
+    private GameData _gameData;
 
     public int Coin {
         get {
@@ -28,15 +31,24 @@ public class CoinManager : MonoSingleton<CoinManager> {
             return _gam;
         }
         set {
-            _gam = value;
-            MainEvents.ChangeGamEvent?.Invoke(_gam);
-            
+            _coin = value;
+            string gam = CalculatePriceText(_coin);
+            MainEvents.ChangeGamEvent?.Invoke(gam);
+
             if (_gam < 0) {
                 _gam = 0;
                 Debug.LogWarning("[주의] 현재 잼이 -임");
             }
         }
     }
+
+    protected override void Awake() {
+        base.Awake();
+
+        MainEvents.GameDataLoadEvent += GameDataLoad;
+    }
+
+
     public string CalculatePriceText(int price) {
         int m = 1000000;
         int k = 1000;
@@ -57,5 +69,14 @@ public class CoinManager : MonoSingleton<CoinManager> {
     public void ResetGoods() {
         _coin = 0;
         _gam = 0;
+    }
+    private void GameDataLoad(GameData data) {
+        if (data == null) {
+            return;
+        }
+        _gameData = data;
+
+        _coin = data.coin;
+        _gam = data.gam;
     }
 }

@@ -33,7 +33,7 @@
     top: 25%;
 }
 
-#haptic-toggle > VisualElement > #unity-checkmark {
+.unity-base-field > VisualElement > #unity-checkmark {
     width: 100%;
     height: 100%;
 }

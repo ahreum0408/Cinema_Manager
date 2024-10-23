@@ -51,7 +51,6 @@
 .left-border {
     width: 22%;
     height: 100%;
-    background-color: rgb(211, 255, 233);
     align-items: flex-start;
     justify-content: center;
 }
@@ -59,7 +58,6 @@
 .middle-border {
     width: 50%;
     height: 100%;
-    background-color: rgb(211, 255, 233);
     align-items: center;
     justify-content: center;
 }
@@ -69,7 +67,6 @@
     height: 100%;
     align-items: flex-end;
     justify-content: center;
-    background-color: rgb(211, 255, 233);
 }
 
 .good-border {

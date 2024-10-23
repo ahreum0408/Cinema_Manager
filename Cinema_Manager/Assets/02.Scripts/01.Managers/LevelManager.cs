@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour {
     private int _levelIndex = 0;
 
     private GameData _gameData;
+
     private void Awake() {
         foreach (var levelData in levelDatas) {
             levelData.SetActiveMap(false);
