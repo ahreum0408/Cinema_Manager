@@ -128,7 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: []
+  points:
+  - {fileID: 2984574183364277315}
+  - {fileID: 6015818067424723856}
+  - {fileID: 8365375679314272445}
+  - {fileID: 3722623176422307423}
+  - {fileID: 6635766435757454968}
   _poolObjType: 1
   _columnSpawnCnt: 7
   _spawnTrmList:
@@ -409,7 +414,7 @@ GameObject:
   - component: {fileID: 866807099734835805}
   - component: {fileID: 3489099247784333327}
   - component: {fileID: 1355746238050817448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -139,7 +139,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     public void RemoveCustomer(Customer customer)
     {
-        Debug.Log("RemoveCustomer");
         _customerDic.Remove(customer);
         _customerCount--;
 
