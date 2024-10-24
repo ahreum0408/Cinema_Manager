@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
 using UnityEngine;
+using static AyunDefine;
 
 public class UseTable : Conditional
 {
@@ -53,6 +54,10 @@ public class UseTable : Conditional
                 customer.Value.currentChair.ChangeDirtyState(true);
 
                 customer.Value.AnimationCompo.SeatAnimation(-1);
+
+                customer.Value.currentChair.trash =
+                    PoolManager.Instance.Pop(PoolableType.Trash.ToString(),customer.Value.currentChair.holder);
+
                 return TaskStatus.Failure;
             }
             return TaskStatus.Running;

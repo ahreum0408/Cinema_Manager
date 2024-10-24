@@ -46,14 +46,13 @@ public class Counter : MonoBehaviour, IIneractionable
             // 여기서 계산 하는거 해주면 됨
             lineList[0].customerData.isCalculate = true;
 
-            float distance = Vector3.Distance(lineList[0].transform.position, lineList[0].Agent.destination);
-            if (distance < lineList[0].Agent.stoppingDistance) 
-                RemoveCustomer(lineList[0]);
-
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (lineList[0].customerData.isBuy && lineList[lineList.Count - 1].CanSetDestination())
             {
-                _moneyDummy.AddMoneyObject(1);
+                lineList.Remove(lineList[0]);
+                SettingLine();
             }
+
+            _moneyDummy.AddMoneyObject(1);
 
             yield return null;
         }
@@ -78,10 +77,8 @@ public class Counter : MonoBehaviour, IIneractionable
         }
     }
 
-    public void RemoveCustomer(Customer customer)
+    public void SettingLine()
     {
-        lineList.Remove(customer);
-
         isStart = true;
         Customer beforeCustomer = null;
         foreach (var customers in lineList)
@@ -92,7 +89,7 @@ public class Counter : MonoBehaviour, IIneractionable
                 isStart = false;
             }
 
-            if (customer.CurrentCustomerType == CustomerType.Call)
+            if (customers.CurrentCustomerType == CustomerType.Call)
             {
                 break;
             }

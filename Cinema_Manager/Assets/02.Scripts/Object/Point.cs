@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static AyunDefine;
 
 public class Point : MonoBehaviour
 {
-    [SerializeField] private Transform holder;
+    public Transform holder;
 
     public bool IsUsing; //손님이 사용 중?
     public bool IsDirty; //이 자리가 더러운가?
+
+    public GameObject trash;
+
+    public PoolableType currentFoodType;
 
     private Stack<ITakeable> _foodStack;
     private int _currentFoodCnt;
@@ -29,12 +35,12 @@ public class Point : MonoBehaviour
 
     public void TakeFood(Customer customer, float spacingY)
     {
+        currentFoodType = customer.StackCompo.CurrentHoldType;
         StartCoroutine(TakeFoodRoutine(customer, spacingY));
     }
 
     private IEnumerator TakeFoodRoutine(Customer customer, float spacingY)
     {
-        Debug.Log("Take Food On Table");
         _currentFoodCnt++;
         ITakeable food = customer.OnGiveTakeable?.Invoke();
         
@@ -51,8 +57,17 @@ public class Point : MonoBehaviour
     {
         if(_foodStack != null)
         {
-            // 음식 먹으면 줄어들기
+            _currentFoodCnt--;
+
+            PoolManager.Instance.Push(currentFoodType.ToString(), holder.GetChild(holder.childCount -1).gameObject);
+
+            _foodStack.Pop();
         }
+    }
+
+    public void RemoveTrash()
+    {
+        PoolManager.Instance.Push(PoolableType.Trash.ToString(), trash);
     }
 
     public void ChangeUsingState(bool isUse)

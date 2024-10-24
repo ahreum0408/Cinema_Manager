@@ -132,31 +132,12 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         customer.Agent.SetDestination(points[_customerDic[customer]].transform.position);
     }
 
-    //public void RemoveRoutine(Customer cutomer)
-    //{
-    //    StartCoroutine(RemoveCustomer(cutomer));
-    //}
-
     public void RemoveCustomer(Customer customer)
     {
-        Debug.Log("RemoveCustomer");
         _customerDic.Remove(customer);
         _customerCount--;
 
         _isStart = true;
-        //foreach (var customers in _customerDic.Keys)
-        //{
-        //    if (_isStart)
-        //    {
-        //        _currentCustomer = customers;
-        //        _currentCustomer.customerData.isGive = true; 
-        //        _isStart = false;
-        //    }
-        //    _customerDic[customers] = _customerDic[customers] - 1;
-        //    Debug.Log(_customerDic[customers].ToString());
-        //    customers.Agent.SetDestination(points[_customerDic[customers]].transform.position);
-        //    yield return null;
-        //}
 
         List<Customer> customerKeys = new List<Customer>(_customerDic.Keys);
 
