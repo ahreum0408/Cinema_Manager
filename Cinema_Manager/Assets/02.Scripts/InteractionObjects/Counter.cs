@@ -46,8 +46,7 @@ public class Counter : MonoBehaviour, IIneractionable
             // 여기서 계산 하는거 해주면 됨
             lineList[0].customerData.isCalculate = true;
 
-            float distance = Vector3.Distance(lineList[0].transform.position, lineList[0].Agent.destination);
-            if (distance < lineList[0].Agent.stoppingDistance)
+            if (lineList[0].customerData.isBuy && lineList[lineList.Count - 1].CanSetDestination())
             {
                 lineList.Remove(lineList[0]);
                 SettingLine();

@@ -59,12 +59,9 @@ public class Point : MonoBehaviour
         {
             _currentFoodCnt--;
 
-            ITakeable food = _foodStack.Peek();
-            PoolManager.Instance.Push(currentFoodType.ToString(), 
-                holder.GetChild(holder.childCount -1).GetComponent<GameObject>());
+            PoolManager.Instance.Push(currentFoodType.ToString(), holder.GetChild(holder.childCount -1).gameObject);
 
             _foodStack.Pop();
-            RemoveTrash();
         }
     }
 

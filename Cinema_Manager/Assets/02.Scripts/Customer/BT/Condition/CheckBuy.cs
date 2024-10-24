@@ -9,13 +9,19 @@ public class CheckBuy : Conditional
     public float clearTime; // 진상 퇴치하는데 걸리는 시간
     private float startTime;
 
-    public override TaskStatus OnUpdate()
+    public override void OnStart()
     {
         if (customer.Value.CurrentCustomerType == CustomerType.Call)
         {
             customer.Value.AnimationCompo.UpperHoldingAnimation(false);
             customer.Value.AnimationCompo.CallAnimation(1);
+        }
+    }
 
+    public override TaskStatus OnUpdate()
+    {
+        if (customer.Value.CurrentCustomerType == CustomerType.Call)
+        {
             if (customer.Value.CheckPlayer())
             {
                 startTime += Time.deltaTime;
