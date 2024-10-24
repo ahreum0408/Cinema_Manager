@@ -98,12 +98,16 @@ public class MainView : UIView {
         _levelTxt.text = data.level.levelNumder.ToString();
         SetLevelBarMinMaxValue(_gameData.level);
 
+        UpdateCoinTxt(data.coin.ToString());
+        UpdateGamTxt(data.gam.ToString());
+
+
         //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void UpdateCoinTxt(string coin) {
         _coinTxt.text = coin;
     }
-    private void UpdateGamTxt(int gam) {
-        _gamTxt.text = gam.ToString();
+    private void UpdateGamTxt(string gam) {
+        _gamTxt.text = gam;
     }
 }

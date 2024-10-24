@@ -11,7 +11,7 @@ public static class MainEvents {
 
     // 각 재화 수치 변경 시 호출
     public static Action<string> ChangeCoinEvent;
-    public static Action<int> ChangeGamEvent;
+    public static Action<string> ChangeGamEvent;
 
     public static Action<Level, int> UpgradeLevelEvent;
     public static Action<int> GetExpEvent;
