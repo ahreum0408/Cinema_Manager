@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,6 +26,9 @@ public class AgentStackComponent : AgentComponent
     // Bool
     public bool IsStackMax => CurrentStackCount >= _maxStackCount;
     public bool IsStacked => CurrentStackCount > 0;
+
+    // 오브젝트가 Jump를 해서 스택에 쌓였는지
+    public bool IsObJumped = false;
 
     public override void Init(AgentController controller)
     {
@@ -61,10 +65,18 @@ public class AgentStackComponent : AgentComponent
         Vector3 objectPosition = Vector3.zero;
         objectPosition.y += spacingY * CurrentStackCount;
         Vector3 rotation = isFood == true ? new Vector3(-90, 0, 0) : Vector3.zero;
+        IsObJumped = false;
         takeableObject.Take(_holderTransform, objectPosition, rotation);
 
         _takeObjectStack.Push(takeableObject);
-        _topObjPos = objectPosition;
+        StartCoroutine(JumpWaitRoutine(takeableObject));
+    }
+
+    private IEnumerator JumpWaitRoutine(ITakeable takeableObject)
+    {
+        yield return new WaitForSeconds(1f); // Jump 끝나서 스택 위치로 갈 때 까지 기다리기
+        _topObjPos = _holderTransform.GetChild(_holderTransform.childCount - 1).GetComponent<Transform>().position;
+        IsObJumped = true;
     }
 
     public ITakeable GetTopObject()
@@ -79,11 +91,6 @@ public class AgentStackComponent : AgentComponent
     public void ChangeHoldType(PoolableType holdType)
     {
         _currentHoldType = holdType;
-    }
-
-    public Transform GetTopObjectTrm()
-    {
-        return _holderTransform.GetChild(_holderTransform.childCount - 1).GetComponent<Transform>();
     }
 
     public override void ControllerUpdate() {}
