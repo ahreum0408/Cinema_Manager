@@ -10,8 +10,11 @@ public class LevelManager : MonoBehaviour {
 
     private GameData _gameData;
     private void Awake() {
+        foreach (var levelData in levelDatas) {
+            levelData.SetActiveMap(false);
+        }
+       
         MainEvents.GameDataLoadEvent += GameDataLoad;
-        
     }
 
     private void Update() {
@@ -27,7 +30,6 @@ public class LevelManager : MonoBehaviour {
 
         _exp += exp;
         MainEvents.GetExpEvent?.Invoke(_exp);
-        Debug.Log(_levelIndex < levelDatas.Count - 1);
         if (_levelIndex < levelDatas.Count - 1 && _exp >= _currentLevel.highValue) {
             // 경험치 계산
             int remainingValue = _exp - _currentLevel.highValue;
@@ -39,6 +41,7 @@ public class LevelManager : MonoBehaviour {
     private void LevelUp() {
         _currentLevel = levelDatas[++_levelIndex];
         MainEvents.UpgradeLevelEvent?.Invoke(levelDatas[_levelIndex], _levelIndex);
+        _currentLevel.SetActiveMap(true); // 다음 스테이지 켜주고
     }
     private void GameDataLoad(GameData data) {
         if (data == null) {
@@ -48,5 +51,9 @@ public class LevelManager : MonoBehaviour {
         _currentLevel = _gameData.level;
         _levelIndex = _gameData.levelIndex;
         _exp = _gameData.exp;
+
+        for(int i = 0; i <= _levelIndex; i++) {
+            levelDatas[i].SetActiveMap(true);
+        }
     }
 }

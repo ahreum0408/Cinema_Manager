@@ -3,10 +3,10 @@ using UnityEngine;
 
 
 public class UpgradeChecker : CheckerArea {
-    public UpgradeViewType type;
+    public UpgradeViewType viewType;
 
     public override void EnterInteraction() {
-        FindViewRegister(type);
+        FindViewRegister(viewType);
     }
     private void FindViewRegister(UpgradeViewType type) {
         switch (type) {

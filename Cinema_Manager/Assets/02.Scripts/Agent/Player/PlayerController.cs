@@ -1,16 +1,22 @@
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityVector3;
 using System;
+using System.Xml.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static AyunDefine;
 
 public class PlayerController : AgentController
 {
+    [Header("INPUT")]
     [SerializeField] private FloatingJoystick _joystick;
+
+    [Header("UI")]
+    [SerializeField] private Canvas _playerCanvas;
     [SerializeField] private TextMeshProUGUI _stackMaxText;
 
-    private readonly int _maxMoneyAmount = 9999;
-
+    // Component
     private AgentMovementComponent _agentMovement;
     private AgentAnimationComponent _agentAnimation;
     private AgentStackComponent _stackComponent;
@@ -38,6 +44,8 @@ public class PlayerController : AgentController
     {
         Rigidbody = GetComponent<Rigidbody>();
         Animator = transform.Find("Visual").GetComponent<Animator>();
+
+        _stackMaxText.enabled = false;
     }
 
     protected override void SetAgentComponents()
@@ -131,12 +139,27 @@ public class PlayerController : AgentController
         if (isStackMax)
         {
             // 위치 제발....
-            Debug.Log(_stackComponent.TopObjPos);
             Camera mainCam = Camera.main;
-            Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(mainCam, _stackComponent.TopObjPos);
-            _stackMaxText.transform.localPosition = screenPos;
-            //_stackMaxText.rectTransform.localPosition = new Vector2(screenPos.x / 2, screenPos.y) / 2;
-            //_stackMaxText.rectTransform.localPosition = new Vector2(_stackMaxText.rectTransform.anchoredPosition.x, screenPos.y);
+            //// 월드 좌표를 스크린 좌표로 변환
+            //Vector3 worldPos = _stackComponent.GetTopObjectTrm().position + new Vector3(0, 10, 0);
+            //Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, worldPos);
+
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            //    _playerCanvas.GetComponent<RectTransform>(),  // 캔버스의 RectTransform
+            //    screenPos,                             // 스크린 좌표
+            //    null,                                  // Screen Space - Overlay일 때는 null
+            //    out Vector2 localPos                           // 변환된 로컬 좌표
+            //);
+
+            //// 변환된 좌표를 UI Text의 위치로 설정
+            //_stackMaxText.rectTransform.anchoredPosition = new Vector2(0, localPos.y);
+
+            // 스택의 맨 위 오브젝트의 월드 포지션을 화면 좌표로 변환
+            Vector3 worldPosition = _stackComponent.GetTopObjectTrm().position;
+            worldPosition.x = 0;
+            Vector3 screenPosition = mainCam.WorldToScreenPoint(worldPosition);
+            // Max 텍스트 UI의 위치를 화면 좌표로 설정
+            _stackMaxText.rectTransform.anchoredPosition = screenPosition;
         }
     }
 
@@ -144,6 +167,7 @@ public class PlayerController : AgentController
     private void HandleOnGetPaid(int moneyAmount)
     {
         // 돈 받았을 때 이벤트 처리 해주기
+        CoinManager.Instance.Coin += moneyAmount;
         // UI Update
     }
 
