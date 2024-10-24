@@ -39,7 +39,10 @@ public class GameData {
         this.level = new Level(); 
         this.levelIndex = 0;
         this.exp = 0;
+
+
     }
+
     public string ToJson() {
         return JsonUtility.ToJson(this); // ¾²±â
     }

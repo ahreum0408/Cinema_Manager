@@ -15,6 +15,7 @@ public class GameDataManager : MonoBehaviour {
     }
 
     private void OnEnable() {
+        MainEvents.GameDataUpdatEvent += CoinDataUpdate;
         MainEvents.GameDataUpdatEvent += MaineDataUpdate;
         SettingEvents.GameDataUpdatEvent += SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent += PlayerDataUpdate;
@@ -22,13 +23,21 @@ public class GameDataManager : MonoBehaviour {
         EmployeeUpgradeEvents.GameDataUpdatEvent += EmpolyeeDataUpdate;
     }
     private void OnDisable() {
+        MainEvents.GameDataUpdatEvent -= CoinDataUpdate;
         MainEvents.GameDataUpdatEvent -= MaineDataUpdate;
         SettingEvents.GameDataUpdatEvent -= SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent -= PlayerDataUpdate;
         MachineUpgradeEvents.GameDataUpdatEvent -= MachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent -= EmpolyeeDataUpdate;
     }
+    private void CoinDataUpdate(GameData data) {
+        if (data == null) {
+            return;
+        }
 
+        _gameData.coin = data.coin;
+        _gameData.gam = data.gam;
+    }
     private void MaineDataUpdate(GameData data) {
         if (data == null) {
             return;

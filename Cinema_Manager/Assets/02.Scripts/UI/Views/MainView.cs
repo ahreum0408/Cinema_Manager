@@ -98,8 +98,8 @@ public class MainView : UIView {
         _levelTxt.text = data.level.levelNumder.ToString();
         SetLevelBarMinMaxValue(_gameData.level);
 
-        UpdateCoinTxt(data.coin.ToString());
-        UpdateGamTxt(data.gam.ToString());
+        UpdateCoinTxt(CoinManager.Instance.CalculatePriceText(data.coin));
+        UpdateGamTxt(CoinManager.Instance.CalculatePriceText(data.gam));
 
 
         //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
