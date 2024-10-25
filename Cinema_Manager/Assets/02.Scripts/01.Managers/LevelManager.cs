@@ -4,6 +4,8 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
     public List<Level> levelDatas = new List<Level>();
 
+    private List<CheckerArea> allAreas = new List<CheckerArea>();   
+
     private Level _currentLevel;
     private int _exp;
     private int _levelIndex = 0;
@@ -14,7 +16,11 @@ public class LevelManager : MonoBehaviour {
         foreach (var levelData in levelDatas) {
             levelData.SetActiveMap(false);
         }
-       
+        foreach (var levelData in levelDatas) {
+            foreach (var openMap in levelData.openNewMapList) {
+                allAreas.Add(openMap);
+            }
+        }
         MainEvents.GameDataLoadEvent += GameDataLoad;
     }
 
@@ -55,6 +61,10 @@ public class LevelManager : MonoBehaviour {
 
         for(int i = 0; i <= _levelIndex; i++) {
             levelDatas[i].SetActiveMap(true);
+        }
+        for(int i = 0; i < allAreas.Count; i++){
+            var checker = allAreas[i] as BuyChecker;
+            //checker.Price = _gameData.allCheckPriceList[i];
         }
     }
 }

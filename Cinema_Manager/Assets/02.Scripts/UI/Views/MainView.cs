@@ -59,6 +59,11 @@ public class MainView : UIView {
         _settingBtn.UnregisterCallback<ClickEvent>(ClickStoreBtn);
     }
 
+    public override void Show() {
+        base.Show();
+        MainEvents.ShowViewEvent?.Invoke();
+    }
+
     #region level-bar
     private void UpdateExp(int exp) {
         _levelBar.value = exp;

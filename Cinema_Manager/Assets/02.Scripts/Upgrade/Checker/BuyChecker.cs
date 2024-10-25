@@ -5,6 +5,10 @@ using UnityEngine;
 public class BuyChecker : CheckerArea {
     [SerializeField] private TextMeshPro _priceTxt;
     [SerializeField] private GameObject openTarget;
+    
+    public int Price { get { return _price; }  set { _price = value; } }
+    public bool IsOpen => openTarget.activeInHierarchy == true ? true : false;
+
     private int currentCoin => CoinManager.Instance.Coin;
 
     private void Awake() {
@@ -22,6 +26,7 @@ public class BuyChecker : CheckerArea {
             }
             if (_price <= 0) {
                 _isCalaulate = false;
+                LevelEvents.ChangePriceEvent?.Invoke(this, _price);
                 SetActiveMap(true);
                 gameObject.SetActive(false);
                 break;
@@ -47,6 +52,7 @@ public class BuyChecker : CheckerArea {
 
     public override void ExitInteraction() {
         _isCalaulate = false;
+        LevelEvents.ChangePriceEvent?.Invoke(this, _price);
         StopCoroutine(CalculateCoin());
     }
     public void SetActiveMap(bool active) {

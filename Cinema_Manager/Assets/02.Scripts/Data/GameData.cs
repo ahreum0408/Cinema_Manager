@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameData {
@@ -10,9 +11,13 @@ public class GameData {
     public int coin;
     public int gam;
 
+    // level
     public Level level;
     public int levelIndex;
     public int exp;
+
+    // check 가격 보관
+    public List<int> allCheckPriceList;
 
     // player
     public int p_movespeedLevel; // 플레이어 이속
@@ -40,13 +45,22 @@ public class GameData {
         this.levelIndex = 0;
         this.exp = 0;
 
+        p_movespeedLevel = 0;
+        p_movespeedLevel = 0;
+        p_sellingcostLevel = 0;
 
+        e_movespeedLevel = 0;
+        e_volumeLevel = 0;
+        e_employmentLevel = 0;
+
+        m_productionspeedLevel = 0;
+        m_volumeLevel = 0;
+        m_storageLevel = 0;
     }
 
     public string ToJson() {
         return JsonUtility.ToJson(this); // 쓰기
     }
-
     public void LoadJson(string jsonFilepath) {
         JsonUtility.FromJsonOverwrite(jsonFilepath, this); // 경로 부분에 덮어 쓰기
     }
