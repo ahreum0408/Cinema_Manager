@@ -1,34 +1,39 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 public class BuyChecker : CheckerArea {
     [SerializeField] private TextMeshPro _priceTxt;
+    [SerializeField] private GameObject openTarget;
     private int currentCoin => CoinManager.Instance.Coin;
 
     private void Awake() {
         CalculateWeght();
-
+        SetActiveMap(false);
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(_price);
     }
 
     protected IEnumerator CalculateCoin() {
         while (_isCalaulate) {
             WaitForSeconds waitTime = new WaitForSeconds(0.05f);
-            if (_price <= 0 || currentCoin <= 0) {
+            if (currentCoin <= 0) {
                 _isCalaulate = false;
-                yield return null;
+                break;
             }
-            else if (_price - _minusCoin < 0) {
+            if (_price <= 0) {
+                _isCalaulate = false;
+                SetActiveMap(true);
+                gameObject.SetActive(false);
+                break;
+            }
+
+            if (_price - _minusCoin < 0) {
                 _minusCoin = 1; // 여기 나중에 수정 필요함
             }
-            else {
-                _price -= _minusCoin;
-                CoinManager.Instance.Coin -= _minusCoin;
-                UpdatePriceText(_price);
-                yield return waitTime;
-            }
+            _price -= _minusCoin;
+            CoinManager.Instance.Coin -= _minusCoin;
+            UpdatePriceText(_price);
+            yield return waitTime;
         }
     }
     private void UpdatePriceText(int coin) {
@@ -43,5 +48,10 @@ public class BuyChecker : CheckerArea {
     public override void ExitInteraction() {
         _isCalaulate = false;
         StopCoroutine(CalculateCoin());
+    }
+    public void SetActiveMap(bool active) {
+        if (openTarget != null) {
+            openTarget.SetActive(active);
+        }
     }
 }
