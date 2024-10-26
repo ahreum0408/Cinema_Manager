@@ -5,7 +5,7 @@
         <ui:VisualElement name="top-container" class="top-container">
             <ui:VisualElement name="left-border" class="left-border">
                 <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="setting-btn" class="btn-middle-array_30 button" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/setting_icon.png?fileID=21300000&amp;guid=3094b480c5c74354eae4e2d1b868c876&amp;type=3#setting_icon&quot;);" />
-                <ui:Button text="상점" parse-escape-sequences="true" display-tooltip-when-elided="true" name="store-btn" class="btn-middle-array_30 button" />
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="store-btn" class="btn-middle-array_30 button" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/store_icon.png?fileID=21300000&amp;guid=6148f084f912ebd478d7bc97e20f94be&amp;type=3#store_icon&quot;);" />
             </ui:VisualElement>
             <ui:VisualElement name="middle-border" class="middle-border" style="flex-direction: row; justify-content: flex-end; width: 50%;">
                 <ui:VisualElement name="levelbar" class="level-bar">
