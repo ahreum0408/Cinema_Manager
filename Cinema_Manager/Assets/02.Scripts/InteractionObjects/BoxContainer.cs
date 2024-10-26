@@ -93,21 +93,21 @@ public class BoxContainer : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            if (_playerController.CanGiveFood(_poolObjType) && false == IsStackMax)
+            if (_playerController.CanGiveTakeable(_poolObjType) && false == IsStackMax)
             {
                 _isBoxGiving = true;
-                ITakeable food = _playerController.OnGiveTakeable?.Invoke();
-                TakeBox(food);
+                ITakeable box = _playerController.OnGiveTakeable?.Invoke();
+                TakeBox(box);
             }
             yield return new WaitForSeconds(0.15f);
             _isBoxGiving = false;
         }
     }
 
-    private void TakeBox(ITakeable food)
+    private void TakeBox(ITakeable box)
     {
-        Vector3 foodPos = new Vector3(0, _spacingY * _boxStack.Count, 0);
-        food.Take(_spawnTrm, foodPos, Vector3.zero);
-        _boxStack.Push(food);
+        Vector3 boxPos = new Vector3(0, _spacingY * _boxStack.Count, 0);
+        box.Take(_spawnTrm, boxPos, Vector3.zero);
+        _boxStack.Push(box);
     }
 }

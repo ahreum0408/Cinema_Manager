@@ -413,7 +413,6 @@ Transform:
   - {fileID: 4000809123831770818}
   - {fileID: 853542401681664688}
   - {fileID: 832740345389559067}
-  - {fileID: 5913971133242309481}
   - {fileID: 6095809580758112845}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -432,9 +431,9 @@ MonoBehaviour:
   lineInterval: 3
   checkPoint: {fileID: 6095809580758112845}
   lineList: []
-  _spawnTrm: {fileID: 5913971133242309481}
+  _spawnTrm: {fileID: 832740345389559067}
   _poolObjType: 13
-  _spacingY: 0.8
+  _spacingY: 0.611
 --- !u!1 &8587915148514916497
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,37 +487,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.8837786, y: 2.4280517, z: 4.117256}
   m_Center: {x: 1.0081964, y: 0.7140261, z: -4.0929976}
---- !u!1 &8815126437349633195
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5913971133242309481}
-  m_Layer: 0
-  m_Name: BoxSpawnPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5913971133242309481
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8815126437349633195}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.24, z: -4.19}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8450734002110880834}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2069412518198884213
 PrefabInstance:
   m_ObjectHideFlags: 0
