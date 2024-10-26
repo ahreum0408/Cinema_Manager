@@ -47,6 +47,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!1 &1667683833403128483
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +96,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!1 &2043256766379891359
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,12 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points:
-  - {fileID: 2984574183364277315}
-  - {fileID: 6015818067424723856}
-  - {fileID: 8365375679314272445}
-  - {fileID: 3722623176422307423}
-  - {fileID: 6635766435757454968}
+  points: []
   _poolObjType: 1
   _columnSpawnCnt: 7
   _spawnTrmList:
@@ -539,6 +538,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!1001 &4833253295433672924
 PrefabInstance:
   m_ObjectHideFlags: 0

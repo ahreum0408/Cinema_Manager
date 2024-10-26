@@ -191,7 +191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _holderTransform: {fileID: 1304247565}
   _spacingY: 0.2
+  SpacingY: 0.4
   _maxStackCount: 8
+  IsObJumped: 0
 --- !u!114 &130286073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _joystick: {fileID: 132714578}
+  _playerCanvas: {fileID: 0}
   _stackMaxText: {fileID: 1335797184}
 --- !u!136 &130286077
 CapsuleCollider:
@@ -2363,6 +2366,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1607456527
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1628465131}
+    m_Modifications:
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2287881270760621005, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: m_Name
+      value: DisplayStand_TriangleKimbap (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8110491941270785540, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+        type: 3}
+      propertyPath: points.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f70d273026abe9459e8075c3e6b5b8b, type: 3}
+--- !u!4 &1607456528 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1278268533556378717, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1607456527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1607456530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8110491941270785540, guid: 1f70d273026abe9459e8075c3e6b5b8b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1607456527}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1628465130
 GameObject:
   m_ObjectHideFlags: 0
@@ -2393,6 +2487,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 201944326}
+  - {fileID: 1607456528}
   m_Father: {fileID: 209966351}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1640911377
@@ -2445,6 +2540,8 @@ MonoBehaviour:
   holder: {fileID: 1795969966}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!23 &1640911380
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3380,6 +3477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayStands:
   - {fileID: 1564285882}
+  - {fileID: 1607456530}
   tables:
   - {fileID: 4698937696886965131}
   counter: {fileID: 225888776}
@@ -5639,7 +5737,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _holderTransform: {fileID: 6156005563314827673}
   _spacingY: 0.4
+  SpacingY: 0.4
   _maxStackCount: 3
+  IsObJumped: 0
 --- !u!1 &5544315853179843035
 GameObject:
   m_ObjectHideFlags: 0
@@ -6420,6 +6520,8 @@ MonoBehaviour:
   holder: {fileID: 71141738}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!4 &8001227103282621361
 Transform:
   m_ObjectHideFlags: 0

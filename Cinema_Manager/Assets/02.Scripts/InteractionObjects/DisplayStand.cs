@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using static AyunDefine;
@@ -16,6 +17,8 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     [SerializeField] private List<Transform> _spawnTrmList = new List<Transform>();
 
     #region ¼­¿¬
+    public bool IsFullLine => _customerDic.Count == points.Count;
+
     [Range(0, 5)][SerializeField] private float _spacingY;
     [Range(0, 5)] [SerializeField] private float _spacingX;
     [SerializeField] private bool _isFood;
@@ -39,6 +42,8 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         _playerController = FindObjectOfType<PlayerController>(); // ³ªÁß¿¡ ½Ì±ÛÅæÀ¸·Î
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _foodStack = new Stack<ITakeable>();
+
+        points = GetComponentsInChildren<Point>().ToList();
     }
 
     private void Start()

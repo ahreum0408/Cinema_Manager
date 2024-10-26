@@ -15,7 +15,7 @@ public class Point : MonoBehaviour
 
     public PoolableType currentFoodType;
 
-    private Stack<ITakeable> _foodStack;
+    public Stack<ITakeable> foodStack;
     private int _currentFoodCnt;
 
     private Customer _currentCustomer;
@@ -24,11 +24,12 @@ public class Point : MonoBehaviour
 
     private void Awake()
     {
-        _foodStack = new Stack<ITakeable>();
+        foodStack = new Stack<ITakeable>();
     }
 
     private void Start()
     {
+        trash = null;
         _currentFoodCnt = 0;
         _isStart = true;
     }
@@ -48,26 +49,21 @@ public class Point : MonoBehaviour
         foodPos.z += spacingY * _currentFoodCnt;
 
         food.Take(holder.transform, foodPos, Vector3.zero);
-        _foodStack.Push(food);
+        foodStack.Push(food);
         
         yield return new WaitForSeconds(1f);
     }
 
     public void EatFood()
     {
-        if(_foodStack != null)
+        if(foodStack != null)
         {
             _currentFoodCnt--;
 
             PoolManager.Instance.Push(currentFoodType.ToString(), holder.GetChild(holder.childCount -1).gameObject);
 
-            _foodStack.Pop();
+            foodStack.Pop();
         }
-    }
-
-    public void RemoveTrash()
-    {
-        PoolManager.Instance.Push(PoolableType.Trash.ToString(), trash);
     }
 
     public void ChangeUsingState(bool isUse)
