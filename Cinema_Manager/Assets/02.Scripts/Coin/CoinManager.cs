@@ -17,10 +17,12 @@ public class CoinManager : MonoSingleton<CoinManager> {
         }
         set {
             _coin = value;
+            _gameData.coin = _coin;
             string coin = CalculatePriceText(_coin);
             MainEvents.ChangeCoinEvent?.Invoke(coin);
+            MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
 
-            if(_coin < 0) {
+            if (_coin < 0) {
                 _coin = 0;
                 Debug.LogWarning("[주의] 현재 코인이 -임");
             }
@@ -32,8 +34,10 @@ public class CoinManager : MonoSingleton<CoinManager> {
         }
         set {
             _coin = value;
+            _gameData.gam = _gam;
             string gam = CalculatePriceText(_coin);
             MainEvents.ChangeGamEvent?.Invoke(gam);
+            MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
 
             if (_gam < 0) {
                 _gam = 0;
@@ -47,7 +51,11 @@ public class CoinManager : MonoSingleton<CoinManager> {
 
         MainEvents.GameDataLoadEvent += GameDataLoad;
     }
-
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.C)) {
+            Coin += 1000;
+        }
+    }
 
     public string CalculatePriceText(int price) {
         int m = 1000000;

@@ -28,12 +28,13 @@ public class GameDataManager : MonoBehaviour {
         MachineUpgradeEvents.GameDataUpdatEvent -= MachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent -= EmpolyeeDataUpdate;
     }
-
     private void MaineDataUpdate(GameData data) {
         if (data == null) {
             return;
         }
 
+        _gameData.coin = data.coin;
+        _gameData.gam = data.gam;
         _gameData.exp = data.exp;
         _gameData.level = data.level;
     }

@@ -59,6 +59,11 @@ public class MainView : UIView {
         _settingBtn.UnregisterCallback<ClickEvent>(ClickStoreBtn);
     }
 
+    public override void Show() {
+        base.Show();
+        MainEvents.ShowViewEvent?.Invoke();
+    }
+
     #region level-bar
     private void UpdateExp(int exp) {
         _levelBar.value = exp;
@@ -98,8 +103,8 @@ public class MainView : UIView {
         _levelTxt.text = data.level.levelNumder.ToString();
         SetLevelBarMinMaxValue(_gameData.level);
 
-        UpdateCoinTxt(data.coin.ToString());
-        UpdateGamTxt(data.gam.ToString());
+        UpdateCoinTxt(CoinManager.Instance.CalculatePriceText(data.coin));
+        UpdateGamTxt(CoinManager.Instance.CalculatePriceText(data.gam));
 
 
         //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
