@@ -112,7 +112,7 @@ public class PlayerController : AgentController
         OnStackMaxed?.Invoke(IsStackMax);
     }
 
-    public bool CanGiveFood(PoolableType type)
+    public bool CanGiveTakeable(PoolableType type)
     {
         return _stackComponent.CurrentHoldType == type && IsStacked;
     }
@@ -144,7 +144,6 @@ public class PlayerController : AgentController
 
         Camera mainCam = Camera.main;
         Vector3 worldPosition = _stackComponent.TopObjPos;
-        Debug.Log(worldPosition);
         Vector3 screenPosition = mainCam.WorldToScreenPoint(worldPosition);
         _stackMaxText.rectTransform.anchoredPosition =
             new Vector2(_stackMaxText.rectTransform.anchoredPosition.x, screenPosition.y);

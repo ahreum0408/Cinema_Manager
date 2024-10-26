@@ -65,16 +65,18 @@ public class AgentStackComponent : AgentComponent
         Vector3 objectPosition = Vector3.zero;
         objectPosition.y += spacingY * CurrentStackCount;
         Vector3 rotation = isFood == true ? new Vector3(-90, 0, 0) : Vector3.zero;
-        IsObJumped = false;
         takeableObject.Take(_holderTransform, objectPosition, rotation);
 
+        IsObJumped = false;
         _takeObjectStack.Push(takeableObject);
-        StartCoroutine(JumpWaitRoutine(takeableObject));
+
+        if (IsStackMax)
+            StartCoroutine(JumpWaitRoutine(objectPosition));
     }
 
-    private IEnumerator JumpWaitRoutine(ITakeable takeableObject)
+    private IEnumerator JumpWaitRoutine(Vector3 pos)
     {
-        yield return new WaitForSeconds(1f); // Jump 끝나서 스택 위치로 갈 때 까지 기다리기
+        yield return new WaitForSeconds(0.5f); // Jump 끝나서 스택 위치로 갈 때 까지 기다리기
         _topObjPos = _holderTransform.GetChild(_holderTransform.childCount - 1).GetComponent<Transform>().position;
         IsObJumped = true;
     }
