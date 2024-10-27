@@ -57,6 +57,9 @@ public static class AyunDefine
         TriangleKimbap, CupRamen, Bread, Snack, Jelly,
         Coffee, Coke, Juice, Beer, Soju,
         Money, Trash,
-        Box
+        Box,
+
+        // Effect
+        SmokeEffect,
     }
 }

@@ -52,29 +52,7 @@ public class FindLine : Action
         if (!_agent.isPathStale && _agent.remainingDistance < threshold)
         {
             customer.Value.AnimationCompo.SetMovementAnimation(Vector3.zero);
-            if(customer.Value.CurrentCustomerType == CustomerType.Call)
-            {
-                customer.Value.Agent.speed = 0;
-                customer.Value.AnimationCompo.CallAnimation(1);
-
-                if (customer.Value.CheckPlayer())
-                {
-                    startTime += Time.deltaTime;
-                    if (clearTime <= startTime)
-                    {
-                        customer.Value.AnimationCompo.SleepAnimation(-1);
-                        customer.Value.CurrentCustomerType = CustomerType.Basic;
-                        return TaskStatus.Success;
-                    }
-                }
-                else
-                {
-                    if (startTime >= 0)
-                        startTime -= Time.deltaTime;
-                }
-            }
-            else
-                return TaskStatus.Success;
+            return TaskStatus.Success;
         }
         return TaskStatus.Running;
     }

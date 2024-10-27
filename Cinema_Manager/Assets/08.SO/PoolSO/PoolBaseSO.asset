@@ -65,3 +65,6 @@ MonoBehaviour:
       type: 3}
     prefabTypeName: SoundObject
     poolCount: 6
+  - prefab: {fileID: 36616424753088458, guid: 773b1387fe824c9409b84ec92fa64a97, type: 3}
+    prefabTypeName: SmokeEffect
+    poolCount: 3

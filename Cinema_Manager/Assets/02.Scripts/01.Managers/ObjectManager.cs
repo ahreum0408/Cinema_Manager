@@ -27,7 +27,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach(var stand in displayStands)
         {
-            if (stand.GetPoolObjType() == foodType)
+            if (stand.GetPoolObjType() == foodType && !stand.IsFullLine)
                 return stand;
         }
         return null;
