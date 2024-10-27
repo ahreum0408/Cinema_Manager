@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class PlayerUpgradeController : MonoBehaviour{
+public class LevelController : MonoBehaviour {
 
     private void OnEnable() {
         SaveManager.GameDataLoadedEvent += GameDataLoad;
@@ -13,6 +13,6 @@ public class PlayerUpgradeController : MonoBehaviour{
             return;
         }
 
-        PlayerUpgradeEvents.GameDataLoadEvent?.Invoke(data);
+        LevelEvents.GameDataLoadEvent?.Invoke(data);
     }
 }

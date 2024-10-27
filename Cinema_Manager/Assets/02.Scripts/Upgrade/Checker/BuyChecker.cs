@@ -6,15 +6,33 @@ public class BuyChecker : CheckerArea {
     [SerializeField] private TextMeshPro _priceTxt;
     [SerializeField] private GameObject openTarget;
     
-    public int Price { get { return _price; }  set { _price = value; } }
-    public bool IsOpen => openTarget.activeInHierarchy == true ? true : false;
+    public int Price { 
+        get { 
+            return _price; 
+        }
 
+        set { 
+            _price = value;
+            UpdatePriceText(_price);
+        } 
+    }
+    //public bool IsOpen => openTarget.activeInHierarchy == true ? true : false;
     private int currentCoin => CoinManager.Instance.Coin;
 
     private void Awake() {
         CalculateWeght();
         SetActiveMap(false);
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(_price);
+    }
+
+    public override void EnterInteraction() {
+        _isCalaulate = true;
+        StartCoroutine(CalculateCoin());
+    }
+    public override void ExitInteraction() {
+        _isCalaulate = false;
+        LevelEvents.ChangePriceEvent?.Invoke(this, _price);
+        StopCoroutine(CalculateCoin());
     }
 
     protected IEnumerator CalculateCoin() {
@@ -43,17 +61,6 @@ public class BuyChecker : CheckerArea {
     }
     private void UpdatePriceText(int coin) {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
-    }
-
-    public override void EnterInteraction() {
-        _isCalaulate = true;
-        StartCoroutine(CalculateCoin());
-    }
-
-    public override void ExitInteraction() {
-        _isCalaulate = false;
-        LevelEvents.ChangePriceEvent?.Invoke(this, _price);
-        StopCoroutine(CalculateCoin());
     }
     public void SetActiveMap(bool active) {
         if (openTarget != null) {

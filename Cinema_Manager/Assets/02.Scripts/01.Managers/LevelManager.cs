@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +22,8 @@ public class LevelManager : MonoBehaviour {
                 allAreas.Add(openMap);
             }
         }
-        MainEvents.GameDataLoadEvent += GameDataLoad;
+        LevelEvents.GameDataLoadEvent += GameDataLoad;
+        LevelEvents.ChangePriceEvent += ChangeCheckerPrice;
     }
 
     private void Update() {
@@ -54,17 +56,29 @@ public class LevelManager : MonoBehaviour {
         if (data == null) {
             return;
         }
+
         _gameData = data;
         _currentLevel = _gameData.level;
         _levelIndex = _gameData.levelIndex;
         _exp = _gameData.exp;
 
-        for(int i = 0; i <= _levelIndex; i++) {
+        // 켜져야 하는 거는 켜주고
+        for (int i = 0; i <= _levelIndex; i++) {
             levelDatas[i].SetActiveMap(true);
         }
+        // 체커의 가격도 맞춰주고
         for(int i = 0; i < allAreas.Count; i++){
             var checker = allAreas[i] as BuyChecker;
-            //checker.Price = _gameData.allCheckPriceList[i];
+            Debug.Log(checker.name);
+            checker.Price = _gameData.allCheckPriceList[i];
+        }
+    }
+    private void ChangeCheckerPrice(BuyChecker checker, int price) {
+        for(int i = 0; i < allAreas.Count; i++) {
+            if (allAreas[i] == checker) {
+                _gameData.allCheckPriceList[i] = price;
+                LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
+            }
         }
     }
 }

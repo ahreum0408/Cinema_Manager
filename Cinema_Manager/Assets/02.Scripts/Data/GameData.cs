@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class GameData {
@@ -44,6 +45,8 @@ public class GameData {
         this.level = new Level(); 
         this.levelIndex = 0;
         this.exp = 0;
+
+        allCheckPriceList = new List<int> { 50,50,50,50};
 
         p_movespeedLevel = 0;
         p_movespeedLevel = 0;

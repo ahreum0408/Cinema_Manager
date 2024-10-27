@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class CoinManager : MonoSingleton<CoinManager> {
     public int _coin = 0;

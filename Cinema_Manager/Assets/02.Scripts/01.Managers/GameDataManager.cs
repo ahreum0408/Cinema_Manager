@@ -15,6 +15,7 @@ public class GameDataManager : MonoBehaviour {
     }
 
     private void OnEnable() {
+        LevelEvents.GameDataUpdatEvent += LevelDataUpdate;
         MainEvents.GameDataUpdatEvent += MaineDataUpdate;
         SettingEvents.GameDataUpdatEvent += SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent += PlayerDataUpdate;
@@ -27,6 +28,13 @@ public class GameDataManager : MonoBehaviour {
         PlayerUpgradeEvents.GameDataUpdatEvent -= PlayerDataUpdate;
         MachineUpgradeEvents.GameDataUpdatEvent -= MachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent -= EmpolyeeDataUpdate;
+    }
+    private void LevelDataUpdate(GameData data) {
+        if (data == null) {
+            return;
+        }
+
+        _gameData.allCheckPriceList = data.allCheckPriceList;
     }
     private void MaineDataUpdate(GameData data) {
         if (data == null) {

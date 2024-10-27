@@ -90,7 +90,6 @@ public class UIManager : MonoBehaviour {
 
         MainEvents.CloseCurrentEvent += CloseCurrentView;
     }
-
     private void UnRegisterToEvents() {
         MainEvents.MainViewShow -= ShowMainView;
         MainEvents.SettingViewShow -= ShowSettingView;

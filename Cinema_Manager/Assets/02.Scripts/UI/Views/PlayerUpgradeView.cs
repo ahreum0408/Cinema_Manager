@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UIToolkit;
-using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Video;
 
 [Serializable]
 public class PlayerUpgradeView : UIView {

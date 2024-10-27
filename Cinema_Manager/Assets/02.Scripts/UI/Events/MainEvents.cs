@@ -1,13 +1,9 @@
 using System;
-using UnityEngine;
 
 public static class MainEvents {
+    // 기본적으로 가지고 있을거
     public static Action<GameData> GameDataUpdatEvent;
     public static Action<GameData> GameDataLoadEvent;
-
-    // 창 띄우기
-    public static Action ShowSettingWindowEvent;
-    public static Action ShowStoreWindowEvent;
 
     // 각 재화 수치 변경 시 호출
     public static Action<string> ChangeCoinEvent;
@@ -16,6 +12,7 @@ public static class MainEvents {
     public static Action<Level, int> UpgradeLevelEvent;
     public static Action<int> GetExpEvent;
 
+    // 각 view 관리
     public static Action MainViewShow;
     public static Action SettingViewShow;
     public static Action PlayerUpgradeViewShow;
