@@ -174,4 +174,19 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     public PoolableType GetPoolObjType() => _poolObjType;
     public int GetFoodStack() => _currentFoodCnt;
+
+    public int GetCustomerIndex(Customer customer)
+    {
+        if (_customerDic.ContainsKey(customer))
+        {
+            return _customerDic[customer];
+        }
+        return -1;
+    }
+
+    public List<Customer> GetAllCustomers()
+    {
+        return _customerDic.Keys.ToList();
+    }
+
 }

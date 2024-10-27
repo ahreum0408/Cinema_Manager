@@ -43,20 +43,24 @@ public class Table : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            if (points[0].trash != null)
+            for (int i = 0; i < points.Count; i++)
             {
-                if (_playerController.CanTakeFood(PoolableType.Trash))
+                if (points[i].trash != null)
                 {
-                    _playerController.OnTakeTakeable?.Invoke
-                        (points[0].trash.GetComponent<ITakeable>(), PoolableType.Trash, 0.15f, true);
+                    if (_playerController.CanTakeFood(PoolableType.Trash))
+                    {
+                        _playerController.OnTakeTakeable?.Invoke
+                            (points[i].trash.GetComponent<ITakeable>(), PoolableType.Trash, 0.01f, true);
 
-                    PoolManager.Instance.Push(PoolableType.Trash.ToString(), points[0].trash);
+                        points[i].ChangeDirtyState(false);
 
-                    points[0].ChangeDirtyState(false);
-
-                    yield return new WaitForSeconds(0.15f);
+                        yield return new WaitForSeconds(0.15f);
+                    }
                 }
+                else
+                    continue;
             }
+            yield return null;
         }
         yield return null;
     }

@@ -89,11 +89,6 @@ public class Counter : MonoBehaviour, IIneractionable
                 isStart = false;
             }
 
-            if (customers.CurrentCustomerType == CustomerType.Call)
-            {
-                break;
-            }
-
             if (beforeCustomer == null)
             {
                 customers.Agent.SetDestination(new Vector3(
