@@ -69,7 +69,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            if (_playerController.CanGiveFood(_poolObjType) && _foodStack.Count < StackMaxCnt)
+            if (_playerController.CanGiveTakeable(_poolObjType) && _foodStack.Count < StackMaxCnt)
             {
                 ITakeable food = _playerController.OnGiveTakeable?.Invoke();
                 TakeFood(food);

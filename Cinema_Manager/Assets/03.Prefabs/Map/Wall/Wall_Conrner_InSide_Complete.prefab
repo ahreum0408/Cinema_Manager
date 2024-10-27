@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6974810854459048886}
   m_Layer: 0
-  m_Name: Wall_Conrner_Complete
+  m_Name: Wall_Conrner_InSide_Complete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
