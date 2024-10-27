@@ -10,9 +10,14 @@ public class BoxContainer : MonoBehaviour, IIneractionable
     public bool IsStackMax => _currentBoxCnt >= _stackMaxCnt;
 
     [Header("Box")]
-    [SerializeField] private Transform _spawnTrm;
     [SerializeField] private PoolableType _poolObjType;
+    [SerializeField] private Transform _spawnTrm; // 박스에 스폰될 때 위치
+    [SerializeField] private Transform _moveTrm; // 트럭으로 이동할 때 갈 위치
     [Range(0, 5)][SerializeField] private float _spacingY;
+
+    [Header("Effect")]
+    [SerializeField] private Transform _smokeEffectSpawnTrm;
+    [SerializeField] private ParticleSystem _smokeEffect;
 
     private bool _isEnterInteraction = false;
     private bool _isBoxGiving = false; // 플레이어가 박스 주고있는지
@@ -59,10 +64,15 @@ public class BoxContainer : MonoBehaviour, IIneractionable
         for (int i = 0; i < _takeBoxCnt; ++i)
         {
             yield return new WaitUntil(() => _currentBoxCnt > 0 && !_isBoxTaking && !_isBoxGiving);
+            yield return new WaitForSeconds(0.1f);
             _isBoxTaking = true;
 
             ITakeable takeable = _boxStack.Pop();
-            takeable.Take(_boxTruck.EndTrm, Vector3.zero, Vector3.zero);
+            takeable.Take(_moveTrm, Vector3.zero, Vector3.zero);
+
+            // 이펙트 실행
+            GameObject effect = PoolManager.Instance.Pop(PoolableType.SmokeEffect.ToString(), _smokeEffectSpawnTrm);
+            effect.GetComponent<ParticleSystem>().Play();
 
             yield return new WaitForSeconds(0.5f);
 
@@ -99,8 +109,12 @@ public class BoxContainer : MonoBehaviour, IIneractionable
                 ITakeable box = _playerController.OnGiveTakeable?.Invoke();
                 TakeBox(box);
             }
+            else
+            {
+                yield return new WaitForSeconds(0.5f);
+                _isBoxGiving = false;
+            }
             yield return new WaitForSeconds(0.15f);
-            _isBoxGiving = false;
         }
     }
 
