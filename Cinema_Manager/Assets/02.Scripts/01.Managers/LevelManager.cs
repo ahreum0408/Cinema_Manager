@@ -27,8 +27,10 @@ public class LevelManager : MonoBehaviour {
             var furniture = levelData as BuyChecker;
             allStand.Add(furniture.OpenTarget);
         }
+
         LevelEvents.GameDataLoadEvent += GameDataLoad;
         LevelEvents.ChangePriceEvent += ChangeCheckerPrice;
+        LevelEvents.ChangeDisplayStandEvent += ChangeDisplyStandPrice;
     }
 
     private void Update() {
@@ -89,6 +91,14 @@ public class LevelManager : MonoBehaviour {
         for(int i = 0; i < allAreas.Count; i++) {
             if (allAreas[i] == checker) {
                 _gameData.allCheckPriceList[i] = price;
+                LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
+            }
+        }
+    }
+    private void ChangeDisplyStandPrice(DisplayStand checker, int count) {
+        for (int i = 0; i < allStand.Count; i++) {
+            if (allStand[i] == checker) {
+                _gameData.allDisplayStandList[i] = count;
                 LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
             }
         }

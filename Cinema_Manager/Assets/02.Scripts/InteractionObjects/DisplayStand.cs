@@ -90,6 +90,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
         food.Take(_spawnTrmList[row], foodPos, Vector3.zero);
         _foodStack.Push(food);
+        LevelEvents.ChangeDisplayStandEvent?.Invoke(this, _currentFoodCnt);
     }
 
     public void GiveFood()

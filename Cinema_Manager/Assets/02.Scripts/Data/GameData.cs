@@ -17,9 +17,9 @@ public class GameData {
     public int levelIndex;
     public int exp;
 
-    // check 가격 보관
+    // checker 가격 및 stand 개수 보관
     public List<int> allCheckPriceList;
-    public List<DisplayStand> allDisplayStandList;
+    public List<int> allDisplayStandList;
 
     // player
     public int p_movespeedLevel; // 플레이어 이속
@@ -47,7 +47,8 @@ public class GameData {
         this.levelIndex = 0;
         this.exp = 0;
 
-        allCheckPriceList = new List<int> { 50,50,50,50};
+        allCheckPriceList = new List<int> { 50, 50, 50, 50 };
+        allDisplayStandList = new List<int> { 0, 0, 0, 0 };
 
         p_movespeedLevel = 0;
         p_movespeedLevel = 0;
