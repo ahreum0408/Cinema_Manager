@@ -8,7 +8,7 @@ using static AyunDefine;
 public class DisplayStand : MonoBehaviour, IIneractionable
 {
     private Stack<ITakeable> _foodStack;
-    private int _currentFoodCnt => _foodStack.Count;
+    public int _currentFoodCnt => _foodStack.Count;
     public int StackMaxCnt => _spawnTrmList.Count * _columnSpawnCnt;
     public List<Point> points;
 
@@ -50,7 +50,9 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     {
         _isStart = true;
     }
-
+    public void SetAvticeGameObject(bool active) {
+        gameObject.SetActive(active);
+    }
     public void EnterInteraction()
     {
         _isEnterInteraction = true;
