@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour {
     public List<Level> levelDatas = new List<Level>();
 
     private List<CheckerArea> allAreas = new List<CheckerArea>();   
+    private List<DisplayStand> allStand = new List<DisplayStand>();   
 
     private Level _currentLevel;
     private int _exp;
@@ -21,6 +22,10 @@ public class LevelManager : MonoBehaviour {
             foreach (var openMap in levelData.openNewMapList) {
                 allAreas.Add(openMap);
             }
+        }
+        foreach (var levelData in allAreas) {
+            var furniture = levelData as BuyChecker;
+            allStand.Add(furniture.OpenTarget);
         }
         LevelEvents.GameDataLoadEvent += GameDataLoad;
         LevelEvents.ChangePriceEvent += ChangeCheckerPrice;
@@ -66,11 +71,18 @@ public class LevelManager : MonoBehaviour {
         for (int i = 0; i <= _levelIndex; i++) {
             levelDatas[i].SetActiveMap(true);
         }
-        // 체커의 가격도 맞춰주고
+        // 체커의 가격도 맞춰주고 가격에 따라서 stand도 켜줌
         for(int i = 0; i < allAreas.Count; i++){
             var checker = allAreas[i] as BuyChecker;
-            Debug.Log(checker.name);
-            checker.Price = _gameData.allCheckPriceList[i];
+            if(checker != null){
+                checker.Price = _gameData.allCheckPriceList[i];
+                if(checker.Price == 0) {
+                    if (allStand[i] != null) {
+                        checker.gameObject.SetActive(false);
+                        allStand[i].SetAvticeGameObject(true);
+                    }
+                }
+            }
         }
     }
     private void ChangeCheckerPrice(BuyChecker checker, int price) {

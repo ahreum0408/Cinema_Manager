@@ -19,6 +19,7 @@ public class GameData {
 
     // check 가격 보관
     public List<int> allCheckPriceList;
+    public List<DisplayStand> allDisplayStandList;
 
     // player
     public int p_movespeedLevel; // 플레이어 이속

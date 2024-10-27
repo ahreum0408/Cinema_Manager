@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static AyunDefine;
 
 public class DisplayStand : MonoBehaviour, IIneractionable
 {
     private Stack<ITakeable> _foodStack;
-    private int _currentFoodCnt => _foodStack.Count;
+    public bool IsOpen => gameObject.activeInHierarchy == true ? true : false;
+    public int _currentFoodCnt => _foodStack.Count;
     public int StackMaxCnt => _spawnTrmList.Count * _columnSpawnCnt;
     public List<Point> points;
+
 
     [SerializeField] private PoolableType _poolObjType;
     [SerializeField] private int _columnSpawnCnt;
@@ -45,7 +46,9 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     {
         _isStart = true;
     }
-
+    public void SetAvticeGameObject(bool active) {
+        gameObject.SetActive(active);
+    }
     public void EnterInteraction()
     {
         _isEnterInteraction = true;
