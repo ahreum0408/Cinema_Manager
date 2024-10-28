@@ -33,19 +33,18 @@ public class TrashBin : MonoBehaviour, IIneractionable
 
     private IEnumerator TakeTrashRoutine()
     {
+        // 걍 들어올 떄 마다 할거면 if문 없애주면됨
+        if (_playerController.IsStacked)
+            SoundManager.Instance.Play(AudioClips.Trashcan);
+
         while (_isEnterInteraction)
         {
-            if (_playerController.CanGiveTakeable(_poolObjType))
+            if (_playerController.IsStacked)
             {
-                ITakeable trash = _playerController.OnGiveTakeable?.Invoke();
-                TakeTrash(trash);
+                ITakeable takeable = _playerController.OnGiveTakeable?.Invoke();
+                takeable.Take(_trashContainerTrm, Vector3.zero, Vector3.zero);
             }
             yield return new WaitForSeconds(0.15f);
         }
-    }
-
-    private void TakeTrash(ITakeable trash)
-    {
-        trash.Take(_trashContainerTrm, Vector3.zero, Vector3.zero);
     }
 }

@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AyunDefine;
 
 public class TakeableBase : MonoBehaviour, ITakeable
 {
+    [SerializeField] private PoolableType _poolType;
+
     private Rigidbody _rigid;
     //private Animator _animator;
     private ObjectMovement _objectMovement;
@@ -50,5 +53,13 @@ public class TakeableBase : MonoBehaviour, ITakeable
     public void ResetPositionAndRotation()
     {
         transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(Vector3.zero));
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Container"))
+        {
+            PoolManager.Instance.Push(_poolType.ToString(), gameObject);
+        }
     }
 }
