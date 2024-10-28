@@ -120,7 +120,7 @@ public class Customer : AgentController
     // 손님 원하는 물건
     public void SelectObjectType()
     {
-        int rand = Random.Range(1, 2);
+        int rand = Random.Range(1, 3);
         customerData.objectType = (PoolableType)rand;
         if(ObjectManager.Instance.FindDisplayStand(customerData.objectType).CanStandPoint() == null)
             SelectObjectType();

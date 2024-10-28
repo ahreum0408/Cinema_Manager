@@ -114,4 +114,6 @@ public class FoodContainer : MonoBehaviour, IIneractionable
             yield return null;
         }
     }
+
+    public PoolableType GetPoolObjType() => _poolObjType;
 }

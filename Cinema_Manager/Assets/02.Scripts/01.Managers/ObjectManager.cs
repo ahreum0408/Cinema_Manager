@@ -12,6 +12,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
 
     public Counter counter;
     public ParcelService parcelService;
+    public TrashBin trashBin;
 
     protected override void Awake()
     {

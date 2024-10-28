@@ -1,17 +1,15 @@
-using BehaviorDesigner.Runtime;
 using System;
 using UnityEngine;
-using static AyunDefine;
 using UnityEngine.AI;
+using static AyunDefine;
 
-public class Staff : AgentController
+public class StaffController : AgentController
 {
-    public float defualtSpeed = 3.5f;
-
-    [SerializeField] private LayerMask _whatIsPlayer;
-
     [HideInInspector] public bool IsStacked => StackCompo.IsStacked;
-    [HideInInspector] public Vector3 startPos;
+
+    // Object
+    [HideInInspector] public Table table;
+    [HideInInspector] public DisplayStand displayStand;
 
     // Components
     public NavMeshAgent Agent { get; private set; }
@@ -33,9 +31,6 @@ public class Staff : AgentController
 
     private void Start()
     {
-        Agent.speed = defualtSpeed;
-        startPos = transform.position;
-
         OnTakeTakeable += HandleTakeTakeable;
         OnGiveTakeable += HandleGiveTakeable;
     }
@@ -50,7 +45,6 @@ public class Staff : AgentController
     }
 
     #region Handle
-
     private void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
     {
         if (IsStacked == false)
@@ -67,14 +61,5 @@ public class Staff : AgentController
 
         return takeable;
     }
-
     #endregion
-}
-
-public class SharedStaff : SharedVariable<Staff>
-{
-    public static implicit operator SharedStaff(Staff value)
-    {
-        return new SharedStaff { Value = value };
-    }
 }

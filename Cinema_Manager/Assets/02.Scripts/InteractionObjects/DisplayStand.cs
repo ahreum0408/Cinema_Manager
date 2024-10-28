@@ -18,6 +18,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     #region ¼­¿¬
     public bool IsFullLine => _customerDic.Count == points.Count;
+    public int CurrentLine => _customerDic.Count;
 
     [Range(0, 5)][SerializeField] private float _spacingY;
     [Range(0, 5)] [SerializeField] private float _spacingX;

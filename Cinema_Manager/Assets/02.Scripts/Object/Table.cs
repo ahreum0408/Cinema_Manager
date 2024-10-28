@@ -82,4 +82,16 @@ public class Table : MonoBehaviour, IIneractionable
         }
         return null;
     }
+
+    public Point FindDirtyChair()
+    {
+        foreach (var chair in points)
+        {
+            if (chair.IsDirty)
+            {
+                return chair;
+            }
+        }
+        return null;
+    }
 }
