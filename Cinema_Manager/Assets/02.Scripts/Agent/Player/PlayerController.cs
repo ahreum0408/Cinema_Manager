@@ -142,11 +142,8 @@ public class PlayerController : AgentController
     {
         yield return new WaitUntil(() => _stackComponent.IsObJumped);
 
-        Camera mainCam = Camera.main;
-        Vector3 worldPosition = _stackComponent.TopObjPos;
-        Vector3 screenPosition = mainCam.WorldToScreenPoint(worldPosition);
-        _stackMaxText.rectTransform.anchoredPosition =
-            new Vector2(_stackMaxText.rectTransform.anchoredPosition.x, screenPosition.y);
+        Vector3 movePos = _stackComponent.TopObjPos + new Vector3(0, 1, 0);
+        _stackMaxText.transform.position = movePos;
         _stackMaxText.enabled = true;
     }
 
