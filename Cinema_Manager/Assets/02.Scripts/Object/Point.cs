@@ -18,10 +18,6 @@ public class Point : MonoBehaviour
     public Stack<ITakeable> foodStack;
     private int _currentFoodCnt;
 
-    private Customer _currentCustomer;
-
-    private bool _isStart;
-
     private void Awake()
     {
         foodStack = new Stack<ITakeable>();
@@ -31,7 +27,6 @@ public class Point : MonoBehaviour
     {
         trash = null;
         _currentFoodCnt = 0;
-        _isStart = true;
     }
 
     public void TakeFood(Customer customer, float spacingY)
