@@ -299,6 +299,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5810671222840703596, guid: 54e1133912acd5443ab2d0dae2703ce1,
+        type: 3}
+      propertyPath: _spacingY
+      value: 0.1904
+      objectReference: {fileID: 0}
     - target: {fileID: 8365566579095636222, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}
       propertyPath: m_Size.y

@@ -17,7 +17,7 @@ public static class AyunDefine
         public static readonly string InteractionableTag = "Interactionable";
     }
 
-    public static class UsingAudioClips
+    public static class AudioClips
     {
         public static readonly AudioClip Money    = Resources.Load<AudioClip>("Sound/MoneySound");
         public static readonly AudioClip Stack    = Resources.Load<AudioClip>("Sound/StackSound");
@@ -61,5 +61,8 @@ public static class AyunDefine
 
         // Effect
         SmokeEffect,
+
+        // Sound
+        SoundObject,
     }
 }
