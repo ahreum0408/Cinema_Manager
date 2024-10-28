@@ -8,6 +8,8 @@ public class ObjectManager : MonoSingleton<ObjectManager>
 {
     public List<DisplayStand> displayStands;
     public List<Table> tables;
+    public List<FoodContainer> foodContainers;
+
     public Counter counter;
     public ParcelService parcelService;
 
