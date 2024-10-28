@@ -142,7 +142,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2447986807290555450}
+  - {fileID: 4121615429865194693}
   m_Father: {fileID: 574866364073698371}
   m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!33 &9189503758901367438
@@ -244,9 +246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcff5c43837e914b825f9eb32e84484, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnTrm: {fileID: 3406155801263603176}
   _poolObjType: 13
+  _spawnTrm: {fileID: 3406155801263603176}
+  _moveTrm: {fileID: 4121615429865194693}
   _spacingY: 0.609
+  _smokeEffectSpawnTrm: {fileID: 2447986807290555450}
+  _smokeEffect: {fileID: 3280723283536715292, guid: 773b1387fe824c9409b84ec92fa64a97,
+    type: 3}
 --- !u!114 &875210834132162664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,6 +320,68 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.977662, y: 1.901297, z: 5.042658}
   m_Center: {x: 0, y: 0.65015286, z: 0}
+--- !u!1 &6685520792908998495
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4121615429865194693}
+  m_Layer: 0
+  m_Name: BoxMoveTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4121615429865194693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6685520792908998495}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -3.85, y: 0, z: -0.84}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4843899829309613763}
+  m_LocalEulerAnglesHint: {x: 180, y: 90, z: 90}
+--- !u!1 &6987457023782373739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2447986807290555450}
+  m_Layer: 0
+  m_Name: EffectSpawnTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2447986807290555450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987457023782373739}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.7, y: 0, z: 0.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4843899829309613763}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7276762040316795439
 GameObject:
   m_ObjectHideFlags: 0
