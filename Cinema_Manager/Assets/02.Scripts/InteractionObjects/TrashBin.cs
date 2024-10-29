@@ -35,7 +35,7 @@ public class TrashBin : MonoBehaviour, IIneractionable
     {
         // 걍 들어올 떄 마다 할거면 if문 없애주면됨
         if (_playerController.IsStacked)
-            SoundManager.Instance.Play(AudioClips.Trashcan);
+            SoundManager.Instance.Play(AudioClips.Trashcan, 1, null, false);
 
         while (_isEnterInteraction)
         {

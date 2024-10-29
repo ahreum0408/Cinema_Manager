@@ -2416,11 +2416,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnTrm: {fileID: 7142461136123268950}
-  _poolObjType: 2
+  _poolObjType: 12
   _isFood: 0
   _spacingX: 0.8
   _spacingZ: 0.7
-  _spacingY: 0.6
+  _spacingY: 0.369
 --- !u!1 &540546789140892215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,6 +2558,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 2063136610}
+    - target: {fileID: 7321037297886936081, guid: c832520e45db63046b24510b6e4e7d13,
+        type: 3}
+      propertyPath: _maxStackCount
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

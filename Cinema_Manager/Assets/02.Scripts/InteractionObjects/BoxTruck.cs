@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System;
 using UnityEngine;
+using static AyunDefine;
 
 public class BoxTruck : MonoBehaviour
 {
@@ -44,6 +45,10 @@ public class BoxTruck : MonoBehaviour
     // 박스 가지고 (처리하러) 가기
     public void GoWithBox()
     {
+        // 트럭 출발 사운드
+        SoundManager.Instance.Play(AudioClips.TruckStart, 1, transform, false, true);
+        SoundManager.Instance.Play(AudioClips.TruckHorn, 1, transform, false, true);
+
         _isWithBox = true;
         TruckMove(_startTrm.position, false);
     }
@@ -64,6 +69,9 @@ public class BoxTruck : MonoBehaviour
             {
                 if (isBringFood)
                 {
+                    // 트럭 도착 사운드
+                    SoundManager.Instance.Play(AudioClips.TruckStop, 1, transform, false, true);
+
                     OnTruckArrival?.Invoke();
                 }
             });
