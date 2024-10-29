@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -192,4 +193,20 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         return _customerDic.Keys.ToList();
     }
 
+
+    // 임시로 스텐드에 음식 채우는 함수
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Test();
+        }
+    }
+
+    private void Test()
+    {
+        GameObject go = PoolManager.Instance.Pop(_poolObjType.ToString(), transform);
+        if (go.TryGetComponent(out ITakeable takeable))
+            TakeFood(takeable);
+    }
 }

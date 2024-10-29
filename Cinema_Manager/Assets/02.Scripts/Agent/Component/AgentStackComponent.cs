@@ -8,7 +8,6 @@ public class AgentStackComponent : AgentComponent
 {
     [SerializeField] private Transform _holderTransform;
     [SerializeField] private float _spacingY = 0.4f;
-    public float SpacingY = 0.4f;
     [SerializeField] private int _maxStackCount = 3;
 
     private Stack<ITakeable> _takeObjectStack;
@@ -68,7 +67,7 @@ public class AgentStackComponent : AgentComponent
         takeableObject.Take(_holderTransform, objectPosition, rotation);
 
         // Stack에 쌓이는 소리
-        SoundManager.Instance.Play(AudioClips.Stack);
+        SoundManager.Instance.Play(AudioClips.Stack, 1 * CurrentStackCount, null, false);
 
         IsObJumped = false;
         _takeObjectStack.Push(takeableObject);
@@ -90,6 +89,10 @@ public class AgentStackComponent : AgentComponent
         if (false == IsStacked) return null;
 
         ITakeable takeable = _takeObjectStack.Pop();
+
+        // Stack에서 나가는 소리
+        SoundManager.Instance.Play(AudioClips.Stack, 1 * CurrentStackCount, null, false);
+
         if (_takeObjectStack.Count <= 0) _currentHoldType = PoolableType.None;
         return takeable;
     }
