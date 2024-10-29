@@ -11,6 +11,8 @@ public class StaffController : AgentController
     [HideInInspector] public Table table;
     [HideInInspector] public DisplayStand displayStand;
 
+    public Transform restPos;
+
     // Components
     public NavMeshAgent Agent { get; private set; }
     public AgentStackComponent StackCompo { get; private set; }
@@ -19,6 +21,8 @@ public class StaffController : AgentController
     // Events
     public Action<ITakeable, PoolableType, float, bool> OnTakeTakeable;
     public Func<ITakeable> OnGiveTakeable;
+
+    private AgentState _currentState;
 
     protected override void Init()
     {
@@ -31,17 +35,25 @@ public class StaffController : AgentController
 
     private void Start()
     {
+        ChangeState(new IdleState(this));
+
         OnTakeTakeable += HandleTakeTakeable;
         OnGiveTakeable += HandleGiveTakeable;
     }
 
-    public bool CanSetDestination()
+    private void Update()
     {
-        float distance = Vector3.Distance(transform.position, Agent.destination);
-        if (distance == 0)
-            return true;
-        else
-            return false;
+        _currentState?.Update();
+    }
+
+    public void ChangeState(AgentState newState)
+    {
+        if (_currentState != newState)
+        {
+            _currentState?.Exit();
+            _currentState = newState;
+            _currentState.Enter();
+        }
     }
 
     #region Handle

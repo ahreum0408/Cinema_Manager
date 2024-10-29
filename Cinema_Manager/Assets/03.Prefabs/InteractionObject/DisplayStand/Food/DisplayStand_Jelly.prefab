@@ -47,6 +47,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!1 &1353166847676063952
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,6 +96,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!1 &1459078841135143603
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +398,7 @@ GameObject:
   - component: {fileID: 3768138470037649157}
   - component: {fileID: 2017871272089247952}
   - component: {fileID: 8903637456037832895}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,6 +538,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!1001 &3262593375957141711
 PrefabInstance:
   m_ObjectHideFlags: 0

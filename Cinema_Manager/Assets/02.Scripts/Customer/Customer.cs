@@ -87,8 +87,8 @@ public class Customer : AgentController
 
     public bool CanSetDestination()
     {
-        float distance = Vector3.Distance(transform.position, Agent.destination);
-        if (distance == 0)
+        float threshold = Agent.stoppingDistance + 0.1f;
+        if (!Agent.isPathStale && Agent.remainingDistance < threshold)
             return true;
         else
             return false;

@@ -7,6 +7,7 @@ public class CleanTableState : AgentState
 
     public override void Enter()
     {
+        Debug.Log("CleanTalble");
         agent.AnimationCompo.SetMovementAnimation(Vector3.zero);
     }
 

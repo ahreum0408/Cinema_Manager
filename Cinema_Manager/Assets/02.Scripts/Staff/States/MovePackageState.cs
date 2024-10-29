@@ -1,4 +1,6 @@
-﻿internal class MovePackageState : AgentState
+﻿using UnityEngine;
+
+internal class MovePackageState : AgentState
 {
     public MovePackageState(StaffController agent) : base(agent)
     {
@@ -9,11 +11,22 @@
 
     }
 
+    public override void Update()
+    {
+        if(CheckPackage())
+        {
+            Vector3 parcelPos = ObjectManager.Instance.boxContainer.transform.position;
+            agent.ChangeState(new MoveToTargetState(agent, parcelPos, new IdleState(agent)));
+        }
+    }
+
     public override void Exit()
     {
     }
 
-    public override void Update()
+    private bool CheckPackage()
     {
+        ParcelService parcelService = ObjectManager.Instance.parcelService;
+        return parcelService.CurrentBoxCnt == 0;
     }
 }

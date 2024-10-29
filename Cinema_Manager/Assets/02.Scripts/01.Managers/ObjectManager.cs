@@ -10,6 +10,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     public List<Table> tables;
     public List<FoodContainer> foodContainers;
 
+    public BoxContainer boxContainer;
     public Counter counter;
     public ParcelService parcelService;
     public TrashBin trashBin;

@@ -14,6 +14,7 @@ public class MoveToTargetState : AgentState
 
     public override void Enter()
     {
+        Debug.Log("MovetoTarget");
         agent.AnimationCompo.SetMovementAnimation(targetPosition);
 
         navAgent.SetDestination(targetPosition);
@@ -22,8 +23,6 @@ public class MoveToTargetState : AgentState
 
     public override void Update()
     {
-        agent.AnimationCompo.SetMovementAnimation(targetPosition);
-
         if (!navAgent.pathPending && navAgent.remainingDistance <= navAgent.stoppingDistance)
         {
             agent.ChangeState(nextState);

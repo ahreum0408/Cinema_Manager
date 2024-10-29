@@ -11,8 +11,6 @@ public abstract class AgentController : MonoBehaviour
     public event Action OnFixedUpdateEvent;
     public event Action OnDisableEvent;
 
-    private AgentState currentState;
-
     public Rigidbody Rigidbody { get; protected set; }
     public Animator Animator { get; protected set; }
 
@@ -20,13 +18,6 @@ public abstract class AgentController : MonoBehaviour
     {
         Init();
         SetAgentComponents();
-    }
-
-    public void ChangeState(AgentState newState)
-    {
-        currentState?.Exit();
-        currentState = newState;
-        currentState.Enter();
     }
 
     // Rigidbody, Animator 등 공용 변수 세팅
@@ -53,7 +44,6 @@ public abstract class AgentController : MonoBehaviour
 
     private void Update()
     {
-        currentState?.Update();
         OnUpdateEvent?.Invoke();
     }
 

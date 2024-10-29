@@ -10,28 +10,38 @@ public class IdleState : AgentState
 
         navAgent.isStopped = true;
 
-        agent.table = CheckTable();
-        agent.displayStand = CheckDisplay();
     }
 
     public override void Update()
     {
+        agent.table = CheckTable();
+        agent.displayStand = CheckDisplay();
         if (agent.table != null)
         {
+            Debug.Log("1");
+
             Vector3 tablePosition = agent.table.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, tablePosition, new CleanTableState(agent)));
         }
-        else if (CheckDisplay() != null)
-        {
-            agent.ChangeState(new MoveFoodState(agent));
-        }
+        //else if (CheckDisplay() != null)
+        //{
+        //    Debug.Log("2");
+
+        //    agent.ChangeState(new MoveFoodState(agent));
+        //}
         else if (CheckCounter())
         {
-            agent.ChangeState(new CounterState(agent));
+            Debug.Log("3");
+
+            Vector3 counterPos = ObjectManager.Instance.counter.transform.position;
+            agent.ChangeState(new MoveToTargetState(agent, counterPos, new CounterState(agent)));
         }
         else if (CheckPackage())
         {
-            agent.ChangeState(new MovePackageState(agent));
+            Debug.Log("4");
+
+            Vector3 parcelPos = ObjectManager.Instance.parcelService.transform.position;
+            agent.ChangeState(new MoveToTargetState(agent, parcelPos, new CounterState(agent)));
         }
     }
 
@@ -60,19 +70,15 @@ public class IdleState : AgentState
         return null;
     }
 
-    private bool CheckCounter() 
-    { 
+    private bool CheckCounter()
+    {
         Counter counter = ObjectManager.Instance.counter;
-        if (counter.lineList.Count > 0 && !counter.IsInteraction)
-            return true;
-        
-        return false; 
+        return counter.lineList.Count > 0 && !counter.IsInteraction;
     }
-    private bool CheckPackage() 
-    { 
+
+    private bool CheckPackage()
+    {
         ParcelService parcelService = ObjectManager.Instance.parcelService;
-        if(parcelService.CurrentBoxCnt > 0 && !parcelService.IsInteraction)
-            return true;
-        return false; 
+        return parcelService.CurrentBoxCnt > 0 && !parcelService.IsInteraction;
     }
 }
