@@ -13,10 +13,13 @@ public class LevelManager : MonoBehaviour {
     private int _levelIndex = 0;
 
     private GameData _gameData;
+    private PlayerController _playerController;
 
     private void Awake() {
+        _playerController = FindObjectOfType<PlayerController>();
+
         foreach (var levelData in levelDatas) {
-            levelData.SetActiveMap(false);
+            levelData.SetActiveListObj(false);
         }
         foreach (var levelData in levelDatas) {
             foreach (var openMap in levelData.openNewMapList) {
@@ -34,7 +37,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.A)) {
+        if(Input.GetKeyDown(KeyCode.E)) {
             GetExp(10);
         }
     }
@@ -57,7 +60,7 @@ public class LevelManager : MonoBehaviour {
     private void LevelUp() {
         _currentLevel = levelDatas[++_levelIndex];
         MainEvents.UpgradeLevelEvent?.Invoke(levelDatas[_levelIndex], _levelIndex);
-        _currentLevel.SetActiveMap(true); // 다음 스테이지 켜주고
+        _currentLevel.SetActiveListObj(true); // 다음 스테이지 켜주고
     }
     private void GameDataLoad(GameData data) {
         if (data == null) {
@@ -70,23 +73,38 @@ public class LevelManager : MonoBehaviour {
         _exp = _gameData.exp;
 
         // 켜져야 하는 거는 켜주고
-        for (int i = 0; i <= _levelIndex; i++) {
-            levelDatas[i].SetActiveMap(true);
-        }
+        OnListObj();
         // 체커의 가격도 맞춰주고 가격에 따라서 stand도 켜줌
-        for(int i = 0; i < allAreas.Count; i++){
+        SettingCheckerPrice();
+    }
+
+    private void OnListObj() {
+        for (int i = 0; i <= _levelIndex; i++) {
+            levelDatas[i].SetActiveListObj(true);
+        }
+    }
+    private void SettingCheckerPrice() {
+        for (int i = 0; i < allAreas.Count; i++) {
             var checker = allAreas[i] as BuyChecker;
-            if(checker != null){
+            if (checker != null) {
                 checker.Price = _gameData.allCheckPriceList[i];
-                if(checker.Price == 0) {
-                    if (allStand[i] != null) {
-                        checker.gameObject.SetActive(false);
-                        allStand[i].SetAvticeGameObject(true);
-                    }
+                SettingStandItem(i, checker);
+            }
+        }
+    }
+    private void SettingStandItem(int i, BuyChecker checker) {
+        if (checker.Price == 0) {
+            if (allStand[i] != null) {
+                checker.gameObject.SetActive(false);
+                allStand[i].SetAvticeGameObject(true);
+                for (int j = 0; j < _gameData.allDisplayStandList.Count; j++) {
+                    allStand[i].AddItemToStand(); // <<< 여기에 음식을 stand에 추가하는 함수 적기
                 }
             }
         }
     }
+
+
     private void ChangeCheckerPrice(BuyChecker checker, int price) {
         for(int i = 0; i < allAreas.Count; i++) {
             if (allAreas[i] == checker) {

@@ -12,7 +12,7 @@ public class Level {
 
     public List<CheckerArea> openNewMapList;
 
-    public void SetActiveMap(bool active) {
+    public void SetActiveListObj(bool active) {
         if(openNewMapList != null) {
             foreach(CheckerArea area in openNewMapList) {
                 area.gameObject.SetActive(active);

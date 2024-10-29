@@ -199,11 +199,11 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Test();
+            AddItemToStand();
         }
     }
 
-    private void Test()
+    public void AddItemToStand()
     {
         GameObject go = PoolManager.Instance.Pop(_poolObjType.ToString(), transform);
         if (go.TryGetComponent(out ITakeable takeable))
