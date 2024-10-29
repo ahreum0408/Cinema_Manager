@@ -9,25 +9,14 @@ public class CheckFood : Conditional
 
     public float clearTime;
     private float startTime;
+    private bool isCustomerStop = false;
 
     public override void OnStart()
     {
         if (customer.Value.CurrentCustomerType == CustomerType.Call)
         {
             customer.Value.AnimationCompo.CallAnimation(1);
-            StopCustomersBehind();
-        }
-    }
-
-    private void StopCustomersBehind()
-    {
-        int currentIndex = customer.Value.currentStand.GetCustomerIndex(customer.Value);
-        if (currentIndex == -1) return;
-
-        var customers = customer.Value.currentStand.GetAllCustomers();
-        for (int i = currentIndex + 1; i < customers.Count; i++)
-        {
-            customers[i].Agent.isStopped = true;
+            StopCustomers();
         }
     }
 
@@ -43,8 +32,7 @@ public class CheckFood : Conditional
                     customer.Value.AnimationCompo.CallAnimation(-1);
                     customer.Value.CurrentCustomerType = CustomerType.Basic;
 
-                    ResumeCustomersBehind();
-                    return TaskStatus.Success;
+                    ResumeCustomers();
                 }
             }
             else
@@ -52,30 +40,49 @@ public class CheckFood : Conditional
                 if (startTime >= 0)
                     startTime -= Time.deltaTime;
             }
+            return TaskStatus.Running;
         }
 
-        if (customer.Value.customerData.isGive && customer.Value.CanSetDestination())
-            customer.Value.currentStand.GiveFood();
-
-        if (customer.Value.StackCompo.RemainingStackCount == 0)
+        if (customer.Value.CanSetDestination())
         {
-            customer.Value.currentStand.RemoveCustomer(customer.Value);
-            return TaskStatus.Failure;
+            if (!isCustomerStop && customer.Value.customerData.isGive)
+                customer.Value.currentStand.GiveFood();
+
+            if (customer.Value.StackCompo.RemainingStackCount == 0)
+            {
+                customer.Value.currentStand.RemoveCustomer(customer.Value);
+                return TaskStatus.Failure;
+            }
         }
 
         return TaskStatus.Running;
     }
 
-    private void ResumeCustomersBehind()
+    private void StopCustomers()
+    {
+        int currentIndex = customer.Value.currentStand.GetCustomerIndex(customer.Value);
+        var customers = customer.Value.currentStand.GetAllCustomers();
+
+        for (int i = currentIndex; i < customers.Count; i++)
+        {
+            customers[i].Agent.isStopped = true;
+        }
+
+        isCustomerStop = true;
+    }
+
+    private void ResumeCustomers()
     {
         int currentIndex = customer.Value.currentStand.GetCustomerIndex(customer.Value);
         if (currentIndex == -1) return;
 
         var customers = customer.Value.currentStand.GetAllCustomers();
-        for (int i = currentIndex + 1; i < customers.Count; i++)
+
+        for (int i = currentIndex; i < customers.Count; i++)
         {
             customers[i].Agent.isStopped = false;
         }
-    }
 
+        isCustomerStop = false;
+    }
 }

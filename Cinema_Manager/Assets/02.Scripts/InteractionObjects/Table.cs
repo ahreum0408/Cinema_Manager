@@ -53,6 +53,7 @@ public class Table : MonoBehaviour, IIneractionable
                             (points[i].trash.GetComponent<ITakeable>(), PoolableType.Trash, 0.01f, true);
 
                         points[i].ChangeDirtyState(false);
+                        points[i].trash = null;
 
                         yield return new WaitForSeconds(0.15f);
                     }
@@ -76,6 +77,18 @@ public class Table : MonoBehaviour, IIneractionable
         foreach (var chair in points)
         {
             if (!chair.IsUsing && !chair.IsDirty)
+            {
+                return chair;
+            }
+        }
+        return null;
+    }
+
+    public Point FindDirtyChair()
+    {
+        foreach (var chair in points)
+        {
+            if (chair.IsDirty && !chair.IsUsing)
             {
                 return chair;
             }

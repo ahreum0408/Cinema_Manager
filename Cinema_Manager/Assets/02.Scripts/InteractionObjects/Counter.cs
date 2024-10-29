@@ -11,6 +11,8 @@ public class Counter : MonoBehaviour, IIneractionable
     public List<Customer> lineList = new List<Customer>();
 
     private bool isStart = true; // Ã¹ ¼Õ´ÔÀÎ°¡?
+
+    public bool IsInteraction => _isEnterInteraction;
     #endregion
 
     private bool _isEnterInteraction = false;

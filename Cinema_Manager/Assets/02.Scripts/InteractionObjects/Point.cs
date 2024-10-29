@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 
-public class Point : MonoBehaviour
+public class Point : MonoBehaviour, IIneractionable
 {
     public Transform holder;
 
@@ -18,10 +18,6 @@ public class Point : MonoBehaviour
     public Stack<ITakeable> foodStack;
     private int _currentFoodCnt;
 
-    private Customer _currentCustomer;
-
-    private bool _isStart;
-
     private void Awake()
     {
         foodStack = new Stack<ITakeable>();
@@ -31,7 +27,6 @@ public class Point : MonoBehaviour
     {
         trash = null;
         _currentFoodCnt = 0;
-        _isStart = true;
     }
 
     public void TakeFood(Customer customer, float spacingY)
@@ -46,7 +41,7 @@ public class Point : MonoBehaviour
         ITakeable food = customer.OnGiveTakeable?.Invoke();
         
         Vector3 foodPos = Vector3.zero;
-        foodPos.z += spacingY * _currentFoodCnt;
+        foodPos.z += spacingY * _currentFoodCnt-1;
 
         food.Take(holder.transform, foodPos, Vector3.zero);
         foodStack.Push(food);
@@ -74,5 +69,13 @@ public class Point : MonoBehaviour
     public void ChangeDirtyState(bool isDirty)
     {
         IsDirty = isDirty; 
+    }
+
+    public void EnterInteraction()
+    {
+    }
+
+    public void ExitInteraction()
+    {
     }
 }

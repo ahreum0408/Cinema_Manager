@@ -87,8 +87,8 @@ public class Customer : AgentController
 
     public bool CanSetDestination()
     {
-        float distance = Vector3.Distance(transform.position, Agent.destination);
-        if (distance == 0)
+        float threshold = Agent.stoppingDistance + 0.1f;
+        if (!Agent.isPathStale && Agent.remainingDistance < threshold)
             return true;
         else
             return false;
@@ -120,7 +120,7 @@ public class Customer : AgentController
     // 손님 원하는 물건
     public void SelectObjectType()
     {
-        int rand = Random.Range(1, 2);
+        int rand = Random.Range(1, 3);
         customerData.objectType = (PoolableType)rand;
         if(ObjectManager.Instance.FindDisplayStand(customerData.objectType).CanStandPoint() == null)
             SelectObjectType();

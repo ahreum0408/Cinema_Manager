@@ -8,8 +8,8 @@ using static AyunDefine;
 public class FoodContainer : MonoBehaviour, IIneractionable
 {
     private Stack<ITakeable> _foodStack;
-    private int _currentFoodCnt => _foodStack.Count;
-    public bool IsStackMax => _currentFoodCnt >= _stackMaxCnt;
+    public int currentFoodCnt => _foodStack.Count;
+    public bool IsStackMax => currentFoodCnt >= _stackMaxCnt;
 
     [Header("Food")]
     [SerializeField] private Transform _spawnTrm;
@@ -64,11 +64,11 @@ public class FoodContainer : MonoBehaviour, IIneractionable
         {
             yield return new WaitUntil(() => false == IsStackMax);
 
-            int posInGroup = _currentFoodCnt % 4; // 0, 1, 2, 3 순서로 반복
+            int posInGroup = currentFoodCnt % 4; // 0, 1, 2, 3 순서로 반복
 
             float x = _spacingX * (posInGroup % 2 == 1 ? 1 : 0);
             float z = _spacingZ * (posInGroup < 2 ? 0 : -1);
-            float y = _spawnTrm.position.y + (_spacingY * (_currentFoodCnt / 4)); // 4개 마다 위로
+            float y = _spawnTrm.position.y + (_spacingY * (currentFoodCnt / 4)); // 4개 마다 위로
 
             Vector3 localPos = new Vector3(x, y, z);
             // 음료가 아니라면 90도 돌려서 배치
@@ -101,7 +101,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            if (_currentFoodCnt > 0)
+            if (currentFoodCnt > 0)
             {
                 ITakeable takeable = _foodStack.Peek();
 
@@ -114,4 +114,6 @@ public class FoodContainer : MonoBehaviour, IIneractionable
             yield return null;
         }
     }
+
+    public PoolableType GetPoolObjType() => _poolObjType;
 }
