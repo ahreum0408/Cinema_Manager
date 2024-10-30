@@ -5,30 +5,27 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour {
     public List<Level> levelDatas = new List<Level>();
 
-    private List<CheckerArea> allAreas = new List<CheckerArea>();   
-    private List<DisplayStand> allStand = new List<DisplayStand>();   
+    private List<CheckerArea> _allAreas = new List<CheckerArea>();   
+    private List<DisplayStand> _allStand = new List<DisplayStand>();   
 
     private Level _currentLevel;
     private int _exp;
     private int _levelIndex = 0;
 
     private GameData _gameData;
-    private PlayerController _playerController;
 
     private void Awake() {
-        _playerController = FindObjectOfType<PlayerController>();
-
         foreach (var levelData in levelDatas) {
             levelData.SetActiveListObj(false);
         }
         foreach (var levelData in levelDatas) {
             foreach (var openMap in levelData.openNewMapList) {
-                allAreas.Add(openMap);
+                _allAreas.Add(openMap);
             }
         }
-        foreach (var levelData in allAreas) {
+        foreach (var levelData in _allAreas) {
             var furniture = levelData as BuyChecker;
-            allStand.Add(furniture.OpenTarget);
+            _allStand.Add(furniture.OpenTarget);
         }
     }
     private void OnEnable() {
@@ -90,8 +87,8 @@ public class LevelManager : MonoBehaviour {
         }
     }
     private void SettingCheckerPrice() {
-        for (int i = 0; i < allAreas.Count; i++) {
-            var checker = allAreas[i] as BuyChecker;
+        for (int i = 0; i < _allAreas.Count; i++) {
+            var checker = _allAreas[i] as BuyChecker;
             if (checker != null) {
                 checker.Price = _gameData.allCheckPriceList[i];
                 if (checker.Price == 0) { // 이미 해금을 했다 => stand를 켜야한다
@@ -101,29 +98,21 @@ public class LevelManager : MonoBehaviour {
         }
     }
     private void SettingStandItem(int i, BuyChecker checker) {
-        if (allStand[i] != null) {
+        if (_allStand[i] != null) {
             checker.gameObject.SetActive(false); // 체커 끄고
-            allStand[i].SetAvticeGameObject(true); // 스텐드 키고
+            _allStand[i].SetAvticeGameObject(true); // 스텐드 키고
             int itemCount = _gameData.allDisplayStandItemCountList[i];
-            allStand[i].AddItemToStand(itemCount);
+            _allStand[i].AddItemToStand(itemCount);
         }
     }
-
-
     private void ChangeCheckerPrice(BuyChecker checker, int price) {
-        for(int i = 0; i < allAreas.Count; i++) {
-            if (allAreas[i] == checker) {
-                _gameData.allCheckPriceList[i] = price;
-                LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
-            }
-        }
+        int index = _allAreas.IndexOf(checker);
+        _gameData.allCheckPriceList[index] = price;
+        LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void ChangeDisplyStandPrice(DisplayStand checker, int count) {
-        for (int i = 0; i < allStand.Count; i++) {
-            if (allStand[i] == checker) {
-                _gameData.allDisplayStandItemCountList[i] = count;
-                LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
-            }
-        }
+    private void ChangeDisplyStandPrice(DisplayStand stand, int count) {
+        int index = _allStand.IndexOf(stand);
+        _gameData.allDisplayStandItemCountList[index] = count;
+        LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 }

@@ -65,7 +65,8 @@ public class GameDataManager : MonoBehaviour {
         _gameData.p_volumeLevel = data.p_volumeLevel;
         _gameData.p_sellingcostLevel = data.p_sellingcostLevel;
 
-        PlayerUpgradeEvents.GameDataLoadEvent?.Invoke(data);
+        UpgradeEvents.ChangePlayerDataEvent?.Invoke(_gameData);
+        PlayerUpgradeEvents.GameDataLoadEvent?.Invoke(data); // << 이거 필요한건가? 확인 해야함
     }
     private void MachineDataUpdate(GameData data) {
         if(data == null) {
@@ -84,5 +85,7 @@ public class GameDataManager : MonoBehaviour {
         _gameData.e_movespeedLevel = data.e_movespeedLevel;
         _gameData.e_volumeLevel = data.e_volumeLevel;
         _gameData.e_employmentLevel = data.e_employmentLevel;
+
+        UpgradeEvents.ChangeEmployeeDataEvent?.Invoke(_gameData);
     }
 }
