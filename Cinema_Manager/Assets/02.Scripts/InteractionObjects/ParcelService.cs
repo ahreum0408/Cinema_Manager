@@ -31,7 +31,6 @@ public class ParcelService : MonoBehaviour, IIneractionable
 
     private bool _isEnterInteraction = false;
 
-    private PlayerController _playerController;
     private NotifyImageComponent _notifyImageComponent;
 
 
@@ -41,7 +40,6 @@ public class ParcelService : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
-        _playerController = PlayerManager.Instance.PlayerController;
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _boxStack = new Stack<ITakeable>();
     }
@@ -71,20 +69,21 @@ public class ParcelService : MonoBehaviour, IIneractionable
         _boxStack.Push(go.GetComponent<ITakeable>());
     }
 
-    public void EnterInteraction()
+    public void EnterInteraction(Collider collider)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(GetBoxRoutine());
+        StartCoroutine(GetBoxRoutine(collider));
     }
 
-    public void ExitInteraction()
+    public void ExitInteraction(Collider collider)
     {
         _isEnterInteraction = false;
+        StopCoroutine(GetBoxRoutine(collider));
         _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
-    private IEnumerator GetBoxRoutine()
+    private IEnumerator GetBoxRoutine(Collider collider)
     {
         while (_isEnterInteraction)
         {
@@ -92,10 +91,23 @@ public class ParcelService : MonoBehaviour, IIneractionable
             {
                 ITakeable takeable = _boxStack.Peek();
 
-                if (_playerController.CanTakeFood(_poolObjType))
+                // Player
+                if (collider.TryGetComponent(out PlayerController player))
                 {
-                    _playerController.OnTakeTakeable?.Invoke(_boxStack.Pop(), _poolObjType, _spacingY, false);
-                    yield return new WaitForSeconds(0.15f);
+                    if (player.CanGiveTakeable(_poolObjType))
+                    {
+                        player.OnTakeTakeable?.Invoke(_boxStack.Pop(), _poolObjType, _spacingY, false);
+                        yield return new WaitForSeconds(0.15f);
+                    }
+                }
+                // Staff
+                else if (collider.TryGetComponent(out StaffController staff))
+                {
+                    if (staff.CanGiveTakeable(_poolObjType))
+                    {
+                        staff.OnTakeTakeable?.Invoke(_boxStack.Pop(), _poolObjType, _spacingY, false);
+                        yield return new WaitForSeconds(0.15f);
+                    }
                 }
             }
             yield return null;

@@ -25,7 +25,6 @@ public class BoxContainer : MonoBehaviour, IIneractionable
     private bool _isBoxGiving = false; // 플레이어가 박스 주고있는지
     private bool _isBoxTaking = false; // 박스 가지고 오고 있는지
 
-    private PlayerController _playerController;
     private NotifyImageComponent _notifyImageComponent;
     private BoxTruck _boxTruck;
 
@@ -36,7 +35,6 @@ public class BoxContainer : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
-        _playerController = PlayerManager.Instance.PlayerController;
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _boxTruck = GetComponentInChildren<BoxTruck>();
         _boxStack = new Stack<ITakeable>();
@@ -71,9 +69,12 @@ public class BoxContainer : MonoBehaviour, IIneractionable
             ITakeable takeable = _boxStack.Pop();
             takeable.Take(_moveTrm, Vector3.zero, Vector3.zero);
 
-            // 이펙트 실행
+            // Effect
             GameObject effect = PoolManager.Instance.Pop(PoolableType.SmokeEffect.ToString(), _smokeEffectSpawnTrm);
             effect.GetComponent<ParticleSystem>().Play();
+
+            // Sound
+            SoundManager.Instance.Play(AudioClips.BoxPacking, 1, transform, false, true);
 
             yield return new WaitForSeconds(0.5f);
 
@@ -86,29 +87,46 @@ public class BoxContainer : MonoBehaviour, IIneractionable
         // 이때 돈 받으면 될 듯 (택배비)
     }
 
-    public void EnterInteraction()
+    public void EnterInteraction(Collider collider)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(StackBoxRoutine());
+        StartCoroutine(StackBoxRoutine(collider));
     }
 
-    public void ExitInteraction()
+    public void ExitInteraction(Collider collider)
     {
         _isEnterInteraction = false;
-        StopCoroutine(StackBoxRoutine());
+        StopCoroutine(StackBoxRoutine(collider));
         _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
-    private IEnumerator StackBoxRoutine()
+    private IEnumerator StackBoxRoutine(Collider collider)
     {
         while (_isEnterInteraction)
         {
-            if (_playerController.CanGiveTakeable(_poolObjType) && false == IsStackMax)
+            if (false == IsStackMax)
             {
-                _isBoxGiving = true;
-                ITakeable box = _playerController.OnGiveTakeable?.Invoke();
-                TakeBox(box);
+                // Player
+                if (collider.TryGetComponent(out PlayerController player))
+                {
+                    if (player.CanGiveTakeable(_poolObjType))
+                    {
+                        _isBoxGiving = true;
+                        ITakeable box = player.OnGiveTakeable?.Invoke();
+                        TakeBox(box);
+                    }
+                }
+                // Staff
+                else if (collider.TryGetComponent(out StaffController staff))
+                {
+                    if (staff.CanGiveTakeable(_poolObjType))
+                    {
+                        _isBoxGiving = true;
+                        ITakeable box = staff.OnGiveTakeable?.Invoke();
+                        TakeBox(box);
+                    }
+                }
             }
             else
             {

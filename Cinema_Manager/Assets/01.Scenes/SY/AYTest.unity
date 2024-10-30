@@ -237,7 +237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _holderTransform: {fileID: 1304247565}
-  _spacingY: 0.2
   _maxStackCount: 8
   IsObJumped: 0
 --- !u!114 &130286073

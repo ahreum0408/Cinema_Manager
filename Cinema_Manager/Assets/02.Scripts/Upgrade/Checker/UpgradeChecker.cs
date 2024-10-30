@@ -5,7 +5,7 @@ using UnityEngine;
 public class UpgradeChecker : CheckerArea {
     public UpgradeViewType viewType;
 
-    public override void EnterInteraction() {
+    public override void EnterInteraction(Collider collider) {
         FindViewRegister(viewType);
     }
     private void FindViewRegister(UpgradeViewType type) {
@@ -25,7 +25,7 @@ public class UpgradeChecker : CheckerArea {
         }
     }
 
-    public override void ExitInteraction() {
+    public override void ExitInteraction(Collider collider) {
         MainEvents.CloseCurrentEvent?.Invoke();
     }
 }
