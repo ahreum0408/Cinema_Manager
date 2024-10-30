@@ -68,3 +68,23 @@ MonoBehaviour:
   - prefab: {fileID: 36616424753088458, guid: 773b1387fe824c9409b84ec92fa64a97, type: 3}
     prefabTypeName: SmokeEffect
     poolCount: 3
+  - prefab: {fileID: 4275240779588899374, guid: 727c5ec24194430418559b12ae2ac4b0,
+      type: 3}
+    prefabTypeName: Staff
+    poolCount: 3
+  - prefab: {fileID: 2709680208365037779, guid: 9bc0756e0b4e1894680acd6a50fa2a8f,
+      type: 3}
+    prefabTypeName: BasicCustomer
+    poolCount: 10
+  - prefab: {fileID: 8144183163298287838, guid: 5aa7bffccaf62174db192c9bb704fd39,
+      type: 3}
+    prefabTypeName: CallCustomer
+    poolCount: 2
+  - prefab: {fileID: 5610141160049009664, guid: 73365cb9d524b924387ddaffcc3ed8b5,
+      type: 3}
+    prefabTypeName: SleepCustomer
+    poolCount: 2
+  - prefab: {fileID: 7076181705218105480, guid: 446c324dc473d8340bbff468ca3d5c99,
+      type: 3}
+    prefabTypeName: ParcelCustomer
+    poolCount: 10

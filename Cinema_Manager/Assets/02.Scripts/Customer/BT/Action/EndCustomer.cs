@@ -29,6 +29,8 @@ public class EndCustomer : Action
         float threshold = _agent.stoppingDistance + 0.1f;
         if (!_agent.isPathStale && _agent.remainingDistance < threshold)
         {
+            PoolManager.Instance.Push
+                (customer.Value.CurrentCustomerType.ToString() + "Customer", customer.Value.gameObject);
             return TaskStatus.Success;
         }
         return TaskStatus.Running;

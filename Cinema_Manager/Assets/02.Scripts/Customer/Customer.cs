@@ -8,7 +8,7 @@ using static AyunDefine;
 
 public enum CustomerType
 {
-    Basic = 0, Parcel, Call, Sleep, Thief
+    Basic = 0, Parcel, Call, Sleep
 }
 
 public class CustomerData
@@ -23,7 +23,7 @@ public class CustomerData
 
     [Header("Buy Type")]
     public PoolableType objectType;
-    public int maxBuySum = 3;
+    public int maxBuySum = 3; // 구매 수량
 }
 
 public class Customer : AgentController
@@ -140,7 +140,6 @@ public class Customer : AgentController
         StackCompo.SetMaxStackCount(Random.Range(1, customerData.maxBuySum + 1));
     }
     #endregion
-
 
     #region Handle
 
