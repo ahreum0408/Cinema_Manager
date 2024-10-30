@@ -27,21 +27,21 @@ public class Table : MonoBehaviour, IIneractionable
         points = GetComponentsInChildren<Point>().ToList();
     }
 
-    public void EnterInteraction()
+    public void EnterInteraction(Collider collider)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(GetTrashRoutine());
+        StartCoroutine(GetTrashRoutine(collider));
     }
 
-    public void ExitInteraction()
+    public void ExitInteraction(Collider collider)
     {
         _isEnterInteraction = false;
-        StopCoroutine(GetTrashRoutine());
+        StopCoroutine(GetTrashRoutine(collider));
         _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
-    private IEnumerator GetTrashRoutine()
+    private IEnumerator GetTrashRoutine(Collider collider)
     {
         while (_isEnterInteraction)
         {
@@ -49,15 +49,33 @@ public class Table : MonoBehaviour, IIneractionable
             {
                 if (points[i].trash != null)
                 {
-                    if (_playerController.CanTakeFood(PoolableType.Trash))
+                    // Player
+                    if (collider.TryGetComponent(out PlayerController player))
                     {
-                        _playerController.OnTakeTakeable?.Invoke
-                            (points[i].trash.GetComponent<ITakeable>(), PoolableType.Trash, 0.01f, true);
+                        if (player.CanGiveTakeable(PoolableType.Trash))
+                        {
+                            player.OnTakeTakeable?.Invoke
+                                (points[i].trash.GetComponent<ITakeable>(), PoolableType.Trash, 0.01f, true);
 
-                        points[i].ChangeDirtyState(false);
-                        points[i].trash = null;
+                            points[i].ChangeDirtyState(false);
+                            points[i].trash = null;
 
-                        yield return new WaitForSeconds(0.15f);
+                            yield return new WaitForSeconds(0.15f);
+                        }
+                    }
+                    // Staff
+                    else if (collider.TryGetComponent(out StaffController staff))
+                    {
+                        if (staff.CanGiveTakeable(PoolableType.Trash))
+                        {
+                            staff.OnTakeTakeable?.Invoke
+                                (points[i].trash.GetComponent<ITakeable>(), PoolableType.Trash, 0.01f, true);
+
+                            points[i].ChangeDirtyState(false);
+                            points[i].trash = null;
+
+                            yield return new WaitForSeconds(0.15f);
+                        }
                     }
                 }
                 else

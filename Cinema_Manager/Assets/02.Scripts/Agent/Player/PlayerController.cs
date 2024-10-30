@@ -1,7 +1,7 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
-using System.Collections;
 using static AyunDefine;
 
 public class PlayerController : AgentController
@@ -34,8 +34,6 @@ public class PlayerController : AgentController
     // UnityEvents
     //public UnityEvent<bool> OnStackMaxed;
 
-    private bool isPlay = false;
-
     #region Main
     protected override void Init()
     {
@@ -53,6 +51,7 @@ public class PlayerController : AgentController
         _agentAnimation = GetAgentComponent<AgentAnimationComponent>();
         _stackComponent = GetAgentComponent<AgentStackComponent>();
     }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -151,12 +150,17 @@ public class PlayerController : AgentController
     {
         // 돈 받았을 때 이벤트 처리 해주기
         CoinManager.Instance.Coin += moneyAmount;
+
+        // Sound
+        SoundManager.Instance.Play(AudioClips.Money, 1, null, false);
+
         // UI Update
     }
 
     private int HandleOnPaidCost(int cost)
     {
         // 돈 냈을 때 이벤트 처리 해주기
+
         // UI Update
 
         return 0;

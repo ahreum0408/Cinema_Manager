@@ -29,7 +29,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     private bool _isEnterInteraction = false;
 
-    private PlayerController _playerController;
     private NotifyImageComponent _notifyImageComponent;
 
     private Customer _currentCustomer;
@@ -43,7 +42,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     {
         _customerDic = new Dictionary<Customer, int>();
 
-        _playerController = FindObjectOfType<PlayerController>(); // ³ªÁß¿¡ ½Ì±ÛÅæÀ¸·Î
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _foodStack = new Stack<ITakeable>();
 
@@ -57,28 +55,44 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     public void SetAvticeGameObject(bool active) {
         gameObject.SetActive(active);
     }
-    public void EnterInteraction()
+    public void EnterInteraction(Collider collider)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(TakeFoodRoutine());
+        StartCoroutine(TakeFoodRoutine(collider));
     }
 
-    public void ExitInteraction()
+    public void ExitInteraction(Collider collider)
     {
         _notifyImageComponent.SetNotifySensorImage(1f);
         _isEnterInteraction = false;
-        StopCoroutine(TakeFoodRoutine());
+        StopCoroutine(TakeFoodRoutine(collider));
     }
 
-    private IEnumerator TakeFoodRoutine()
+    private IEnumerator TakeFoodRoutine(Collider collider)
     {
         while (_isEnterInteraction)
         {
-            if (_playerController.CanGiveTakeable(_poolObjType) && _foodStack.Count < StackMaxCnt)
+            if (_foodStack.Count < StackMaxCnt)
             {
-                ITakeable food = _playerController.OnGiveTakeable?.Invoke();
-                TakeFood(food);
+                // Player
+                if (collider.TryGetComponent(out PlayerController player))
+                {
+                    if (player.CanGiveTakeable(_poolObjType))
+                    {
+                        ITakeable food = player.OnGiveTakeable?.Invoke();
+                        TakeFood(food);
+                    }
+                }
+                // Staff
+                else if (collider.TryGetComponent(out StaffController staff))
+                {
+                    if (staff.CanGiveTakeable(_poolObjType))
+                    {
+                        ITakeable food = staff.OnGiveTakeable?.Invoke();
+                        TakeFood(food);
+                    }
+                }
             }
             yield return new WaitForSeconds(0.15f);
         }

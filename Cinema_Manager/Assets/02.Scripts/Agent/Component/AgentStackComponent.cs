@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static AyunDefine;
 
 public class AgentStackComponent : AgentComponent
 {
     [SerializeField] private Transform _holderTransform;
-    [SerializeField] private float _spacingY = 0.4f;
     [SerializeField] private int _maxStackCount = 3;
 
     private Stack<ITakeable> _takeObjectStack;
@@ -70,7 +68,7 @@ public class AgentStackComponent : AgentComponent
         IsObJumped = false;
         _takeObjectStack.Push(takeableObject);
 
-        // Stack에 쌓이는 소리
+        // Sound
         SoundManager.Instance.Play(AudioClips.Stack, 1 * CurrentStackCount, null, false);
 
         if (IsStackMax)
@@ -91,7 +89,7 @@ public class AgentStackComponent : AgentComponent
 
         ITakeable takeable = _takeObjectStack.Pop();
 
-        // Stack에서 나가는 소리
+        // Sound
         SoundManager.Instance.Play(AudioClips.Stack, 1 * CurrentStackCount, null, false);
 
         if (_takeObjectStack.Count <= 0) _currentHoldType = PoolableType.None;
@@ -103,5 +101,5 @@ public class AgentStackComponent : AgentComponent
         _currentHoldType = holdType;
     }
 
-    public override void ControllerUpdate() {}
+    public override void ControllerUpdate() { }
 }

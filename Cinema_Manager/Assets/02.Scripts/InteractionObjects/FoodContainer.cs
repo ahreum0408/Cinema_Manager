@@ -1,7 +1,5 @@
-using BehaviorDesigner.Runtime.ObjectDrawers;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 
@@ -17,14 +15,12 @@ public class FoodContainer : MonoBehaviour, IIneractionable
     [SerializeField] private Transform _spawnTrm;
     [SerializeField] private PoolableType _poolObjType;
     [SerializeField] private bool _isFood;
-    [Range(0, 5)] [SerializeField] private float _spacingX;
-    [Range(0, 5)] [SerializeField] private float _spacingZ; // 밑으로 내려가야 하기 때문에 음수로 바꿔 사용
-    [Range(0, 5)] [SerializeField] private float _spacingY;
+    [Range(0, 5)][SerializeField] private float _spacingX;
+    [Range(0, 5)][SerializeField] private float _spacingZ; // 밑으로 내려가야 하기 때문에 음수로 바꿔 사용
+    [Range(0, 5)][SerializeField] private float _spacingY;
 
-    private bool _isFoodFilling = false;
     private bool _isEnterInteraction = false;
 
-    private PlayerController _playerController;
     private NotifyImageComponent _notifyImageComponent;
     private FoodTruck _foodTruck;
 
@@ -35,7 +31,6 @@ public class FoodContainer : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
-        _playerController = PlayerManager.Instance.PlayerController;
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _foodTruck = GetComponentInChildren<FoodTruck>();
         _foodStack = new Stack<ITakeable>();
@@ -55,7 +50,6 @@ public class FoodContainer : MonoBehaviour, IIneractionable
 
     public void HandleBringFood()
     {
-        _isFoodFilling = true;
         StartCoroutine(FillingFoodRoutine());
     }
 
@@ -73,32 +67,31 @@ public class FoodContainer : MonoBehaviour, IIneractionable
 
             Vector3 localPos = new Vector3(x, y, z);
             // 음료가 아니라면 90도 돌려서 배치
-            Quaternion quaternion = _isFood == true? Quaternion.Euler(-90, 0, 0) : Quaternion.Euler(0, 0, 0);
+            Quaternion quaternion = _isFood == true ? Quaternion.Euler(-90, 0, 0) : Quaternion.Euler(0, 0, 0);
 
             GameObject food = PoolManager.Instance.Pop(_poolObjType.ToString(), _spawnTrm, localPos, quaternion);
             _foodStack.Push(food.GetComponent<ITakeable>());
 
             yield return new WaitForSeconds(0.25f);
         }
-        _isFoodFilling = false;
         _foodTruck.GoTakeFood();
     }
 
-    public void EnterInteraction()
+    public void EnterInteraction(Collider collider)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(GetFoodRoutine());
-    }   
+        StartCoroutine(GetFoodRoutine(collider));
+    }
 
-    public void ExitInteraction()
+    public void ExitInteraction(Collider collider)
     {
         _isEnterInteraction = false;
-        StopCoroutine(GetFoodRoutine());
+        StopCoroutine(GetFoodRoutine(collider));
         _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
-    private IEnumerator GetFoodRoutine()
+    private IEnumerator GetFoodRoutine(Collider collider)
     {
         while (_isEnterInteraction)
         {
@@ -106,10 +99,23 @@ public class FoodContainer : MonoBehaviour, IIneractionable
             {
                 ITakeable takeable = _foodStack.Peek();
 
-                if (_playerController.CanTakeFood(_poolObjType))
+                // Player
+                if (collider.TryGetComponent(out PlayerController player))
                 {
-                    _playerController.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
-                    yield return new WaitForSeconds(0.15f);
+                    if (player.CanGiveTakeable(_poolObjType))
+                    {
+                        player.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
+                        yield return new WaitForSeconds(0.15f);
+                    }
+                }
+                // Staff
+                else if (collider.TryGetComponent(out StaffController staff))
+                {
+                    if (staff.CanGiveTakeable(_poolObjType))
+                    {
+                        staff.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
+                        yield return new WaitForSeconds(0.15f);
+                    }
                 }
             }
             yield return null;

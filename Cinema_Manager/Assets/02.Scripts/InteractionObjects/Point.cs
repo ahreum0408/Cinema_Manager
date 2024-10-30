@@ -61,21 +61,11 @@ public class Point : MonoBehaviour, IIneractionable
         }
     }
 
-    public void ChangeUsingState(bool isUse)
-    {
-        IsUsing = isUse;
-    }
+    public void ChangeUsingState(bool isUse) => IsUsing = isUse;
 
-    public void ChangeDirtyState(bool isDirty)
-    {
-        IsDirty = isDirty; 
-    }
+    public void ChangeDirtyState(bool isDirty) => IsDirty = isDirty;
 
-    public void EnterInteraction()
-    {
-    }
+    public void EnterInteraction(Collider collider) {}
 
-    public void ExitInteraction()
-    {
-    }
+    public void ExitInteraction(Collider collider) {}
 }

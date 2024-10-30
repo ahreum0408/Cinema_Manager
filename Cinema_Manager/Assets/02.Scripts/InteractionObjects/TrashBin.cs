@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 using static AyunDefine;
+
 public class TrashBin : MonoBehaviour, IIneractionable
 {
     public Transform staffPoint;
 
     [SerializeField] private Transform _trashContainerTrm; // 쓰레기가 이동해야할 위치
-    private PoolableType _poolObjType = PoolableType.Trash;
 
     private bool _isEnterInteraction = false;
 
@@ -19,31 +19,44 @@ public class TrashBin : MonoBehaviour, IIneractionable
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
     }
 
-    public void EnterInteraction()
+    public void EnterInteraction(Collider collider)
     {
         _isEnterInteraction = true;
+        StartCoroutine(TakeTrashRoutine(collider));
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(TakeTrashRoutine());
     }
 
-    public void ExitInteraction()
+    public void ExitInteraction(Collider collider)
     {
         _isEnterInteraction = false;
+        StopCoroutine(TakeTrashRoutine(collider));
         _notifyImageComponent.SetNotifySensorImage(1f);
     }
 
-    private IEnumerator TakeTrashRoutine()
+    private IEnumerator TakeTrashRoutine(Collider collider)
     {
-        // 걍 들어올 떄 마다 할거면 if문 없애주면됨
         if (_playerController.IsStacked)
             SoundManager.Instance.Play(AudioClips.Trashcan, 1, null, false);
 
         while (_isEnterInteraction)
         {
-            if (_playerController.IsStacked)
+            // Player
+            if (collider.TryGetComponent(out PlayerController player))
             {
-                ITakeable takeable = _playerController.OnGiveTakeable?.Invoke();
-                takeable.Take(_trashContainerTrm, Vector3.zero, Vector3.zero);
+                if (player.IsStacked)
+                {
+                    ITakeable takeable = player.OnGiveTakeable?.Invoke();
+                    takeable.Take(_trashContainerTrm, Vector3.zero, Vector3.zero);
+                }
+            }
+            // Staff
+            else if (collider.TryGetComponent(out StaffController staff))
+            {
+                if (staff.IsStacked)
+                {
+                    ITakeable takeable = staff.OnGiveTakeable?.Invoke();
+                    takeable.Take(_trashContainerTrm, Vector3.zero, Vector3.zero);
+                }
             }
             yield return new WaitForSeconds(0.15f);
         }

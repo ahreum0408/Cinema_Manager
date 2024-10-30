@@ -1,5 +1,7 @@
+using UnityEngine;
+
 public interface IIneractionable
 {
-    public void EnterInteraction();
-    public void ExitInteraction();
+    public void EnterInteraction(Collider collider);
+    public void ExitInteraction(Collider collider);
 }
