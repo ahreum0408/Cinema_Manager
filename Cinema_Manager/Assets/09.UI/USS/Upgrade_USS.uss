@@ -1,3 +1,15 @@
+.upgrade-icon {
+    width: 320px;
+    height: 320px;
+}
+
+.upgradebar-content {
+    width: 350px;
+    height: 30px;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .upgrade-gauge {
     width: 18%;
     height: 100%;
@@ -11,21 +23,24 @@
     -unity-background-image-tint-color: rgba(255, 255, 255, 0.49);
 }
 
-.upgrade-icon {
-    width: 350px;
-    height: 350px;
-}
-
 .upgrade-content {
-    width: 350px;
-    height: 30px;
-    flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    height: 90%;
 }
 
 .upgrade-panel {
-    width: 400px;
-    height: 80%;
     background-color: rgb(198, 255, 178);
-    margin-bottom: 40px;
+}
+
+.main-container {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-container {
+    align-items: center;
+    justify-content: center;
+    height: 30%;
 }

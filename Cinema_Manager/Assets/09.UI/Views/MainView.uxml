@@ -9,7 +9,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="middle-border" class="middle-border" style="flex-direction: row; justify-content: flex-end; width: 50%;">
                 <ui:VisualElement name="levelbar" class="level-bar">
-                    <ui:ProgressBar title="10%" name="gaugebar" value="33.56" class="text_middle-array_50 gauge-bar" />
+                    <ui:ProgressBar title="10%" name="gaugebar" value="33.56" class="text_middle-array_50 gauge-bar" style="background-image: none;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="star" class="star-icon">
                     <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="level-txt" class="text_middle-array_50" />

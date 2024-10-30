@@ -9,11 +9,16 @@
 #gaugebar > #unity-progress-bar {
     max-height: 100%;
     background-image: url('project://database/Assets/04.Sprites/UI/star_bar_grey.png?fileID=21300000&guid=2d20a056e6f59a0408b0d58d266c36b9&type=3#star_bar_grey');
+    flex-grow: 1;
 }
 
 #gaugebar > #unity-progress-bar > VisualElement {
     background-image: url("project://database/Assets/04.Sprites/UI/star_bar_gray.png?fileID=21300000&guid=b1d97a10b8496f1428eeaf85122a6326&type=3#star_bar_gray");
     background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 #gaugebar > #unity-progress-bar > VisualElement > .unity-progress-bar__progress {
@@ -25,7 +30,7 @@
     width: 120px;
     height: 120px;
     overflow: visible;
-    left: -15px;
+    left: -60px;
     background-image: url("project://database/Assets/04.Sprites/UI/Icon/star_icon.png?fileID=21300000&guid=c935a904c587f2649937d4175657b00f&type=3#star_icon");
     position: absolute;
     align-items: center;
@@ -35,9 +40,9 @@
 .level-bar {
     flex-direction: row-reverse;
     align-items: center;
-    height: 18%;
-    width: 92%;
+    height: 17%;
     justify-content: flex-end;
+    flex-grow: 1;
 }
 
 .gauge-bar {
