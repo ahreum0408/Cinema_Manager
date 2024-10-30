@@ -30,10 +30,16 @@ public class LevelManager : MonoBehaviour {
             var furniture = levelData as BuyChecker;
             allStand.Add(furniture.OpenTarget);
         }
-
+    }
+    private void OnEnable() {
         LevelEvents.GameDataLoadEvent += GameDataLoad;
         LevelEvents.ChangePriceEvent += ChangeCheckerPrice;
         LevelEvents.ChangeDisplayStandEvent += ChangeDisplyStandPrice;
+    }
+    private void OnDisable() {
+        LevelEvents.GameDataLoadEvent -= GameDataLoad;
+        LevelEvents.ChangePriceEvent -= ChangeCheckerPrice;
+        LevelEvents.ChangeDisplayStandEvent -= ChangeDisplyStandPrice;
     }
 
     private void Update() {
@@ -88,19 +94,18 @@ public class LevelManager : MonoBehaviour {
             var checker = allAreas[i] as BuyChecker;
             if (checker != null) {
                 checker.Price = _gameData.allCheckPriceList[i];
-                SettingStandItem(i, checker);
+                if (checker.Price == 0) { // 이미 해금을 했다 => stand를 켜야한다
+                    SettingStandItem(i, checker);
+                }
             }
         }
     }
     private void SettingStandItem(int i, BuyChecker checker) {
-        if (checker.Price == 0) {
-            if (allStand[i] != null) {
-                checker.gameObject.SetActive(false);
-                allStand[i].SetAvticeGameObject(true);
-                for (int j = 0; j < _gameData.allDisplayStandList.Count; j++) {
-                    allStand[i].AddItemToStand(); // <<< 여기에 음식을 stand에 추가하는 함수 적기
-                }
-            }
+        if (allStand[i] != null) {
+            checker.gameObject.SetActive(false); // 체커 끄고
+            allStand[i].SetAvticeGameObject(true); // 스텐드 키고
+            int itemCount = _gameData.allDisplayStandItemCountList[i];
+            allStand[i].AddItemToStand(itemCount);
         }
     }
 
@@ -116,7 +121,7 @@ public class LevelManager : MonoBehaviour {
     private void ChangeDisplyStandPrice(DisplayStand checker, int count) {
         for (int i = 0; i < allStand.Count; i++) {
             if (allStand[i] == checker) {
-                _gameData.allDisplayStandList[i] = count;
+                _gameData.allDisplayStandItemCountList[i] = count;
                 LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
             }
         }

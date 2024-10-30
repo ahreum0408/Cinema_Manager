@@ -19,22 +19,22 @@ public class GameData {
 
     // checker 가격 및 stand 개수 보관
     public List<int> allCheckPriceList;
-    public List<int> allDisplayStandList;
+    public List<int> allDisplayStandItemCountList;
 
     // player
-    public int p_movespeedLevel; // 플레이어 이속
-    public int p_volumeLevel; // 플레이어 용량
-    public int p_sellingcostLevel; // 플레이어 판매시 재화 획득량
+    public int p_movespeedLevel = 0; // 플레이어 이속
+    public int p_volumeLevel = 0; // 플레이어 용량
+    public int p_sellingcostLevel = 0; // 플레이어 판매시 재화 획득량
 
     // employee
-    public int e_movespeedLevel; // 직원 이속
-    public int e_volumeLevel; // 직원 용량
-    public int e_employmentLevel; // 직원 추가
+    public int e_movespeedLevel = 0; // 직원 이속
+    public int e_volumeLevel = 0; // 직원 용량
+    public int e_employmentLevel = 0; // 직원 추가
 
     // machine
-    public int m_productionspeedLevel; //  생산속도 증가
-    public int m_volumeLevel; // 기계 용량 증가
-    public int m_storageLevel; // 창고 용량
+    public int m_productionspeedLevel = 0; //  생산속도 증가
+    public int m_volumeLevel = 0; // 기계 용량 증가
+    public int m_storageLevel = 0; // 창고 용량
 
     public GameData() {
         this.bgmValue = 1f;
@@ -48,7 +48,7 @@ public class GameData {
         this.exp = 0;
 
         allCheckPriceList = new List<int> { 50, 50, 50, 50 };
-        allDisplayStandList = new List<int> { 0, 0, 0, 0 };
+        allDisplayStandItemCountList = new List<int> { 0, 0, 0, 0 };
 
         p_movespeedLevel = 0;
         p_movespeedLevel = 0;

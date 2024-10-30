@@ -57,9 +57,9 @@ public class SaveManager : MonoBehaviour {
             GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
         }
     }
+    // 이거 지금 안씀
     void ViewUpdated(GameData gameData) {
         gameDataManager.GameData = gameData;
-        SaveGameData();
     }
     #endregion
 }

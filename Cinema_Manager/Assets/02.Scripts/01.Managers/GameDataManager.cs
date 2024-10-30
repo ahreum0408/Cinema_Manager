@@ -16,14 +16,15 @@ public class GameDataManager : MonoBehaviour {
 
     private void OnEnable() {
         LevelEvents.GameDataUpdatEvent += LevelDataUpdate;
-        MainEvents.GameDataUpdatEvent += MaineDataUpdate;
+        MainEvents.GameDataUpdatEvent += MainDataUpdate;
         SettingEvents.GameDataUpdatEvent += SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent += PlayerDataUpdate;
         MachineUpgradeEvents.GameDataUpdatEvent += MachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent += EmpolyeeDataUpdate;
     }
     private void OnDisable() {
-        MainEvents.GameDataUpdatEvent -= MaineDataUpdate;
+        LevelEvents.GameDataUpdatEvent -= LevelDataUpdate;
+        MainEvents.GameDataUpdatEvent -= MainDataUpdate;
         SettingEvents.GameDataUpdatEvent -= SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent -= PlayerDataUpdate;
         MachineUpgradeEvents.GameDataUpdatEvent -= MachineDataUpdate;
@@ -36,7 +37,7 @@ public class GameDataManager : MonoBehaviour {
 
         _gameData.allCheckPriceList = data.allCheckPriceList;
     }
-    private void MaineDataUpdate(GameData data) {
+    private void MainDataUpdate(GameData data) {
         if (data == null) {
             return;
         }
@@ -45,6 +46,7 @@ public class GameDataManager : MonoBehaviour {
         _gameData.gam = data.gam;
         _gameData.exp = data.exp;
         _gameData.level = data.level;
+
     }
     private void SettingDataUpdate(GameData data) {
         if (data == null) { 
@@ -62,6 +64,8 @@ public class GameDataManager : MonoBehaviour {
         _gameData.p_movespeedLevel = data.p_movespeedLevel;
         _gameData.p_volumeLevel = data.p_volumeLevel;
         _gameData.p_sellingcostLevel = data.p_sellingcostLevel;
+
+        PlayerUpgradeEvents.GameDataLoadEvent?.Invoke(data);
     }
     private void MachineDataUpdate(GameData data) {
         if(data == null) {

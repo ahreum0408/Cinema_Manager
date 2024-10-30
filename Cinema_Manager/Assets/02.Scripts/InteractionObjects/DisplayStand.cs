@@ -91,6 +91,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
         food.Take(_spawnTrmList[row], foodPos, Vector3.zero);
         _foodStack.Push(food);
+
         LevelEvents.ChangeDisplayStandEvent?.Invoke(this, _currentFoodCnt);
     }
 
@@ -199,14 +200,16 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            AddItemToStand();
+            AddItemToStand(1);
         }
     }
 
-    public void AddItemToStand()
+    public void AddItemToStand(int addItemCount = 1)
     {
-        GameObject go = PoolManager.Instance.Pop(_poolObjType.ToString(), transform);
-        if (go.TryGetComponent(out ITakeable takeable))
-            TakeFood(takeable);
+        for(int i = 0; i < addItemCount; i++) {
+            GameObject go = PoolManager.Instance.Pop(_poolObjType.ToString(), transform);
+            if (go.TryGetComponent(out ITakeable takeable))
+                TakeFood(takeable);
+        }
     }
 }
