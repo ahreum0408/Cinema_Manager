@@ -58,6 +58,7 @@ public class AgentStackComponent : AgentComponent
 
     public void TakeObject(ITakeable takeableObject, PoolableType type, float spacingY, bool isFood)
     {
+        Debug.Log("TakeObject");
         if (_currentHoldType == PoolableType.None)
             _currentHoldType = type;
 
@@ -66,11 +67,11 @@ public class AgentStackComponent : AgentComponent
         Vector3 rotation = isFood == true ? new Vector3(-90, 0, 0) : Vector3.zero;
         takeableObject.Take(_holderTransform, objectPosition, rotation);
 
-        // Stack에 쌓이는 소리
-        SoundManager.Instance.Play(AudioClips.Stack, 1 * CurrentStackCount, null, false);
-
         IsObJumped = false;
         _takeObjectStack.Push(takeableObject);
+
+        // Stack에 쌓이는 소리
+        SoundManager.Instance.Play(AudioClips.Stack, 1 * CurrentStackCount, null, false);
 
         if (IsStackMax)
             StartCoroutine(JumpWaitRoutine(spacingY));
