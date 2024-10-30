@@ -109,14 +109,15 @@ public class MachineUpgradeView : UIView {
         }
         _gameData = data;
 
-        for (int i = 0; i < 5; i++) {
-            if (_gameData.m_productionspeedLevel <= i) {
+        // gaugeÄÑ±â
+        for (int i = 4; i >= 0; i--) {
+            if (_gameData.m_productionspeedLevel > i) {
                 productionSpeedGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.m_volumeLevel <= i) {
+            if (_gameData.m_volumeLevel > i) {
                 volumeGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.m_storageLevel <= i) {
+            if (_gameData.m_storageLevel > i) {
                 storageGaugeList[i].RemoveFromClassList("off");
             }
         }

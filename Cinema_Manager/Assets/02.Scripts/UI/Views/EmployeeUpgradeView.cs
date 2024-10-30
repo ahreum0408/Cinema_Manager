@@ -110,14 +110,15 @@ public class EmployeeUpgradeView : UIView {
         }
         _gameData = data;
 
-        for (int i = 0; i < 5; i++) {
-            if (_gameData.e_movespeedLevel <= i) {
+        // gaugeÄÑ±â
+        for (int i = 4; i >= 0; i--) {
+            if (_gameData.e_movespeedLevel > i) {
                 moveSpeedGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.e_volumeLevel<= i) {
+            if (_gameData.e_volumeLevel > i) {
                 volumeGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.e_employmentLevel <= i) {
+            if (_gameData.e_employmentLevel > i) {
                 employmentGaugeList[i].RemoveFromClassList("off");
             }
         }

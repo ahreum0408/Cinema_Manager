@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UIToolkit;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 [Serializable]
@@ -106,14 +106,15 @@ public class PlayerUpgradeView : UIView {
         }
         _gameData = data;
 
-        for(int i = 0; i < 5; i++) {
-            if(_gameData.p_movespeedLevel <= i) {
+        // gaugeÄÑ±â
+        for (int i = 4; i >= 0; i--) {
+            if (_gameData.p_movespeedLevel > i) {
                 moveSpeedGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.p_volumeLevel <= i) {
+            if (_gameData.p_volumeLevel > i) {
                 volumeGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.p_sellingcostLevel <= i) {
+            if (_gameData.p_sellingcostLevel > i) {
                 sellingCostGaugeList[i].RemoveFromClassList("off");
             }
         }
