@@ -20,9 +20,9 @@ public class Table : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
+        _playerController = PlayerManager.Instance.PlayerController;
         _moneyDummy = transform.GetComponentInChildren<MoneyDummy>();
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
-        _playerController = FindObjectOfType<PlayerController>();
 
         points = GetComponentsInChildren<Point>().ToList();
     }

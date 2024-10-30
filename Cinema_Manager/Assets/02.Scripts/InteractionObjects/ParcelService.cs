@@ -41,8 +41,7 @@ public class ParcelService : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
-        // 플레이어 나중에 싱글톤으로 만들기
-        _playerController = FindObjectOfType<PlayerController>();
+        _playerController = PlayerManager.Instance.PlayerController;
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _boxStack = new Stack<ITakeable>();
     }
