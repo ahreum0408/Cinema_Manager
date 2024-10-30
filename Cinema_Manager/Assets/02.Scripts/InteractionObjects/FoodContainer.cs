@@ -7,9 +7,11 @@ using static AyunDefine;
 
 public class FoodContainer : MonoBehaviour, IIneractionable
 {
+    public Transform staffPoint;
+
     private Stack<ITakeable> _foodStack;
-    private int _currentFoodCnt => _foodStack.Count;
-    public bool IsStackMax => _currentFoodCnt >= _stackMaxCnt;
+    public int currentFoodCnt => _foodStack.Count;
+    public bool IsStackMax => currentFoodCnt >= _stackMaxCnt;
 
     [Header("Food")]
     [SerializeField] private Transform _spawnTrm;
@@ -33,8 +35,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
-        // 플레이어 나중에 싱글톤으로 만들기
-        _playerController = FindObjectOfType<PlayerController>();
+        _playerController = PlayerManager.Instance.PlayerController;
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _foodTruck = GetComponentInChildren<FoodTruck>();
         _foodStack = new Stack<ITakeable>();
@@ -64,11 +65,11 @@ public class FoodContainer : MonoBehaviour, IIneractionable
         {
             yield return new WaitUntil(() => false == IsStackMax);
 
-            int posInGroup = _currentFoodCnt % 4; // 0, 1, 2, 3 순서로 반복
+            int posInGroup = currentFoodCnt % 4; // 0, 1, 2, 3 순서로 반복
 
             float x = _spacingX * (posInGroup % 2 == 1 ? 1 : 0);
             float z = _spacingZ * (posInGroup < 2 ? 0 : -1);
-            float y = _spawnTrm.position.y + (_spacingY * (_currentFoodCnt / 4)); // 4개 마다 위로
+            float y = _spawnTrm.position.y + (_spacingY * (currentFoodCnt / 4)); // 4개 마다 위로
 
             Vector3 localPos = new Vector3(x, y, z);
             // 음료가 아니라면 90도 돌려서 배치
@@ -101,7 +102,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            if (_currentFoodCnt > 0)
+            if (currentFoodCnt > 0)
             {
                 ITakeable takeable = _foodStack.Peek();
 
@@ -114,4 +115,6 @@ public class FoodContainer : MonoBehaviour, IIneractionable
             yield return null;
         }
     }
+
+    public PoolableType GetPoolObjType() => _poolObjType;
 }

@@ -182,6 +182,7 @@ Transform:
   - {fileID: 7620314738672108553}
   - {fileID: 5179603545689731797}
   - {fileID: 6274478887657383833}
+  - {fileID: 351804794003088817}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &59369544612453181
@@ -196,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staffPoint: {fileID: 351804794003088817}
   points: []
   _poolObjType: 2
   _columnSpawnCnt: 7
@@ -254,6 +256,37 @@ Transform:
   - {fileID: 5472485643298612760}
   m_Father: {fileID: 4643892106907439371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4205388663729507623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 351804794003088817}
+  m_Layer: 6
+  m_Name: StaffPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &351804794003088817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4205388663729507623}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.01, y: 0, z: 4.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4643892106907439371}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4524533249628585827
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,6 +334,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!1 &5679324521775373660
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +382,7 @@ GameObject:
   - component: {fileID: 5705176886346786091}
   - component: {fileID: 2194104222691872109}
   - component: {fileID: 4638674150248203725}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -487,6 +522,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!1 &8474087763572463519
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +571,8 @@ MonoBehaviour:
   holder: {fileID: 0}
   IsUsing: 0
   IsDirty: 0
+  trash: {fileID: 0}
+  currentFoodType: 0
 --- !u!1001 &9124477645402937804
 PrefabInstance:
   m_ObjectHideFlags: 0

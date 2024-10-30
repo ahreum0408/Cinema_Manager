@@ -5,12 +5,16 @@ using UnityEngine;
 public class Counter : MonoBehaviour, IIneractionable
 {
     #region 서연
+    public Transform staffPoint;
+
     [SerializeField] private float lineInterval;
     public Transform checkPoint;
 
     public List<Customer> lineList = new List<Customer>();
 
     private bool isStart = true; // 첫 손님인가?
+
+    public bool IsInteraction => _isEnterInteraction;
     #endregion
 
     private bool _isEnterInteraction = false;

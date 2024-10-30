@@ -112,6 +112,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9144834413060282527}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3985769472348815380
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7807585955939921262}
+  m_Layer: 6
+  m_Name: StaffPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7807585955939921262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3985769472348815380}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.77, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8396176286718610024}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4169620963126056114
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,7 +324,7 @@ GameObject:
   - component: {fileID: 1814810324225175491}
   - component: {fileID: 1224347497014673501}
   - component: {fileID: 5840220792262157557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,6 +484,7 @@ Transform:
   - {fileID: 8054797755103824205}
   - {fileID: 7770079849750009302}
   - {fileID: 1665808363997753201}
+  - {fileID: 7807585955939921262}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2478624390872626095
@@ -467,6 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7644059d59bffe4fbce046b8efdde92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staffPoint: {fileID: 7807585955939921262}
   _spawnTrm: {fileID: 7770079849750009302}
   _poolObjType: 3
   _isFood: 1

@@ -14,7 +14,6 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
     private bool _isClearing = false;
 
     public Transform _playerTrm;
-    //private Transform _playerTrm;
     private PlayerController _playerController;
 
     private readonly Vector3 _moneyRotation = new Vector3(0, 90, 0);
@@ -28,8 +27,8 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
     {
         _moneyStack = new Stack<Money>();
 
-        //_playerTrm = transform.Find("Player").GetComponent<Transform>(); ³ªÁß¿¡ ½Ì±ÛÅæÀ¸·Î
-        _playerController = FindObjectOfType<PlayerController>();
+        _playerController = PlayerManager.Instance.PlayerController;
+        _playerTrm = PlayerManager.Instance.Transform;
     }
 
     public void EnterInteraction()

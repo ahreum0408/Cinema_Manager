@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,12 +14,12 @@ public class SoundObject : MonoBehaviour
         _audioSource.playOnAwake = false;
     }
 
-    public void PlayClip(AudioClip clip, float pitch, bool isLooping = false)
+    public void PlayClip(AudioClip clip, float pitch, bool isLooping = false, bool is3DSound = false)
     {
-        StartCoroutine(PlayClipCor(clip, pitch, isLooping));
+        StartCoroutine(PlayClipCor(clip, pitch, isLooping, is3DSound));
     }
 
-    private IEnumerator PlayClipCor(AudioClip clip, float pitch, bool isLooping)
+    private IEnumerator PlayClipCor(AudioClip clip, float pitch, bool isLooping, bool is3DSound)
     {
         _audioSource.Stop();
 
@@ -27,11 +28,17 @@ public class SoundObject : MonoBehaviour
         _audioSource.clip = clip;
         _audioSource.Play();
 
+        if (is3DSound) _audioSource.spatialBlend = 1f; // 3D 사운드로 전환
+
         if (_audioSource.loop == true)
             yield break;
         else
         {
-            yield return new WaitForSeconds(clip.length);
+            Debug.Log(clip.length);
+            yield return new WaitForSeconds(clip.length + 0.4f);
+
+            // Reset
+            if (is3DSound) _audioSource.spatialBlend = 0;
             PoolManager.Instance.Push(gameObject.name, gameObject);
         }
     }

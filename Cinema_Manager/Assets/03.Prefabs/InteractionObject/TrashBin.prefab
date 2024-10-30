@@ -118,7 +118,7 @@ GameObject:
   - component: {fileID: 8164935774856546943}
   - component: {fileID: 171481899044159016}
   - component: {fileID: 7008365675150257878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,6 +211,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.6500297, y: 2.2520735, z: 2.844803}
   m_Center: {x: 0.0000007748604, y: -1.126037, z: 1.4224015}
+--- !u!1 &2290940987318295513
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 230105593259483038}
+  m_Layer: 6
+  m_Name: StaffPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &230105593259483038
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2290940987318295513}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.36}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3351796316757212416}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3100969115830311220
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +276,7 @@ Transform:
   - {fileID: 8428942996026832680}
   - {fileID: 3070421462327983331}
   - {fileID: 5150813434538757672}
+  - {fileID: 230105593259483038}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &4500356624806205442
@@ -259,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d80e4456ecb1e549a6649705bbdbb6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staffPoint: {fileID: 230105593259483038}
   _trashContainerTrm: {fileID: 5150813434538757672}
 --- !u!1001 &4466506498814435622
 PrefabInstance:

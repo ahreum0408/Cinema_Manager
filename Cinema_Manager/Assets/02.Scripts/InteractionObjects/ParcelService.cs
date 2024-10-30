@@ -7,16 +7,21 @@ using static AyunDefine;
 public class ParcelService : MonoBehaviour, IIneractionable
 {
     #region 서연
+    public Transform staffPoint;
+
     [SerializeField] private float lineInterval;
     public Transform checkPoint;
 
     public List<Customer> lineList = new List<Customer>();
 
     private bool isStart = true; // 첫 손님인가?
+
+    public bool IsInteraction => _isEnterInteraction;
+
     #endregion
 
     private Stack<ITakeable> _boxStack;
-    private int _currentBoxCnt => _boxStack.Count;
+    public int CurrentBoxCnt => _boxStack.Count;
     public int StackMaxCnt => _stackMaxCnt;
 
     [Header("Box")]
@@ -36,8 +41,7 @@ public class ParcelService : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
-        // 플레이어 나중에 싱글톤으로 만들기
-        _playerController = FindObjectOfType<PlayerController>();
+        _playerController = PlayerManager.Instance.PlayerController;
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _boxStack = new Stack<ITakeable>();
     }
@@ -53,7 +57,7 @@ public class ParcelService : MonoBehaviour, IIneractionable
     // 스택이 다 찼는지 확인
     public bool BoxStackCheck()
     {
-        return _currentBoxCnt < _stackMaxCnt;
+        return CurrentBoxCnt < _stackMaxCnt;
     }
 
     // 택배 다 부치고 이거 실행
@@ -62,7 +66,7 @@ public class ParcelService : MonoBehaviour, IIneractionable
         if (false == BoxStackCheck()) return;
 
         Vector3 spawnPos = Vector3.zero;
-        spawnPos.y = _spacingY * _currentBoxCnt;
+        spawnPos.y = _spacingY * CurrentBoxCnt;
         GameObject go = PoolManager.Instance.Pop(_poolObjType.ToString(), _spawnTrm, spawnPos, Quaternion.Euler(0, 0, 0));
         _boxStack.Push(go.GetComponent<ITakeable>());
     }
@@ -84,7 +88,7 @@ public class ParcelService : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction)
         {
-            if (_currentBoxCnt > 0)
+            if (CurrentBoxCnt > 0)
             {
                 ITakeable takeable = _boxStack.Peek();
 

@@ -7,6 +7,8 @@ using static AyunDefine;
 
 public class Table : MonoBehaviour, IIneractionable
 {
+    public Transform staffPoint;
+
     public List<Point> points;
 
     private bool _isEnterInteraction = false;
@@ -18,9 +20,9 @@ public class Table : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
+        _playerController = PlayerManager.Instance.PlayerController;
         _moneyDummy = transform.GetComponentInChildren<MoneyDummy>();
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
-        _playerController = FindObjectOfType<PlayerController>();
 
         points = GetComponentsInChildren<Point>().ToList();
     }
@@ -53,6 +55,7 @@ public class Table : MonoBehaviour, IIneractionable
                             (points[i].trash.GetComponent<ITakeable>(), PoolableType.Trash, 0.01f, true);
 
                         points[i].ChangeDirtyState(false);
+                        points[i].trash = null;
 
                         yield return new WaitForSeconds(0.15f);
                     }
@@ -76,6 +79,18 @@ public class Table : MonoBehaviour, IIneractionable
         foreach (var chair in points)
         {
             if (!chair.IsUsing && !chair.IsDirty)
+            {
+                return chair;
+            }
+        }
+        return null;
+    }
+
+    public Point FindDirtyChair()
+    {
+        foreach (var chair in points)
+        {
+            if (chair.IsDirty && !chair.IsUsing)
             {
                 return chair;
             }

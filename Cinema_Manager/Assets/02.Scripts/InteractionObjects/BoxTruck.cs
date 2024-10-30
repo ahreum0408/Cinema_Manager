@@ -46,8 +46,8 @@ public class BoxTruck : MonoBehaviour
     public void GoWithBox()
     {
         // 트럭 출발 사운드
-        SoundManager.Instance.Play(AudioClips.TruckStart, 1, transform, false, true);
-        SoundManager.Instance.Play(AudioClips.TruckHorn, 1, transform, false, true);
+        SoundManager.Instance.Play(AudioClips.TruckStart, 1, _visualTrm, false, true);
+        SoundManager.Instance.Play(AudioClips.TruckHorn, 1, _visualTrm, false, true);
 
         _isWithBox = true;
         TruckMove(_startTrm.position, false);
@@ -70,7 +70,7 @@ public class BoxTruck : MonoBehaviour
                 if (isBringFood)
                 {
                     // 트럭 도착 사운드
-                    SoundManager.Instance.Play(AudioClips.TruckStop, 1, transform, false, true);
+                    SoundManager.Instance.Play(AudioClips.TruckStop, 1, _visualTrm, false, true);
 
                     OnTruckArrival?.Invoke();
                 }

@@ -3,6 +3,8 @@ using UnityEngine;
 using static AyunDefine;
 public class TrashBin : MonoBehaviour, IIneractionable
 {
+    public Transform staffPoint;
+
     [SerializeField] private Transform _trashContainerTrm; // 쓰레기가 이동해야할 위치
     private PoolableType _poolObjType = PoolableType.Trash;
 
@@ -13,8 +15,7 @@ public class TrashBin : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
-        // 플레이어 나중에 싱글톤으로 만들기
-        _playerController = FindObjectOfType<PlayerController>();
+        _playerController = PlayerManager.Instance.PlayerController;
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
     }
 
