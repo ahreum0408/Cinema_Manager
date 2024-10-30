@@ -5,6 +5,8 @@ using UnityEngine;
 public class Counter : MonoBehaviour, IIneractionable
 {
     #region ¼­¿¬
+    public Transform staffPoint;
+
     [SerializeField] private float lineInterval;
     public Transform checkPoint;
 

@@ -120,10 +120,18 @@ public class Customer : AgentController
     // 손님 원하는 물건
     public void SelectObjectType()
     {
-        int rand = Random.Range(1, 3);
-        customerData.objectType = (PoolableType)rand;
-        if(ObjectManager.Instance.FindDisplayStand(customerData.objectType).CanStandPoint() == null)
-            SelectObjectType();
+        while (true)
+        {
+            int rand = Random.Range(1, 3);
+            customerData.objectType = (PoolableType)rand;
+
+            DisplayStand stand = ObjectManager.Instance.FindDisplayStand(customerData.objectType);
+
+            if (stand != null && stand.CanStandPoint() != null)
+            {
+                break;
+            }
+        }
     }
 
     // 구매 수량

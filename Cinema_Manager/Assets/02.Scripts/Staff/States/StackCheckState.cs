@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-internal class CounterState : AgentState
+internal class StackCheckState : AgentState
 {
-    public CounterState(StaffController agent) : base(agent)
+    public StackCheckState(StaffController agent) : base(agent)
     {
     }
 
@@ -13,20 +13,11 @@ internal class CounterState : AgentState
 
     public override void Update()
     {
-        if (CheckCounter())
-        {
+        if(!agent.IsStacked)
             agent.ChangeState(new MoveToTargetState(agent, agent.restPos.position, new IdleState(agent)));
-        }
     }
 
     public override void Exit()
     {
-
-    }
-
-    private bool CheckCounter()
-    {
-        Counter counter = ObjectManager.Instance.counter;
-        return counter.lineList.Count == 0;
     }
 }

@@ -20,27 +20,29 @@ public class IdleState : AgentState
         {
             Debug.Log("1");
 
-            Vector3 tablePosition = agent.table.transform.position;
-            agent.ChangeState(new MoveToTargetState(agent, tablePosition, new CleanTableState(agent)));
+            Vector3 tablePos = agent.table.staffPoint.transform.position;
+            agent.ChangeState(new MoveToTargetState(agent, tablePos, new CleanTableState(agent)));
         }
-        //else if (CheckDisplay() != null)
-        //{
-        //    Debug.Log("2");
+        else if (CheckDisplay() != null)
+        {
+            Debug.Log("2");
 
-        //    agent.ChangeState(new MoveFoodState(agent));
-        //}
+            agent.foodContainer = FindFoodContainer();
+            agent.ChangeState(new MoveToTargetState
+                (agent, agent.foodContainer.staffPoint.transform.position, new MoveContainerState(agent)));
+        }
         else if (CheckCounter())
         {
             Debug.Log("3");
 
-            Vector3 counterPos = ObjectManager.Instance.counter.transform.position;
+            Vector3 counterPos = ObjectManager.Instance.counter.staffPoint.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, counterPos, new CounterState(agent)));
         }
         else if (CheckPackage())
         {
             Debug.Log("4");
 
-            Vector3 parcelPos = ObjectManager.Instance.parcelService.transform.position;
+            Vector3 parcelPos = ObjectManager.Instance.parcelService.staffPoint.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, parcelPos, new CounterState(agent)));
         }
     }
@@ -66,6 +68,16 @@ public class IdleState : AgentState
         {
             if (displayStand.CurrentLine > 0)
                 return displayStand;
+        }
+        return null;
+    }
+
+    private FoodContainer FindFoodContainer()
+    {
+        foreach(FoodContainer foodContainer in ObjectManager.Instance.foodContainers)
+        {
+            if(foodContainer.GetPoolObjType() == agent.displayStand.GetPoolObjType())
+                return foodContainer;
         }
         return null;
     }

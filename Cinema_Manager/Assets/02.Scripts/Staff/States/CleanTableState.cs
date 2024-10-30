@@ -7,7 +7,6 @@ public class CleanTableState : AgentState
 
     public override void Enter()
     {
-        Debug.Log("CleanTalble");
         agent.AnimationCompo.SetMovementAnimation(Vector3.zero);
     }
 
@@ -16,9 +15,9 @@ public class CleanTableState : AgentState
         if (IsCleaningComplete())
         {
             TrashBin trashBin = ObjectManager.Instance.trashBin;
-            Vector3 trashBinPos = trashBin.transform.position;
+            Vector3 trashBinPos = trashBin.staffPoint.transform.position;
 
-            agent.ChangeState(new MoveToTargetState(agent, trashBinPos, new IdleState(agent)));
+            agent.ChangeState(new MoveToTargetState(agent, trashBinPos, new StackCheckState(agent)));
         }
     }
 

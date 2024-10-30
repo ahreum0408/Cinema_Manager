@@ -7,6 +7,8 @@ using static AyunDefine;
 
 public class Table : MonoBehaviour, IIneractionable
 {
+    public Transform staffPoint;
+
     public List<Point> points;
 
     private bool _isEnterInteraction = false;

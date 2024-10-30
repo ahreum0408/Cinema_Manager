@@ -5,6 +5,8 @@ using static AyunDefine;
 
 public class BoxContainer : MonoBehaviour, IIneractionable
 {
+    public Transform staffPoint;
+
     private Stack<ITakeable> _boxStack;
     private int _currentBoxCnt => _boxStack.Count;
     public bool IsStackMax => _currentBoxCnt >= _stackMaxCnt;

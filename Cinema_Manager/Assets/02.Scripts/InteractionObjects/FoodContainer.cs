@@ -7,6 +7,8 @@ using static AyunDefine;
 
 public class FoodContainer : MonoBehaviour, IIneractionable
 {
+    public Transform staffPoint;
+
     private Stack<ITakeable> _foodStack;
     public int currentFoodCnt => _foodStack.Count;
     public bool IsStackMax => currentFoodCnt >= _stackMaxCnt;

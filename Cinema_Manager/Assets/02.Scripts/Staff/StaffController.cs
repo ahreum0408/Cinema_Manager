@@ -10,6 +10,7 @@ public class StaffController : AgentController
     // Object
     [HideInInspector] public Table table;
     [HideInInspector] public DisplayStand displayStand;
+    [HideInInspector] public FoodContainer foodContainer;
 
     public Transform restPos;
 

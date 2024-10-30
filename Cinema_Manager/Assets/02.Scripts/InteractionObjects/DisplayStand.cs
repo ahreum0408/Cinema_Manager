@@ -8,6 +8,8 @@ using static AyunDefine;
 
 public class DisplayStand : MonoBehaviour, IIneractionable
 {
+    public Transform staffPoint;
+
     private Stack<ITakeable> _foodStack;
     public int _currentFoodCnt => _foodStack.Count;
     public int StackMaxCnt => _spawnTrmList.Count * _columnSpawnCnt;
