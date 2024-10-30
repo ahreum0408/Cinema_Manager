@@ -22,6 +22,7 @@ public static class AyunDefine
         public static readonly AudioClip Money    = Resources.Load<AudioClip>("Sound/MoneySound");
         public static readonly AudioClip Stack    = Resources.Load<AudioClip>("Sound/StackSound");
         public static readonly AudioClip Trashcan = Resources.Load<AudioClip>("Sound/TrashcanSound");
+        public static readonly AudioClip BoxPacking = Resources.Load<AudioClip>("Sound/BoxPacking");
 
         // Truck
         public static readonly AudioClip TruckStart  = Resources.Load<AudioClip>("Sound/TruckStartSound");

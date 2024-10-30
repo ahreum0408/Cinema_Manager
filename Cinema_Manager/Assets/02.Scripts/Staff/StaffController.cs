@@ -28,10 +28,15 @@ public class StaffController : AgentController
     protected override void Init()
     {
         Animator = GetComponentInChildren<Animator>();
-
         Agent = GetComponent<NavMeshAgent>();
-        StackCompo = GetComponent<AgentStackComponent>();
-        AnimationCompo = GetComponent<AgentAnimationComponent>();
+    }
+
+    protected override void SetAgentComponents()
+    {
+        base.SetAgentComponents();
+
+        AnimationCompo = GetAgentComponent<AgentAnimationComponent>();
+        StackCompo = GetAgentComponent<AgentStackComponent>();
     }
 
     private void Start()
@@ -65,6 +70,14 @@ public class StaffController : AgentController
         StackCompo.TakeObject(takeable, type, spacingY, isFood);
     }
 
+    public bool CanTakeFood(PoolableType type)
+    {
+        bool isSameType = StackCompo.CurrentHoldType == PoolableType.None
+            || StackCompo.CurrentHoldType == type;
+
+        return isSameType && !StackCompo.IsStackMax;
+    }
+
     private ITakeable HandleGiveTakeable()
     {
         ITakeable takeable = StackCompo.GetTopObject();
@@ -73,6 +86,11 @@ public class StaffController : AgentController
             AnimationCompo.UpperHoldingAnimation(false);
 
         return takeable;
+    }
+
+    public bool CanGiveTakeable(PoolableType type)
+    {
+        return StackCompo.CurrentHoldType == type && IsStacked;
     }
     #endregion
 }

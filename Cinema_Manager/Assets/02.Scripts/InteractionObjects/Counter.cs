@@ -28,14 +28,14 @@ public class Counter : MonoBehaviour, IIneractionable
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
     }
 
-    public void EnterInteraction()
+    public void EnterInteraction(Collider collider)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
         StartCoroutine(CheckPayLoop());
     }
 
-    public void ExitInteraction()
+    public void ExitInteraction(Collider collider)
     {
         _isEnterInteraction = false;
         StopCoroutine(CheckPayLoop());

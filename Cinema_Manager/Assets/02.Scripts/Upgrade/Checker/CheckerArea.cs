@@ -9,8 +9,8 @@ public abstract class CheckerArea : MonoBehaviour, IIneractionable {
     protected int _minusCoin;
     protected bool _isCalaulate;
 
-    public abstract void EnterInteraction();
-    public abstract void ExitInteraction();
+    public abstract void EnterInteraction(Collider collider);
+    public abstract void ExitInteraction(Collider collider);
 
     protected void CalculateWeght() {
         _minusCoin = 1 * _calculateWeight;

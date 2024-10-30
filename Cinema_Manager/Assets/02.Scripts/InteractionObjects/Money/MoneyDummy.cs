@@ -31,17 +31,16 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
         _playerTrm = PlayerManager.Instance.Transform;
     }
 
-    public void EnterInteraction()
+    public void EnterInteraction(Collider collider)
     {
         if (_moneyAmount > 0 && false == _isClearing)
         {
             _playerController.OnGetPaid?.Invoke(_moneyAmount);
             StartCoroutine(ClearMoneyObject());
-            ClearMoneyObject();
         }
     }
 
-    public void ExitInteraction() { }
+    public void ExitInteraction(Collider collider) { }
 
     public IEnumerator ClearMoneyObject()
     {

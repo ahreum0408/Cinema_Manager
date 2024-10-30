@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static AyunDefine;
 
-public class PlayerInteractionTrigger : MonoBehaviour
+public class AgentInteractionTrigger : MonoBehaviour
 {
     private IIneractionable _currentInteractionObject;
 
@@ -19,7 +19,7 @@ public class PlayerInteractionTrigger : MonoBehaviour
             if (other.transform.parent.TryGetComponent(out IIneractionable interactionObject))
             {
                 _currentInteractionObject = interactionObject;
-                _currentInteractionObject.EnterInteraction();
+                _currentInteractionObject.EnterInteraction(other);
             }
         }
     }
@@ -33,7 +33,7 @@ public class PlayerInteractionTrigger : MonoBehaviour
                 if (other.transform.parent.TryGetComponent(out IIneractionable interactionObject))
                 {
                     _currentInteractionObject = interactionObject;
-                    _currentInteractionObject.EnterInteraction();
+                    _currentInteractionObject.EnterInteraction(other);
                 }
             }
         }
@@ -43,7 +43,7 @@ public class PlayerInteractionTrigger : MonoBehaviour
     {
         if (_currentInteractionObject != null)
         {
-            _currentInteractionObject.ExitInteraction();
+            _currentInteractionObject.ExitInteraction(other);
         }
 
         _currentInteractionObject = null;
