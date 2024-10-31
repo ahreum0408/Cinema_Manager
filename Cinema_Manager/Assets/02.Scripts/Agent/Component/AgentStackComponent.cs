@@ -48,10 +48,7 @@ public class AgentStackComponent : AgentComponent
 
     public void SetMaxStackCount(int maxStackCount)
     {
-        if (false == IsStacked)
-        {
-            _maxStackCount = maxStackCount;
-        }
+        _maxStackCount = maxStackCount;
     }
 
     public void TakeObject(ITakeable takeableObject, PoolableType type, float spacingY, bool isFood)

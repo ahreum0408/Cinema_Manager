@@ -70,30 +70,30 @@ public class TruckMachineUpgradeView : UIView {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
                 _gameData.mt_productionspeedLevel++;
+                TruckMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
         }
-        TruckMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickVolumeBtn(ClickEvent evt) {
         foreach (VisualElement gauge in volumeGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_volumeLevel++;
+                TruckMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
         }
-        TruckMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickStorageBtn(ClickEvent evt) {
         foreach (VisualElement gauge in storageGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
                 _gameData.mt_storageLevel++;
+                TruckMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
         }
-        TruckMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 
     private void ClickCloseBtn(ClickEvent evt) {

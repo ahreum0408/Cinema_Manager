@@ -64,10 +64,10 @@ namespace UIToolkit {
                 if (gauge.ClassListContains("off")) {
                     gauge.RemoveFromClassList("off");
                     _gameData.mp_packingspeedLevel++;
+                    PackageMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                     return;
                 }
             }
-            PackageMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
         }
 
         private void ClickVolumeBtn(ClickEvent evt) {
@@ -75,10 +75,10 @@ namespace UIToolkit {
                 if (gauge.ClassListContains("off")) {
                     gauge.RemoveFromClassList("off");
                     _gameData.mp_volumeLevel++;
+                    PackageMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                     return;
                 }
             }
-            PackageMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
         }
         #endregion
 

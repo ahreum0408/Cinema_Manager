@@ -19,7 +19,8 @@ public class GameDataManager : MonoBehaviour {
         MainEvents.GameDataUpdatEvent += MainDataUpdate;
         SettingEvents.GameDataUpdatEvent += SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent += PlayerDataUpdate;
-        TruckMachineUpgradeEvents.GameDataUpdatEvent += MachineDataUpdate;
+        TruckMachineUpgradeEvents.GameDataUpdatEvent += TruckMachineDataUpdate;
+        PackageMachineUpgradeEvents.GameDataUpdatEvent += PackageMachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent += EmpolyeeDataUpdate;
     }
     private void OnDisable() {
@@ -27,7 +28,8 @@ public class GameDataManager : MonoBehaviour {
         MainEvents.GameDataUpdatEvent -= MainDataUpdate;
         SettingEvents.GameDataUpdatEvent -= SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent -= PlayerDataUpdate;
-        TruckMachineUpgradeEvents.GameDataUpdatEvent -= MachineDataUpdate;
+        TruckMachineUpgradeEvents.GameDataUpdatEvent -= TruckMachineDataUpdate;
+        PackageMachineUpgradeEvents.GameDataUpdatEvent -= PackageMachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent -= EmpolyeeDataUpdate;
     }
     private void LevelDataUpdate(GameData data) {
@@ -64,11 +66,9 @@ public class GameDataManager : MonoBehaviour {
         _gameData.p_movespeedLevel = data.p_movespeedLevel;
         _gameData.p_volumeLevel = data.p_volumeLevel;
         _gameData.p_sellingcostLevel = data.p_sellingcostLevel;
-
         UpgradeEvents.ChangePlayerDataEvent?.Invoke(_gameData);
-        PlayerUpgradeEvents.GameDataLoadEvent?.Invoke(data); // << 이거 필요한건가? 확인 해야함
     }
-    private void MachineDataUpdate(GameData data) {
+    private void TruckMachineDataUpdate(GameData data) {
         if(data == null) {
             return;
         }
@@ -76,6 +76,14 @@ public class GameDataManager : MonoBehaviour {
         _gameData.mt_productionspeedLevel = data.mt_productionspeedLevel;
         _gameData.mt_volumeLevel = data.mt_volumeLevel;
         _gameData.mt_storageLevel = data.mt_storageLevel;
+    }
+    private void PackageMachineDataUpdate(GameData data) {
+        if (data == null) {
+            return;
+        }
+
+        _gameData.mp_packingspeedLevel = data.mp_packingspeedLevel;
+        _gameData.mp_volumeLevel = data.mp_volumeLevel;
     }
     private void EmpolyeeDataUpdate(GameData data) {
         if (data == null) {

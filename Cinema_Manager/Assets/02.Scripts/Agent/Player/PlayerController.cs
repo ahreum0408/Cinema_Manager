@@ -31,6 +31,8 @@ public class PlayerController : AgentController
 
     public Action<bool> OnStackMaxed;
 
+    private float _sellingCostWeigth;
+
     // UnityEvents
     //public UnityEvent<bool> OnStackMaxed;
 
@@ -79,8 +81,6 @@ public class PlayerController : AgentController
         OnStackMaxed -= HandleStackMaxed;
     }
     #endregion
-
-
     #region Handle
     private void HandleInputVaueChanged()
     {
@@ -166,4 +166,12 @@ public class PlayerController : AgentController
         return 0;
     }
     #endregion
+    public void SetPlayerStat(float weight, int speed, int stack) {
+        SetSellingCost(weight);
+        _agentMovement.SetMoveSpeed(speed);
+        _stackComponent.SetMaxStackCount(stack);
+    }
+    private void SetSellingCost(float weight) {
+        _sellingCostWeigth = weight;
+    }
 }

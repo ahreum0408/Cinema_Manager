@@ -71,30 +71,30 @@ public class EmployeeUpgradeView : UIView {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_movespeedLevel++;
+                EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
         }
-        EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickVolumeBtn(ClickEvent evt) {
         foreach (VisualElement gauge in volumeGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_volumeLevel++;
+                EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
         }
-        EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickEmploymentBtn(ClickEvent evt) {
         foreach (VisualElement gauge in employmentGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_employmentLevel++;
+                EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
         }
-        EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 
     private void ClickCloseBtn(ClickEvent evt) {
