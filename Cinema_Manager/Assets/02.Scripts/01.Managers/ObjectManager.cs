@@ -37,6 +37,16 @@ public class ObjectManager : MonoSingleton<ObjectManager>
         return null;
     }
 
+    public bool CanUseDisplayStand()
+    {
+        foreach(var stand in displayStands)
+        {
+            if (stand.CanStandPoint() != null)
+                return true;
+        }
+        return false;
+    }
+
     // 사용 가능한 테이블 체크
     public Table CanUseTable()
     {

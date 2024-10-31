@@ -33,7 +33,9 @@ public class UpgradeManager : MonoBehaviour {
             return;
         }
         _gameData = data;
+
         SettingPlayerStat();
+        SettingEmployeeStat();
     }
     private void PlayerDataChange(GameData data) {
         if (data == null) {
@@ -49,12 +51,21 @@ public class UpgradeManager : MonoBehaviour {
         }
         _gameData = data;
 
-        // 직원 전체에 접근해서 각각의 값에 data에 따른 각 스텟 넣어주기
+        SettingEmployeeStat();
     }
     private void SettingPlayerStat() {
         float costWeight = playerSellingcostStat[_gameData.p_sellingcostLevel];
         int speed = playerMoveSpeedStat[_gameData.p_movespeedLevel];
         int stack = playerVolumeStat[_gameData.p_volumeLevel];
+
         _player.SetPlayerStat(costWeight, speed, stack);
+    }
+
+    private void SettingEmployeeStat() {
+        int speed = employeeMoveSpeedStat[_gameData.e_movespeedLevel];
+        int stack = employeeVolumeStat[_gameData.e_volumeLevel];
+        int employeeCount = employeeAddStat[_gameData.e_employmentLevel];
+
+        StaffManager.Instance.SetStaffStat(speed, stack, employeeCount);
     }
 }
