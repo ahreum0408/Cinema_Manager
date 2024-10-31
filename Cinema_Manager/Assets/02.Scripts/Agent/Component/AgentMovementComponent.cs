@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AgentMovementComponent : AgentComponent
 {
@@ -38,7 +39,8 @@ public class AgentMovementComponent : AgentComponent
         {
             _rigidbody.velocity = Vector3.zero;
         }
-        moveVelocity = velocity;
+
+        moveVelocity = Quaternion.Euler(0, -45f, 0) * velocity;
     }
 
     private void Move()

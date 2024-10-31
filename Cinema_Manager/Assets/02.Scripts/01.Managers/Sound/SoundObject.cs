@@ -34,7 +34,6 @@ public class SoundObject : MonoBehaviour
             yield break;
         else
         {
-            Debug.Log(clip.length);
             yield return new WaitForSeconds(clip.length + 0.4f);
 
             // Reset
