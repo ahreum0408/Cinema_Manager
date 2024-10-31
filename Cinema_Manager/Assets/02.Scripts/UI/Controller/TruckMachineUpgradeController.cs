@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MachineUpgradeController : MonoBehaviour {
+public class TruckMachineUpgradeController : MonoBehaviour {
     private void OnEnable() {
         SaveManager.GameDataLoadedEvent += GameDataLoad;
     }
@@ -14,6 +14,6 @@ public class MachineUpgradeController : MonoBehaviour {
             return;
         }
 
-        MachineUpgradeEvents.GameDataLoadEvent?.Invoke(data);
+        TruckMachineUpgradeEvents.GameDataLoadEvent?.Invoke(data);
     }
 }

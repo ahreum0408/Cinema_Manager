@@ -3,7 +3,8 @@
     <ui:Template name="SettingView" src="project://database/Assets/09.UI/Views/SettingView.uxml?fileID=9197481963319205126&amp;guid=52527d9f8b8cafb45a11f6c15f989ab9&amp;type=3#SettingView" />
     <ui:Template name="UpgradeView" src="project://database/Assets/09.UI/Views/EmployeeUpgradeView.uxml?fileID=9197481963319205126&amp;guid=f02e00203e26b314d9817ccdc9de8c7c&amp;type=3#EmployeeUpgradeView" />
     <ui:Template name="PlayerUpgradeView" src="project://database/Assets/09.UI/Views/PlayerUpgradeView.uxml?fileID=9197481963319205126&amp;guid=1186a4819c2bf4a48bba9e729474c0d8&amp;type=3#PlayerUpgradeView" />
-    <ui:Template name="MachineUpgradeView" src="project://database/Assets/09.UI/Views/MachineUpgradeView.uxml?fileID=9197481963319205126&amp;guid=649c349ba6e0296439f418d345f53114&amp;type=3#MachineUpgradeView" />
+    <ui:Template name="TruckMachineUpgradeView" src="project://database/Assets/09.UI/Views/TruckMachineUpgradeView.uxml?fileID=9197481963319205126&amp;guid=649c349ba6e0296439f418d345f53114&amp;type=3#TruckMachineUpgradeView" />
+    <ui:Template name="PackageMachineUpgradeView" src="project://database/Assets/09.UI/Views/PackageMachineUpgradeView.uxml?fileID=9197481963319205126&amp;guid=7e82b3077fff73b43829a06c1759f288&amp;type=3#PackageMachineUpgradeView" />
     <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/09.UI/USS/Main_USS.uss?fileID=7433441132597879392&amp;guid=ac0eb11ece132c14c8283d2efee773c1&amp;type=3#Main_USS" />
     <Style src="project://database/Assets/09.UI/USS/Setting_USS.uss?fileID=7433441132597879392&amp;guid=3e9fde11ccb9f9a4f8fa7fbfaa0ea2b1&amp;type=3#Setting_USS" />
@@ -11,5 +12,6 @@
     <ui:Instance template="SettingView" name="SettingView" style="width: 100%; align-items: center; justify-content: center; display: none; position: absolute; height: 100%;" />
     <ui:Instance template="UpgradeView" name="EmployeeUpgradeView" style="display: none; position: absolute; height: 100%; width: 100%;" />
     <ui:Instance template="PlayerUpgradeView" name="PlayerUpgradeView" style="display: none; width: 100%; height: 100%; position: absolute;" />
-    <ui:Instance template="MachineUpgradeView" name="MachineUpgradeView" style="display: none; width: 100%; height: 100%;" />
+    <ui:Instance template="TruckMachineUpgradeView" name="TruckMachineUpgradeView" style="position: absolute; width: 100%; height: 100%; display: none;" />
+    <ui:Instance template="PackageMachineUpgradeView" name="PackageMachineUpgradeView" style="position: absolute; width: 100%; height: 100%; display: none;" />
 </ui:UXML>

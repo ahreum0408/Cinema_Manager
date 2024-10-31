@@ -26,7 +26,6 @@
 .upgrade-content {
     align-items: center;
     justify-content: center;
-    height: 90%;
 }
 
 .upgrade-panel {

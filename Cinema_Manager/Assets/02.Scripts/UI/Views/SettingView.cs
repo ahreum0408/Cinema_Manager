@@ -11,8 +11,6 @@ public class SettingView : UIView {
 
     private Button _closeBtn;
 
-    private GameData _gameData;
-
     public SettingView(VisualElement topElement) : base(topElement) {
         SettingEvents.GameDataLoadEvent += GameDataLoad;
     }

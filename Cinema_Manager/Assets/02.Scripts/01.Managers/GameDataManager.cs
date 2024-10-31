@@ -19,7 +19,7 @@ public class GameDataManager : MonoBehaviour {
         MainEvents.GameDataUpdatEvent += MainDataUpdate;
         SettingEvents.GameDataUpdatEvent += SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent += PlayerDataUpdate;
-        MachineUpgradeEvents.GameDataUpdatEvent += MachineDataUpdate;
+        TruckMachineUpgradeEvents.GameDataUpdatEvent += MachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent += EmpolyeeDataUpdate;
     }
     private void OnDisable() {
@@ -27,7 +27,7 @@ public class GameDataManager : MonoBehaviour {
         MainEvents.GameDataUpdatEvent -= MainDataUpdate;
         SettingEvents.GameDataUpdatEvent -= SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent -= PlayerDataUpdate;
-        MachineUpgradeEvents.GameDataUpdatEvent -= MachineDataUpdate;
+        TruckMachineUpgradeEvents.GameDataUpdatEvent -= MachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent -= EmpolyeeDataUpdate;
     }
     private void LevelDataUpdate(GameData data) {
@@ -73,9 +73,9 @@ public class GameDataManager : MonoBehaviour {
             return;
         }
 
-        _gameData.m_productionspeedLevel = data.m_productionspeedLevel;
-        _gameData.m_volumeLevel = data.m_volumeLevel;
-        _gameData.m_storageLevel = data.m_storageLevel;
+        _gameData.mt_productionspeedLevel = data.mt_productionspeedLevel;
+        _gameData.mt_volumeLevel = data.mt_volumeLevel;
+        _gameData.mt_storageLevel = data.mt_storageLevel;
     }
     private void EmpolyeeDataUpdate(GameData data) {
         if (data == null) {

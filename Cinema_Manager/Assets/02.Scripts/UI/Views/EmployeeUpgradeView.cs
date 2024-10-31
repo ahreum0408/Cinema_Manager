@@ -17,8 +17,6 @@ public class EmployeeUpgradeView : UIView {
     private List<VisualElement> volumeGaugeList;
     private List<VisualElement> employmentGaugeList;
 
-    private GameData _gameData;
-
     public EmployeeUpgradeView(VisualElement topElement) : base(topElement) {
         EmployeeUpgradeEvents.GameDataLoadEvent += GameDataLoad;
     }

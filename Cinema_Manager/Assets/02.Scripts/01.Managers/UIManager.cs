@@ -5,32 +5,33 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour {
-    UIDocument _uiDocument;
+    private UIDocument _uiDocument;
 
-    UIView _currentView; // 현재뷰
-    UIView _previousView; // 이전뷰
+    private UIView _currentView; // 현재뷰
+    private UIView _previousView; // 이전뷰
 
-    List<UIView> _allViews = new List<UIView>();
+    private List<UIView> _allViews = new List<UIView>();
 
     // 
-    UIView _mainView;
-    UIView _settingView;
-    UIView _employeeUpgradeView;
-    UIView _playerUpgradeView;
-    UIView _machineUpgradeView;
+    private UIView _mainView;
+    private UIView _settingView;
+    private UIView _employeeUpgradeView;
+    private UIView _playerUpgradeView;
+    private UIView _truckMachineUpgradeView;
+    private UIView _packageMachineUpgradeView;
 
 
     public const string mainViewName = "MainView";
     public const string settingViewName = "SettingView";
     public const string upgradeEmployeeViewName = "EmployeeUpgradeView";
     public const string upgradePlayerViewName = "PlayerUpgradeView";
-    public const string upgradeMachineViewName = "MachineUpgradeView";
+    public const string upgradeTruckMachineViewName = "TruckMachineUpgradeView";
+    public const string upgradePackageMachineViewName = "PackageMachineUpgradeView";
 
     void OnEnable() {
         _uiDocument = GetComponent<UIDocument>();
 
         SetupViews();
-
         RegisterToEvents();
 
         // Start with the home screen
@@ -51,13 +52,15 @@ public class UIManager : MonoBehaviour {
         _settingView = new SettingView(root.Q<VisualElement>(settingViewName)); // Landing modal screen
         _employeeUpgradeView = new EmployeeUpgradeView(root.Q<VisualElement>(upgradeEmployeeViewName)); // Landing modal screen
         _playerUpgradeView = new PlayerUpgradeView(root.Q<VisualElement>(upgradePlayerViewName)); // Landing modal screen
-        _machineUpgradeView = new MachineUpgradeView(root.Q<VisualElement>(upgradeMachineViewName)); // Landing modal screen
+        _truckMachineUpgradeView = new TruckMachineUpgradeView(root.Q<VisualElement>(upgradeTruckMachineViewName)); // Landing modal screen
+        _packageMachineUpgradeView = new PackageMachineUpgradeView(root.Q<VisualElement>(upgradePackageMachineViewName)); // Landing modal screen
 
         _allViews.Add(_mainView);
         _allViews.Add(_settingView);
         _allViews.Add(_employeeUpgradeView);
         _allViews.Add(_playerUpgradeView);
-        _allViews.Add(_machineUpgradeView);
+        _allViews.Add(_truckMachineUpgradeView);
+        _allViews.Add(_packageMachineUpgradeView);
 
         _mainView.Show();
     }
@@ -86,7 +89,8 @@ public class UIManager : MonoBehaviour {
         MainEvents.SettingViewShow += ShowSettingView;
         MainEvents.PlayerUpgradeViewShow += ShowPlayerView;
         MainEvents.EmployeeUpgradeViewShow += ShowEmployeeUpgradeView;
-        MainEvents.MachineUpgradeViewShow += ShowMachineUpgradeView;
+        MainEvents.TruckMachineUpgradeViewShow += ShowTruckMachineUpgradeView;
+        MainEvents.PackageMachineUpgradeViewShow += ShowPackageMachineUpgradeView;
 
         MainEvents.CloseCurrentEvent += CloseCurrentView;
     }
@@ -95,7 +99,8 @@ public class UIManager : MonoBehaviour {
         MainEvents.SettingViewShow -= ShowSettingView;
         MainEvents.PlayerUpgradeViewShow -= ShowPlayerView;
         MainEvents.EmployeeUpgradeViewShow -= ShowEmployeeUpgradeView;
-        MainEvents.MachineUpgradeViewShow -= ShowMachineUpgradeView;
+        MainEvents.TruckMachineUpgradeViewShow -= ShowTruckMachineUpgradeView;
+        MainEvents.PackageMachineUpgradeViewShow -= ShowPackageMachineUpgradeView;
 
         MainEvents.CloseCurrentEvent += CloseCurrentView;
     }
@@ -113,8 +118,11 @@ public class UIManager : MonoBehaviour {
     private void ShowEmployeeUpgradeView() {
         ChangeShowView(_employeeUpgradeView);
     }
-    private void ShowMachineUpgradeView() {
-        ChangeShowView(_machineUpgradeView);
+    private void ShowTruckMachineUpgradeView() {
+        ChangeShowView(_truckMachineUpgradeView);
+    }
+    private void ShowPackageMachineUpgradeView() {
+        ChangeShowView(_packageMachineUpgradeView);
     }
     #endregion
 }

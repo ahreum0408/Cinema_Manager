@@ -16,8 +16,11 @@ public class UpgradeChecker : CheckerArea {
             case UpgradeViewType.EmployeeUpgradeView:
                 MainEvents.EmployeeUpgradeViewShow?.Invoke();
                 break;
-            case UpgradeViewType.MachineUpgradeView:
-                MainEvents.MachineUpgradeViewShow?.Invoke();
+            case UpgradeViewType.TruckMachineUpgradeView:
+                MainEvents.TruckMachineUpgradeViewShow?.Invoke();
+                break;
+            case UpgradeViewType.PackageMachineUpgradeView:
+                MainEvents.PackageMachineUpgradeViewShow?.Invoke();
                 break;
             default:
                 Debug.LogWarning("지금 들어온 type은 띄우지 못하는 view이거나 case를 추가하지 않음");

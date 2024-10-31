@@ -16,8 +16,6 @@ public class PlayerUpgradeView : UIView {
     private List<VisualElement> volumeGaugeList;
     private List<VisualElement> sellingCostGaugeList;
 
-    private GameData _gameData;
-
     public PlayerUpgradeView(VisualElement topElement) : base(topElement) {
         PlayerUpgradeEvents.GameDataLoadEvent += GameDataLoad;
     }
