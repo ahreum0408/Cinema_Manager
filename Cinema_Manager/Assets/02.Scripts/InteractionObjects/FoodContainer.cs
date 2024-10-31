@@ -77,21 +77,21 @@ public class FoodContainer : MonoBehaviour, IIneractionable
         _foodTruck.GoTakeFood();
     }
 
-    public void EnterInteraction(Collider collider)
+    public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(GetFoodRoutine(collider));
+        StartCoroutine(GetFoodRoutine(agent));
     }
 
-    public void ExitInteraction(Collider collider)
+    public void ExitInteraction(AgentController agent)
     {
         _isEnterInteraction = false;
-        StopCoroutine(GetFoodRoutine(collider));
+        StopCoroutine(GetFoodRoutine(agent));
         _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
-    private IEnumerator GetFoodRoutine(Collider collider)
+    private IEnumerator GetFoodRoutine(AgentController agent)
     {
         while (_isEnterInteraction)
         {
@@ -99,23 +99,10 @@ public class FoodContainer : MonoBehaviour, IIneractionable
             {
                 ITakeable takeable = _foodStack.Peek();
 
-                // Player
-                if (collider.TryGetComponent(out PlayerController player))
+                if (agent.CanGiveTakeable(_poolObjType))
                 {
-                    if (player.CanGiveTakeable(_poolObjType))
-                    {
-                        player.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
-                        yield return new WaitForSeconds(0.15f);
-                    }
-                }
-                // Staff
-                else if (collider.TryGetComponent(out StaffController staff))
-                {
-                    if (staff.CanGiveTakeable(_poolObjType))
-                    {
-                        staff.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
-                        yield return new WaitForSeconds(0.15f);
-                    }
+                    agent.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
+                    yield return new WaitForSeconds(0.15f);
                 }
             }
             yield return null;
