@@ -149,7 +149,7 @@ public class PlayerController : AgentController
     private void HandleOnGetPaid(int moneyAmount)
     {
         // 돈 받았을 때 이벤트 처리 해주기
-        CoinManager.Instance.Coin += moneyAmount;
+        CoinManager.Instance.Coin += (int)(moneyAmount * _sellingCostWeigth);
 
         // Sound
         SoundManager.Instance.Play(AudioClips.Money, 1, null, false);
