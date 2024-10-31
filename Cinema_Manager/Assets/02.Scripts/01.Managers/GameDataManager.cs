@@ -19,7 +19,8 @@ public class GameDataManager : MonoBehaviour {
         MainEvents.GameDataUpdatEvent += MainDataUpdate;
         SettingEvents.GameDataUpdatEvent += SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent += PlayerDataUpdate;
-        MachineUpgradeEvents.GameDataUpdatEvent += MachineDataUpdate;
+        TruckMachineUpgradeEvents.GameDataUpdatEvent += TruckMachineDataUpdate;
+        PackageMachineUpgradeEvents.GameDataUpdatEvent += PackageMachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent += EmpolyeeDataUpdate;
     }
     private void OnDisable() {
@@ -27,7 +28,8 @@ public class GameDataManager : MonoBehaviour {
         MainEvents.GameDataUpdatEvent -= MainDataUpdate;
         SettingEvents.GameDataUpdatEvent -= SettingDataUpdate;
         PlayerUpgradeEvents.GameDataUpdatEvent -= PlayerDataUpdate;
-        MachineUpgradeEvents.GameDataUpdatEvent -= MachineDataUpdate;
+        TruckMachineUpgradeEvents.GameDataUpdatEvent -= TruckMachineDataUpdate;
+        PackageMachineUpgradeEvents.GameDataUpdatEvent -= PackageMachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent -= EmpolyeeDataUpdate;
     }
     private void LevelDataUpdate(GameData data) {
@@ -64,17 +66,24 @@ public class GameDataManager : MonoBehaviour {
         _gameData.p_movespeedLevel = data.p_movespeedLevel;
         _gameData.p_volumeLevel = data.p_volumeLevel;
         _gameData.p_sellingcostLevel = data.p_sellingcostLevel;
-
-        PlayerUpgradeEvents.GameDataLoadEvent?.Invoke(data);
+        UpgradeEvents.ChangePlayerDataEvent?.Invoke(_gameData);
     }
-    private void MachineDataUpdate(GameData data) {
+    private void TruckMachineDataUpdate(GameData data) {
         if(data == null) {
             return;
         }
 
-        _gameData.m_productionspeedLevel = data.m_productionspeedLevel;
-        _gameData.m_volumeLevel = data.m_volumeLevel;
-        _gameData.m_storageLevel = data.m_storageLevel;
+        _gameData.mt_productionspeedLevel = data.mt_productionspeedLevel;
+        _gameData.mt_volumeLevel = data.mt_volumeLevel;
+        _gameData.mt_storageLevel = data.mt_storageLevel;
+    }
+    private void PackageMachineDataUpdate(GameData data) {
+        if (data == null) {
+            return;
+        }
+
+        _gameData.mp_packingspeedLevel = data.mp_packingspeedLevel;
+        _gameData.mp_volumeLevel = data.mp_volumeLevel;
     }
     private void EmpolyeeDataUpdate(GameData data) {
         if (data == null) {
@@ -84,5 +93,7 @@ public class GameDataManager : MonoBehaviour {
         _gameData.e_movespeedLevel = data.e_movespeedLevel;
         _gameData.e_volumeLevel = data.e_volumeLevel;
         _gameData.e_employmentLevel = data.e_employmentLevel;
+
+        UpgradeEvents.ChangeEmployeeDataEvent?.Invoke(_gameData);
     }
 }

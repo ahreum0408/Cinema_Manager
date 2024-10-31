@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AgentMovementComponent : AgentComponent
 {
@@ -32,13 +33,12 @@ public class AgentMovementComponent : AgentComponent
         }
     }
 
-    public void SetVelocity(Vector3 velocity)
-    {
-        if (velocity == Vector3.zero)
-        {
+    public void SetVelocity(Vector3 velocity) {
+        if (velocity == Vector3.zero) {
             _rigidbody.velocity = Vector3.zero;
         }
-        moveVelocity = velocity;
+
+        moveVelocity = Quaternion.Euler(0, -45f, 0) * velocity;
     }
 
     private void Move()
@@ -52,5 +52,8 @@ public class AgentMovementComponent : AgentComponent
         Quaternion dirQuat = Quaternion.LookRotation(moveVelocity);
         Quaternion moveQuat = Quaternion.Slerp(_rigidbody.rotation, dirQuat, rotateSpeed * Time.fixedDeltaTime);
         _rigidbody.MoveRotation(moveQuat);
+    }
+    public void SetMoveSpeed(int speed) {
+        moveSpeed = speed;
     }
 }

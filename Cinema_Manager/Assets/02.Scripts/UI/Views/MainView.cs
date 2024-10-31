@@ -12,9 +12,6 @@ public class MainView : UIView {
     private ProgressBar _levelBar;
     private Label _levelTxt;
 
-    private GameData _gameData;
-
-
     public MainView(VisualElement topElement) : base(topElement) {
         MainEvents.GameDataLoadEvent += GameDataLoad;
 

@@ -16,8 +16,6 @@ public class PlayerUpgradeView : UIView {
     private List<VisualElement> volumeGaugeList;
     private List<VisualElement> sellingCostGaugeList;
 
-    private GameData _gameData;
-
     public PlayerUpgradeView(VisualElement topElement) : base(topElement) {
         PlayerUpgradeEvents.GameDataLoadEvent += GameDataLoad;
     }
@@ -69,30 +67,31 @@ public class PlayerUpgradeView : UIView {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
                 _gameData.p_movespeedLevel++;
+                PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
         }
-        PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
+        Debug.Log("change data");
     }
     private void ClickVolumeBtn(ClickEvent evt) {
         foreach (VisualElement gauge in volumeGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
                 _gameData.p_volumeLevel++;
+                PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
         }
-        PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickSellingCostBtn(ClickEvent evt) {
         foreach (VisualElement gauge in sellingCostGaugeList) {
             if (gauge.ClassListContains("off")) {
                 gauge.RemoveFromClassList("off");
                 _gameData.p_sellingcostLevel++;
+                PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
         }
-        PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 
     private void ClickCloseBtn(ClickEvent evt) {

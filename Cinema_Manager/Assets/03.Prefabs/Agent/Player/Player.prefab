@@ -1888,6 +1888,7 @@ GameObject:
   - component: {fileID: 773058961574668392}
   - component: {fileID: 3613467518855992434}
   - component: {fileID: 7321037297886936081}
+  - component: {fileID: 5012610166141159223}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2027,10 +2028,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _holderTransform: {fileID: 3267233100469027014}
-  _spacingY: 0.2
-  SpacingY: 0.4
-  _maxStackCount: 4
+  _maxStackCount: 8
   IsObJumped: 0
+--- !u!81 &5012610166141159223
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509899670829021156}
+  m_Enabled: 1
 --- !u!1 &6564513769684870590
 GameObject:
   m_ObjectHideFlags: 0

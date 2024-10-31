@@ -31,6 +31,8 @@ public class PlayerController : AgentController
 
     public Action<bool> OnStackMaxed;
 
+    private float _sellingCostWeigth;
+
     // UnityEvents
     //public UnityEvent<bool> OnStackMaxed;
 
@@ -79,8 +81,6 @@ public class PlayerController : AgentController
         OnStackMaxed -= HandleStackMaxed;
     }
     #endregion
-
-
     #region Handle
     private void HandleInputVaueChanged()
     {
@@ -149,7 +149,7 @@ public class PlayerController : AgentController
     private void HandleOnGetPaid(int moneyAmount)
     {
         // 돈 받았을 때 이벤트 처리 해주기
-        CoinManager.Instance.Coin += moneyAmount;
+        CoinManager.Instance.Coin += (int)(moneyAmount * _sellingCostWeigth);
 
         // Sound
         SoundManager.Instance.Play(AudioClips.Money, 1, null, false);
@@ -166,4 +166,12 @@ public class PlayerController : AgentController
         return 0;
     }
     #endregion
+    public void SetPlayerStat(float weight, int speed, int stack) {
+        SetSellingCost(weight);
+        _agentMovement.SetMoveSpeed(speed);
+        _stackComponent.SetMaxStackCount(stack);
+    }
+    private void SetSellingCost(float weight) {
+        _sellingCostWeigth = weight;
+    }
 }

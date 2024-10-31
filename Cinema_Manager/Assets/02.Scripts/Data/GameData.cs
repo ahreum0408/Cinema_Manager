@@ -31,10 +31,15 @@ public class GameData {
     public int e_volumeLevel = 0; // 직원 용량
     public int e_employmentLevel = 0; // 직원 추가
 
-    // machine
-    public int m_productionspeedLevel = 0; //  생산속도 증가
-    public int m_volumeLevel = 0; // 기계 용량 증가
-    public int m_storageLevel = 0; // 창고 용량
+    // machine-truck(트럭종류)
+    public int mt_productionspeedLevel = 0; // 생산속도 증가
+    public int mt_volumeLevel = 0; // 보관량
+    public int mt_storageLevel = 0; // 들고오는 양
+
+    // machine-package(택배 붙이는 기계)
+    public int mp_packingspeedLevel = 0; // 포장 증가
+    public int mp_volumeLevel = 0; // 보관량 증가
+    //public int mp_storageLevel = 0; // 창고 용량
 
     public GameData() {
         this.bgmValue = 1f;
@@ -58,9 +63,9 @@ public class GameData {
         e_volumeLevel = 0;
         e_employmentLevel = 0;
 
-        m_productionspeedLevel = 0;
-        m_volumeLevel = 0;
-        m_storageLevel = 0;
+        mt_productionspeedLevel = 0;
+        mt_volumeLevel = 0;
+        mt_storageLevel = 0;
     }
 
     public string ToJson() {

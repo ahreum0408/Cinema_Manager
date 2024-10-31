@@ -2,22 +2,17 @@ using UnityEngine.UIElements;
 using System;
 
 namespace UIToolkit {
-    public enum ViewType {
-        MainView,
-        SettingView,
-        PlayerUpgradeView,
-        EmployeeUpgradeView,
-        MachineUpgradeView
-    }
     public enum UpgradeViewType {
         PlayerUpgradeView,
         EmployeeUpgradeView,
-        MachineUpgradeView
+        TruckMachineUpgradeView,
+        PackageMachineUpgradeView
     }
     public abstract class UIView : IDisposable {
         protected bool isOverlay; // 부분 투명 여부
         protected bool hideOnAwake = true;
         protected VisualElement topElement; // templeateContainer 말하는거임
+        protected GameData _gameData;
 
         public VisualElement Root => topElement;
         public bool IsTransparent => isOverlay;
@@ -60,7 +55,7 @@ namespace UIToolkit {
 
         // 이벤트 핸들러를 등록 해제
         public virtual void Dispose() {
-            //UnRegisterButtonCallbacks();
+            UnRegisterButtonCallbacks();
         }
     }
 }
