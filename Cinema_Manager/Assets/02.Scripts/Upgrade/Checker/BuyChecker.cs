@@ -25,11 +25,11 @@ public class BuyChecker : CheckerArea {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(_price);
     }
 
-    public override void EnterInteraction(Collider collider) {
+    public override void EnterInteraction(AgentController agent) {
         _isCalaulate = true;
         StartCoroutine(CalculateCoin());
     }
-    public override void ExitInteraction(Collider collider) {
+    public override void ExitInteraction(AgentController agent) {
         _isCalaulate = false;
         LevelEvents.ChangePriceEvent?.Invoke(this, _price);
         StopCoroutine(CalculateCoin());

@@ -5,7 +5,13 @@ using static AyunDefine;
 
 public class AgentInteractionTrigger : MonoBehaviour
 {
+    private AgentController _agentController;
     private IIneractionable _currentInteractionObject;
+
+    private void Awake()
+    {
+        _agentController = GetComponent<AgentController>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,7 +25,7 @@ public class AgentInteractionTrigger : MonoBehaviour
             if (other.transform.parent.TryGetComponent(out IIneractionable interactionObject))
             {
                 _currentInteractionObject = interactionObject;
-                _currentInteractionObject.EnterInteraction(other);
+                _currentInteractionObject.EnterInteraction(_agentController);
             }
         }
     }
@@ -33,7 +39,7 @@ public class AgentInteractionTrigger : MonoBehaviour
                 if (other.transform.parent.TryGetComponent(out IIneractionable interactionObject))
                 {
                     _currentInteractionObject = interactionObject;
-                    _currentInteractionObject.EnterInteraction(other);
+                    _currentInteractionObject.EnterInteraction(_agentController);
                 }
             }
         }
@@ -43,7 +49,7 @@ public class AgentInteractionTrigger : MonoBehaviour
     {
         if (_currentInteractionObject != null)
         {
-            _currentInteractionObject.ExitInteraction(other);
+            _currentInteractionObject.ExitInteraction(_agentController);
         }
 
         _currentInteractionObject = null;

@@ -8,7 +8,7 @@ using static AyunDefine;
 
 public enum CustomerType
 {
-    Basic = 0, Parcel, Call, Sleep
+    Basic = 0, Parcel, Call, Sleep, Thief
 }
 
 public class CustomerData
@@ -23,7 +23,7 @@ public class CustomerData
 
     [Header("Buy Type")]
     public PoolableType objectType;
-    public int maxBuySum = 3; // 구매 수량
+    public int maxBuySum = 3;
 }
 
 public class Customer : AgentController
@@ -46,10 +46,6 @@ public class Customer : AgentController
     public NavMeshAgent Agent { get; private set; }
     public AgentStackComponent StackCompo { get; private set; }
     public AgentAnimationComponent AnimationCompo { get; private set; }
-
-    // Events
-    public Action<ITakeable, PoolableType, float, bool> OnTakeTakeable;
-    public Func<ITakeable> OnGiveTakeable;
 
     protected override void Init()
     {
@@ -139,27 +135,6 @@ public class Customer : AgentController
     {
         StackCompo.SetMaxStackCount(Random.Range(1, customerData.maxBuySum + 1));
     }
-    #endregion
-
-    #region Handle
-
-    private void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
-    {
-        if (IsStacked == false)
-            AnimationCompo.UpperHoldingAnimation(true);
-        StackCompo.TakeObject(takeable, type, spacingY, isFood);
-    }
-
-    private ITakeable HandleGiveTakeable()
-    {
-        ITakeable takeable = StackCompo.GetTopObject();
-
-        if (IsStacked == false)
-            AnimationCompo.UpperHoldingAnimation(false);
-
-        return takeable;
-    }
-
     #endregion
 }
 
