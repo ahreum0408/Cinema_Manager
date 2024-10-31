@@ -69,21 +69,21 @@ public class ParcelService : MonoBehaviour, IIneractionable
         _boxStack.Push(go.GetComponent<ITakeable>());
     }
 
-    public void EnterInteraction(Collider collider)
+    public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(GetBoxRoutine(collider));
+        StartCoroutine(GetBoxRoutine(agent));
     }
 
-    public void ExitInteraction(Collider collider)
+    public void ExitInteraction(AgentController agent)
     {
         _isEnterInteraction = false;
-        StopCoroutine(GetBoxRoutine(collider));
+        StopCoroutine(GetBoxRoutine(agent));
         _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
-    private IEnumerator GetBoxRoutine(Collider collider)
+    private IEnumerator GetBoxRoutine(AgentController agent)
     {
         while (_isEnterInteraction)
         {
@@ -91,23 +91,10 @@ public class ParcelService : MonoBehaviour, IIneractionable
             {
                 ITakeable takeable = _boxStack.Peek();
 
-                // Player
-                if (collider.TryGetComponent(out PlayerController player))
+                if (agent.CanGiveTakeable(_poolObjType))
                 {
-                    if (player.CanGiveTakeable(_poolObjType))
-                    {
-                        player.OnTakeTakeable?.Invoke(_boxStack.Pop(), _poolObjType, _spacingY, false);
-                        yield return new WaitForSeconds(0.15f);
-                    }
-                }
-                // Staff
-                else if (collider.TryGetComponent(out StaffController staff))
-                {
-                    if (staff.CanGiveTakeable(_poolObjType))
-                    {
-                        staff.OnTakeTakeable?.Invoke(_boxStack.Pop(), _poolObjType, _spacingY, false);
-                        yield return new WaitForSeconds(0.15f);
-                    }
+                    agent.OnTakeTakeable?.Invoke(_boxStack.Pop(), _poolObjType, _spacingY, false);
+                    yield return new WaitForSeconds(0.15f);
                 }
             }
             yield return null;

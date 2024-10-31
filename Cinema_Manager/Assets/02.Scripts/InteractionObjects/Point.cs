@@ -65,7 +65,7 @@ public class Point : MonoBehaviour, IIneractionable
 
     public void ChangeDirtyState(bool isDirty) => IsDirty = isDirty;
 
-    public void EnterInteraction(Collider collider) {}
+    public void EnterInteraction(AgentController agent) {}
 
-    public void ExitInteraction(Collider collider) {}
+    public void ExitInteraction(AgentController agent) {}
 }

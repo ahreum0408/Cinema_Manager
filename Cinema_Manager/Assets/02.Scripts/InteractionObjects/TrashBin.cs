@@ -17,43 +17,33 @@ public class TrashBin : MonoBehaviour, IIneractionable
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
     }
 
-    public void EnterInteraction(Collider collider)
+    public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
-        StartCoroutine(TakeTrashRoutine(collider));
+        StartCoroutine(TakeTrashRoutine(agent));
         _notifyImageComponent.SetNotifySensorImage(1.1f);
     }
 
-    public void ExitInteraction(Collider collider)
+    public void ExitInteraction(AgentController agent)
     {
         _isEnterInteraction = false;
-        StopCoroutine(TakeTrashRoutine(collider));
+        StopCoroutine(TakeTrashRoutine(agent));
         _notifyImageComponent.SetNotifySensorImage(1f);
     }
 
-    private IEnumerator TakeTrashRoutine(Collider collider)
+    private IEnumerator TakeTrashRoutine(AgentController agent)
     {
-        SoundManager.Instance.Play(AudioClips.Trashcan, 1, null, false);
+        bool isStacked = agent.GetAgentComponent<AgentStackComponent>().IsStacked;
+
+        if (isStacked)
+            SoundManager.Instance.Play(AudioClips.Trashcan, 1, null, false);
 
         while (_isEnterInteraction)
         {
-            // Player
-            if (collider.TryGetComponent(out PlayerController player))
+            if (isStacked)
             {
-                if (player.IsStacked)
-                {
-                    ITakeable takeable = player.OnGiveTakeable?.Invoke();
-                    takeable.Take(_trashContainerTrm, Vector3.zero, Vector3.zero);
-                }
-            }
-            // Staff
-            else if (collider.TryGetComponent(out StaffController staff))
-            {
-                if (staff.IsStacked)
-                {
-                    ITakeable takeable = staff.OnGiveTakeable?.Invoke();
-                    takeable.Take(_trashContainerTrm, Vector3.zero, Vector3.zero);
-                }
+                ITakeable takeable = agent.OnGiveTakeable?.Invoke();
+                takeable.Take(_trashContainerTrm, Vector3.zero, Vector3.zero);
             }
             yield return new WaitForSeconds(0.15f);
         }
