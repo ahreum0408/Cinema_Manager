@@ -12,19 +12,21 @@ public class StaffController : AgentController
     [HideInInspector] public DisplayStand displayStand;
     [HideInInspector] public FoodContainer foodContainer;
 
-    public Transform restPos;
+    public Transform restPos; // 작업 없을 때 직원이 있을 곳
 
     // Components
     public NavMeshAgent Agent { get; private set; }
     public AgentStackComponent StackCompo { get; private set; }
     public AgentAnimationComponent AnimationCompo { get; private set; }
 
+    private Collider collider;
     private AgentState _currentState;
 
     protected override void Init()
     {
         Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
+        collider = GetComponent<Collider>();
     }
 
     protected override void SetAgentComponents()
@@ -46,6 +48,34 @@ public class StaffController : AgentController
     private void Update()
     {
         _currentState?.Update();
+        SetMoveAniamtion();
+        CheckCanStack();
+    }
+
+    private void SetMoveAniamtion()
+    {
+        if (Agent.velocity.sqrMagnitude > 0)
+            AnimationCompo.SetMovementAnimation(Agent.destination);
+        else
+            AnimationCompo.SetMovementAnimation(Vector3.zero);
+    }
+
+    private void CheckCanStack()
+    {
+        float threshold = Agent.stoppingDistance + 0.5f;
+        if (!Agent.isPathStale && Agent.remainingDistance < threshold)
+            collider.enabled = false;
+        else
+            collider.enabled = true;
+    }
+
+    public bool CanSetDestination()
+    {
+        float threshold = Agent.stoppingDistance + 0.1f;
+        if (!Agent.isPathStale && Agent.remainingDistance < threshold)
+            return true;
+        else
+            return false;
     }
 
     public void ChangeState(AgentState newState)
