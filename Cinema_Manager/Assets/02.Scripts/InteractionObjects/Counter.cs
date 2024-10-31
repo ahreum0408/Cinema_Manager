@@ -10,11 +10,13 @@ public class Counter : MonoBehaviour, IIneractionable
     [SerializeField] private float lineInterval;
     public Transform checkPoint;
 
-    public List<Customer> lineList = new List<Customer>();
+    [HideInInspector] public List<Customer> lineList = new List<Customer>();
 
     private bool isStart = true; // Ã¹ ¼Õ´ÔÀÎ°¡?
+    [SerializeField] private int maxCustomer;
 
-    public bool IsInteraction => _isEnterInteraction;
+    [HideInInspector] public bool IsInteraction => _isEnterInteraction;
+    [HideInInspector] public bool IsCanStand => lineList.Count <= maxCustomer;
     #endregion
 
     private bool _isEnterInteraction = false;
