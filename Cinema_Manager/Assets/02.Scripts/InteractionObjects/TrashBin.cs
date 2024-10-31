@@ -10,12 +10,10 @@ public class TrashBin : MonoBehaviour, IIneractionable
 
     private bool _isEnterInteraction = false;
 
-    private PlayerController _playerController;
     private NotifyImageComponent _notifyImageComponent;
 
     private void Awake()
     {
-        _playerController = PlayerManager.Instance.PlayerController;
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
     }
 
@@ -35,8 +33,7 @@ public class TrashBin : MonoBehaviour, IIneractionable
 
     private IEnumerator TakeTrashRoutine(Collider collider)
     {
-        if (_playerController.IsStacked)
-            SoundManager.Instance.Play(AudioClips.Trashcan, 1, null, false);
+        SoundManager.Instance.Play(AudioClips.Trashcan, 1, null, false);
 
         while (_isEnterInteraction)
         {
