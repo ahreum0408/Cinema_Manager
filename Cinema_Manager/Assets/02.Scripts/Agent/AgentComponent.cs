@@ -21,4 +21,6 @@ public abstract class AgentComponent : MonoBehaviour
     public virtual void ControllerEnable() { }
     public virtual void ControllerFixedUpdate() { }
     public virtual void ControllerDisable() { }
+
+
 }

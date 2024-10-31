@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IIneractionable
 {
-    public void EnterInteraction(Collider collider);
-    public void ExitInteraction(Collider collider);
+    public void EnterInteraction(AgentController agent);
+    public void ExitInteraction(AgentController agent);
 }

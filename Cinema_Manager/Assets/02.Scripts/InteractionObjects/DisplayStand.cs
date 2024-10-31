@@ -55,43 +55,30 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     public void SetAvticeGameObject(bool active) {
         gameObject.SetActive(active);
     }
-    public void EnterInteraction(Collider collider)
+    public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(TakeFoodRoutine(collider));
+        StartCoroutine(TakeFoodRoutine(agent));
     }
 
-    public void ExitInteraction(Collider collider)
+    public void ExitInteraction(AgentController agent)
     {
         _notifyImageComponent.SetNotifySensorImage(1f);
         _isEnterInteraction = false;
-        StopCoroutine(TakeFoodRoutine(collider));
+        StopCoroutine(TakeFoodRoutine(agent));
     }
 
-    private IEnumerator TakeFoodRoutine(Collider collider)
+    private IEnumerator TakeFoodRoutine(AgentController agent)
     {
         while (_isEnterInteraction)
         {
             if (_foodStack.Count < StackMaxCnt)
             {
-                // Player
-                if (collider.TryGetComponent(out PlayerController player))
+                if (agent.CanGiveTakeable(_poolObjType))
                 {
-                    if (player.CanGiveTakeable(_poolObjType))
-                    {
-                        ITakeable food = player.OnGiveTakeable?.Invoke();
-                        TakeFood(food);
-                    }
-                }
-                // Staff
-                else if (collider.TryGetComponent(out StaffController staff))
-                {
-                    if (staff.CanGiveTakeable(_poolObjType))
-                    {
-                        ITakeable food = staff.OnGiveTakeable?.Invoke();
-                        TakeFood(food);
-                    }
+                    ITakeable food = agent.OnGiveTakeable?.Invoke();
+                    TakeFood(food);
                 }
             }
             yield return new WaitForSeconds(0.15f);

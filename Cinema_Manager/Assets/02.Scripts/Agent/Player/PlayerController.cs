@@ -22,10 +22,6 @@ public class PlayerController : AgentController
     public bool IsStackMax => _stackComponent.IsStackMax;
     public bool IsStacked => _stackComponent.IsStacked;
 
-    // Events
-    public Action<ITakeable, PoolableType, float, bool> OnTakeTakeable;
-    public Func<ITakeable> OnGiveTakeable;
-
     public Action<int> OnGetPaid;
     public Func<int, int> OnPaidCost;
 
@@ -81,6 +77,7 @@ public class PlayerController : AgentController
         OnStackMaxed -= HandleStackMaxed;
     }
     #endregion
+
     #region Handle
     private void HandleInputVaueChanged()
     {
@@ -90,43 +87,6 @@ public class PlayerController : AgentController
 
         _agentMovement.SetVelocity(inputValue);
         _agentAnimation.SetMovementAnimation(inputValue);
-    }
-
-    public bool CanTakeFood(PoolableType type)
-    {
-        bool isSameType = _stackComponent.CurrentHoldType == PoolableType.None
-            || _stackComponent.CurrentHoldType == type;
-
-        return isSameType && !IsStackMax;
-    }
-
-    private void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isDrink)
-    {
-        if (IsStacked == false)
-            _agentAnimation.UpperHoldingAnimation(true);
-
-        _stackComponent.TakeObject(takeable, type, spacingY, isDrink);
-
-        // UI Update
-        OnStackMaxed?.Invoke(IsStackMax);
-    }
-
-    public bool CanGiveTakeable(PoolableType type)
-    {
-        return _stackComponent.CurrentHoldType == type && IsStacked;
-    }
-
-    private ITakeable HandleGiveTakeable()
-    {
-        ITakeable food = _stackComponent.GetTopObject();
-
-        // UI Update
-        OnStackMaxed?.Invoke(IsStackMax);
-
-        if (IsStacked == false)
-            _agentAnimation.UpperHoldingAnimation(false);
-
-        return food;
     }
 
     private void HandleStackMaxed(bool isStackMax)
@@ -166,6 +126,7 @@ public class PlayerController : AgentController
         return 0;
     }
     #endregion
+
     public void SetPlayerStat(float weight, int speed, int stack) {
         SetSellingCost(weight);
         _agentMovement.SetMoveSpeed(speed);

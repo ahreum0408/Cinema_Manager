@@ -87,46 +87,29 @@ public class BoxContainer : MonoBehaviour, IIneractionable
         // 이때 돈 받으면 될 듯 (택배비)
     }
 
-    public void EnterInteraction(Collider collider)
+    public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
-        StartCoroutine(StackBoxRoutine(collider));
+        StartCoroutine(StackBoxRoutine(agent));
     }
 
-    public void ExitInteraction(Collider collider)
+    public void ExitInteraction(AgentController agent)
     {
         _isEnterInteraction = false;
-        StopCoroutine(StackBoxRoutine(collider));
+        StopCoroutine(StackBoxRoutine(agent));
         _notifyImageComponent.SetNotifySensorImage(1.0f);
     }
 
-    private IEnumerator StackBoxRoutine(Collider collider)
+    private IEnumerator StackBoxRoutine(AgentController agent)
     {
         while (_isEnterInteraction)
         {
-            if (false == IsStackMax)
+            if (agent.CanGiveTakeable(_poolObjType) && false == IsStackMax)
             {
-                // Player
-                if (collider.TryGetComponent(out PlayerController player))
-                {
-                    if (player.CanGiveTakeable(_poolObjType))
-                    {
-                        _isBoxGiving = true;
-                        ITakeable box = player.OnGiveTakeable?.Invoke();
-                        TakeBox(box);
-                    }
-                }
-                // Staff
-                else if (collider.TryGetComponent(out StaffController staff))
-                {
-                    if (staff.CanGiveTakeable(_poolObjType))
-                    {
-                        _isBoxGiving = true;
-                        ITakeable box = staff.OnGiveTakeable?.Invoke();
-                        TakeBox(box);
-                    }
-                }
+                _isBoxGiving = true;
+                ITakeable box = agent.OnGiveTakeable?.Invoke();
+                TakeBox(box);
             }
             else
             {

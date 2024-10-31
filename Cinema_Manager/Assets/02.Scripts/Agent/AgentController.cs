@@ -1,10 +1,15 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static AyunDefine;
 
 public abstract class AgentController : MonoBehaviour
 {
     protected List<AgentComponent> agentComponentList;
+
+    // Stack Events
+    public Action<ITakeable, PoolableType, float, bool> OnTakeTakeable;
+    public Func<ITakeable> OnGiveTakeable;
 
     public event Action OnEnableEvent;
     public event Action OnUpdateEvent;
@@ -35,6 +40,18 @@ public abstract class AgentController : MonoBehaviour
         }
     }
 
+    public T GetAgentComponent<T>() where T : AgentComponent
+    {
+        AgentComponent agentComponent = agentComponentList.Find(component => component is T);
+
+        if (agentComponent == null)
+        {
+            Debug.LogError($"Not Exist {typeof(T).Name}");
+        }
+
+        return agentComponent as T;
+    }
+
     #region Event
 
     protected virtual void OnEnable()
@@ -59,15 +76,39 @@ public abstract class AgentController : MonoBehaviour
 
     #endregion
 
-    protected T GetAgentComponent<T>() where T : AgentComponent
+    #region Handle
+    public bool CanTakeFood(PoolableType type)
     {
-        AgentComponent agentComponent = agentComponentList.Find(component => component is T);
+        AgentStackComponent stackCompo = GetAgentComponent<AgentStackComponent>();
+        bool isSameType = stackCompo.CurrentHoldType == PoolableType.None
+            || stackCompo.CurrentHoldType == type;
 
-        if (agentComponent == null)
-        {
-            Debug.LogError($"Not Exist {typeof(T).Name}");
-        }
-
-        return agentComponent as T;
+        return isSameType && !stackCompo.IsStackMax;
     }
+
+    protected void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
+    {
+        AgentStackComponent stackCompo = GetAgentComponent<AgentStackComponent>();
+        if (stackCompo.IsStacked == false)
+            GetAgentComponent<AgentAnimationComponent>().UpperHoldingAnimation(true);
+        stackCompo.TakeObject(takeable, type, spacingY, isFood);
+    }
+
+    public bool CanGiveTakeable(PoolableType type)
+    {
+        AgentStackComponent stackCompo = GetAgentComponent<AgentStackComponent>();
+        return stackCompo.CurrentHoldType == type && stackCompo.IsStacked;
+    }
+
+    protected ITakeable HandleGiveTakeable()
+    {
+        AgentStackComponent stackCompo = GetAgentComponent<AgentStackComponent>();
+        ITakeable takeable = stackCompo.GetTopObject();
+
+        if (stackCompo.IsStacked == false)
+            GetAgentComponent<AgentAnimationComponent>().UpperHoldingAnimation(false);
+
+        return takeable;
+    }
+    #endregion
 }

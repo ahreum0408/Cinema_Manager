@@ -31,7 +31,7 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
         _playerTrm = PlayerManager.Instance.Transform;
     }
 
-    public void EnterInteraction(Collider collider)
+    public void EnterInteraction(AgentController agent)
     {
         if (_moneyAmount > 0 && false == _isClearing)
         {
@@ -40,7 +40,7 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
         }
     }
 
-    public void ExitInteraction(Collider collider) { }
+    public void ExitInteraction(AgentController agent) { }
 
     public IEnumerator ClearMoneyObject()
     {
