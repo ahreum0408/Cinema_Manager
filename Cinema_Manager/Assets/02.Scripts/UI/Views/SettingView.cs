@@ -5,8 +5,8 @@ using UnityEngine.UIElements;
 
 public class SettingView : UIView {
 
-    private Slider _bgmSlider;
-    private Slider _effctSlider;
+    private Toggle _bgmToggle;
+    private Toggle _effctToggle;
     private Toggle _hapticToggle;
 
     private Button _closeBtn;
@@ -27,8 +27,8 @@ public class SettingView : UIView {
     protected override void SetVisualElements() {
         base.SetVisualElements();
 
-        _bgmSlider = topElement.Q<Slider>("bgm-slider");
-        _effctSlider = topElement.Q<Slider>("effect-slider");
+        _bgmToggle = topElement.Q<Toggle>("bgm-toggle");
+        _effctToggle = topElement.Q<Toggle>("effect-toggle");
         _hapticToggle = topElement.Q<Toggle>("haptic-toggle");
 
         _closeBtn = topElement.Q<Button>("closee-btn");
@@ -37,30 +37,30 @@ public class SettingView : UIView {
     protected override void RegisterButtonCallbacks() {
         base.RegisterButtonCallbacks();
 
-        _bgmSlider.RegisterCallback<ChangeEvent<float>>(ChangBgmValue);
-        _effctSlider.RegisterCallback<ChangeEvent<float>>(ChangEffectValue);
+        _bgmToggle.RegisterCallback<ChangeEvent<bool>>(ChangBgmValue);
+        _effctToggle.RegisterCallback<ChangeEvent<bool>>(ChangEffectValue);
         _hapticToggle.RegisterCallback<ChangeEvent<bool>>(ChangeHapticValue);
 
         _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
     }
     protected override void UnRegisterButtonCallbacks() {
         base.UnRegisterButtonCallbacks();
-        _bgmSlider.UnregisterCallback<ChangeEvent<float>>(ChangBgmValue);
-        _effctSlider.UnregisterCallback<ChangeEvent<float>>(ChangEffectValue);
+        _bgmToggle.UnregisterCallback<ChangeEvent<bool>>(ChangBgmValue);
+        _effctToggle.UnregisterCallback<ChangeEvent<bool>>(ChangEffectValue);
         _hapticToggle.UnregisterCallback<ChangeEvent<bool>>(ChangeHapticValue);
 
         _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
     }
 
     #region registercallback
-    private void ChangBgmValue(ChangeEvent<float> evt) {
+    private void ChangBgmValue(ChangeEvent<bool> evt) {
         evt.StopPropagation();
-        _gameData.bgmValue = evt.newValue;
+        _gameData.bgm = evt.newValue;
         SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void ChangEffectValue(ChangeEvent<float> evt) {
+    private void ChangEffectValue(ChangeEvent<bool> evt) {
         evt.StopPropagation();
-        _gameData.effectValue = evt.newValue;
+        _gameData.effect = evt.newValue;
         SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ChangeHapticValue(ChangeEvent<bool> evt) {
@@ -80,10 +80,10 @@ public class SettingView : UIView {
         }
         _gameData = data;
 
-        _bgmSlider.value = _gameData.bgmValue;
-        _effctSlider.value = _gameData.effectValue;
+        _bgmToggle.value = _gameData.bgm;
+        _effctToggle.value = _gameData.effect;
         _hapticToggle.value = _gameData.haptic;
 
-        //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
+        SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 }
