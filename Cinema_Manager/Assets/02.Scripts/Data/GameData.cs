@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameData {
     // setting view
-    public float bgmValue;
-    public float effectValue;
-    public bool haptic = true;
+    public bool bgm;
+    public bool effect;
+    public bool haptic;
 
     // main view
     public int coin;
@@ -42,8 +42,9 @@ public class GameData {
     //public int mp_storageLevel = 0; // 창고 용량
 
     public GameData() {
-        this.bgmValue = 1f;
-        this.effectValue = 1f;
+        this.bgm = true;
+        this.effect = true;
+        this.haptic = true;
 
         this.coin = 0;
         this.gam = 0;
