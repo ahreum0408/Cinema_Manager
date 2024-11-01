@@ -365,8 +365,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6.0006647, y: 1.3260298, z: 3.9808903}
-  m_Center: {x: 2.0025306, y: 0.64486337, z: -2.3668585}
+  m_Size: {x: 3.8700585, y: 1.3260298, z: 2.7507212}
+  m_Center: {x: 1.8644624, y: 0.64486337, z: -2.9819431}
 --- !u!1 &4312165979680518406
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,12 +605,12 @@ PrefabInstance:
     - target: {fileID: 1684456153213672901, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.001
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 1684456153213672901, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 2.24
       objectReference: {fileID: 0}
     - target: {fileID: 1684456153213672901, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}
@@ -655,12 +655,12 @@ PrefabInstance:
     - target: {fileID: 8422778340864195357, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}
       propertyPath: m_Size.x
-      value: 6
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 8422778340864195357, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}
       propertyPath: m_Size.y
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
