@@ -8,7 +8,7 @@ public abstract class AgentState
     public AgentState(StaffController agent)
     {
         this.agent = agent;
-        this.navAgent = agent.GetComponent<NavMeshAgent>();
+        this.navAgent = agent.Agent;
     }
 
     public abstract void Enter();

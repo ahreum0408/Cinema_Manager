@@ -8,7 +8,6 @@ internal class CounterState : AgentState
 
     public override void Enter()
     {
-        agent.AnimationCompo.SetMovementAnimation(Vector3.zero);
     }
 
     public override void Update()

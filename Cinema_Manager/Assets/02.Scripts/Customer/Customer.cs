@@ -72,6 +72,18 @@ public class Customer : AgentController
         OnGiveTakeable += HandleGiveTakeable;
     }
 
+    private void Update()
+    {
+        SetMoveAniamtion();
+    }
+    private void SetMoveAniamtion()
+    {
+        if (Agent.velocity.sqrMagnitude > 0)
+            AnimationCompo.SetMovementAnimation(Agent.destination);
+        else
+            AnimationCompo.SetMovementAnimation(Vector3.zero);
+    }
+
     public bool CheckPlayer()
     {
         Collider[] col = Physics.OverlapSphere(transform.position, 4f, _whatIsPlayer);

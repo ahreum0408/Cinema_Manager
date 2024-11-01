@@ -49,7 +49,7 @@ public class Table : MonoBehaviour, IIneractionable
             {
                 if (points[i].trash != null)
                 {
-                    if (agent.CanGiveTakeable(PoolableType.Trash))
+                    if (agent.CanTakeFood(PoolableType.Trash))
                     {
                         agent.OnTakeTakeable?.Invoke
                             (points[i].trash.GetComponent<ITakeable>(), PoolableType.Trash, 0.01f, true);

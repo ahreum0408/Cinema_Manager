@@ -14,16 +14,14 @@ public class CheckFood : Conditional
     public override void OnStart()
     {
         if (customer.Value.CurrentCustomerType == CustomerType.Call)
-        {
             customer.Value.AnimationCompo.CallAnimation(1);
-            StopCustomers();
-        }
     }
 
     public override TaskStatus OnUpdate()
     {
         if (customer.Value.CurrentCustomerType == CustomerType.Call)
         {
+            StopCustomers();
             if (customer.Value.CheckPlayer())
             {
                 startTime += Time.deltaTime;
@@ -48,7 +46,7 @@ public class CheckFood : Conditional
             if (!isCustomerStop && customer.Value.customerData.isGive)
                 customer.Value.currentStand.GiveFood();
 
-            if (customer.Value.StackCompo.RemainingStackCount == 0)
+            if (customer.Value.StackCompo.RemainingStackCount == 0 && ObjectManager.Instance.counter.IsCanStand)
             {
                 customer.Value.currentStand.RemoveCustomer(customer.Value);
                 return TaskStatus.Failure;
@@ -65,7 +63,10 @@ public class CheckFood : Conditional
 
         for (int i = currentIndex; i < customers.Count; i++)
         {
-            customers[i].Agent.isStopped = true;
+            if (customers[i].CanSetDestination())
+            {
+                customers[i].Agent.isStopped = true;
+            }
         }
 
         isCustomerStop = true;
