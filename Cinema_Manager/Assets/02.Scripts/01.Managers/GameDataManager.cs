@@ -55,8 +55,9 @@ public class GameDataManager : MonoBehaviour {
             return;
         }
 
-        _gameData.bgmValue = data.bgmValue;
-        _gameData.effectValue = data.effectValue;
+        _gameData.bgm = data.bgm;
+        _gameData.effect = data.effect;
+        _gameData.haptic = data.haptic;
     }
     private void PlayerDataUpdate(GameData data) {
         if (data == null) {
