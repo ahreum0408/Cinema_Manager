@@ -99,7 +99,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable
             {
                 ITakeable takeable = _foodStack.Peek();
 
-                if (agent.CanGiveTakeable(_poolObjType))
+                if (agent.CanTakeFood(_poolObjType))
                 {
                     agent.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
                     yield return new WaitForSeconds(0.15f);

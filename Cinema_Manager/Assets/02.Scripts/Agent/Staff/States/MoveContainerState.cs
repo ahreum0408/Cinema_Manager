@@ -8,7 +8,6 @@ internal class MoveContainerState : AgentState
 
     public override void Enter()
     {
-        agent.AnimationCompo.SetMovementAnimation(Vector3.zero);
     }
 
     public override void Update()
@@ -24,7 +23,7 @@ internal class MoveContainerState : AgentState
 
     private bool CheckFoodContainer()
     {
-        if(agent.foodContainer.currentFoodCnt == 0 || agent.StackCompo.IsStackMax)
+        if((agent.foodContainer.currentFoodCnt == 0 && agent.IsStacked) || agent.StackCompo.IsStackMax)
             return true;
         return false;
     }

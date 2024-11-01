@@ -275,6 +275,7 @@ MonoBehaviour:
   lineInterval: 2
   checkPoint: {fileID: 884996719011685997}
   lineList: []
+  maxCustomer: 10
 --- !u!1001 &131578505140800325
 PrefabInstance:
   m_ObjectHideFlags: 0

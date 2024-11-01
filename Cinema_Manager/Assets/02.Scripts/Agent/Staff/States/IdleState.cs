@@ -6,10 +6,7 @@ public class IdleState : AgentState
 
     public override void Enter()
     {
-        agent.AnimationCompo.SetMovementAnimation(Vector3.zero);
-
         navAgent.isStopped = true;
-
     }
 
     public override void Update()
@@ -18,30 +15,22 @@ public class IdleState : AgentState
         agent.displayStand = CheckDisplay();
         if (agent.table != null)
         {
-            Debug.Log("1");
-
             Vector3 tablePos = agent.table.staffPoint.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, tablePos, new CleanTableState(agent)));
         }
         else if (CheckDisplay() != null)
         {
-            Debug.Log("2");
-
             agent.foodContainer = FindFoodContainer();
             agent.ChangeState(new MoveToTargetState
                 (agent, agent.foodContainer.staffPoint.transform.position, new MoveContainerState(agent)));
         }
         else if (CheckCounter())
         {
-            Debug.Log("3");
-
             Vector3 counterPos = ObjectManager.Instance.counter.staffPoint.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, counterPos, new CounterState(agent)));
         }
         else if (CheckPackage())
         {
-            Debug.Log("4");
-
             Vector3 parcelPos = ObjectManager.Instance.parcelService.staffPoint.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, parcelPos, new CounterState(agent)));
         }

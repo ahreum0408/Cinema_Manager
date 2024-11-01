@@ -14,9 +14,6 @@ public class MoveToTargetState : AgentState
 
     public override void Enter()
     {
-        Debug.Log("MovetoTarget");
-        agent.AnimationCompo.SetMovementAnimation(targetPosition);
-
         navAgent.SetDestination(targetPosition);
         navAgent.isStopped = false;
     }

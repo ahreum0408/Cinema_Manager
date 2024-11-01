@@ -25,8 +25,6 @@ public class FindChair : Action
 
     public override TaskStatus OnUpdate()
     {
-        customer.Value.AnimationCompo.SetMovementAnimation(_destination);
-
         if (_isStarted)
         {
             _isStarted = false;
@@ -35,10 +33,8 @@ public class FindChair : Action
 
         float threshold = _agent.stoppingDistance + 0.1f;
         if (!_agent.isPathStale && _agent.remainingDistance < threshold)
-        {
-            customer.Value.AnimationCompo.SetMovementAnimation(Vector3.zero);
             return TaskStatus.Success;
-        }
+
         return TaskStatus.Running;
     }
 }
