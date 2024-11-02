@@ -219,8 +219,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 9.964243, y: 1.7203467, z: 4.2410316}
-  m_Center: {x: 4.992029, y: 0.8471483, z: -2.422367}
+  m_Size: {x: 11.052852, y: 1.7203467, z: 4.6934896}
+  m_Center: {x: 5.042349, y: 0.8471483, z: -2.3970568}
 --- !u!1 &9191442310546576669
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +361,7 @@ PrefabInstance:
     - target: {fileID: 3599267568132858191, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.65
+      value: 12.52
       objectReference: {fileID: 0}
     - target: {fileID: 3599267568132858191, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}
@@ -371,7 +371,7 @@ PrefabInstance:
     - target: {fileID: 3599267568132858191, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.38
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 3599267568132858191, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}
@@ -415,13 +415,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8365566579095636222, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}
+      propertyPath: m_Size.x
+      value: 5.565289
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365566579095636222, guid: 54e1133912acd5443ab2d0dae2703ce1,
+        type: 3}
       propertyPath: m_Size.y
       value: 1.2470479
       objectReference: {fileID: 0}
     - target: {fileID: 8365566579095636222, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}
+      propertyPath: m_Size.z
+      value: 5.329966
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365566579095636222, guid: 54e1133912acd5443ab2d0dae2703ce1,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 0.93652546
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365566579095636222, guid: 54e1133912acd5443ab2d0dae2703ce1,
+        type: 3}
       propertyPath: m_Center.y
       value: 0.70808876
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365566579095636222, guid: 54e1133912acd5443ab2d0dae2703ce1,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.20633554
       objectReference: {fileID: 0}
     - target: {fileID: 8540663739034432732, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}
@@ -501,6 +521,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NotifyImage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8422778340864195357, guid: 968a237fae373784c91aceab6f9aac09,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

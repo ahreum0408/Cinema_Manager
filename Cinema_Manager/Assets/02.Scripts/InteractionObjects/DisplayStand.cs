@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using static AyunDefine;
 
@@ -24,7 +23,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     public int CurrentLine => _customerDic.Count;
 
     [Range(0, 5)][SerializeField] private float _spacingY;
-    [Range(0, 5)] [SerializeField] private float _spacingX;
+    [Range(0, 5)][SerializeField] private float _spacingX;
     [SerializeField] private bool _isFood;
 
     private bool _isEnterInteraction = false;
@@ -52,13 +51,16 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     {
         _isStart = true;
     }
-    public void SetAvticeGameObject(bool active) {
+
+    public void SetAvticeGameObject(bool active)
+    {
         gameObject.SetActive(active);
     }
+
     public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
-        _notifyImageComponent.SetNotifySensorImage(1.1f);
+        _notifyImageComponent.SetNotifySensorImage(1.2f);
         StartCoroutine(TakeFoodRoutine(agent));
     }
 
@@ -101,7 +103,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     public void GiveFood()
     {
-        if(_currentFoodCnt > 0)
+        if (_currentFoodCnt > 0)
         {
             StartCoroutine(GiveFoodRoutine());
         }
@@ -210,7 +212,8 @@ public class DisplayStand : MonoBehaviour, IIneractionable
 
     public void AddItemToStand(int addItemCount = 1)
     {
-        for(int i = 0; i < addItemCount; i++) {
+        for (int i = 0; i < addItemCount; i++)
+        {
             GameObject go = PoolManager.Instance.Pop(_poolObjType.ToString(), transform);
             if (go.TryGetComponent(out ITakeable takeable))
                 TakeFood(takeable);

@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _joystick: {fileID: 132714578}
-  _playerCanvas: {fileID: 0}
+  _playerCanvas: {fileID: 380359308}
   _stackMaxText: {fileID: 1335797184}
 --- !u!136 &130286077
 CapsuleCollider:

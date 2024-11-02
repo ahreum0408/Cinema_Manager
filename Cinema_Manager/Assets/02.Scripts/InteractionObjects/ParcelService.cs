@@ -91,7 +91,7 @@ public class ParcelService : MonoBehaviour, IIneractionable
             {
                 ITakeable takeable = _boxStack.Peek();
 
-                if (agent.CanGiveTakeable(_poolObjType))
+                if (agent.CanTakeFood(_poolObjType))
                 {
                     agent.OnTakeTakeable?.Invoke(_boxStack.Pop(), _poolObjType, _spacingY, false);
                     yield return new WaitForSeconds(0.15f);

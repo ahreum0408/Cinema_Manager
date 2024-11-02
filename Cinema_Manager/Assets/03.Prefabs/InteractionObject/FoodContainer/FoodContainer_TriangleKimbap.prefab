@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3276859555177118275}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StartPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 597070895245174170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 15}
+  m_LocalPosition: {x: 0, y: 0, z: 35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2124859254555028758}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2102071844535255536}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EndPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ Transform:
   m_GameObject: {fileID: 2657969916577451133}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -15.36}
+  m_LocalPosition: {x: 0, y: 0, z: -12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -150,9 +150,9 @@ MonoBehaviour:
   _spawnTrm: {fileID: 1955055702672549901}
   _poolObjType: 1
   _isFood: 1
-  _spacingX: 0.8
-  _spacingZ: 0.8
-  _spacingY: 0.15
+  _spacingX: 1
+  _spacingZ: 1
+  _spacingY: 0.235
 --- !u!114 &1205128605181999352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 2220031493790571104}
   - component: {fileID: 6996979491356637228}
   - component: {fileID: 8952761915790446202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8771363162781699368}
   - component: {fileID: 3482223979950237176}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FoodTruck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,8 +351,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.977662, y: 1.901297, z: 5.042658}
-  m_Center: {x: 0, y: 0.65015286, z: 0}
+  m_Size: {x: 6.546463, y: 1.901297, z: 6.566128}
+  m_Center: {x: -0.0050159693, y: 0.65015286, z: 0.013346672}
 --- !u!1 &7669767172700512424
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +386,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7724087383118382478}
@@ -602,7 +602,7 @@ Transform:
   m_GameObject: {fileID: 8413214284396857202}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.37, y: 0.09, z: 0.35}
+  m_LocalPosition: {x: -0.52, y: 0.09, z: 0.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -674,7 +674,12 @@ PrefabInstance:
     - target: {fileID: 8422778340864195357, guid: 968a237fae373784c91aceab6f9aac09,
         type: 3}
       propertyPath: m_Size.x
-      value: 5
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8422778340864195357, guid: 968a237fae373784c91aceab6f9aac09,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
