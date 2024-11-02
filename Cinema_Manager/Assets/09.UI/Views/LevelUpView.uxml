@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/USS/LevelUp_USS.uss?fileID=7433441132597879392&amp;guid=27d90713af5749c4b9de9965ef70f523&amp;type=3#LevelUp_USS" />
+    <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
+    <ui:VisualElement name="background" style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.5); width: 100%;">
+        <ui:VisualElement name="container" style="width: 70%; height: 50%;">
+            <ui:VisualElement name="top-container" style="height: 15%;">
+                <ui:VisualElement name="title-content" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/04.Sprites/UI/LevelUp_.png?fileID=21300000&amp;guid=97586b656ae518645be79e1162533941&amp;type=3#LevelUp_&quot;);">
+                    <ui:Label tabindex="-1" text="레벨업" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text_middle-array_90" style="font-size: 90px; bottom: 35px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="main-container" style="flex-grow: 1;" />
+            <ui:VisualElement name="bottom-container" style="height: 15%;">
+                <ui:VisualElement name="button-content" style="flex-grow: 1; justify-content: center; align-items: center;">
+                    <ui:Button text="확인" parse-escape-sequences="true" display-tooltip-when-elided="true" class="btn-middle-array_50" style="width: 50%; height: 65%;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -25,7 +25,12 @@ public class LevelManager : MonoBehaviour {
         }
         foreach (var levelData in _allAreas) {
             var furniture = levelData as BuyChecker;
-            _allStand.Add(furniture.OpenTarget);
+            if(furniture != null) {
+                _allStand.Add(furniture.OpenTarget);
+            }
+            else {
+                Debug.Log("stand°¡ ¾øÀ½");
+            }
         }
     }
     private void OnEnable() {

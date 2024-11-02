@@ -13,9 +13,12 @@ public class Level {
     public List<CheckerArea> openNewMapList;
 
     public void SetActiveListObj(bool active) {
-        if(openNewMapList != null) {
-            foreach(CheckerArea area in openNewMapList) {
+        foreach(CheckerArea area in openNewMapList) {
+            if (area != null) {
                 area.gameObject.SetActive(active);
+            }
+            else {
+                Debug.LogWarning("지금 null인게 있음");
             }
         }
     }
