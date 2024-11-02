@@ -10,7 +10,7 @@ public class CustomerSpawnManager : MonoBehaviour
     private int maxCustomer = 3;
     private int currentCustomer = 0;
 
-    private float spawnCoolTime = 3f;
+    [SerializeField] private float spawnCoolTime = 3f;
     private float spawnTime;
 
     private bool isParcel = false;
