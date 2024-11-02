@@ -7,7 +7,7 @@ public class CustomerSpawnManager : MonoBehaviour
     [SerializeField] private Customer sleepCustomer;
     [SerializeField] private Customer parcelCustomer;
 
-    private int maxCustomer = 3;
+    [SerializeField] private int maxCustomer = 3;
     private int currentCustomer = 0;
 
     [SerializeField] private float spawnCoolTime = 3f;

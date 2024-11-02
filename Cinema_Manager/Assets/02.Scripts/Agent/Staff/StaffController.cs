@@ -12,7 +12,7 @@ public class StaffController : AgentController
     [HideInInspector] public DisplayStand displayStand;
     [HideInInspector] public FoodContainer foodContainer;
 
-    public Transform restPos; // 작업 없을 때 직원이 있을 곳
+    [HideInInspector] public Transform restPos; // 작업 없을 때 직원이 있을 곳
 
     // Components
     public NavMeshAgent Agent { get; private set; }
@@ -39,6 +39,7 @@ public class StaffController : AgentController
 
     private void Start()
     {
+        restPos = transform;
         ChangeState(new IdleState(this));
 
         OnTakeTakeable += HandleTakeTakeable;

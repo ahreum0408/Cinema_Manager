@@ -130,7 +130,7 @@ public class Customer : AgentController
     {
         while (true)
         {
-            int rand = Random.Range(1, 3);
+            int rand = Random.Range(1, 11);
             customerData.objectType = (PoolableType)rand;
 
             DisplayStand stand = ObjectManager.Instance.FindDisplayStand(customerData.objectType);
