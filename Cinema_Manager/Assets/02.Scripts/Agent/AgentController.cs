@@ -86,7 +86,7 @@ public abstract class AgentController : MonoBehaviour
         return isSameType && !stackCompo.IsStackMax;
     }
 
-    protected void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
+    protected virtual void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
     {
         AgentStackComponent stackCompo = GetAgentComponent<AgentStackComponent>();
         if (stackCompo.IsStacked == false)
@@ -100,7 +100,7 @@ public abstract class AgentController : MonoBehaviour
         return stackCompo.CurrentHoldType == type && stackCompo.IsStacked;
     }
 
-    protected ITakeable HandleGiveTakeable()
+    protected virtual ITakeable HandleGiveTakeable()
     {
         AgentStackComponent stackCompo = GetAgentComponent<AgentStackComponent>();
         ITakeable takeable = stackCompo.GetTopObject();
