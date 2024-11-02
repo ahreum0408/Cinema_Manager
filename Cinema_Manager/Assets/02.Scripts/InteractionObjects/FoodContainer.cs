@@ -80,7 +80,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable
     public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
-        _notifyImageComponent.SetNotifySensorImage(1.1f);
+        _notifyImageComponent.SetNotifySensorImage(1.2f);
         StartCoroutine(GetFoodRoutine(agent));
     }
 
