@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 4695640383576758797}
   - component: {fileID: 4523358971357734979}
   m_Layer: 6
-  m_Name: OutTable
+  m_Name: Table_People
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

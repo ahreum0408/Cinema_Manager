@@ -89,6 +89,20 @@ public class PlayerController : AgentController
         _agentAnimation.SetMovementAnimation(inputValue);
     }
 
+    protected override void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
+    {
+        base.HandleTakeTakeable(takeable, type, spacingY, isFood);
+
+        OnStackMaxed(IsStackMax);
+    }
+
+    protected override ITakeable HandleGiveTakeable()
+    {
+        OnStackMaxed(IsStackMax);
+
+        return base.HandleGiveTakeable();
+    }
+
     private void HandleStackMaxed(bool isStackMax)
     {
         if (isStackMax)
