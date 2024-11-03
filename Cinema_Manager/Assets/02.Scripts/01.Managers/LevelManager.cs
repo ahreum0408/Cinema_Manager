@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour {
+public class LevelManager : MonoSingleton<LevelManager> {
     public List<Level> levelDatas = new List<Level>();
 
     private List<CheckerArea> _allAreas = new List<CheckerArea>();   
@@ -14,7 +14,8 @@ public class LevelManager : MonoBehaviour {
 
     private GameData _gameData;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         foreach (var levelData in levelDatas) {
             levelData.SetActiveListObj(false);
         }
@@ -26,7 +27,9 @@ public class LevelManager : MonoBehaviour {
         foreach (var levelData in _allAreas) {
             var furniture = levelData as BuyChecker;
             if(furniture != null) {
-                _allStand.Add(furniture.OpenTarget);
+                if (furniture.OpenTarget.TryGetComponent<DisplayStand>(out DisplayStand stand)) {
+                    _allStand.Add(stand);
+                }
             }
             else {
                 Debug.Log("stand가 없음");
@@ -47,6 +50,7 @@ public class LevelManager : MonoBehaviour {
     private void Update() {
         if(Input.GetKeyDown(KeyCode.E)) {
             GetExp(10);
+            Debug.LogWarning("지금 exp 얻는 곳이 존재하니 주의 할 것");
         }
     }
     public void GetExp(int exp) {
@@ -105,7 +109,7 @@ public class LevelManager : MonoBehaviour {
     private void SettingStandItem(int i, BuyChecker checker) {
         if (_allStand[i] != null) {
             checker.gameObject.SetActive(false); // 체커 끄고
-            _allStand[i].SetAvticeGameObject(true); // 스텐드 키고
+            _allStand[i].gameObject.SetActive(true); // 스텐드 키고
             int itemCount = _gameData.allDisplayStandItemCountList[i];
             _allStand[i].AddItemToStand(itemCount);
         }

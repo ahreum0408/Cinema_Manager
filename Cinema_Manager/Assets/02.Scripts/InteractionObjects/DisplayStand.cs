@@ -52,11 +52,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable
         _isStart = true;
     }
 
-    public void SetAvticeGameObject(bool active)
-    {
-        gameObject.SetActive(active);
-    }
-
     public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
