@@ -1,3 +1,18 @@
+.base-container {
+    position: absolute;
+    height: 40%;
+    width: 100%;
+    bottom: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.title-content {
+    width: 600px;
+    flex-grow: 1;
+    background-color: rgb(255, 241, 173);
+    bottom: 75px;
+}
+
 .upgrade-icon {
     width: 320px;
     height: 320px;
@@ -42,4 +57,18 @@
     align-items: center;
     justify-content: center;
     height: 30%;
+}
+
+.close-view-btn {
+    position: absolute;
+    height: 170px;
+    width: 170px;
+    top: -57%;
+    left: 80%;
+    background-image: url("project://database/Assets/04.Sprites/UI/RedX.png?fileID=21300000&guid=a243b1f436d60f945952044361efc91d&type=3#RedX");
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
