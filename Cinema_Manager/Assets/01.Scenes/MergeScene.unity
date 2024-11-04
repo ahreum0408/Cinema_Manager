@@ -561,15 +561,7 @@ PrefabInstance:
         type: 3}
       insertIndex: 2
       addedObject: {fileID: 1477999548}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 422492785792533323, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8416491823880785523, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7fd11435216ba14686e91ec034f2d92, type: 3}
 --- !u!1 &564922359
 GameObject:
@@ -735,6 +727,11 @@ PrefabInstance:
       propertyPath: _openTarget
       value: 
       objectReference: {fileID: 575138130}
+    - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
+        type: 3}
+      propertyPath: _calculateWeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5002195067618426230, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -914,6 +911,11 @@ PrefabInstance:
       propertyPath: _openTarget
       value: 
       objectReference: {fileID: 802314288}
+    - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
+        type: 3}
+      propertyPath: _calculateWeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5002195067618426230, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
       propertyPath: m_LocalPosition.x

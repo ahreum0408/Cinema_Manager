@@ -5,8 +5,7 @@ using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 
-public class DisplayStand : MonoBehaviour, IIneractionable
-{
+public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
     public Transform staffPoint;
 
     private Stack<ITakeable> _foodStack;
@@ -51,7 +50,13 @@ public class DisplayStand : MonoBehaviour, IIneractionable
     {
         _isStart = true;
     }
-
+    public void OpenStand() {
+        ActiveObj(true);
+        CustomerSpawnManager.Instance.SetMaxCustomer();
+    }
+    public void ActiveObj(bool active) {
+        gameObject.SetActive(active);
+    }
     public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
@@ -214,4 +219,5 @@ public class DisplayStand : MonoBehaviour, IIneractionable
                 TakeFood(takeable);
         }
     }
+
 }

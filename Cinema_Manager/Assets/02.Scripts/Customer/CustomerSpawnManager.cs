@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CustomerSpawnManager : MonoBehaviour
+public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
 {
     [SerializeField] private Customer basicCustomer;
     [SerializeField] private Customer callCustomer;

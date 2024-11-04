@@ -10,10 +10,10 @@ public class Level {
     public int lowValue = 0;
     public int highValue = 20;
 
-    public List<CheckerArea> openNewMapList;
+    public List<BuyChecker> openNewMapList;
 
     public void SetActiveListObj(bool active) {
-        foreach(CheckerArea area in openNewMapList) {
+        foreach(BuyChecker area in openNewMapList) {
             if (area != null) {
                 area.gameObject.SetActive(active);
             }

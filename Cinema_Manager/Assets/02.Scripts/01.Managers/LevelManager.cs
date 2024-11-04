@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoSingleton<LevelManager> {
     public List<Level> levelDatas = new List<Level>();
 
-    private List<CheckerArea> _allAreas = new List<CheckerArea>();   
+    private List<BuyChecker> _allAreas = new List<BuyChecker>();   
     private List<DisplayStand> _allStand = new List<DisplayStand>();   
 
     private Level _currentLevel;
@@ -17,9 +17,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
     protected override void Awake() {
         base.Awake();
         foreach (var levelData in levelDatas) {
-            levelData.SetActiveListObj(false);
-        }
-        foreach (var levelData in levelDatas) {
             foreach (var openMap in levelData.openNewMapList) {
                 _allAreas.Add(openMap);
             }
@@ -27,13 +24,15 @@ public class LevelManager : MonoSingleton<LevelManager> {
         foreach (var levelData in _allAreas) {
             var furniture = levelData as BuyChecker;
             if(furniture != null) {
-                if (furniture.OpenTarget.TryGetComponent<DisplayStand>(out DisplayStand stand)) {
-                    _allStand.Add(stand);
-                }
+                var stand = furniture.OpenTarget as DisplayStand;
+                _allStand.Add(stand);
             }
             else {
                 Debug.Log("stand°¡ ¾øÀ½");
             }
+        }
+        foreach (var area in _allAreas) {
+            area.gameObject.SetActive(false);
         }
     }
     private void OnEnable() {

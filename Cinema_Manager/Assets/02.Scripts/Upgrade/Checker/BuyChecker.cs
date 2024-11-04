@@ -17,12 +17,12 @@ public class BuyChecker : CheckerArea {
             UpdatePriceText(_price);
         } 
     }
-    public GameObject OpenTarget => _openTarget;
+    public IOpenTarget OpenTarget => _openTarget.GetComponent<IOpenTarget>();
     private int currentCoin => CoinManager.Instance.Coin;
 
     private void Awake() {
         CalculateWeght();
-        _openTarget.SetActive(false);
+        OpenTarget.ActiveObj(false);
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(_price);
     }
 
@@ -47,7 +47,7 @@ public class BuyChecker : CheckerArea {
                 _isCalaulate = false;
                 LevelEvents.ChangePriceEvent?.Invoke(this, _price);
                 LevelManager.Instance.GetExp(_exp);
-                _openTarget.SetActive(true);
+                OpenTarget.OpenStand();
                 gameObject.SetActive(false);
                 break;
             }

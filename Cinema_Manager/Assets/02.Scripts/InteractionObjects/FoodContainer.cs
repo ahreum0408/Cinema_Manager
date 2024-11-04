@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static AyunDefine;
 
-public class FoodContainer : MonoBehaviour, IIneractionable
-{
+public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget {
     public Transform staffPoint;
 
     private Stack<ITakeable> _foodStack;
@@ -110,4 +109,12 @@ public class FoodContainer : MonoBehaviour, IIneractionable
     }
 
     public PoolableType GetPoolObjType() => _poolObjType;
+
+    public void OpenStand() {
+        ActiveObj(true);
+    }
+
+    public void ActiveObj(bool active) {
+        gameObject.SetActive(active);
+    }
 }
