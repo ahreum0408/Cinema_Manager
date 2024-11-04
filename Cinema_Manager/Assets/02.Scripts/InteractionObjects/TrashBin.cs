@@ -33,14 +33,14 @@ public class TrashBin : MonoBehaviour, IIneractionable
 
     private IEnumerator TakeTrashRoutine(AgentController agent)
     {
-        bool isStacked = agent.GetAgentComponent<AgentStackComponent>().IsStacked;
+        AgentStackComponent agentStackCompo = agent.GetAgentComponent<AgentStackComponent>();
 
-        if (isStacked)
-            SoundManager.Instance.Play(AudioClips.Trashcan, 1, null, false);
+        if (agentStackCompo.IsStacked)
+            SoundManager.Instance.Play(AudioClips.Trashcan, true, 1, transform);
 
         while (_isEnterInteraction)
         {
-            if (isStacked)
+            if (agentStackCompo.IsStacked)
             {
                 ITakeable takeable = agent.OnGiveTakeable?.Invoke();
                 takeable.Take(_trashContainerTrm, Vector3.zero, Vector3.zero);

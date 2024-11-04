@@ -12,7 +12,7 @@ public class SoundManager : MonoSingleton<SoundManager>
             soundObj.PlayClip(clip, pitch, isLooping);
     }
 
-    public void Play(AudioClip clip, float pitch = 1f, Transform parent = null, bool isLooping = false, bool is3DSound = false)
+    public void Play(AudioClip clip, bool is3DSound = false, float pitch = 1f, Transform parent = null, bool isLooping = false)
     {
         GameObject go = PoolManager.Instance.Pop(PoolableType.SoundObject.ToString(), parent);
 

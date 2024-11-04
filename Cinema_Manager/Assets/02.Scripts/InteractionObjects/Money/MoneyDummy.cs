@@ -13,9 +13,6 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
     // Bool
     private bool _isClearing = false;
 
-    public Transform _playerTrm;
-    private PlayerController _playerController;
-
     private readonly Vector3 _moneyRotation = new Vector3(0, 90, 0);
 
     [Header("Spacing")]
@@ -26,34 +23,35 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
     private void Awake()
     {
         _moneyStack = new Stack<Money>();
-
-        _playerController = PlayerManager.Instance.PlayerController;
-        _playerTrm = PlayerManager.Instance.Transform;
     }
 
     public void EnterInteraction(AgentController agent)
     {
         if (_moneyAmount > 0 && false == _isClearing)
         {
-            _playerController.OnGetPaid?.Invoke(_moneyAmount);
-            StartCoroutine(ClearMoneyObject());
+            StartCoroutine(ClearMoneyObject(agent));
         }
     }
 
     public void ExitInteraction(AgentController agent) { }
 
-    public IEnumerator ClearMoneyObject()
+    public IEnumerator ClearMoneyObject(AgentController agent)
     {
-        _isClearing = true;
-
-        foreach (Money money in _moneyStack)
+        if (agent.TryGetComponent(out PlayerController player))
         {
-            money.JumpToPositionAndDestory(_playerTrm.localPosition);
-            yield return new WaitForSeconds(0.02f);
-        }
+            _isClearing = true;
 
-        _moneyStack.Clear();
-        _isClearing = false;
+            player.OnGetPaid?.Invoke(_moneyAmount);
+
+            foreach (Money money in _moneyStack)
+            {
+                money.JumpToPositionAndDestory(player.transform.localPosition);
+                yield return new WaitForSeconds(0.02f);
+            }
+
+            _moneyStack.Clear();
+            _isClearing = false;
+        }
     }
 
     // ÁöºÒ (µ· »ý¼º)

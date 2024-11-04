@@ -135,7 +135,10 @@ public class Customer : AgentController
     // 손님 원하는 물건
     public void SelectObjectType()
     {
-        while (true)
+        int maxAttempts = 10;
+        int attempts = 0;
+
+        while (attempts < maxAttempts)
         {
             int rand = Random.Range(1, foodTypeSum + 1);
             customerData.objectType = (PoolableType)rand;
@@ -144,7 +147,24 @@ public class Customer : AgentController
 
             if (stand != null && stand.CanStandPoint() != null)
             {
+                currentStand = stand;
                 break;
+            }
+
+            attempts++;
+        }
+
+        if (attempts >= maxAttempts)
+        {
+            foreach (var objType in Enum.GetValues(typeof(PoolableType)))
+            {
+                DisplayStand stand = ObjectManager.Instance.FindDisplayStand((PoolableType)objType);
+                if (stand != null && stand.CanStandPoint() != null)
+                {
+                    customerData.objectType = (PoolableType)objType;
+                    currentStand = stand;
+                    break;
+                }
             }
         }
     }

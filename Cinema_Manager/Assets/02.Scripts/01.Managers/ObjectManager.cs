@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static AyunDefine;
 
@@ -31,7 +32,8 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach(var stand in displayStands)
         {
-            if (stand.GetPoolObjType() == foodType && !stand.IsFullLine)
+            if (stand.GetPoolObjType() == foodType && !stand.IsFullLine 
+                && stand.gameObject.active)
                 return stand;
         }
         return null;
