@@ -2070,7 +2070,7 @@ MonoBehaviour:
     type: 3}
   parcelCustomer: {fileID: 5008099957065270370, guid: 446c324dc473d8340bbff468ca3d5c99,
     type: 3}
-  maxCustomer: 8
+  maxCustomer: 3
   spawnCoolTime: 2
 --- !u!4 &1166679647
 Transform:
@@ -2081,7 +2081,7 @@ Transform:
   m_GameObject: {fileID: 1166679645}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 64.13, y: 0, z: 19.26}
+  m_LocalPosition: {x: 64.13, y: 0, z: -1.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

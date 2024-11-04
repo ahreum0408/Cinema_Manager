@@ -63,10 +63,10 @@ public class StaffController : AgentController
 
     private void CheckCanStack()
     {
-        if (!CanSetDestination())
-            collider.enabled = false;
-        else
+        if (CanSetDestination() || StackCompo.IsStacked)
             collider.enabled = true;
+        else
+            collider.enabled = false;
     }
 
     public bool CanSetDestination()

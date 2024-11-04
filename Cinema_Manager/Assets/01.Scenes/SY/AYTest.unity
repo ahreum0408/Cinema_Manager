@@ -180,15 +180,25 @@ PrefabInstance:
       propertyPath: restPos
       value: 
       objectReference: {fileID: 1335666327}
+    - target: {fileID: 4077817960452276414, guid: 727c5ec24194430418559b12ae2ac4b0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4275240779588899374, guid: 727c5ec24194430418559b12ae2ac4b0,
         type: 3}
       propertyPath: m_Name
       value: Staff
       objectReference: {fileID: 0}
+    - target: {fileID: 4393257610664363425, guid: 727c5ec24194430418559b12ae2ac4b0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8130614121513735818, guid: 727c5ec24194430418559b12ae2ac4b0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.59
+      value: 0.49
       objectReference: {fileID: 0}
     - target: {fileID: 8130614121513735818, guid: 727c5ec24194430418559b12ae2ac4b0,
         type: 3}
@@ -198,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 8130614121513735818, guid: 727c5ec24194430418559b12ae2ac4b0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.71
+      value: 15.39
       objectReference: {fileID: 0}
     - target: {fileID: 8130614121513735818, guid: 727c5ec24194430418559b12ae2ac4b0,
         type: 3}
