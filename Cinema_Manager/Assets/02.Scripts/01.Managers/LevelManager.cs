@@ -5,8 +5,8 @@ using UnityEngine;
 public class LevelManager : MonoSingleton<LevelManager> {
     public List<Level> levelDatas = new List<Level>();
 
-    private List<BuyChecker> _allAreas = new List<BuyChecker>();   
-    private List<DisplayStand> _allStand = new List<DisplayStand>();   
+    private List<BuyChecker> _allAreas = new List<BuyChecker>();
+    private List<DisplayStand> _allStand = new List<DisplayStand>();
 
     private Level _currentLevel;
     private int _exp;
@@ -95,13 +95,13 @@ public class LevelManager : MonoSingleton<LevelManager> {
         }
     }
     private void SettingCheckerPrice() {
+        Debug.Log(_allAreas.Count);
+        Debug.Log(_gameData.allCheckPriceList.Count);
         for (int i = 0; i < _allAreas.Count; i++) {
-            var checker = _allAreas[i] as BuyChecker;
-            if (checker != null) {
-                checker.Price = _gameData.allCheckPriceList[i];
-                if (checker.Price == 0) { // 이미 해금을 했다 => stand를 켜야한다
-                    SettingStandItem(i, checker);
-                }
+            var checker = _allAreas[i];
+            checker.Price = _gameData.allCheckPriceList[i];
+            if (checker.Price == 0) { // 이미 해금을 했다 => stand를 켜야한다
+                SettingStandItem(i, checker);
             }
         }
     }
@@ -120,6 +120,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
     }
     private void ChangeDisplyStandPrice(DisplayStand stand, int count) {
         int index = _allStand.IndexOf(stand);
+        Debug.Log(index);
         _gameData.allDisplayStandItemCountList[index] = count;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }

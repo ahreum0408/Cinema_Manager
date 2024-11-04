@@ -53,8 +53,8 @@ public class GameData {
         this.levelIndex = 0;
         this.exp = 0;
 
-        allCheckPriceList = new List<int> { 50, 50, 50, 50 };
-        allDisplayStandItemCountList = new List<int> { 0, 0, 0, 0 };
+        allCheckPriceList = new List<int> { 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50 };
+        allDisplayStandItemCountList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         p_movespeedLevel = 0;
         p_movespeedLevel = 0;

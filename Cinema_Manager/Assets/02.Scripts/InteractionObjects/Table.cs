@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 
-public class Table : MonoBehaviour, IIneractionable
+public class Table : MonoBehaviour, IIneractionable, IOpenTarget
 {
     public Transform staffPoint;
 
@@ -96,5 +96,13 @@ public class Table : MonoBehaviour, IIneractionable
             }
         }
         return null;
+    }
+
+    public void OpenStand() {
+        ActiveObj(true);
+    }
+
+    public void ActiveObj(bool active) {
+        gameObject.SetActive(active);
     }
 }
