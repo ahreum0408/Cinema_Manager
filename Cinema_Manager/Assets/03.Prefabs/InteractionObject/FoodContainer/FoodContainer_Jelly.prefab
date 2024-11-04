@@ -84,7 +84,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staffPoint: {fileID: 6491955391114165744}
   _spawnTrm: {fileID: 7917341354112693767}
-  _poolObjType: 5
+  _poolObjType: 7
   _isFood: 1
   _spacingX: 1
   _spacingZ: 1

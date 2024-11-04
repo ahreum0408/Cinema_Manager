@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staffPoint: {fileID: 351804794003088817}
   points: []
-  _poolObjType: 2
+  _poolObjType: 3
   _columnSpawnCnt: 7
   _spawnTrmList:
   - {fileID: 4188119800428792648}
