@@ -18,6 +18,9 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
 
     private PlayerController _playerController;
 
+    private bool _isOpen = false;
+    public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+
     private void Awake()
     {
         _playerController = PlayerManager.Instance.PlayerController;
@@ -98,11 +101,8 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
         return null;
     }
 
-    public void OpenStand() {
-        ActiveObj(true);
-    }
-
     public void ActiveObj(bool active) {
+        _isOpen = active;
         gameObject.SetActive(active);
     }
 }

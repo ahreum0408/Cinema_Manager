@@ -12,10 +12,10 @@ public class Level {
 
     public List<BuyChecker> openNewMapList;
 
-    public void SetActiveListObj(bool active) {
+    public void SetActiveChildList(bool active) {
         foreach(BuyChecker area in openNewMapList) {
-            if (area != null) {
-                area.gameObject.SetActive(active);
+            if (area.TryGetComponent(out IOpenTarget target)) {
+                target.ActiveObj(active);
             }
             else {
                 Debug.LogWarning("지금 null인게 있음");

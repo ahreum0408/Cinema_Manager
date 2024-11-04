@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class BuyChecker : CheckerArea {
+public class BuyChecker : CheckerArea, IOpenTarget {
     [SerializeField] private TextMeshPro _priceTxt;
     [SerializeField] private GameObject _openTarget;
     [SerializeField] private int _exp;
@@ -17,13 +17,17 @@ public class BuyChecker : CheckerArea {
             UpdatePriceText(_price);
         } 
     }
-    public IOpenTarget OpenTarget => _openTarget.GetComponent<IOpenTarget>();
+    public GameObject OpenGTarget => _openTarget;
+    public IOpenTarget OpenITarget => _openTarget.GetComponent<IOpenTarget>();
     private int currentCoin => CoinManager.Instance.Coin;
+
+    private bool _isOpen;
+    public bool IsOpen { get => _isOpen; set => _isOpen = value; }
 
     private void Awake() {
         CalculateWeght();
-        OpenTarget.ActiveObj(false);
-        _priceTxt.text = CoinManager.Instance.CalculatePriceText(_price);
+        OpenITarget.ActiveObj(false);
+        UpdatePriceText(_price);
     }
 
     public override void EnterInteraction(AgentController agent) {
@@ -44,11 +48,7 @@ public class BuyChecker : CheckerArea {
                 break;
             }
             if (_price <= 0) {
-                _isCalaulate = false;
-                LevelEvents.ChangePriceEvent?.Invoke(this, _price);
-                LevelManager.Instance.GetExp(_exp);
-                OpenTarget.OpenStand();
-                gameObject.SetActive(false);
+                EndCal();
                 break;
             }
 
@@ -64,5 +64,16 @@ public class BuyChecker : CheckerArea {
     private void UpdatePriceText(int coin) {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
     }
-    
+    private void EndCal() {
+        _isCalaulate = false;
+        LevelEvents.ChangePriceEvent?.Invoke(this, _price);
+        LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, true);
+        LevelManager.Instance.GetExp(_exp);
+        ActiveObj(false);
+        OpenITarget.ActiveObj(true);
+    }
+    public void ActiveObj(bool active) {
+        _isOpen = active;
+        gameObject.SetActive(active);
+    }
 }

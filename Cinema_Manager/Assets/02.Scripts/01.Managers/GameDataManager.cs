@@ -37,7 +37,15 @@ public class GameDataManager : MonoBehaviour {
             return;
         }
 
+        _gameData.allCheckOnOffList = data.allCheckOnOffList;
         _gameData.allCheckPriceList = data.allCheckPriceList;
+
+        _gameData.allStandOnOffList = data.allStandOnOffList;
+        _gameData.allStandItemCountList = data.allStandItemCountList;
+
+        _gameData.allTruckOnOffList = data.allTruckOnOffList;
+
+        _gameData.allTableOnOffList = data.allTableOnOffList;
     }
     private void MainDataUpdate(GameData data) {
         if (data == null) {

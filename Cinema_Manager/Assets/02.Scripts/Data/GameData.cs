@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 
 public class GameData {
@@ -17,9 +16,15 @@ public class GameData {
     public int levelIndex;
     public int exp;
 
-    // checker 가격 및 stand 개수 보관
+    public List<bool> allCheckOnOffList;
     public List<int> allCheckPriceList;
-    public List<int> allDisplayStandItemCountList;
+
+    public List<bool> allStandOnOffList;
+    public List<int> allStandItemCountList;
+
+    public List<bool> allTruckOnOffList;
+    
+    public List<bool> allTableOnOffList;
 
     // player
     public int p_movespeedLevel = 0; // 플레이어 이속
@@ -39,22 +44,28 @@ public class GameData {
     // machine-package(택배 붙이는 기계)
     public int mp_packingspeedLevel = 0; // 포장 증가
     public int mp_volumeLevel = 0; // 보관량 증가
-    //public int mp_storageLevel = 0; // 창고 용량
 
     public GameData() {
         this.bgm = true;
         this.effect = true;
         this.haptic = true;
 
-        this.coin = 0;
+        this.coin = 1000;
         this.gam = 0;
 
         this.level = new Level(); 
         this.levelIndex = 0;
         this.exp = 0;
 
-        allCheckPriceList = new List<int> { 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50 };
-        allDisplayStandItemCountList = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        allCheckOnOffList = new List<bool>(new bool[20]);
+        allCheckPriceList = new List<int> { 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50 };
+
+        allStandOnOffList = new List<bool>(new bool[20]);
+        allStandItemCountList = new List<int>(new int[20]);
+
+        allTruckOnOffList = new List<bool>(new bool[20]);
+        
+        allTableOnOffList = new List<bool>(new bool[20]);
 
         p_movespeedLevel = 0;
         p_movespeedLevel = 0;

@@ -17,6 +17,9 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
     [SerializeField] private int _columnSpawnCnt;
     [SerializeField] private List<Transform> _spawnTrmList = new List<Transform>();
 
+    private bool _isOpen = false;
+    public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+
     #region ¼­¿¬
     public bool IsFullLine => _customerDic.Count == points.Count;
     public int CurrentLine => _customerDic.Count;
@@ -50,11 +53,12 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
     {
         _isStart = true;
     }
-    public void OpenStand() {
+    public void OpenOrCloseThis(bool isOpen) {
         ActiveObj(true);
         CustomerSpawnManager.Instance.SetMaxCustomer();
     }
     public void ActiveObj(bool active) {
+        _isOpen = active;
         gameObject.SetActive(active);
     }
     public void EnterInteraction(AgentController agent)

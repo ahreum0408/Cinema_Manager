@@ -23,6 +23,9 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget {
     private NotifyImageComponent _notifyImageComponent;
     private FoodTruck _foodTruck;
 
+    private bool _isOpen = false;
+    public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+
     #region 나중에 업그레이드로 빼야할 것들
     private int _stackMaxCnt = 8; // 스택에 쌓이는 음식 개수
     private int _spawnFoodCnt = 4; // 스폰되는 음식 개수
@@ -110,11 +113,8 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget {
 
     public PoolableType GetPoolObjType() => _poolObjType;
 
-    public void OpenStand() {
-        ActiveObj(true);
-    }
-
     public void ActiveObj(bool active) {
+        _isOpen = active;
         gameObject.SetActive(active);
     }
 }

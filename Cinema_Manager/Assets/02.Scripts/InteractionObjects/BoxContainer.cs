@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using static AyunDefine;
 
-public class BoxContainer : MonoBehaviour, IIneractionable
+public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
 {
     public Transform staffPoint;
 
     private Stack<ITakeable> _boxStack;
     private int _currentBoxCnt => _boxStack.Count;
     public bool IsStackMax => _currentBoxCnt >= _stackMaxCnt;
+
+    private bool _isOpen;
+    public bool IsOpen { get => _isOpen; set => _isOpen = value; }
 
     [Header("Box")]
     [SerializeField] private PoolableType _poolObjType;
@@ -125,5 +128,10 @@ public class BoxContainer : MonoBehaviour, IIneractionable
         Vector3 boxPos = new Vector3(0, _spacingY * _boxStack.Count, 0);
         box.Take(_spawnTrm, boxPos, Vector3.zero);
         _boxStack.Push(box);
+    }
+
+    public void ActiveObj(bool active) {
+        _isOpen = active;
+        gameObject.SetActive(active);
     }
 }
