@@ -56,10 +56,15 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
         isParcel = parcel;
     }
 
-    // display 1개가 해금되면 max 2명씩 늘어나게하기
+    // display 1개가 해금되면 max 3명씩 늘어나게하기
     public void SetMaxCustomer()
     {
         maxCustomer += 3;
+    }
+
+    public void MinusCustomer()
+    {
+        currentCustomer--;
     }
 
     public void SetSpawnCoolTime(float spawnCool)

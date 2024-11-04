@@ -55,8 +55,8 @@ public static class AyunDefine
     public enum PoolableType
     {
         None,
-        TriangleKimbap, CupRamen, Bread, Snack, Jelly,
-        Coffee, Coke, Juice, Beer, Soju,
+        TriangleKimbap, Coke, CupRamen, Beer, Snack,
+        Juice, Jelly, Coffee, Bread, Soju,
         Money, Trash,
         Box,
 

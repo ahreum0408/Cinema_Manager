@@ -34,6 +34,8 @@ public class Customer : AgentController
 
     public float defualtSpeed = 3.5f;
 
+    private int foodTypeSum = 1;
+
     [SerializeField] private LayerMask _whatIsPlayer;
 
     [HideInInspector] public bool IsStacked => StackCompo.IsStacked;
@@ -102,6 +104,11 @@ public class Customer : AgentController
             return false;
     }
 
+    public void SetFoodTypeSum()
+    {
+        foodTypeSum++;
+    }
+
     #region Set Customer Type
     // ¸Ô°í °¡´Â ¼Õ´Ô
     private void SetSeat()
@@ -130,7 +137,7 @@ public class Customer : AgentController
     {
         while (true)
         {
-            int rand = Random.Range(1, 11);
+            int rand = Random.Range(1, foodTypeSum + 1);
             customerData.objectType = (PoolableType)rand;
 
             DisplayStand stand = ObjectManager.Instance.FindDisplayStand(customerData.objectType);
