@@ -63,8 +63,7 @@ public class StaffController : AgentController
 
     private void CheckCanStack()
     {
-        float threshold = Agent.stoppingDistance + 0.5f;
-        if (!Agent.isPathStale && Agent.remainingDistance < threshold)
+        if (!CanSetDestination())
             collider.enabled = false;
         else
             collider.enabled = true;
