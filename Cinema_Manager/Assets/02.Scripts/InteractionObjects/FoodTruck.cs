@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using static AyunDefine;
 
 public class FoodTruck : MonoBehaviour
 {
@@ -45,6 +46,10 @@ public class FoodTruck : MonoBehaviour
     // 음식 가지러 가기
     public void GoTakeFood()
     {
+        // Sound
+        SoundManager.Instance.Play(AudioClips.TruckStart, true, 1, _visualTrm);
+        SoundManager.Instance.Play(AudioClips.TruckHorn, true, 1, _visualTrm);
+
         _isBringFood = true;
         TruckMove(_startTrm.position, false);
     }
@@ -65,6 +70,9 @@ public class FoodTruck : MonoBehaviour
         {
             if (isBringFood)
             {
+                // Sound
+                SoundManager.Instance.Play(AudioClips.TruckStop, true, 1, _visualTrm);
+
                 OnBringFood?.Invoke();
             }
         });

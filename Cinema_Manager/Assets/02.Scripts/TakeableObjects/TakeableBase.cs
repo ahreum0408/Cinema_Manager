@@ -6,6 +6,7 @@ using static AyunDefine;
 public class TakeableBase : MonoBehaviour, ITakeable
 {
     [SerializeField] private PoolableType _poolType;
+    public PoolableType PoolType => _poolType;
 
     private Rigidbody _rigid;
     //private Animator _animator;

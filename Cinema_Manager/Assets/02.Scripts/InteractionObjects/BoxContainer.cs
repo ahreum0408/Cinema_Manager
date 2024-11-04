@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using static AyunDefine;
 
@@ -74,7 +75,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable
             effect.GetComponent<ParticleSystem>().Play();
 
             // Sound
-            SoundManager.Instance.Play(AudioClips.BoxPacking, 1, transform, false, true);
+            SoundManager.Instance.Play(AudioClips.BoxPacking, true, 1, transform);
 
             yield return new WaitForSeconds(0.5f);
 

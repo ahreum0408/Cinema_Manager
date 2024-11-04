@@ -66,7 +66,7 @@ public class AgentStackComponent : AgentComponent
         _takeObjectStack.Push(takeableObject);
 
         // Sound
-        SoundManager.Instance.Play(AudioClips.Stack, 1 * CurrentStackCount, null, false);
+        SoundManager.Instance.Play(AudioClips.Stack, true, 1 * CurrentStackCount, transform);
 
         if (IsStackMax)
             StartCoroutine(JumpWaitRoutine(spacingY));
@@ -87,7 +87,7 @@ public class AgentStackComponent : AgentComponent
         ITakeable takeable = _takeObjectStack.Pop();
 
         // Sound
-        SoundManager.Instance.Play(AudioClips.Stack, 1 * CurrentStackCount, null, false);
+        SoundManager.Instance.Play(AudioClips.Stack, true, 1 * CurrentStackCount, transform);
 
         if (_takeObjectStack.Count <= 0) _currentHoldType = PoolableType.None;
         return takeable;
