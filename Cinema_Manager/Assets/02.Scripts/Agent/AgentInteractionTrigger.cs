@@ -17,10 +17,13 @@ public class AgentInteractionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
+        if(_staffController != null)
         {
-            if (_staffController.foodContainer.GetPoolObjType() !=
-            other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
+            if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
+            {
+                if (_staffController.foodContainer.GetPoolObjType() !=
+                other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
+            }
         }
 
         if (_currentInteractionObject != null) return;
@@ -37,10 +40,13 @@ public class AgentInteractionTrigger : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
+        if (_staffController != null)
         {
-            if (_staffController.foodContainer.GetPoolObjType() !=
-            other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
+            if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
+            {
+                if (_staffController.foodContainer.GetPoolObjType() !=
+                other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
+            }
         }
 
         if (_currentInteractionObject == null && other.CompareTag(ObjectTagString.InteractionableTag))
@@ -55,10 +61,13 @@ public class AgentInteractionTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
+        if (_staffController != null)
         {
-            if (_staffController.foodContainer.GetPoolObjType() !=
-            other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
+            if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
+            {
+                if (_staffController.foodContainer.GetPoolObjType() !=
+                other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
+            }
         }
 
         if (_currentInteractionObject != null)
