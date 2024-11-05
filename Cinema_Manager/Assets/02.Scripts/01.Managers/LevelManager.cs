@@ -61,9 +61,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
                 Debug.Log("stand가 없음");
             }
         }
-        foreach (var area in _allCheckers) {
-            area.ActiveObj(false);
-        }
     }
 
     private void OnEnable() {
@@ -118,8 +115,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         SetLevelData();
 
-        // 켜져야 하는 거는 켜주고
-        OnListObj();
         // 체커의 가격도 맞춰주고 가격에 따라서 stand도 켜줌
         SettingCheckerPrice();
         // truck켜주기
@@ -133,29 +128,20 @@ public class LevelManager : MonoSingleton<LevelManager> {
                 _allCheckers[i].ActiveObj(_gameData.allCheckOnOffList[i]);
             }
         }
-
         for (int i = 0; i < _allStand.Count; i++) {
             if (_allStand[i] != null) {
                 _allStand[i].ActiveObj(_gameData.allStandOnOffList[i]);
-                Debug.Log($"{_allStand[i].name} | {_allStand[i].IsOpen}");
             }
         }
-
         for (int i = 0; i < _allTruck.Count; i++) {
             if (_allTruck[i] != null) {
                 _allTruck[i].ActiveObj(_gameData.allTruckOnOffList[i]);
             }
         }
-
         for (int i = 0; i < _allTable.Count; i++) {
             if (_allTable[i] != null) {
                 _allTable[i].ActiveObj(_gameData.allTableOnOffList[i]);
             }
-        }
-    }
-    private void OnListObj() {
-        for (int i = 0; i <= _levelIndex; i++) {
-            levelDatas[i].SetActiveChildList(true);
         }
     }
     private void SettingTruck() {
@@ -171,9 +157,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
         for (int i = 0; i < _allCheckers.Count; i++) {
             var checker = _allCheckers[i];
             if (checker != null) {
-                Debug.Log(checker.OpenITarget.IsOpen);
                 if(checker.OpenITarget.IsOpen) { // 오픈되었다
-                    Debug.Log("open");
                     OnStandItem(checker);
                 }
                 else {
@@ -197,11 +181,11 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
     private void ChangeCheckerActive(BuyChecker activeObj, bool active) {
         int index = 0;
-        if (activeObj.OpenGTarget.TryGetComponent(out BuyChecker checker)) {
-            index = _allCheckers.IndexOf(checker); // 내가 누구인지 index뽑고
-            _gameData.allCheckOnOffList[index] = active;
-        }
-        else if (activeObj.OpenGTarget.TryGetComponent(out DisplayStand stand)) {
+
+        index = _allCheckers.IndexOf(activeObj); // 내가 누구인지 index뽑고
+        _gameData.allCheckOnOffList[index] = !active; // true
+
+        if (activeObj.OpenGTarget.TryGetComponent(out DisplayStand stand)) {
             index = _allStand.IndexOf(stand); // 내가 누구인지 index뽑고
             _gameData.allStandOnOffList[index] = active;
         }

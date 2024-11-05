@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameData {
@@ -57,8 +58,8 @@ public class GameData {
         this.levelIndex = 0;
         this.exp = 0;
 
-        allCheckOnOffList = new List<bool>(new bool[20]);
-        allCheckPriceList = new List<int> { 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50 };
+        allCheckOnOffList = new List<bool> { true, true, true, true, true, false, false , false , false , false, false, false, false, false, false, false, false, false, false, false };
+        allCheckPriceList = new List<int> (Enumerable.Repeat(100, 20).ToArray());
 
         allStandOnOffList = new List<bool>(new bool[20]);
         allStandItemCountList = new List<int>(new int[20]);

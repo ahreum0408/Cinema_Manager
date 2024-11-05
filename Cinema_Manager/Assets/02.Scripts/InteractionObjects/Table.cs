@@ -101,7 +101,7 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
         return null;
     }
 
-    public void ActiveObj(bool active) {
+    public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
     }

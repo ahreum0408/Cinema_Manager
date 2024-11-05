@@ -26,7 +26,6 @@ public class BuyChecker : CheckerArea, IOpenTarget {
 
     private void Awake() {
         CalculateWeght();
-        OpenITarget.ActiveObj(false);
         UpdatePriceText(_price);
     }
 
@@ -66,14 +65,16 @@ public class BuyChecker : CheckerArea, IOpenTarget {
     }
     private void EndCal() {
         _isCalaulate = false;
-        LevelEvents.ChangePriceEvent?.Invoke(this, _price);
-        LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, true);
-        LevelManager.Instance.GetExp(_exp);
-        ActiveObj(false);
+        ActiveObj(false, true);
         OpenITarget.ActiveObj(true);
+        LevelEvents.ChangePriceEvent?.Invoke(this, _price);
+        LevelManager.Instance.GetExp(_exp);
     }
-    public void ActiveObj(bool active) {
+    public void ActiveObj(bool active, bool isAction = false) {
         _isOpen = active;
         gameObject.SetActive(active);
+        if(isAction) {
+            LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, !active);
+        }
     }
 }

@@ -14,8 +14,8 @@ public class Level {
 
     public void SetActiveChildList(bool active) {
         foreach(BuyChecker area in openNewMapList) {
-            if (area.TryGetComponent(out IOpenTarget target)) {
-                target.ActiveObj(active);
+            if(area != null) {
+                area.ActiveObj(active, true);
             }
             else {
                 Debug.LogWarning("지금 null인게 있음");

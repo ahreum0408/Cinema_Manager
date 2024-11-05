@@ -53,13 +53,12 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
     {
         _isStart = true;
     }
-    public void OpenOrCloseThis(bool isOpen) {
-        ActiveObj(true);
-        CustomerSpawnManager.Instance.SetMaxCustomer();
-    }
-    public void ActiveObj(bool active) {
+    public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
+        if (active) {
+            CustomerSpawnManager.Instance.SetMaxCustomer();
+        }
     }
     public void EnterInteraction(AgentController agent)
     {
