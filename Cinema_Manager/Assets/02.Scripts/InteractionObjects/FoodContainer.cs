@@ -113,7 +113,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget {
 
     public PoolableType GetPoolObjType() => _poolObjType;
 
-    public void ActiveObj(bool active) {
+    public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
     }
