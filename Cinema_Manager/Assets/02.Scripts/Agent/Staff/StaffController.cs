@@ -19,14 +19,14 @@ public class StaffController : AgentController
     public AgentStackComponent StackCompo { get; private set; }
     public AgentAnimationComponent AnimationCompo { get; private set; }
 
-    private Collider collider;
     private AgentState _currentState;
+
+    public bool IsMoving => Agent.velocity.sqrMagnitude > 0;
 
     protected override void Init()
     {
         Animator = GetComponentInChildren<Animator>();
         Agent = GetComponent<NavMeshAgent>();
-        collider = GetComponent<Collider>();
     }
 
     protected override void SetAgentComponents()
@@ -49,33 +49,21 @@ public class StaffController : AgentController
     private void Update()
     {
         _currentState?.Update();
-        SetMoveAniamtion();
-        CheckCanStack();
+        SetMoveAnimation();
     }
 
-    private void SetMoveAniamtion()
+    private void SetMoveAnimation()
     {
-        if (Agent.velocity.sqrMagnitude > 0)
+        if (IsMoving)
             AnimationCompo.SetMovementAnimation(Agent.destination);
         else
             AnimationCompo.SetMovementAnimation(Vector3.zero);
     }
 
-    private void CheckCanStack()
-    {
-        if (CanSetDestination() || StackCompo.IsStacked)
-            collider.enabled = true;
-        else
-            collider.enabled = false;
-    }
-
     public bool CanSetDestination()
     {
         float threshold = Agent.stoppingDistance + 0.1f;
-        if (!Agent.isPathStale && Agent.remainingDistance < threshold)
-            return true;
-        else
-            return false;
+        return !Agent.isPathStale && Agent.remainingDistance < threshold;
     }
 
     public void ChangeState(AgentState newState)
