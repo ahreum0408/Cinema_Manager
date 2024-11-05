@@ -24,7 +24,10 @@ internal class MoveContainerState : AgentState
     private bool CheckFoodContainer()
     {
         if((agent.foodContainer.currentFoodCnt == 0 && agent.IsStacked) || agent.StackCompo.IsStackMax)
+        {
+            agent.foodContainer = null;
             return true;
+        }
         return false;
     }
 }
