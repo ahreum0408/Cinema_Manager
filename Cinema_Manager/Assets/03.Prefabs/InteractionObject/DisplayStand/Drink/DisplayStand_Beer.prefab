@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 2614343471348360457}
   - component: {fileID: 7233654748363263110}
   m_Layer: 0
-  m_Name: DisplayStand_Drink
+  m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
