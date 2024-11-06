@@ -29,6 +29,13 @@ public static class AyunDefine
         public static readonly AudioClip TruckStop   = Resources.Load<AudioClip>("Sound/TruckStopSound");
         public static readonly AudioClip TruckEngine = Resources.Load<AudioClip>("Sound/TruckEngineSound");
         public static readonly AudioClip TruckHorn   = Resources.Load<AudioClip>("Sound/TruckHornSound");
+
+        // UI
+        public static readonly AudioClip Click = Resources.Load<AudioClip>("Sound/ClickSound");
+
+        // BGM
+        public static readonly AudioClip BGM1 = Resources.Load<AudioClip>("Sound/BGM 1");
+        public static readonly AudioClip BGM2 = Resources.Load<AudioClip>("Sound/BGM 2");
     }
 
     public static class ObjectPriceInt

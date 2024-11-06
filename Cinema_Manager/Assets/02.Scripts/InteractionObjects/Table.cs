@@ -16,14 +16,12 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
     private MoneyDummy _moneyDummy;
     private NotifyImageComponent _notifyImageComponent;
 
-    private PlayerController _playerController;
 
     private bool _isOpen = false;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
 
     private void Awake()
     {
-        _playerController = PlayerManager.Instance.PlayerController;
         _moneyDummy = transform.GetComponentInChildren<MoneyDummy>();
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
 
