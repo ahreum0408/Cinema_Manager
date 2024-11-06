@@ -142,6 +142,9 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
 
     public void AddCustomer(Customer customer)
     {
+        if (_customerDic.Count >= points.Count)
+            return;
+
         _customerDic.Add(customer, _customerCount);
         _customerCount++;
 
@@ -151,13 +154,17 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
             _currentCustomer.customerData.isGive = true;
             _isStart = false;
         }
+
         customer.Agent.SetDestination(points[_customerDic[customer]].transform.position);
     }
 
     public void RemoveCustomer(Customer customer)
     {
-        _customerDic.Remove(customer);
-        _customerCount--;
+        if (_customerDic.ContainsKey(customer))
+        {
+            _customerDic.Remove(customer);
+            _customerCount--;
+        }
 
         _dicIsStart = true;
 
@@ -167,16 +174,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
         {
             Customer currentCustomer = customerKeys[i];
 
-            if (currentCustomer == customer)
-            {
-                _customerDic.Remove(currentCustomer);
-                continue;
-            }
-
-            if (_customerDic.ContainsKey(currentCustomer))
-            {
-                _customerDic[currentCustomer] = _customerDic[currentCustomer] - 1;
-            }
+            _customerDic[currentCustomer] = i;
 
             if (_dicIsStart)
             {
@@ -185,7 +183,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
                 _dicIsStart = false;
             }
 
-            currentCustomer.Agent.SetDestination(points[_customerDic[currentCustomer]].transform.position);
+            currentCustomer.Agent.SetDestination(points[i].transform.position);
         }
     }
 

@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 using static AyunDefine;
+using UnityEngine.UI;
 
 public enum CustomerType
 {
@@ -37,6 +38,9 @@ public class Customer : AgentController
     private int foodTypeSum = 1;
 
     [SerializeField] private LayerMask _whatIsPlayer;
+
+    [SerializeField] private Canvas badCustomerCanvas;
+    [SerializeField] private Image gauge;
 
     [HideInInspector] public bool IsStacked => StackCompo.IsStacked;
     [HideInInspector] public Vector3 startPos;
@@ -102,7 +106,7 @@ public class Customer : AgentController
     public bool CanSetDestination()
     {
         return !Agent.isPathStale && 
-                Agent.remainingDistance < Agent.stoppingDistance && 
+                Vector3.Distance(Agent.destination, transform.position) < Agent.stoppingDistance && 
                 Agent.velocity.sqrMagnitude < 0.01f;
     }
 
@@ -110,6 +114,19 @@ public class Customer : AgentController
     {
         foodTypeSum++;
     }
+
+    #region SetUI
+    public void SetCanvas(bool isCanvas)
+    {
+        badCustomerCanvas.enabled = isCanvas;
+    }
+
+    public void SetGauge(float value)
+    {
+        gauge.fillAmount = value;
+    }
+
+    #endregion
 
     #region Set Customer Type
     // ¸Ô°í °¡´Â ¼Õ´Ô
