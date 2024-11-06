@@ -168,12 +168,9 @@ public class LevelManager : MonoSingleton<LevelManager> {
         }
     }
     private void OnStandItem(BuyChecker checker) {
-        if(checker.TryGetComponent(out DisplayStand stand)){
-            checker.ActiveObj(false); // Ã¼Ä¿ ²ô°í
+        if(checker.OpenGTarget.TryGetComponent(out DisplayStand stand)){
 
             int index = _allStand.IndexOf(stand);
-            _allStand[index].ActiveObj(true); // ½ºÅÙµå Å°°í
-
             int itemCount = _gameData.allStandItemCountList[index];
             _allStand[index].AddItemToStand(itemCount);
         }
