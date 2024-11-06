@@ -167,9 +167,9 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
     private void ChangeCheckerActive(BuyChecker activeObj, bool active) {
         int index = 0;
-
-        index = _allCheckers.IndexOf(activeObj); // 내가 누구인지 index뽑고
-        _gameData.allCheckOnOffList[index] = !active; // true
+        Debug.Log(active);
+        index = _allCheckers.IndexOf(activeObj); // 내 체커 끄고
+        _gameData.allCheckOnOffList[index] = !active;
 
         if (activeObj.OpenGTarget.TryGetComponent(out DisplayStand stand)) {
             index = _allStand.IndexOf(stand); // 내가 누구인지 index뽑고

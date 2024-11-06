@@ -65,16 +65,15 @@ public class BuyChecker : CheckerArea, IOpenTarget {
     }
     private void EndCal() {
         _isCalaulate = false;
-        ActiveObj(false, true);
-        OpenITarget.ActiveObj(true);
-        LevelEvents.ChangePriceEvent?.Invoke(this, _price);
+        ActiveObj(false, true); // ³ª ²ô°í
+        OpenITarget.ActiveObj(true); // Å¸°Ù Å°°í
         LevelManager.Instance.GetExp(_exp);
     }
     public void ActiveObj(bool active, bool isAction = false) {
         _isOpen = active;
         gameObject.SetActive(active);
         if(isAction) {
-            LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, !active);
+        LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, true);
         }
     }
 }
