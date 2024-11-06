@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Playables;
 using Debug = UnityEngine.Debug;
 
 public class LevelManager : MonoSingleton<LevelManager> {
     public List<Level> levelDatas = new List<Level>();
 
     private List<BuyChecker> _allCheckers = new List<BuyChecker>();
+
     private List<DisplayStand> _allStand = new List<DisplayStand>();
     private List<FoodContainer> _allTruck = new List<FoodContainer>();
     private List<Table> _allTable = new List<Table>();
@@ -18,70 +17,66 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
     private GameData _gameData;
 
-    protected override void Awake() {
-        base.Awake();
+    private void Start() {
         Init();
     }
     private void Init() {
-        foreach (var levelData in levelDatas) {
-            foreach (var openMap in levelData.openNewMapList) {
-                _allCheckers.Add(openMap);
+        // level에 존재하는 모든 데이터 값을 level에서 찾아 넣어줌
+        foreach (var data in levelDatas) {
+            data.Init();
+
+            List<BuyChecker> buyCheckers = data.GetCheckerList();
+            List<DisplayStand> standList = data.GetStandList();
+            List<FoodContainer> truckList = data.GetTruckList();
+            List<Table> tableList = data.GetTableList();
+
+            if (buyCheckers != null) {
+                foreach (var checker in buyCheckers) {
+                    _allCheckers.Add(checker);
+                }
             }
-        }
-        foreach (var checker in _allCheckers) {
-            if (checker != null) {
-                var stand = checker.OpenITarget as DisplayStand;
-                if (stand != null) {
+            if (standList != null) {
+                foreach (var stand in standList) {
                     _allStand.Add(stand);
                 }
             }
-            else {
-                Debug.Log("stand가 없음");
-            }
-        }
-        foreach (var checker in _allCheckers) {
-            if (checker != null) {
-                var truck = checker.OpenITarget as FoodContainer;
-                if (truck != null) {
+            if (truckList != null) {
+                foreach (var truck in truckList) {
                     _allTruck.Add(truck);
                 }
             }
-            else {
-                Debug.Log("stand가 없음");
-            }
-        }
-        foreach (var checker in _allCheckers) {
-            if (checker != null) {
-                var table = checker.OpenITarget as Table;
-                if (table != null) {
+            if (tableList != null) {
+                foreach (var table in tableList) {
                     _allTable.Add(table);
                 }
             }
-            else {
-                Debug.Log("stand가 없음");
-            }
+
         }
     }
 
     private void OnEnable() {
         LevelEvents.GameDataLoadEvent += GameDataLoad;
+
         LevelEvents.ChangePriceEvent += ChangeCheckerPrice;
-        LevelEvents.ChangeDisplayStandEvent += ChangeDisplyStandItem;
         LevelEvents.ChangeCheckerActiveEvent += ChangeCheckerActive;
+
+        LevelEvents.ChangeStandActiveEvent += ChangeStandActive;
+        LevelEvents.ChangeStandItemEvent += ChangeDisplyStandItem;
+
+        LevelEvents.ChangeTruckActiveEvent += ChangeTruckActive;
     }
     private void OnDisable() {
         LevelEvents.GameDataLoadEvent -= GameDataLoad;
+
         LevelEvents.ChangePriceEvent -= ChangeCheckerPrice;
-        LevelEvents.ChangeDisplayStandEvent -= ChangeDisplyStandItem;
         LevelEvents.ChangeCheckerActiveEvent -= ChangeCheckerActive;
+
+        LevelEvents.ChangeStandActiveEvent -= ChangeStandActive;
+        LevelEvents.ChangeStandItemEvent -= ChangeDisplyStandItem;
+
+        LevelEvents.ChangeTruckActiveEvent -= ChangeTruckActive;
     }
 
-    private void Update() {
-        if(Input.GetKeyDown(KeyCode.E)) {
-            GetExp(10);
-            Debug.LogWarning("지금 exp 얻는 곳이 존재하니 주의 할 것");
-        }
-    }
     public void GetExp(int exp) {
         if(_levelIndex >= levelDatas.Count - 1 && _exp >= _currentLevel.highValue) {
             Debug.LogWarning("현제 최고 레벨에 도달함");
@@ -109,16 +104,19 @@ public class LevelManager : MonoSingleton<LevelManager> {
         }
 
         _gameData = data;
+
         _currentLevel = _gameData.level;
         _levelIndex = _gameData.levelIndex;
         _exp = _gameData.exp;
+
+        foreach (var levelData in levelDatas) {
+            levelData.AfterSetting();
+        }
 
         SetLevelData();
 
         // 체커의 가격도 맞춰주고 가격에 따라서 stand도 켜줌
         SettingCheckerPrice();
-        // truck켜주기
-        //SettingTruck();
     }
 
     private void SetLevelData() {
@@ -144,19 +142,10 @@ public class LevelManager : MonoSingleton<LevelManager> {
             }
         }
     }
-    private void SettingTruck() {
-        for (int i = 0; i < _allTruck.Count; i++) {
-            if (_allTruck[i] is IOpenTarget openTarget) {
-                if (openTarget != null && openTarget.IsOpen) { // 오픈되었다
-
-                }
-            }
-        }
-    }
     private void SettingCheckerPrice() {
         for (int i = 0; i < _allCheckers.Count; i++) {
             var checker = _allCheckers[i];
-            if (checker != null) {
+            if (checker.OpenITarget != null) {
                 if(checker.OpenITarget.IsOpen) { // 오픈되었다
                     OnStandItem(checker);
                 }
@@ -196,12 +185,22 @@ public class LevelManager : MonoSingleton<LevelManager> {
         }
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
+    private void ChangeStandActive(DisplayStand activeObj, bool active) {
+        int index = _allStand.IndexOf(activeObj); // 내가 누구인지 index뽑고
+        _gameData.allStandOnOffList[index] = active;
+        LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
+    }
+    private void ChangeTruckActive(FoodContainer activeObj, bool active) {
+        int index = _allTruck.IndexOf(activeObj); // 내가 누구인지 index뽑고
+        _gameData.allTruckOnOffList[index] = active;
+        LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
+    }
     private void ChangeCheckerPrice(BuyChecker checker, int price) {
         int index = _allCheckers.IndexOf(checker); // 내가 누구인지 index뽑고
         _gameData.allCheckPriceList[index] = price;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void ChangeDisplyStandItem(DisplayStand stand, int count) {
+    private void ChangeDisplyStandItem(DisplayStand stand, int count = 0) {
         int index = _allStand.IndexOf(stand); // 내가 누구인지 index뽑고
         _gameData.allStandItemCountList[index] = count;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);

@@ -56,7 +56,6 @@ public class GameDataManager : MonoBehaviour {
         _gameData.gam = data.gam;
         _gameData.exp = data.exp;
         _gameData.level = data.level;
-
     }
     private void SettingDataUpdate(GameData data) {
         if (data == null) { 
@@ -75,6 +74,7 @@ public class GameDataManager : MonoBehaviour {
         _gameData.p_movespeedLevel = data.p_movespeedLevel;
         _gameData.p_volumeLevel = data.p_volumeLevel;
         _gameData.p_sellingcostLevel = data.p_sellingcostLevel;
+
         UpgradeEvents.ChangePlayerDataEvent?.Invoke(_gameData);
     }
     private void TruckMachineDataUpdate(GameData data) {
