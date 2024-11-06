@@ -6,6 +6,10 @@ public static class LevelEvents  {
     public static Action<GameData> GameDataLoadEvent;
 
     public static Action<BuyChecker, bool> ChangeCheckerActiveEvent;
-    public static Action<BuyChecker, int> ChangePriceEvent;
-    public static Action<DisplayStand, int> ChangeDisplayStandEvent;
+    public static Action<BuyChecker, int> ChangePriceEvent; // checker의 가격 변경
+
+    public static Action<DisplayStand, bool> ChangeStandActiveEvent;
+    public static Action<DisplayStand, int> ChangeStandItemEvent; // 스텐드에 음식 수 변경
+
+    public static Action<FoodContainer, bool> ChangeTruckActiveEvent;
 }
