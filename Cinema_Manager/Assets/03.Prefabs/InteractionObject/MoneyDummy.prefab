@@ -98,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2216ed8889067694388d6a7db1784ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTrm: {fileID: 0}
-  _spacingX: 0.85
-  _spacingY: 0.2
-  _spacingZ: 0.5
+  _spacingX: 0.8
+  _spacingY: 0.47
+  _spacingZ: 1.11

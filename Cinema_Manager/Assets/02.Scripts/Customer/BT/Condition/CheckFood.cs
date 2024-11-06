@@ -22,11 +22,16 @@ public class CheckFood : Conditional
         if (customer.Value.CurrentCustomerType == CustomerType.Call)
         {
             StopCustomers();
+            customer.Value.SetCanvas(true);
+
             if (customer.Value.CheckPlayer())
             {
                 startTime += Time.deltaTime;
+                customer.Value.SetGauge(startTime / clearTime);
                 if (clearTime <= startTime)
                 {
+                    customer.Value.SetCanvas(false);
+
                     customer.Value.AnimationCompo.CallAnimation(-1);
                     customer.Value.CurrentCustomerType = CustomerType.Basic;
 
@@ -37,6 +42,7 @@ public class CheckFood : Conditional
             {
                 if (startTime >= 0)
                     startTime -= Time.deltaTime;
+                customer.Value.SetGauge(startTime / clearTime);
             }
             return TaskStatus.Running;
         }

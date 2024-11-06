@@ -29,27 +29,32 @@ public class UseTable : Conditional
         {
             if(customer.Value.CurrentCustomerType == CustomerType.Sleep)
             {
+                customer.Value.SetCanvas(true);
+
                 customer.Value.AnimationCompo.SeatAnimation(-1);
                 customer.Value.AnimationCompo.SleepAnimation(1);
 
                 if (customer.Value.CheckPlayer())
                 {
                     startTime += Time.deltaTime;
+                    customer.Value.SetGauge(startTime / clearTime);
                     if (clearTime <= startTime)
                     {
                         customer.Value.AnimationCompo.SleepAnimation(-1);
                         customer.Value.CurrentCustomerType = CustomerType.Basic;
-                        return TaskStatus.Failure;
                     }
                 }
                 else
                 {
                     if(startTime >= 0)
                         startTime -= Time.deltaTime;
+                    customer.Value.SetGauge(startTime / clearTime);
                 }
             }
             else
             {
+                customer.Value.SetCanvas(false);
+
                 customer.Value.currentChair.ChangeUsingState(false);
                 customer.Value.currentChair.ChangeDirtyState(true);
 
@@ -58,6 +63,7 @@ public class UseTable : Conditional
                 customer.Value.currentChair.trash =
                     PoolManager.Instance.Pop(PoolableType.Trash.ToString(),customer.Value.currentChair.holder);
 
+                customer.Value.currentChair.GetComponentInParent<Table>().AddMoney();
                 return TaskStatus.Failure;
             }
             return TaskStatus.Running;
