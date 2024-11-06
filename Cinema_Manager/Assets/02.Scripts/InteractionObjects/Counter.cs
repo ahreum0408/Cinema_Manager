@@ -50,15 +50,14 @@ public class Counter : MonoBehaviour, IIneractionable
         while (_isEnterInteraction && lineList.Count > 0)
         {
             // 여기서 계산 하는거 해주면 됨
-            lineList[0].customerData.isCalculate = true;
-
             if (lineList[0].customerData.isBuy)
             {
+                _moneyDummy.AddMoneyObject(1);
+
+                lineList[0].customerData.isCalculate = true;
                 lineList.Remove(lineList[0]);
                 SettingLine();
             }
-
-            _moneyDummy.AddMoneyObject(1);
 
             yield return null;
         }

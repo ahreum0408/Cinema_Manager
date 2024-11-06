@@ -62,8 +62,7 @@ public class StaffController : AgentController
 
     public bool CanSetDestination()
     {
-        float threshold = Agent.stoppingDistance + 0.1f;
-        return !Agent.isPathStale && Agent.remainingDistance < threshold;
+        return Vector3.Distance(Agent.destination, transform.position) < Agent.stoppingDistance;
     }
 
     public void ChangeState(AgentState newState)
