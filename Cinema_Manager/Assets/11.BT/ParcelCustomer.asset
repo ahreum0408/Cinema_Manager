@@ -24,8 +24,8 @@ MonoBehaviour:
         \uc904\uc11c\uae30","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"FindLine","NodeData":{"Offset":"(-74.45502,194.96228)"},"ID":3,"Name":"Find
         Line","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true},"SingleclearTime":0},{"Type":"BehaviorDesigner.Runtime.Tasks.Inverter","NodeData":{"Offset":"(97.69815,213.0694)"},"ID":4,"Name":"Inverter","Instant":true,"Children":[{"Type":"CheckBuy","NodeData":{"Offset":"(-2.35300827,138.235229)"},"ID":5,"Name":"Check
         Buy","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]}]},{"Type":"UseParcel","NodeData":{"Offset":"(163.658569,301.0188)"},"ID":6,"Name":"Use
-        Parcel","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true},"SingleparcelTime":3},{"Type":"EndCustomer","NodeData":{"Offset":"(365.812744,295.437469)"},"ID":7,"Name":"End
-        Customer","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]},"Variables":[{"Type":"SharedCustomer","Name":"Customer","IsShared":true}]}'
+        Parcel","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true},"SingleparcelTime":3},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(380.697754,293.267822)"},"ID":7,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"EndCustomer","NodeData":{"Offset":"(0,160)"},"ID":8,"Name":"End
+        Customer","Instant":true,"SharedCustomercustomer":{"Type":"SharedCustomer","Name":"Customer","IsShared":true}}]}]},"Variables":[{"Type":"SharedCustomer","Name":"Customer","IsShared":true}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 

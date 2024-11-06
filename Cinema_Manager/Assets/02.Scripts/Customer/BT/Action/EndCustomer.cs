@@ -9,27 +9,18 @@ public class EndCustomer : Action
     public SharedCustomer customer;
 
     private Vector3 _destination;
-    private NavMeshAgent _agent;
-
-    public override void OnAwake()
-    {
-        _agent = customer.Value.Agent;
-    }
-
     public override void OnStart()
     {
         _destination = customer.Value.startPos;
-        _agent.SetDestination(_destination);
+        customer.Value.Agent.SetDestination(_destination);
     }
 
     public override TaskStatus OnUpdate()
     {
-        float threshold = _agent.stoppingDistance + 0.1f;
-        if (!_agent.isPathStale && _agent.remainingDistance < threshold)
+        if (customer.Value.CanSetDestination())
         {
-            PoolManager.Instance.Push
-                (customer.Value.CurrentCustomerType.ToString() + "Customer", customer.Value.gameObject);
-            return TaskStatus.Success;
+            PoolManager.Instance.Push(customer.Value.CurrentCustomerType.ToString() + "Customer", customer.Value.gameObject);
+            return TaskStatus.Failure;
         }
         return TaskStatus.Running;
     }

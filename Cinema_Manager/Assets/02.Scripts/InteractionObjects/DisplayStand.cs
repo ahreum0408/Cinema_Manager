@@ -36,6 +36,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
 
     private Dictionary<Customer, int> _customerDic;
     private bool _isStart;
+    private bool _dicIsStart;
     private int _customerCount = 0;
     #endregion
 
@@ -53,6 +54,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
     {
         _isStart = true;
     }
+
     public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
@@ -156,7 +158,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
         _customerDic.Remove(customer);
         _customerCount--;
 
-        _isStart = true;
+        _dicIsStart = true;
 
         List<Customer> customerKeys = new List<Customer>(_customerDic.Keys);
 
@@ -175,11 +177,11 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
                 _customerDic[currentCustomer] = _customerDic[currentCustomer] - 1;
             }
 
-            if (_isStart)
+            if (_dicIsStart)
             {
                 _currentCustomer = currentCustomer;
                 _currentCustomer.customerData.isGive = true;
-                _isStart = false;
+                _dicIsStart = false;
             }
 
             currentCustomer.Agent.SetDestination(points[_customerDic[currentCustomer]].transform.position);

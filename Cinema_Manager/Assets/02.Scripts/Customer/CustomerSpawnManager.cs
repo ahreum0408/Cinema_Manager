@@ -59,7 +59,7 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     // display 1개가 해금되면 max 3명씩 늘어나게하기
     public void SetMaxCustomer()
     {
-        maxCustomer += 3;
+        maxCustomer += 2;
     }
 
     public void MinusCustomer()

@@ -37,8 +37,7 @@ public class FindFood : Action
             return TaskStatus.Running;
         }
 
-        float threshold = _agent.stoppingDistance + 0.1f;
-        if (!_agent.isPathStale && _agent.remainingDistance < threshold)
+        if (customer.Value.CanSetDestination())
             return TaskStatus.Success;
 
         return TaskStatus.Running;

@@ -46,7 +46,8 @@ public class CheckFood : Conditional
             if (!isCustomerStop && customer.Value.customerData.isGive)
                 customer.Value.currentStand.GiveFood();
 
-            if (customer.Value.StackCompo.RemainingStackCount == 0 && ObjectManager.Instance.counter.IsCanStand)
+            if (customer.Value.StackCompo.RemainingStackCount == 0 
+                && ObjectManager.Instance.counter.IsCanStand && customer.Value.currentStand.GetCustomerIndex(customer.Value) == 0)
             {
                 customer.Value.currentStand.RemoveCustomer(customer.Value);
                 return TaskStatus.Failure;

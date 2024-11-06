@@ -52,7 +52,7 @@ public class Counter : MonoBehaviour, IIneractionable
             // 여기서 계산 하는거 해주면 됨
             lineList[0].customerData.isCalculate = true;
 
-            if (lineList[0].customerData.isBuy && lineList[lineList.Count - 1].CanSetDestination())
+            if (lineList[0].customerData.isBuy)
             {
                 lineList.Remove(lineList[0]);
                 SettingLine();
@@ -76,9 +76,9 @@ public class Counter : MonoBehaviour, IIneractionable
         else
         {
             checkPoint.position = new Vector3(
-                checkPoint.position.x,
+                checkPoint.position.x + lineInterval,
                 checkPoint.position.y,
-                checkPoint.position.z + lineInterval
+                checkPoint.position.z
             );
         }
     }
@@ -98,17 +98,17 @@ public class Counter : MonoBehaviour, IIneractionable
             if (beforeCustomer == null)
             {
                 customers.Agent.SetDestination(new Vector3(
-                    customers.Agent.destination.x,
+                    customers.Agent.destination.x - lineInterval,
                     customers.Agent.destination.y,
-                    customers.Agent.destination.z - lineInterval)
+                    customers.Agent.destination.z)
                 );
             }
             else
             {
                 customers.Agent.SetDestination(new Vector3(
-                    beforeCustomer.Agent.destination.x,
+                    beforeCustomer.Agent.destination.x + lineInterval,
                     beforeCustomer.Agent.destination.y,
-                    beforeCustomer.Agent.destination.z + lineInterval)
+                    beforeCustomer.Agent.destination.z)
                 );
             }
             beforeCustomer = customers;

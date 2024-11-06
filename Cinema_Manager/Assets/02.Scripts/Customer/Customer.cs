@@ -58,13 +58,17 @@ public class Customer : AgentController
         AnimationCompo = GetComponent<AgentAnimationComponent>();
     }
 
-    private void Start()
+    protected override void OnEnable()
     {
         customerData = new CustomerData();
+    }
 
+    private void Start()
+    {
         Agent.speed = defualtSpeed;
 
-        startPos = transform.position;
+        startPos = CustomerSpawnManager.Instance.transform.position;
+
         SetSeat();
         SelectBuySum();
         SelectObjectType();
@@ -97,11 +101,9 @@ public class Customer : AgentController
 
     public bool CanSetDestination()
     {
-        float threshold = Agent.stoppingDistance + 0.1f;
-        if (!Agent.isPathStale && Agent.remainingDistance < threshold)
-            return true;
-        else
-            return false;
+        return !Agent.isPathStale && 
+                Agent.remainingDistance < Agent.stoppingDistance && 
+                Agent.velocity.sqrMagnitude < 0.01f;
     }
 
     public void SetFoodTypeSum()

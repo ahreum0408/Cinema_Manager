@@ -54,7 +54,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach (var table in tables)
         {
-            if (table.CanSeatChair())
+            if (table.CanSeatChair() && table.gameObject.active)
             {
                 return table;
             }
