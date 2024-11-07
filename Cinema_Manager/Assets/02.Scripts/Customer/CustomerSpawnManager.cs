@@ -1,4 +1,5 @@
 using UnityEngine;
+using static AyunDefine;
 
 public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
 {
@@ -57,7 +58,7 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     }
 
     // display 1개가 해금되면 max 3명씩 늘어나게하기
-    public void SetMaxCustomer()
+    public void SetMaxCustomer(PoolableType foodType)
     {
         maxCustomer += 2;
     }

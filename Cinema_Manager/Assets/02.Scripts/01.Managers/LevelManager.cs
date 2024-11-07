@@ -145,6 +145,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
         foreach (var levelData in levelDatas) {
             //levelData.AfterSetting();
         }
+
         OnLevel(0, true, true);
         OnLevel(1, true);
         SetData();
