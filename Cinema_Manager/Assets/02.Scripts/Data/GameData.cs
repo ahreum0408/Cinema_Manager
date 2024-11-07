@@ -23,9 +23,14 @@ public class GameData {
     public List<bool> allStandOnOffList;
     public List<int> allStandItemCountList;
 
-    public List<bool> allTruckOnOffList;
+    public List<bool> allFoodTruckOnOffList;
+    public List<bool> allBoxTruckOnOffList;
     
     public List<bool> allTableOnOffList;
+
+    public List<bool> allParcelServiceOnOffList;
+
+    public List<bool> allRoomOnOffList;
 
     // player
     public int p_movespeedLevel = 0; // 플레이어 이속
@@ -58,15 +63,20 @@ public class GameData {
         this.levelIndex = 0;
         this.exp = 0;
 
-        allCheckOnOffList = new List<bool> { true, true, true, true, true, false, false , false , false , false, false, false, false, false, false, false, false, false, false, false };
+        allCheckOnOffList = new List<bool> ( new bool[20] );
         allCheckPriceList = new List<int> (Enumerable.Repeat(100, 20).ToArray());
 
         allStandOnOffList = new List<bool>(new bool[20]);
         allStandItemCountList = new List<int>(new int[20]);
 
-        allTruckOnOffList = new List<bool>(new bool[20]);
+        allFoodTruckOnOffList = new List<bool>(new bool[20]);
+        allBoxTruckOnOffList = new List<bool>(new bool[1]);
         
         allTableOnOffList = new List<bool>(new bool[20]);
+
+        allParcelServiceOnOffList = new List<bool>(new bool[1]);
+
+        allRoomOnOffList = new List<bool>(new bool[1]);
 
         p_movespeedLevel = 0;
         p_movespeedLevel = 0;

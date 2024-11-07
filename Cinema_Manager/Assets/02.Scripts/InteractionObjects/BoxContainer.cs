@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using static AyunDefine;
 
@@ -136,5 +135,6 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
     public void ActiveObj(bool active , bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
+        LevelEvents.ChangeBoxTruckActiveEvent?.Invoke(this, active);
     }
 }

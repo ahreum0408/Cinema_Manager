@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5833019166536991713}
-  - component: {fileID: 6902375291104183147}
+  - component: {fileID: 1398848364361681273}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Interactionable
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8454712888005712997}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6902375291104183147
+--- !u!65 &1398848364361681273
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,8 +51,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 6.785843, y: 2.6394176, z: 8.783089}
-  m_Center: {x: -1.6736298, y: 0.8197088, z: -0.19860864}
+  m_Size: {x: 4.081048, y: 1.87, z: 3.5686445}
+  m_Center: {x: -2.0352874, y: 0.72, z: 0.46025133}
 --- !u!1 &5028818043680121394
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +114,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6fd8adb5e2221e84fbccb85d948363a3, type: 2}
+  - {fileID: 2100000, guid: a2d8bf8d5c34dd34fbe04cc68694e782, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

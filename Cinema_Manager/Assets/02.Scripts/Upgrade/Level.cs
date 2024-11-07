@@ -13,18 +13,23 @@ public class Level {
     [SerializeField] private List<GameObject> openNewMapList;
 
     private List<BuyChecker> _buyCheckersList = new List<BuyChecker>();
-    private List<DisplayStand> _standList = new List<DisplayStand>();
-    private List<FoodContainer> _truckList = new List<FoodContainer>();
-    private List<Table> _tableList = new List<Table>();
 
-    private List<GameObject> _afterInitList = new List<GameObject>();
+    private List<DisplayStand> _standList = new List<DisplayStand>();
+    private List<FoodContainer> _foodTruckList = new List<FoodContainer>();
+    private List<BoxContainer> _bosTruckList = new List<BoxContainer>();
+    private List<Table> _tableList = new List<Table>();
+    private List<ParcelService> _parcelServiceList = new List<ParcelService>();
+    private List<Room> _roomList = new List<Room>();
+
+    private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
+
 
     // 기타 다른 것들도 받아야 함
 
     // 내 타겟의 데이터의 종류 별로 분류
     public void Init() {
         foreach (GameObject area in openNewMapList) {
-            if(area.TryGetComponent(out BuyChecker checker)) { // checker를 통하여 열 애들
+            if (area.TryGetComponent(out BuyChecker checker)) { // checker를 통하여 열 애들
                 _buyCheckersList.Add(checker);
 
                 GameObject target = checker.OpenGTarget;
@@ -32,48 +37,63 @@ public class Level {
                 if (target.TryGetComponent(out DisplayStand stand)) {
                     _standList.Add(stand);
                 }
-                else if (target.TryGetComponent(out FoodContainer truck)) {
-                    _truckList.Add(truck);
+                else if (target.TryGetComponent(out FoodContainer foodtruck)) {
+                    _foodTruckList.Add(foodtruck);
+                }
+                else if (target.TryGetComponent(out BoxContainer boxtruck)) {
+                    _bosTruckList.Add(boxtruck);
                 }
                 else if (target.TryGetComponent(out Table table)) {
                     _tableList.Add(table);
                 }
+                else if (target.TryGetComponent(out ParcelService service)) {
+                    _parcelServiceList.Add(service);
+                }
+                else if (target.TryGetComponent(out Room room)) {
+                    _roomList.Add(room);
+                }
                 else {
-                    Debug.LogWarning("너는 누구신가요..(아마도 사장방 나중에 고쳐라)");
+                    Debug.LogWarning("너는 누구신가요..");
                 }
             }
             else {
+                var obj = area.GetComponent<IOpenTarget>();
+
                 if (area.TryGetComponent(out DisplayStand stand)) {
                     _standList.Add(stand);
-                    _afterInitList.Add(area);
                 }
                 else if (area.TryGetComponent(out FoodContainer truck)) {
-                    _truckList.Add(truck);
-                    _afterInitList.Add(area);
+                    _foodTruckList.Add(truck);
                 }
                 else if (area.TryGetComponent(out Table table)) {
                     _tableList.Add(table);
-                    _afterInitList.Add(area);
                 }
+
+                _anotherObjList.Add(obj);
             }
         }
     }
     public void AfterSetting() {
-        foreach (GameObject area in _afterInitList) {
-            if (area.TryGetComponent(out IOpenTarget target)) {
-                target.ActiveObj(true);
-            }
+        foreach (IOpenTarget obj in _anotherObjList) {
+            obj.ActiveObj(true);
         }
     }
     public void LoadCheckerData() {
 
     }
-    public void SetActiveChildList(bool active) {
-        foreach(BuyChecker checker in _buyCheckersList) {
-            checker.ActiveObj(active, true);
+    public void SetCheckerActive(bool active, bool isReversal = false) { // checker와 target에 적용 되는 값을 뒤집을 건인가?
+        Debug.Log(isReversal);
+        foreach (BuyChecker checker in _buyCheckersList) {
+            Debug.Log(checker);
+            if (isReversal) {
+                Debug.Log(active);
+                checker.ActiveObj(!active, true);
+                return;
+            }
+            checker.ActiveObj(active, true); // 킬거임
         }
     } // 이거 아마 바꿔야할거임 LevelManager 참고
-
+    
     #region GetList
     public List<BuyChecker> GetCheckerList() {
         return _buyCheckersList;
@@ -81,11 +101,20 @@ public class Level {
     public List<DisplayStand> GetStandList() {
         return _standList;
     }
-    public List<FoodContainer> GetTruckList() {
-        return _truckList;
+    public List<FoodContainer> GetFoodTruckList() {
+        return _foodTruckList;
+    }
+    public List<BoxContainer> GetBoxTruckList() {
+        return _bosTruckList;
     }
     public List<Table> GetTableList() {
         return _tableList;
+    }
+    public List<ParcelService> GetParcelServiceList() {
+        return _parcelServiceList;
+    }
+    public List<Room> GetRoomList() {
+        return _roomList;
     }
     #endregion
 }
