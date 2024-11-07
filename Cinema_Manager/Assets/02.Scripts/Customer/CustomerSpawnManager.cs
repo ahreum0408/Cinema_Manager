@@ -96,9 +96,27 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     }
 
     // display 1개가 해금되면 max 2명씩 늘어나게하기
-    public void SetMaxCustomer()
+    public void SetMaxCustomer(PoolableType foodType)
     {
-        maxCustomer += 2;
+        switch (foodType) {
+            case PoolableType.TriangleKimbap:
+            case PoolableType.CupRamen:
+            case PoolableType.Snack:
+            case PoolableType.Juice:
+            case PoolableType.Coffee:
+            case PoolableType.Bread:
+                maxCustomer += 3;
+                break;
+            case PoolableType.Coke:
+            case PoolableType.Beer:
+            case PoolableType.Jelly:
+            case PoolableType.Soju:
+                maxCustomer += 2;
+                break;
+            default:
+                Debug.LogWarning("올바르지 못한 형식");
+                break;
+        }
     }
 
     public void MinusCustomer()
