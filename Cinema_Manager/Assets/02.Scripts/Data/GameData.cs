@@ -23,9 +23,12 @@ public class GameData {
     public List<bool> allStandOnOffList;
     public List<int> allStandItemCountList;
 
-    public List<bool> allTruckOnOffList;
+    public List<bool> allFoodTruckOnOffList;
+    public List<bool> allBoxTruckOnOffList;
     
     public List<bool> allTableOnOffList;
+
+    public List<bool> allParcelServiceOnOffList;
 
     public List<bool> allRoomOnOffList;
 
@@ -66,9 +69,12 @@ public class GameData {
         allStandOnOffList = new List<bool>(new bool[20]);
         allStandItemCountList = new List<int>(new int[20]);
 
-        allTruckOnOffList = new List<bool>(new bool[20]);
+        allFoodTruckOnOffList = new List<bool>(new bool[20]);
+        allBoxTruckOnOffList = new List<bool>(new bool[1]);
         
         allTableOnOffList = new List<bool>(new bool[20]);
+
+        allParcelServiceOnOffList = new List<bool>(new bool[1]);
 
         allRoomOnOffList = new List<bool>(new bool[1]);
 

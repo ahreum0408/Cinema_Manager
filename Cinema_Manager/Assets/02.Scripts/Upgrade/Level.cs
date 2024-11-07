@@ -14,8 +14,10 @@ public class Level {
 
     private List<BuyChecker> _buyCheckersList = new List<BuyChecker>();
     private List<DisplayStand> _standList = new List<DisplayStand>();
-    private List<FoodContainer> _truckList = new List<FoodContainer>();
+    private List<FoodContainer> _foodTruckList = new List<FoodContainer>();
+    private List<BoxContainer> _bosTruckList = new List<BoxContainer>();
     private List<Table> _tableList = new List<Table>();
+    private List<ParcelService> _parcelServiceList = new List<ParcelService>();
     private List<Room> _roomList = new List<Room>();
     private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
 
@@ -33,11 +35,17 @@ public class Level {
                 if (target.TryGetComponent(out DisplayStand stand)) {
                     _standList.Add(stand);
                 }
-                else if (target.TryGetComponent(out FoodContainer truck)) {
-                    _truckList.Add(truck);
+                else if (target.TryGetComponent(out FoodContainer foodtruck)) {
+                    _foodTruckList.Add(foodtruck);
+                }
+                else if (target.TryGetComponent(out BoxContainer boxtruck)) {
+                    _bosTruckList.Add(boxtruck);
                 }
                 else if (target.TryGetComponent(out Table table)) {
                     _tableList.Add(table);
+                }
+                else if (target.TryGetComponent(out ParcelService service)) {
+                    _parcelServiceList.Add(service);
                 }
                 else if (target.TryGetComponent(out Room room)) {
                     _roomList.Add(room);
@@ -53,7 +61,7 @@ public class Level {
                     _standList.Add(stand);
                 }
                 else if (area.TryGetComponent(out FoodContainer truck)) {
-                    _truckList.Add(truck);
+                    _foodTruckList.Add(truck);
                 }
                 else if (area.TryGetComponent(out Table table)) {
                     _tableList.Add(table);
@@ -84,11 +92,17 @@ public class Level {
     public List<DisplayStand> GetStandList() {
         return _standList;
     }
-    public List<FoodContainer> GetTruckList() {
-        return _truckList;
+    public List<FoodContainer> GetFoodTruckList() {
+        return _foodTruckList;
+    }
+    public List<BoxContainer> GetBoxTruckList() {
+        return _bosTruckList;
     }
     public List<Table> GetTableList() {
         return _tableList;
+    }
+    public List<ParcelService> GetParcelServiceList() {
+        return _parcelServiceList;
     }
     public List<Room> GetRoomList() {
         return _roomList;

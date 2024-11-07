@@ -118,6 +118,6 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget {
     public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
-        LevelEvents.ChangeTruckActiveEvent?.Invoke(this, active);
+        LevelEvents.ChangeFoodTruckActiveEvent?.Invoke(this, active);
     }
 }
