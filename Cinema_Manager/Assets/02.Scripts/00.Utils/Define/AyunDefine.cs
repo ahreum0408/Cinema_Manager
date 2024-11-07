@@ -32,6 +32,7 @@ public static class AyunDefine
 
         // UI
         public static readonly AudioClip Click = Resources.Load<AudioClip>("Sound/ClickSound");
+        public static readonly AudioClip LevelUp = Resources.Load<AudioClip>("Sound/TadaSound");
 
         // BGM
         public static readonly AudioClip BGM1 = Resources.Load<AudioClip>("Sound/BGM 1");
