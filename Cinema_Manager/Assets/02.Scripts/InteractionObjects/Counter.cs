@@ -19,6 +19,7 @@ public class Counter : MonoBehaviour, IIneractionable
     [HideInInspector] public bool IsCanStand => lineList.Count <= maxCustomer;
     #endregion
 
+    [HideInInspector] public GameObject GameObject => gameObject;
     private bool _isEnterInteraction = false;
 
     private MoneyDummy _moneyDummy;

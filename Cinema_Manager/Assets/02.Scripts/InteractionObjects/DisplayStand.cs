@@ -5,7 +5,9 @@ using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 
-public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
+public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
+{
+    [HideInInspector] public GameObject GameObject => gameObject;
     public Transform staffPoint;
 
     private Stack<ITakeable> _foodStack;
