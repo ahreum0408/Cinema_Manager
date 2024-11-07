@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static AyunDefine;
 
-public class ParcelService : MonoBehaviour, IIneractionable
+public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
 {
     #region ¼­¿¬
     public Transform staffPoint;
@@ -24,6 +24,9 @@ public class ParcelService : MonoBehaviour, IIneractionable
     private Stack<ITakeable> _boxStack;
     public int CurrentBoxCnt => _boxStack.Count;
     public int StackMaxCnt => _stackMaxCnt;
+
+    private bool _isOpen;
+    public bool IsOpen { get => _isOpen; set => _isOpen = value; }
 
     [Header("Box")]
     [SerializeField] private Transform _spawnTrm;
@@ -158,5 +161,11 @@ public class ParcelService : MonoBehaviour, IIneractionable
             }
             beforeCustomer = customers;
         }
+    }
+
+    public void ActiveObj(bool active, bool on = false) {
+        _isOpen = active;
+        gameObject.SetActive(active);
+        LevelEvents.ChangeParcelServicectiveEvent?.Invoke(this, active);
     }
 }

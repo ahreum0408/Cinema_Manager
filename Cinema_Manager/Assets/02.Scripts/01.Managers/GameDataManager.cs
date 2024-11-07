@@ -43,7 +43,7 @@ public class GameDataManager : MonoBehaviour {
         _gameData.allStandOnOffList = data.allStandOnOffList;
         _gameData.allStandItemCountList = data.allStandItemCountList;
 
-        _gameData.allTruckOnOffList = data.allTruckOnOffList;
+        _gameData.allFoodTruckOnOffList = data.allFoodTruckOnOffList;
 
         _gameData.allTableOnOffList = data.allTableOnOffList;
     }
