@@ -27,6 +27,8 @@ public class GameData {
     
     public List<bool> allTableOnOffList;
 
+    public List<bool> allRoomOnOffList;
+
     // player
     public int p_movespeedLevel = 0; // 플레이어 이속
     public int p_volumeLevel = 0; // 플레이어 용량
@@ -67,6 +69,8 @@ public class GameData {
         allTruckOnOffList = new List<bool>(new bool[20]);
         
         allTableOnOffList = new List<bool>(new bool[20]);
+
+        allRoomOnOffList = new List<bool>(new bool[1]);
 
         p_movespeedLevel = 0;
         p_movespeedLevel = 0;

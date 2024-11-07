@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Debug = UnityEngine.Debug;
 
 public class LevelManager : MonoSingleton<LevelManager> {
@@ -10,6 +11,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
     private List<DisplayStand> _allStand = new List<DisplayStand>();
     private List<FoodContainer> _allTruck = new List<FoodContainer>();
     private List<Table> _allTable = new List<Table>();
+    private List<Room> _allRoom = new List<Room>();
 
     private Level _currentLevel;
     private int _exp;
@@ -29,6 +31,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
             List<DisplayStand> standList = data.GetStandList();
             List<FoodContainer> truckList = data.GetTruckList();
             List<Table> tableList = data.GetTableList();
+            List<Room> roomList = data.GetRoomList();
 
             if (buyCheckers != null) {
                 foreach (var checker in buyCheckers) {
@@ -50,7 +53,11 @@ public class LevelManager : MonoSingleton<LevelManager> {
                     _allTable.Add(table);
                 }
             }
-
+            if (roomList != null) {
+                foreach (var table in roomList) {
+                    _allRoom.Add(table);
+                }
+            }
         }
     }
 
@@ -64,6 +71,8 @@ public class LevelManager : MonoSingleton<LevelManager> {
         LevelEvents.ChangeStandItemEvent += ChangeDisplyStandItem;
 
         LevelEvents.ChangeTruckActiveEvent += ChangeTruckActive;
+
+        LevelEvents.ChangeRoomActiveEvent += ChangRoomActive;
     }
     private void OnDisable() {
         LevelEvents.GameDataLoadEvent -= GameDataLoad;
@@ -75,6 +84,8 @@ public class LevelManager : MonoSingleton<LevelManager> {
         LevelEvents.ChangeStandItemEvent -= ChangeDisplyStandItem;
 
         LevelEvents.ChangeTruckActiveEvent -= ChangeTruckActive;
+
+        LevelEvents.ChangeRoomActiveEvent -= ChangRoomActive;
     }
 
     public void GetExp(int exp) {
@@ -141,6 +152,11 @@ public class LevelManager : MonoSingleton<LevelManager> {
                 _allTable[i].ActiveObj(_gameData.allTableOnOffList[i]);
             }
         }
+        for (int i = 0; i < _allRoom.Count; i++) {
+            if (_allRoom[i] != null) {
+                _allRoom[i].ActiveObj(_gameData.allRoomOnOffList[i]);
+            }
+        }
     }
     private void SettingCheckerPrice() {
         for (int i = 0; i < _allCheckers.Count; i++) {
@@ -193,6 +209,11 @@ public class LevelManager : MonoSingleton<LevelManager> {
     private void ChangeTruckActive(FoodContainer activeObj, bool active) {
         int index = _allTruck.IndexOf(activeObj); // 내가 누구인지 index뽑고
         _gameData.allTruckOnOffList[index] = active;
+        LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
+    }
+    private void ChangRoomActive(Room activeObj, bool active) {
+        int index = _allRoom.IndexOf(activeObj); // 내가 누구인지 index뽑고
+        _gameData.allRoomOnOffList[index] = active;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ChangeCheckerPrice(BuyChecker checker, int price) {

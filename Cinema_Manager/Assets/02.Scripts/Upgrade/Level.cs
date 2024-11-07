@@ -16,15 +16,16 @@ public class Level {
     private List<DisplayStand> _standList = new List<DisplayStand>();
     private List<FoodContainer> _truckList = new List<FoodContainer>();
     private List<Table> _tableList = new List<Table>();
+    private List<Room> _roomList = new List<Room>();
+    private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
 
-    private List<GameObject> _afterInitList = new List<GameObject>();
 
     // 기타 다른 것들도 받아야 함
 
     // 내 타겟의 데이터의 종류 별로 분류
     public void Init() {
         foreach (GameObject area in openNewMapList) {
-            if(area.TryGetComponent(out BuyChecker checker)) { // checker를 통하여 열 애들
+            if (area.TryGetComponent(out BuyChecker checker)) { // checker를 통하여 열 애들
                 _buyCheckersList.Add(checker);
 
                 GameObject target = checker.OpenGTarget;
@@ -38,38 +39,40 @@ public class Level {
                 else if (target.TryGetComponent(out Table table)) {
                     _tableList.Add(table);
                 }
+                else if (target.TryGetComponent(out Room room)) {
+                    _roomList.Add(room);
+                }
                 else {
-                    Debug.LogWarning("너는 누구신가요..(아마도 사장방 나중에 고쳐라)");
+                    Debug.LogWarning("너는 누구신가요..");
                 }
             }
             else {
+                var obj = area.GetComponent<IOpenTarget>();
+
                 if (area.TryGetComponent(out DisplayStand stand)) {
                     _standList.Add(stand);
-                    _afterInitList.Add(area);
                 }
                 else if (area.TryGetComponent(out FoodContainer truck)) {
                     _truckList.Add(truck);
-                    _afterInitList.Add(area);
                 }
                 else if (area.TryGetComponent(out Table table)) {
                     _tableList.Add(table);
-                    _afterInitList.Add(area);
                 }
+
+                _anotherObjList.Add(obj);
             }
         }
     }
     public void AfterSetting() {
-        foreach (GameObject area in _afterInitList) {
-            if (area.TryGetComponent(out IOpenTarget target)) {
-                target.ActiveObj(true);
-            }
+        foreach (IOpenTarget obj in _anotherObjList) {
+            obj.ActiveObj(true);
         }
     }
     public void LoadCheckerData() {
 
     }
     public void SetActiveChildList(bool active) {
-        foreach(BuyChecker checker in _buyCheckersList) {
+        foreach (BuyChecker checker in _buyCheckersList) {
             checker.ActiveObj(active, true);
         }
     } // 이거 아마 바꿔야할거임 LevelManager 참고
@@ -86,6 +89,9 @@ public class Level {
     }
     public List<Table> GetTableList() {
         return _tableList;
+    }
+    public List<Room> GetRoomList() {
+        return _roomList;
     }
     #endregion
 }

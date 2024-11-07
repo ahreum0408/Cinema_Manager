@@ -17,8 +17,6 @@ public class AgentInteractionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enter");
-        Debug.Log(_currentInteractionObject);
 
         if (_staffController != null)
         {

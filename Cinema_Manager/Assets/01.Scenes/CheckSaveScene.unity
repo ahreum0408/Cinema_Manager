@@ -276,12 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &425731412 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7650490016643059084, guid: b7fd11435216ba14686e91ec034f2d92,
-    type: 3}
-  m_PrefabInstance: {fileID: 562886945}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &434963497 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1056020243983256832, guid: b7fd11435216ba14686e91ec034f2d92,
@@ -476,7 +470,7 @@ MonoBehaviour:
     lowValue: 0
     highValue: 15
     openNewMapList:
-    - {fileID: 985958801}
+    - {fileID: 2042336526}
     - {fileID: 562886959}
     - {fileID: 562886958}
     - {fileID: 562886957}
@@ -526,31 +520,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Level
-      objectReference: {fileID: 0}
-    - target: {fileID: 4024644084508773995, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: _price
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 4024644084508773995, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: _openTarget
-      value: 
-      objectReference: {fileID: 1322133201}
-    - target: {fileID: 4024644084508773995, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: _calculateWeight
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5703870662272522728, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650490016643059084, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9133975283715901661, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
@@ -606,10 +575,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5745192221222349944, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1322133202}
     - targetCorrespondingSourceObject: {fileID: 3250671512834376061, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       insertIndex: -1
@@ -1496,12 +1461,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &985958801 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2048439228309504026, guid: b7fd11435216ba14686e91ec034f2d92,
-    type: 3}
-  m_PrefabInstance: {fileID: 562886945}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1013945922
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,25 +1944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1322133201 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5745192221222349944, guid: b7fd11435216ba14686e91ec034f2d92,
-    type: 3}
-  m_PrefabInstance: {fileID: 562886945}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1322133202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1322133201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e04cffc41339d214cbe19b6ecea6a2c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _openTarget: {fileID: 425731412}
 --- !u!1 &1389964486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2447,6 +2387,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7644059d59bffe4fbce046b8efdde92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2042336526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2048439228309504026, guid: b7fd11435216ba14686e91ec034f2d92,
+    type: 3}
+  m_PrefabInstance: {fileID: 562886945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2048438364
 GameObject:
   m_ObjectHideFlags: 0

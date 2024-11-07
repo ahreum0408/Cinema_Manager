@@ -2526,6 +2526,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3035152266017537394}
+  - component: {fileID: 3266808503590282488}
   m_Layer: 0
   m_Name: BossRoom_Before
   m_TagString: Untagged
@@ -2550,6 +2551,19 @@ Transform:
   - {fileID: 8900199508977390519}
   m_Father: {fileID: 1549543788543068593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3266808503590282488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5745192221222349944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04cffc41339d214cbe19b6ecea6a2c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _openTarget: {fileID: 7650490016643059084}
 --- !u!1 &5874716259176279889
 GameObject:
   m_ObjectHideFlags: 0
@@ -9538,13 +9552,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
+      propertyPath: _price
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
+        type: 3}
       propertyPath: _openTarget
       value: 
-      objectReference: {fileID: 7650490016643059084}
+      objectReference: {fileID: 5745192221222349944}
     - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
       propertyPath: _calculateWeight
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5002195067618426230, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
@@ -9559,7 +9578,7 @@ PrefabInstance:
     - target: {fileID: 5002195067618426230, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.88
+      value: -7.44
       objectReference: {fileID: 0}
     - target: {fileID: 5002195067618426230, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
