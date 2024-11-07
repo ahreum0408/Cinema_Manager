@@ -20,6 +20,7 @@ public class ParcelService : MonoBehaviour, IIneractionable
 
     #endregion
 
+    [HideInInspector] public GameObject GameObject => gameObject;
     private Stack<ITakeable> _boxStack;
     public int CurrentBoxCnt => _boxStack.Count;
     public int StackMaxCnt => _stackMaxCnt;

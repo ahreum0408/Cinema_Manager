@@ -4,6 +4,7 @@ using static AyunDefine;
 
 public class TrashBin : MonoBehaviour, IIneractionable
 {
+    [HideInInspector] public GameObject GameObject => gameObject;
     public Transform staffPoint;
 
     [SerializeField] private Transform _trashContainerTrm; // 쓰레기가 이동해야할 위치

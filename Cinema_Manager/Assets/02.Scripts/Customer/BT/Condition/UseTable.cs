@@ -40,6 +40,8 @@ public class UseTable : Conditional
                     customer.Value.SetGauge(startTime / clearTime);
                     if (clearTime <= startTime)
                     {
+                        customer.Value.SetCanvas(false);
+
                         customer.Value.AnimationCompo.SleepAnimation(-1);
                         customer.Value.CurrentCustomerType = CustomerType.Basic;
                     }
@@ -53,8 +55,6 @@ public class UseTable : Conditional
             }
             else
             {
-                customer.Value.SetCanvas(false);
-
                 customer.Value.currentChair.ChangeUsingState(false);
                 customer.Value.currentChair.ChangeDirtyState(true);
 

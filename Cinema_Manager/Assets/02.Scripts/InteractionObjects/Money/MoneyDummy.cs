@@ -8,6 +8,7 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
 {
     private Stack<Money> _moneyStack;
 
+    [HideInInspector] public GameObject GameObject => gameObject;
     private int _moneyAmount => _moneyStack.Count;
 
     // Bool

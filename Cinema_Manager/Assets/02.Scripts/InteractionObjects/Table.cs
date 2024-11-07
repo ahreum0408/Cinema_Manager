@@ -7,6 +7,7 @@ using static AyunDefine;
 
 public class Table : MonoBehaviour, IIneractionable, IOpenTarget
 {
+    [HideInInspector] public GameObject GameObject => gameObject;
     public Transform staffPoint;
 
     public List<Point> points;

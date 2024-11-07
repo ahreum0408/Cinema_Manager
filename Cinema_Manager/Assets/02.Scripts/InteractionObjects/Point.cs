@@ -6,6 +6,7 @@ using static AyunDefine;
 
 public class Point : MonoBehaviour, IIneractionable
 {
+    [HideInInspector] public GameObject GameObject => gameObject;
     public Transform holder;
 
     public bool IsUsing; //손님이 사용 중?
