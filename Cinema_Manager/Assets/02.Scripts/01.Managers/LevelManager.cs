@@ -199,7 +199,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
             var checker = _allCheckers[i];
             if (checker.OpenITarget != null) {
                 if(checker.OpenITarget.IsOpen) { // ¿ÀÇÂµÇ¾ú´Ù
-                    Debug.Log("open");
                     OnStandItem(checker);
                 }
                 else {

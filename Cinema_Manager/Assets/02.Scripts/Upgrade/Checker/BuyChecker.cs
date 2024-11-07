@@ -71,8 +71,8 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
     }
     public void ActiveObj(bool active, bool onTarget = false) {
-        if(active == false) {
-            OpenITarget.ActiveObj(active);
+        if(onTarget) {
+            OpenITarget.ActiveObj(!active);
         }
         _isOpen = active;
         gameObject.SetActive(active);

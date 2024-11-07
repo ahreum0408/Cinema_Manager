@@ -58,7 +58,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     }
 
     public void ActiveObj(bool active, bool on = false) {
-        Debug.Log(active);
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeStandActiveEvent?.Invoke(this, active);
