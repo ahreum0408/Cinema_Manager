@@ -44,7 +44,7 @@ public class Point : MonoBehaviour, IIneractionable
         Vector3 foodPos = Vector3.zero;
         foodPos.z += spacingY * _currentFoodCnt-1;
 
-        food.Take(holder.transform, foodPos, Vector3.zero);
+        food.Take(holder.transform, -foodPos, Vector3.zero);
         foodStack.Push(food);
         
         yield return new WaitForSeconds(1f);

@@ -1,8 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static AyunDefine;
 
 public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
 {
+    [Header("Customer Mat")]
+    [SerializeField] private List<Material> _skinMat = new List<Material>();
+    [SerializeField] private List<Material> _shirtMat = new List<Material>();
+    [SerializeField] private List<Material> _pantMat = new List<Material>();
+
+    [Header("Customers")]
     [SerializeField] private Customer basicCustomer;
     [SerializeField] private Customer callCustomer;
     [SerializeField] private Customer sleepCustomer;
@@ -20,7 +27,7 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     {
         if (spawnCoolTime < Time.time - spawnTime && currentCustomer < maxCustomer)
         {
-            if(ObjectManager.Instance.CanUseDisplayStand())
+            if (ObjectManager.Instance.CanUseDisplayStand())
                 SpawnRandomCustomer();
         }
     }
@@ -44,11 +51,42 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
                 selectedCustomer = basicCustomer;
         }
 
-        PoolManager.Instance.Pop(selectedCustomer.CurrentCustomerType.ToString() + "Customer", 
+        GameObject customer = PoolManager.Instance.Pop
+            (selectedCustomer.CurrentCustomerType.ToString() + "Customer",
             transform.position, Quaternion.identity);
+
+        RandomCustomerSet(customer, CustomerSetType.skin, _skinMat);
+        RandomCustomerSet(customer, CustomerSetType.tshirt, _shirtMat);
+        RandomCustomerSet(customer, CustomerSetType.shorts, _pantMat);
 
         currentCustomer++;
         spawnTime = Time.time;
+    }
+
+    private void RandomCustomerSet(GameObject customer, CustomerSetType type, List<Material> matList)
+    {
+        if (type == CustomerSetType.skin)
+        {
+            int rand = Random.Range(0, matList.Count);
+
+            SkinnedMeshRenderer renderer = customer.transform.Find("Visual")
+                .transform.Find("Male_body")
+                .GetComponent<SkinnedMeshRenderer>();
+            renderer.material = matList[rand];
+
+            renderer = customer.transform.Find("Visual")
+                .transform.Find("Male_hair")
+                .GetComponent<SkinnedMeshRenderer>();
+            renderer.material = matList[rand];
+
+        }
+        else
+        {
+            SkinnedMeshRenderer renderer = customer.transform.Find("Visual")
+                .transform.Find("Male_" + type.ToString())
+                .GetComponent<SkinnedMeshRenderer>();
+            renderer.material = matList[Random.Range(0, matList.Count)];
+        }
     }
 
     // 택배가 해금되면 true 하기
@@ -57,8 +95,8 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
         isParcel = parcel;
     }
 
-    // display 1개가 해금되면 max 3명씩 늘어나게하기
-    public void SetMaxCustomer(PoolableType foodType)
+    // display 1개가 해금되면 max 2명씩 늘어나게하기
+    public void SetMaxCustomer()
     {
         maxCustomer += 2;
     }

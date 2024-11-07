@@ -74,4 +74,9 @@ public static class AyunDefine
         // Sound
         SoundObject,
     }
+
+    public enum CustomerSetType
+    {
+        tshirt, shorts, skin
+    }
 }

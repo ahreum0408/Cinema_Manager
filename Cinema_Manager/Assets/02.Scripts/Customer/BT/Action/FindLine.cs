@@ -23,7 +23,9 @@ public class FindLine : Action
 
     public override void OnStart()
     {
-        if(customer.Value.CurrentCustomerType == CustomerType.Parcel)
+        CustomerSpawnManager.Instance.MinusCustomer();
+
+        if (customer.Value.CurrentCustomerType == CustomerType.Parcel)
         {
             ObjectManager.Instance.parcelService.AddCustomer(customer.Value);
             _destination = ObjectManager.Instance.parcelService.checkPoint.position;

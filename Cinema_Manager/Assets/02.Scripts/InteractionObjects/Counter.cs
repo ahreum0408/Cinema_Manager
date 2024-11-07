@@ -51,7 +51,7 @@ public class Counter : MonoBehaviour, IIneractionable
         while (_isEnterInteraction && lineList.Count > 0)
         {
             // 여기서 계산 하는거 해주면 됨
-            if (lineList[0].customerData.isBuy)
+            if (lineList[0].customerData.isBuy && lineList[0].CanSetDestination())
             {
                 _moneyDummy.AddMoneyObject(1);
 
@@ -85,14 +85,14 @@ public class Counter : MonoBehaviour, IIneractionable
 
     public void SettingLine()
     {
-        isStart = true;
+        bool lineIsStart = true;
         Customer beforeCustomer = null;
         foreach (var customers in lineList)
         {
-            if (isStart)
+            if (lineIsStart)
             {
                 customers.customerData.isBuy = true;
-                isStart = false;
+                lineIsStart = false;
             }
 
             if (beforeCustomer == null)
