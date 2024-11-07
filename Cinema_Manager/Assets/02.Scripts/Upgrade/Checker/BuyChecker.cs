@@ -65,7 +65,7 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         LevelEvents.ChangePriceEvent?.Invoke(this, _price);
         LevelManager.Instance.GetExp(_exp);
         ActiveObj(false, true); // ³ª ²ô°í
-        OpenITarget.ActiveObj(true); // Å¸°Ù Å°°í
+        OpenITarget.ActiveObj(true, true); // Å¸°Ù Å°°í
     }
     private void UpdatePriceText(int coin) {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);

@@ -1157,7 +1157,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &823318266
 Transform:
   m_ObjectHideFlags: 0
@@ -1779,7 +1779,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1166679646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1800,7 +1800,7 @@ MonoBehaviour:
     type: 3}
   parcelCustomer: {fileID: 5008099957065270370, guid: 446c324dc473d8340bbff468ca3d5c99,
     type: 3}
-  maxCustomer: 3
+  maxCustomer: 0
   spawnCoolTime: 2
 --- !u!4 &1166679647
 Transform:

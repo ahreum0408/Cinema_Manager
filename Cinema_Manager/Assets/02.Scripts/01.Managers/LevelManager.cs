@@ -165,7 +165,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
         }
         for (int i = 0; i < _allStand.Count; i++) {
             if (_allStand[i] != null) {
-                _allStand[i].ActiveObj(_gameData.allStandOnOffList[i]);
+                _allStand[i].ActiveObj(_gameData.allStandOnOffList[i], true);
             }
         }
         for (int i = 0; i < _allFoodTruck.Count; i++) {
