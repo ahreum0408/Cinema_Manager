@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Debug = UnityEngine.Debug;
 
@@ -125,7 +126,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
     private void LevelUp() {
         _currentLevel = levelDatas[++_levelIndex];
         MainEvents.UpgradeLevelEvent?.Invoke(levelDatas[_levelIndex], _levelIndex);
-        _currentLevel.SetActiveChildList(true); // 다음 스테이지 켜주고
+        _currentLevel.SetCheckerActive(true); // 다음 스테이지 켜주고
     }
     #endregion
 
@@ -144,13 +145,16 @@ public class LevelManager : MonoSingleton<LevelManager> {
         foreach (var levelData in levelDatas) {
             levelData.AfterSetting();
         }
-
-        SetLevelData();
+        OnLevlOne();
+        SetData();
 
         // 체커의 가격도 맞춰주고 가격에 따라서 stand도 켜줌
         SettingCheckerPrice();
     }
-    private void SetLevelData() {
+    private void OnLevlOne() {
+        levelDatas[1].SetCheckerActive(true);
+    }
+    private void SetData() {
         // 각각의 checker에 값 적용
         for (int i = 0; i < _allCheckers.Count; i++) {
             if (_allCheckers[i] != null) {
@@ -214,23 +218,8 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
     #region Handle
     private void ChangeCheckerActive(BuyChecker checker, bool active) {
-        int index = 0;
-
-        index = _allCheckers.IndexOf(checker); // 내 체커 끄고
+        int index = _allCheckers.IndexOf(checker); // 내 체커 끄고
         _gameData.allCheckOnOffList[index] = active;
-
-        if (checker.OpenGTarget.TryGetComponent(out DisplayStand stand)) {
-            index = _allStand.IndexOf(stand); // 내가 누구인지 index뽑고
-            _gameData.allStandOnOffList[index] = !active;
-        }
-        else if (checker.OpenGTarget.TryGetComponent(out FoodContainer truck)) {
-            index = _allFoodTruck.IndexOf(truck); // 내가 누구인지 index뽑고
-            _gameData.allFoodTruckOnOffList[index] = !active;
-        }
-        else if (checker.OpenGTarget.TryGetComponent(out Table table)) {
-            index = _allTable.IndexOf(table); // 내가 누구인지 index뽑고
-            _gameData.allTableOnOffList[index] = !active;
-        }
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ChangeCheckerPrice(BuyChecker checker, int price) {

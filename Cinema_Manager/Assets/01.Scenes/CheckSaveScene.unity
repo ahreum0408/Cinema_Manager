@@ -521,6 +521,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 434015875861831520, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 604994035033822824, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375017051739703183, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3858978090908624644, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5368629443312929009, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5959267482022891349, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582609914682463042, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9133975283715901661, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1155,7 +1190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &823318266
 Transform:
   m_ObjectHideFlags: 0
@@ -1777,7 +1812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1166679646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1883,8 +1918,8 @@ MonoBehaviour:
   - 1.5
   - 1.6
   - 1.8
-  employeeMoveSpeedStat: 0000000000000000000000000000000000000000
-  employeeVolumeStat: 0000000000000000000000000000000000000000
+  employeeMoveSpeedStat: 0a0000000c0000000e0000001000000012000000
+  employeeVolumeStat: 0500000006000000070000000800000009000000
   employeeAddStat: 0200000003000000040000000500000006000000
 --- !u!4 &1213296464
 Transform:

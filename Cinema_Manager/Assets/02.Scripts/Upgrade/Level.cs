@@ -13,12 +13,14 @@ public class Level {
     [SerializeField] private List<GameObject> openNewMapList;
 
     private List<BuyChecker> _buyCheckersList = new List<BuyChecker>();
+
     private List<DisplayStand> _standList = new List<DisplayStand>();
     private List<FoodContainer> _foodTruckList = new List<FoodContainer>();
     private List<BoxContainer> _bosTruckList = new List<BoxContainer>();
     private List<Table> _tableList = new List<Table>();
     private List<ParcelService> _parcelServiceList = new List<ParcelService>();
     private List<Room> _roomList = new List<Room>();
+
     private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
 
 
@@ -79,12 +81,12 @@ public class Level {
     public void LoadCheckerData() {
 
     }
-    public void SetActiveChildList(bool active) {
+    public void SetCheckerActive(bool active) {
         foreach (BuyChecker checker in _buyCheckersList) {
             checker.ActiveObj(active, true);
         }
     } // 이거 아마 바꿔야할거임 LevelManager 참고
-
+    
     #region GetList
     public List<BuyChecker> GetCheckerList() {
         return _buyCheckersList;

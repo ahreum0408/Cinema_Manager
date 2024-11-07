@@ -63,9 +63,6 @@ public class AgentInteractionTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Exit");
-        Debug.Log(_currentInteractionObject);
-
         if (_staffController != null)
         {
             if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
