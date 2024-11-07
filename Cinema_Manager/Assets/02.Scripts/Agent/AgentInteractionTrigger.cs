@@ -17,7 +17,10 @@ public class AgentInteractionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(_staffController != null)
+        Debug.Log("Enter");
+        Debug.Log(_currentInteractionObject);
+
+        if (_staffController != null)
         {
             if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
             {
@@ -26,7 +29,8 @@ public class AgentInteractionTrigger : MonoBehaviour
             }
         }
 
-        if (_currentInteractionObject != null) return;
+        if (_currentInteractionObject != null && _currentInteractionObject.GameObject.active == true)
+            return;
 
         if (other.CompareTag(ObjectTagString.InteractionableTag))
         {
@@ -61,6 +65,9 @@ public class AgentInteractionTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Exit");
+        Debug.Log(_currentInteractionObject);
+
         if (_staffController != null)
         {
             if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)

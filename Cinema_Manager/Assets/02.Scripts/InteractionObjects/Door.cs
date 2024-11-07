@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IIneractionable
 {
+    [HideInInspector] public GameObject GameObject => gameObject;
+
     [SerializeField] private float _openAngle = 110f;
     [SerializeField] private float _rotationSpeed = 200f;
     private Quaternion _closedRotation;

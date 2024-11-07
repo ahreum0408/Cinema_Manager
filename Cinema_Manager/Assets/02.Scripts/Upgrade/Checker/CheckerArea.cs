@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 
 public abstract class CheckerArea : MonoBehaviour, IIneractionable {
+    [HideInInspector] public GameObject GameObject => gameObject;
+
     [SerializeField] protected int _calculateWeight = 1; // 돈빠지는 속도
     [SerializeField] protected int _price;
     protected int _minusCoin;

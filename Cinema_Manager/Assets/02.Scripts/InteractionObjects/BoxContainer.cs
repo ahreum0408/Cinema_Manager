@@ -6,6 +6,8 @@ using static AyunDefine;
 
 public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
 {
+    [HideInInspector] public GameObject GameObject => gameObject;
+
     public Transform staffPoint;
 
     private Stack<ITakeable> _boxStack;
