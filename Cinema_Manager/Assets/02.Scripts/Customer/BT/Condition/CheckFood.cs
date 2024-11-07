@@ -47,18 +47,15 @@ public class CheckFood : Conditional
             return TaskStatus.Running;
         }
 
-        if (customer.Value.CanSetDestination())
-        {
-            if (!isCustomerStop && customer.Value.customerData.isGive)
-                customer.Value.currentStand.GiveFood();
 
-            if (customer.Value.StackCompo.RemainingStackCount == 0
-                && ObjectManager.Instance.counter.IsCanStand
-                && customer.Value.currentStand.GetCustomerIndex(customer.Value) == 0)
-            {
-                customer.Value.currentStand.RemoveCustomer(customer.Value);
-                return TaskStatus.Failure;
-            }
+        if (!isCustomerStop && customer.Value.customerData.isGive)
+            customer.Value.currentStand.GiveFood();
+
+        if (customer.Value.StackCompo.RemainingStackCount == 0
+            && ObjectManager.Instance.counter.IsCanStand)
+        {
+            customer.Value.currentStand.RemoveCustomer(customer.Value);
+            return TaskStatus.Failure;
         }
 
         return TaskStatus.Running;
