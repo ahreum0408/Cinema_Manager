@@ -36,6 +36,7 @@ public class GameDataManager : MonoBehaviour {
         if (data == null) {
             return;
         }
+        _gameData.isMinimumExecution = data.isMinimumExecution;
 
         _gameData.allCheckOnOffList = data.allCheckOnOffList;
         _gameData.allCheckPriceList = data.allCheckPriceList;

@@ -145,8 +145,12 @@ public class LevelManager : MonoSingleton<LevelManager> {
         foreach (var levelData in levelDatas) {
             //levelData.AfterSetting();
         }
-        OnLevel(0, true, true);
-        OnLevel(1, true);
+        if (!_gameData.isMinimumExecution) { // 최소 실행인가? ex.튜토리얼
+            OnLevel(0, true, true);
+            OnLevel(1, true);
+            _gameData.isMinimumExecution = true;
+        }
+
         SetData();
 
         // 체커의 가격도 맞춰주고 가격에 따라서 stand도 켜줌
@@ -164,7 +168,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
         }
         for (int i = 0; i < _allStand.Count; i++) {
             if (_allStand[i] != null) {
-                _allStand[i].ActiveObj(_gameData.allStandOnOffList[i]);
+                _allStand[i].ActiveObj(_gameData.allStandOnOffList[i], true);
             }
         }
         for (int i = 0; i < _allFoodTruck.Count; i++) {
@@ -198,7 +202,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
             var checker = _allCheckers[i];
             if (checker.OpenITarget != null) {
                 if(checker.OpenITarget.IsOpen) { // 오픈되었다
-                    Debug.Log("open");
                     OnStandItem(checker);
                 }
                 else {

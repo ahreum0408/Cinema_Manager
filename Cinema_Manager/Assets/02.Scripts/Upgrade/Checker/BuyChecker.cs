@@ -64,13 +64,16 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         _isCalaulate = false;
         LevelEvents.ChangePriceEvent?.Invoke(this, _price);
         LevelManager.Instance.GetExp(_exp);
-        ActiveObj(false, true); // ³ª ²ô°í
-        OpenITarget.ActiveObj(true); // Å¸°Ù Å°°í
+        ActiveObj(false); // ³ª ²ô°í
+        OpenITarget.ActiveObj(true, true); // Å¸°Ù Å°°í
     }
     private void UpdatePriceText(int coin) {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
     }
-    public void ActiveObj(bool active, bool isAction = false) {
+    public void ActiveObj(bool active, bool onTarget = false) {
+        if(onTarget) {
+            OpenITarget.ActiveObj(!active);
+        }
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);

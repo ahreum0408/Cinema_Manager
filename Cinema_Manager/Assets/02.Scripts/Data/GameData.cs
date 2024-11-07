@@ -3,6 +3,8 @@ using System.Linq;
 using UnityEngine;
 
 public class GameData {
+    public bool isMinimumExecution;
+
     // setting view
     public bool bgm;
     public bool effect;
@@ -52,6 +54,8 @@ public class GameData {
     public int mp_volumeLevel = 0; // 보관량 증가
 
     public GameData() {
+        this.isMinimumExecution = false;
+
         this.bgm = true;
         this.effect = true;
         this.haptic = true;
@@ -63,32 +67,32 @@ public class GameData {
         this.levelIndex = 0;
         this.exp = 0;
 
-        allCheckOnOffList = new List<bool> ( new bool[20] );
-        allCheckPriceList = new List<int> (Enumerable.Repeat(100, 20).ToArray());
+        this.allCheckOnOffList = new List<bool> ( new bool[20] );
+        this.allCheckPriceList = new List<int> (Enumerable.Repeat(100, 20).ToArray());
 
-        allStandOnOffList = new List<bool>(new bool[20]);
-        allStandItemCountList = new List<int>(new int[20]);
+        this.allStandOnOffList = new List<bool>(new bool[20]);
+        this.allStandItemCountList = new List<int>(new int[20]);
 
-        allFoodTruckOnOffList = new List<bool>(new bool[20]);
-        allBoxTruckOnOffList = new List<bool>(new bool[1]);
-        
-        allTableOnOffList = new List<bool>(new bool[20]);
+        this.allFoodTruckOnOffList = new List<bool>(new bool[20]);
+        this.allBoxTruckOnOffList = new List<bool>(new bool[1]);
 
-        allParcelServiceOnOffList = new List<bool>(new bool[1]);
+        this.allTableOnOffList = new List<bool>(new bool[20]);
 
-        allRoomOnOffList = new List<bool>(new bool[1]);
+        this.allParcelServiceOnOffList = new List<bool>(new bool[1]);
 
-        p_movespeedLevel = 0;
-        p_movespeedLevel = 0;
-        p_sellingcostLevel = 0;
+        this.allRoomOnOffList = new List<bool>(new bool[1]);
 
-        e_movespeedLevel = 0;
-        e_volumeLevel = 0;
-        e_employmentLevel = 0;
+        this.p_movespeedLevel = 0;
+        this.p_movespeedLevel = 0;
+        this.p_sellingcostLevel = 0;
 
-        mt_productionspeedLevel = 0;
-        mt_volumeLevel = 0;
-        mt_storageLevel = 0;
+        this.e_movespeedLevel = 0;
+        this.e_volumeLevel = 0;
+        this.e_employmentLevel = 0;
+
+        this.mt_productionspeedLevel = 0;
+        this.mt_volumeLevel = 0;
+        this.mt_storageLevel = 0;
     }
 
     public string ToJson() {
