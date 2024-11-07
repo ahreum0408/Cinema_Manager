@@ -1689,6 +1689,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 604b0c7f17d491843a761160b48d91e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skinMat:
+  - {fileID: 2100000, guid: b877b599b4539c94fb040ed81bd53e31, type: 2}
+  - {fileID: 2100000, guid: 70cf5ce568173b5459e6e619dd7a4619, type: 2}
+  - {fileID: 2100000, guid: b5581a62f7335254490f3099d09371ad, type: 2}
+  - {fileID: 2100000, guid: bd46d16714e9c3e418761e5da7657058, type: 2}
+  - {fileID: 2100000, guid: c1e2d121e9741fd4987d38c16caaaa63, type: 2}
+  - {fileID: 2100000, guid: 03e9304368e8059478e630ef802afcaa, type: 2}
+  - {fileID: 2100000, guid: 845938f68e6f0fb45936d802e4ffda3b, type: 2}
+  - {fileID: 2100000, guid: 44d570a44339c7641b1253249e5d139b, type: 2}
+  - {fileID: 2100000, guid: 780da242bcdba1b469444e9ade431dd3, type: 2}
+  - {fileID: 2100000, guid: 5fc6c3c2b915e214aaac7c83d7c4b405, type: 2}
+  _shirtMat:
+  - {fileID: 2100000, guid: 071b6fe24e39721478d552cb62f78ef7, type: 2}
+  - {fileID: 2100000, guid: 3e8ab963252fa2d488ed07d7d168c740, type: 2}
+  - {fileID: 2100000, guid: 5166354ca9c399c4d84e360068b34b6c, type: 2}
+  - {fileID: 2100000, guid: 4e573bdd90818e84cb11144492874ab3, type: 2}
+  _pantMat:
+  - {fileID: 2100000, guid: 1cf3aa692c17f004590c6aa7ff9cf80b, type: 2}
+  - {fileID: 2100000, guid: fd7ce5a4b80250b46879102a27bae65d, type: 2}
+  - {fileID: 2100000, guid: 5cf703c5ce36e024eb6c5534ae94a95d, type: 2}
+  - {fileID: 2100000, guid: 296737a7669bbc942a4e3c1db53024d8, type: 2}
   basicCustomer: {fileID: 5450410375270868338, guid: 9bc0756e0b4e1894680acd6a50fa2a8f,
     type: 3}
   callCustomer: {fileID: 7089812428520055509, guid: 5aa7bffccaf62174db192c9bb704fd39,
