@@ -66,6 +66,6 @@ public class UpgradeManager : MonoBehaviour {
         int stack = employeeVolumeStat[_gameData.e_volumeLevel];
         int employeeCount = employeeAddStat[_gameData.e_employmentLevel];
 
-        //StaffManager.Instance.SetStaffStat(speed, stack, employeeCount);
+        StaffManager.Instance.SetStaffStat(speed, stack, employeeCount);
     }
 }

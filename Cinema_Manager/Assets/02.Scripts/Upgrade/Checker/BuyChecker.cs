@@ -60,20 +60,19 @@ public class BuyChecker : CheckerArea, IOpenTarget {
             yield return waitTime;
         }
     }
-    private void UpdatePriceText(int coin) {
-        _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
-    }
     private void EndCal() {
         _isCalaulate = false;
+        LevelEvents.ChangePriceEvent?.Invoke(this, _price);
+        LevelManager.Instance.GetExp(_exp);
         ActiveObj(false, true); // ³ª ²ô°í
         OpenITarget.ActiveObj(true); // Å¸°Ù Å°°í
-        LevelManager.Instance.GetExp(_exp);
+    }
+    private void UpdatePriceText(int coin) {
+        _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
     }
     public void ActiveObj(bool active, bool isAction = false) {
         _isOpen = active;
         gameObject.SetActive(active);
-        if(isAction) {
-        LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, true);
-        }
+        LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);
     }
 }
