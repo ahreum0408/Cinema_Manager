@@ -81,9 +81,16 @@ public class Level {
     public void LoadCheckerData() {
 
     }
-    public void SetCheckerActive(bool active) {
+    public void SetCheckerActive(bool active, bool isReversal = false) { // checker와 target에 적용 되는 값을 뒤집을 건인가?
+        Debug.Log(isReversal);
         foreach (BuyChecker checker in _buyCheckersList) {
-            checker.ActiveObj(active, true);
+            Debug.Log(checker);
+            if (isReversal) {
+                Debug.Log(active);
+                checker.ActiveObj(!active, true);
+                return;
+            }
+            checker.ActiveObj(active, true); // 킬거임
         }
     } // 이거 아마 바꿔야할거임 LevelManager 참고
     

@@ -143,16 +143,17 @@ public class LevelManager : MonoSingleton<LevelManager> {
         _exp = _gameData.exp;
 
         foreach (var levelData in levelDatas) {
-            levelData.AfterSetting();
+            //levelData.AfterSetting();
         }
-        OnLevlOne();
+        OnLevel(0, true, true);
+        OnLevel(1, true);
         SetData();
 
         // 체커의 가격도 맞춰주고 가격에 따라서 stand도 켜줌
         SettingCheckerPrice();
     }
-    private void OnLevlOne() {
-        levelDatas[1].SetCheckerActive(true);
+    private void OnLevel(int level, bool active, bool isReversal = false) {
+        levelDatas[level].SetCheckerActive(active, isReversal);
     }
     private void SetData() {
         // 각각의 checker에 값 적용
@@ -197,6 +198,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
             var checker = _allCheckers[i];
             if (checker.OpenITarget != null) {
                 if(checker.OpenITarget.IsOpen) { // 오픈되었다
+                    Debug.Log("open");
                     OnStandItem(checker);
                 }
                 else {
@@ -208,7 +210,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
     }
     private void OnStandItem(BuyChecker checker) {
         if(checker.OpenGTarget.TryGetComponent(out DisplayStand stand)){
-
             int index = _allStand.IndexOf(stand);
             int itemCount = _gameData.allStandItemCountList[index];
             _allStand[index].AddItemToStand(itemCount);
