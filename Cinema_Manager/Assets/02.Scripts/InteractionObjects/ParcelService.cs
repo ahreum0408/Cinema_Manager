@@ -138,11 +138,6 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
                 isStart = false;
             }
 
-            if (customer.CurrentCustomerType == CustomerType.Call)
-            {
-                break;
-            }
-
             if (beforeCustomer == null)
             {
                 customers.Agent.SetDestination(new Vector3(

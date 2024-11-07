@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_CollectObjects: 0
+  m_CollectObjects: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 40b9d7cba93330d4fba35c71829dcf4d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 809593e289f88834798f8b1a0103a2d5, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &301954212440464852
 GameObject:
@@ -60056,7 +60056,7 @@ PrefabInstance:
     - target: {fileID: 359678683121007316, guid: 1e5d132a51b712745b9513f8b7fd4ca8,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2409662332786602771, guid: 1e5d132a51b712745b9513f8b7fd4ca8,
         type: 3}
@@ -60121,7 +60121,7 @@ PrefabInstance:
     - target: {fileID: 4906462446979049858, guid: 1e5d132a51b712745b9513f8b7fd4ca8,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4950190863372235717, guid: 1e5d132a51b712745b9513f8b7fd4ca8,
         type: 3}
@@ -60136,7 +60136,7 @@ PrefabInstance:
     - target: {fileID: 8772468194600125218, guid: 1e5d132a51b712745b9513f8b7fd4ca8,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

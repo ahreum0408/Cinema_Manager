@@ -106,7 +106,7 @@ public class Customer : AgentController
     public bool CanSetDestination()
     {
         return !Agent.isPathStale && 
-                Vector3.Distance(Agent.destination, transform.position) < Agent.stoppingDistance && 
+                Vector3.Distance(Agent.destination, transform.position) < Agent.stoppingDistance + 0.1f && 
                 Agent.velocity.sqrMagnitude < 0.01f;
     }
 

@@ -22,6 +22,7 @@ public class UseParcel : Conditional
         {
             ObjectManager.Instance.parcelService.BoxSpawn();
             customer.Value.AnimationCompo.PackAnimation(-1);
+            ObjectManager.Instance.parcelService.RemoveCustomer(customer.Value);
             return TaskStatus.Failure;
         }
         return TaskStatus.Running;

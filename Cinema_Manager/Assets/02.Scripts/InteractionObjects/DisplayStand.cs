@@ -162,14 +162,10 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     public void RemoveCustomer(Customer customer)
     {
-        if (_customerDic.ContainsKey(customer))
-        {
-            _customerDic.Remove(customer);
-            _customerCount--;
-        }
+        _customerDic.Remove(customer);
+        _customerCount--;
 
         _dicIsStart = true;
-
         List<Customer> customerKeys = new List<Customer>(_customerDic.Keys);
 
         for (int i = 0; i < customerKeys.Count; i++)
@@ -178,14 +174,13 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
             _customerDic[currentCustomer] = i;
 
+            currentCustomer.Agent.SetDestination(points[i].transform.position);
             if (_dicIsStart)
             {
                 _currentCustomer = currentCustomer;
                 _currentCustomer.customerData.isGive = true;
                 _dicIsStart = false;
             }
-
-            currentCustomer.Agent.SetDestination(points[i].transform.position);
         }
     }
 
