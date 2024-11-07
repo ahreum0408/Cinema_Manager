@@ -165,23 +165,23 @@ public class LevelManager : MonoSingleton<LevelManager> {
         }
     }
 
-    private void ChangeCheckerActive(BuyChecker activeObj, bool active) {
+    private void ChangeCheckerActive(BuyChecker checker, bool active) {
         int index = 0;
-        Debug.Log(active);
-        index = _allCheckers.IndexOf(activeObj); // 내 체커 끄고
-        _gameData.allCheckOnOffList[index] = !active;
 
-        if (activeObj.OpenGTarget.TryGetComponent(out DisplayStand stand)) {
+        index = _allCheckers.IndexOf(checker); // 내 체커 끄고
+        _gameData.allCheckOnOffList[index] = active;
+
+        if (checker.OpenGTarget.TryGetComponent(out DisplayStand stand)) {
             index = _allStand.IndexOf(stand); // 내가 누구인지 index뽑고
-            _gameData.allStandOnOffList[index] = active;
+            _gameData.allStandOnOffList[index] = !active;
         }
-        else if (activeObj.OpenGTarget.TryGetComponent(out FoodContainer truck)) {
+        else if (checker.OpenGTarget.TryGetComponent(out FoodContainer truck)) {
             index = _allTruck.IndexOf(truck); // 내가 누구인지 index뽑고
-            _gameData.allTruckOnOffList[index] = active;
+            _gameData.allTruckOnOffList[index] = !active;
         }
-        else if (activeObj.OpenGTarget.TryGetComponent(out Table table)) {
+        else if (checker.OpenGTarget.TryGetComponent(out Table table)) {
             index = _allTable.IndexOf(table); // 내가 누구인지 index뽑고
-            _gameData.allTableOnOffList[index] = active;
+            _gameData.allTableOnOffList[index] = !active;
         }
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }

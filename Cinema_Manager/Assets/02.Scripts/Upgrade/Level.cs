@@ -10,7 +10,7 @@ public class Level {
     public int lowValue = 0;
     public int highValue = 20;
 
-    public List<GameObject> openNewMapList;
+    [SerializeField] private List<GameObject> openNewMapList;
 
     private List<BuyChecker> _buyCheckersList = new List<BuyChecker>();
     private List<DisplayStand> _standList = new List<DisplayStand>();

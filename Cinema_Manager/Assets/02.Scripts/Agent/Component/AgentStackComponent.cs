@@ -53,7 +53,7 @@ public class AgentStackComponent : AgentComponent
 
     public void TakeObject(ITakeable takeableObject, PoolableType type, float spacingY, bool isFood)
     {
-        Debug.Log("TakeObject");
+        //Debug.Log("TakeObject");
         if (_currentHoldType == PoolableType.None)
             _currentHoldType = type;
 
