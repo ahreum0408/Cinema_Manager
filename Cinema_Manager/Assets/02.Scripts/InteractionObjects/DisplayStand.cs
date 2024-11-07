@@ -58,7 +58,8 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
     public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
-        if (active) {
+        LevelEvents.ChangeStandActiveEvent?.Invoke(this, active);
+        if (active) { // 여기 문제 있을거임 주의**
             CustomerSpawnManager.Instance.SetMaxCustomer();
         }
     }
@@ -103,7 +104,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget {
         food.Take(_spawnTrmList[row], foodPos, Vector3.zero);
         _foodStack.Push(food);
 
-        LevelEvents.ChangeDisplayStandEvent?.Invoke(this, _currentFoodCnt);
+        LevelEvents.ChangeStandItemEvent?.Invoke(this, _currentFoodCnt);
     }
 
     public void GiveFood()
