@@ -57,12 +57,11 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         _isStart = true;
     }
 
-    public void ActiveObj(bool active, bool on = false) {
+    public void ActiveObj(bool active, bool addCustomer = false) {
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeStandActiveEvent?.Invoke(this, active);
-        if (active && on) { // 여기 문제 있을거임 주의**
-            Debug.Log("add custormer");
+        if (active && addCustomer) { // 여기 문제 있을거임 주의**
             CustomerSpawnManager.Instance.SetMaxCustomer(GetPoolObjType());
         }
     }

@@ -145,9 +145,12 @@ public class LevelManager : MonoSingleton<LevelManager> {
         foreach (var levelData in levelDatas) {
             //levelData.AfterSetting();
         }
+        if (!_gameData.isMinimumExecution) { // 최소 실행인가? ex.튜토리얼
+            OnLevel(0, true, true);
+            OnLevel(1, true);
+            _gameData.isMinimumExecution = true;
+        }
 
-        OnLevel(0, true, true);
-        OnLevel(1, true);
         SetData();
 
         // 체커의 가격도 맞춰주고 가격에 따라서 stand도 켜줌
