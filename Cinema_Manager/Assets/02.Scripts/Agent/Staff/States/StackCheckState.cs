@@ -13,7 +13,10 @@ internal class StackCheckState : AgentState
     public override void Update()
     {
         if(!agent.IsStacked && agent.CanSetDestination())
+        {
+            agent.displayStand = null;
             agent.ChangeState(new MoveToTargetState(agent, agent.restPos.position, new IdleState(agent)));
+        }
     }
 
     public override void Exit()

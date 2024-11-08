@@ -173,18 +173,14 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         _customerCount--;
 
         List<Customer> customerList = _customerDic.Keys.OrderBy(c => _customerDic[c]).ToList();
-        Debug.Log(customerList[1].GetInstanceID());
 
         for (int i = 0; i < customerList.Count; i++)
         {
             Customer currentCustomer = customerList[i];
             _customerDic[currentCustomer] = i;
 
-            // 위치를 재설정하고 고객을 이동 가능하게 설정
             currentCustomer.Agent.isStopped = false;
             currentCustomer.Agent.SetDestination(points[i].transform.position);
-
-            //Debug.Log($"Customer {i + 1} (ID: {currentCustomer.GetInstanceID()}) is assigned to Point {i} and moving.");
 
             if (i == 0)
             {

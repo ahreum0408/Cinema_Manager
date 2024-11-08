@@ -17,13 +17,18 @@ public class AgentInteractionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (_staffController != null)
         {
+            if (other.GetComponentInParent<BuyChecker>() != null) return;
+
             if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
             {
                 if (_staffController.foodContainer.GetPoolObjType() !=
                 other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
+            }
+            if (other.GetComponentInParent<DisplayStand>() != null && _staffController.displayStand != null)
+            {
+                if (other.GetComponentInParent<DisplayStand>() != _staffController.displayStand) return;
             }
         }
 
@@ -44,10 +49,16 @@ public class AgentInteractionTrigger : MonoBehaviour
     {
         if (_staffController != null)
         {
+            if (other.GetComponentInParent<BuyChecker>() != null) return;
+
             if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
             {
                 if (_staffController.foodContainer.GetPoolObjType() !=
                 other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
+            }
+            if (other.GetComponentInParent<DisplayStand>() != null && _staffController.displayStand != null)
+            {
+                if (other.GetComponentInParent<DisplayStand>() != _staffController.displayStand) return;
             }
         }
 
@@ -65,10 +76,16 @@ public class AgentInteractionTrigger : MonoBehaviour
     {
         if (_staffController != null)
         {
+            if (other.GetComponentInParent<BuyChecker>() != null) return;
+
             if (other.GetComponentInParent<FoodContainer>() != null && _staffController.foodContainer != null)
             {
                 if (_staffController.foodContainer.GetPoolObjType() !=
                 other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
+            }
+            if (other.GetComponentInParent<DisplayStand>() != null && _staffController.displayStand != null)
+            {
+                if (other.GetComponentInParent<DisplayStand>() != _staffController.displayStand) return;
             }
         }
 

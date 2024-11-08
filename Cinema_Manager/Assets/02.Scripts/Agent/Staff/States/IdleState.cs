@@ -18,7 +18,7 @@ public class IdleState : AgentState
             Vector3 tablePos = agent.table.staffPoint.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, tablePos, new CleanTableState(agent)));
         }
-        else if (CheckDisplay() != null)
+        else if (agent.displayStand != null)
         {
             agent.foodContainer = FindFoodContainer();
             agent.ChangeState(new MoveToTargetState
