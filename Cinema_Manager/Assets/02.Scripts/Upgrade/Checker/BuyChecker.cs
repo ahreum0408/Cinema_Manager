@@ -46,17 +46,16 @@ public class BuyChecker : CheckerArea, IOpenTarget {
                 _isCalaulate = false;
                 break;
             }
-            if (_price <= 0) {
-                EndCal();
-                break;
-            }
-
             if (_price - _minusCoin < 0) {
                 _minusCoin = 1; // 여기 나중에 수정 필요함
             }
             _price -= _minusCoin;
             CoinManager.Instance.Coin -= _minusCoin;
             UpdatePriceText(_price);
+            if (_price <= 0) {
+                EndCal();
+                break;
+            }
             yield return waitTime;
         }
     }
@@ -72,6 +71,7 @@ public class BuyChecker : CheckerArea, IOpenTarget {
     }
     public void ActiveObj(bool active, bool onTarget = false) {
         if(onTarget) {
+            Debug.Log("음음음..");
             OpenITarget.ActiveObj(!active);
         }
         _isOpen = active;
