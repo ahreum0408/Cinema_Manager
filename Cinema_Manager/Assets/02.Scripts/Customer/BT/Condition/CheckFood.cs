@@ -47,12 +47,12 @@ public class CheckFood : Conditional
             return TaskStatus.Running;
         }
 
-
         if (!isCustomerStop && customer.Value.customerData.isGive)
             customer.Value.currentStand.GiveFood();
 
         if (customer.Value.StackCompo.RemainingStackCount == 0
-            && ObjectManager.Instance.counter.IsCanStand)
+            && ObjectManager.Instance.counter.IsCanStand
+            && customer.Value.currentStand.GetCustomerIndex(customer.Value) == 0)
         {
             customer.Value.currentStand.RemoveCustomer(customer.Value);
             return TaskStatus.Failure;
@@ -81,14 +81,14 @@ public class CheckFood : Conditional
     {
         isCustomerStop = false;
 
-        int currentIndex = customer.Value.currentStand.GetCustomerIndex(customer.Value);
-        if (currentIndex == -1) return;
-
         var customers = customer.Value.currentStand.GetAllCustomers();
-
-        for (int i = currentIndex; i < customers.Count; i++)
+        for (int i = 0; i < customers.Count; i++)
         {
-            customers[i].Agent.isStopped = false;
+            if (customers[i].Agent.isStopped)
+            {
+                customers[i].Agent.isStopped = false;
+                customers[i].Agent.SetDestination(customer.Value.currentStand.points[i].transform.position);
+            }
         }
     }
 }
