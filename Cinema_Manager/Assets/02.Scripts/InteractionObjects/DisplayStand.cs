@@ -1,3 +1,4 @@
+using BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -111,6 +112,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     public void GiveFood()
     {
+
         if (_currentFoodCnt > 0)
         {
             StartCoroutine(GiveFoodRoutine());
@@ -121,6 +123,8 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     {
         while (_currentFoodCnt > 0 && _currentCustomer != null)
         {
+            if (!_currentCustomer.CanSetDestination()) break;
+
             if (_currentCustomer.StackCompo.RemainingStackCount != 0)
             {
                 _currentCustomer.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
@@ -162,25 +166,32 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     public void RemoveCustomer(Customer customer)
     {
+        if (!_customerDic.ContainsKey(customer))
+            return;
+
         _customerDic.Remove(customer);
         _customerCount--;
 
-        _dicIsStart = true;
-        List<Customer> customerKeys = new List<Customer>(_customerDic.Keys);
+        List<Customer> customerList = new List<Customer>(_customerDic.Keys);
 
-        for (int i = 0; i < customerKeys.Count; i++)
+        for (int i = 0; i < customerList.Count; i++)
         {
-            Customer currentCustomer = customerKeys[i];
-
+            Customer currentCustomer = customerList[i];
             _customerDic[currentCustomer] = i;
-
             currentCustomer.Agent.SetDestination(points[i].transform.position);
-            if (_dicIsStart)
+
+            if (i == 0)
             {
                 _currentCustomer = currentCustomer;
                 _currentCustomer.customerData.isGive = true;
-                _dicIsStart = false;
             }
+            else
+                currentCustomer.customerData.isGive = false;
+        }
+
+        if (customerList.Count == 0)
+        {
+            _currentCustomer = null;
         }
     }
 
