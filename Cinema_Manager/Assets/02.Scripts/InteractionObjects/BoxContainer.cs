@@ -32,6 +32,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
 
     private NotifyImageComponent _notifyImageComponent;
     private BoxTruck _boxTruck;
+    private MoneyDummy _moneyDummy;
 
     #region 나중에 업그레이드로 빼야할 것들
     private int _stackMaxCnt = 8; // 스택에 쌓이는 음식 개수
@@ -42,6 +43,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
     {
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _boxTruck = GetComponentInChildren<BoxTruck>();
+        _moneyDummy = transform.GetComponentInChildren<MoneyDummy>();
         _boxStack = new Stack<ITakeable>();
     }
 
@@ -80,6 +82,9 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
 
             // Sound
             SoundManager.Instance.Play(AudioClips.BoxPacking, true, 1, transform);
+
+            // Money
+            _moneyDummy.AddMoneyObject(4);
 
             yield return new WaitForSeconds(0.5f);
 

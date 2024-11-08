@@ -63,10 +63,8 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
         spawnTime = Time.time;
     }
 
-    private void RandomCustomerSet(GameObject customer, CustomerSetType type, List<Material> matList)
-    {
-        if (type == CustomerSetType.skin)
-        {
+    private void RandomCustomerSet(GameObject customer, CustomerSetType type, List<Material> matList) {
+        if (type == CustomerSetType.skin) {
             int rand = Random.Range(0, matList.Count);
 
             SkinnedMeshRenderer renderer = customer.transform.Find("Visual")
@@ -80,8 +78,7 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
             renderer.material = matList[rand];
 
         }
-        else
-        {
+        else {
             SkinnedMeshRenderer renderer = customer.transform.Find("Visual")
                 .transform.Find("Male_" + type.ToString())
                 .GetComponent<SkinnedMeshRenderer>();
