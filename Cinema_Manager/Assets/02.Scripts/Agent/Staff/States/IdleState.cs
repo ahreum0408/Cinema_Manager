@@ -55,7 +55,7 @@ public class IdleState : AgentState
     {
         foreach (DisplayStand displayStand in ObjectManager.Instance.displayStands)
         {
-            if (displayStand.CurrentLine > 0)
+            if (displayStand.gameObject.active && displayStand.CurrentLine > 0)
                 return displayStand;
         }
         return null;
@@ -79,6 +79,8 @@ public class IdleState : AgentState
 
     private bool CheckPackage()
     {
+        if (!ObjectManager.Instance.parcelService.gameObject.active) return false;
+
         ParcelService parcelService = ObjectManager.Instance.parcelService;
         return parcelService.CurrentBoxCnt > 0 && !parcelService.IsInteraction;
     }
