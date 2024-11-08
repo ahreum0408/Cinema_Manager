@@ -14,7 +14,8 @@ public static class LevelEvents  {
     public static Action<FoodContainer, bool> ChangeFoodTruckActiveEvent;
     public static Action<BoxContainer, bool> ChangeBoxTruckActiveEvent;
 
-    public static Action<ParcelService, bool> ChangeParcelServicectiveEvent;
+    public static Action<ParcelService, bool> ChangeParcelServiceActiveEvent;
+    public static Action<Table, bool> ChangeTableActiveEvent;
 
     public static Action<Room, bool> ChangeRoomActiveEvent;
 }

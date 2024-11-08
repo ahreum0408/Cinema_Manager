@@ -161,6 +161,6 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
     public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
-        LevelEvents.ChangeParcelServicectiveEvent?.Invoke(this, active);
+        LevelEvents.ChangeParcelServiceActiveEvent?.Invoke(this, active);
     }
 }

@@ -70,8 +70,7 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
     }
     public void ActiveObj(bool active, bool onTarget = false) {
-        if(onTarget) {
-            Debug.Log("음음음..");
+        if(onTarget) { // 맨처음 로드 될 때만 사용
             OpenITarget.ActiveObj(!active);
         }
         _isOpen = active;

@@ -103,5 +103,6 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
     public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
+        LevelEvents.ChangeTableActiveEvent?.Invoke(this, active);
     }
 }
