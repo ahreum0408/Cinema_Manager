@@ -35,7 +35,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
         LevelEvents.ChangeFoodTruckActiveEvent += ChangeFoodTruckActive;
         LevelEvents.ChangeBoxTruckActiveEvent += ChangeBoxTruckActive;
 
-        LevelEvents.ChangeParcelServicectiveEvent += ChangeParcelServiceActive;
+        LevelEvents.ChangeParcelServiceActiveEvent += ChangeParcelServiceActive;
 
         LevelEvents.ChangeRoomActiveEvent += ChangRoomActive;
     }
@@ -51,7 +51,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
         LevelEvents.ChangeFoodTruckActiveEvent -= ChangeFoodTruckActive;
         LevelEvents.ChangeBoxTruckActiveEvent -= ChangeBoxTruckActive;
 
-        LevelEvents.ChangeParcelServicectiveEvent -= ChangeParcelServiceActive;
+        LevelEvents.ChangeParcelServiceActiveEvent -= ChangeParcelServiceActive;
 
         LevelEvents.ChangeRoomActiveEvent -= ChangRoomActive;
     }
