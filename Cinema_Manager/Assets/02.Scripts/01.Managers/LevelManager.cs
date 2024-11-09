@@ -16,7 +16,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
     private Level _currentLevel;
     private int _exp;
-    private int _levelIndex = 0;
+    private int _levelIndex = 1;
 
     private GameData _gameData;
 
@@ -37,6 +37,8 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         LevelEvents.ChangeParcelServiceActiveEvent += ChangeParcelServiceActive;
 
+        LevelEvents.ChangeTableActiveEvent += ChangeTableActive;
+
         LevelEvents.ChangeRoomActiveEvent += ChangRoomActive;
     }
     private void OnDisable() {
@@ -52,6 +54,8 @@ public class LevelManager : MonoSingleton<LevelManager> {
         LevelEvents.ChangeBoxTruckActiveEvent -= ChangeBoxTruckActive;
 
         LevelEvents.ChangeParcelServiceActiveEvent -= ChangeParcelServiceActive;
+
+        LevelEvents.ChangeTableActiveEvent -= ChangeTableActive;
 
         LevelEvents.ChangeRoomActiveEvent -= ChangRoomActive;
     }
@@ -138,9 +142,10 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         _gameData = data;
 
-        _currentLevel = _gameData.level;
+        _currentLevel = levelDatas[_levelIndex];
         _levelIndex = _gameData.levelIndex;
         _exp = _gameData.exp;
+
 
         foreach (var levelData in levelDatas) {
             //levelData.AfterSetting();
@@ -257,6 +262,12 @@ public class LevelManager : MonoSingleton<LevelManager> {
     private void ChangeParcelServiceActive(ParcelService activeObj, bool active) {
         int index = _allParcelService.IndexOf(activeObj); // 내가 누구인지 index뽑고
         _gameData.allParcelServiceOnOffList[index] = active;
+        LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
+    }
+
+    private void ChangeTableActive(Table checker, bool active) {
+        int index = _allTable.IndexOf(checker); // 내 체커 끄고
+        _gameData.allTableOnOffList[index] = active;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 

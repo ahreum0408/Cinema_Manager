@@ -56,7 +56,7 @@ public class Level {
                     Debug.LogWarning("너는 누구신가요..");
                 }
             }
-            else {
+            /*else {
                 var obj = area.GetComponent<IOpenTarget>();
 
                 if (area.TryGetComponent(out DisplayStand stand)) {
@@ -70,14 +70,15 @@ public class Level {
                 }
 
                 _anotherObjList.Add(obj);
-            }
+            }*/
         }
     }
-    public void AfterSetting() {
+ /*   public void AfterSetting() {
         foreach (IOpenTarget obj in _anotherObjList) {
+            Debug.Log("after init");
             obj.ActiveObj(true);
         }
-    }
+    }*/
     public void LoadCheckerData() {
 
     }

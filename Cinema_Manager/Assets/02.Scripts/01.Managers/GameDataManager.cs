@@ -45,8 +45,13 @@ public class GameDataManager : MonoBehaviour {
         _gameData.allStandItemCountList = data.allStandItemCountList;
 
         _gameData.allFoodTruckOnOffList = data.allFoodTruckOnOffList;
+        _gameData.allBoxTruckOnOffList = data.allBoxTruckOnOffList;
 
         _gameData.allTableOnOffList = data.allTableOnOffList;
+
+        _gameData.allParcelServiceOnOffList = data.allParcelServiceOnOffList;
+
+        _gameData.allRoomOnOffList = data.allRoomOnOffList;
     }
     private void MainDataUpdate(GameData data) {
         if (data == null) {
