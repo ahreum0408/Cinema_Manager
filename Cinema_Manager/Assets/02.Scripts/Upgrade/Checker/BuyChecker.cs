@@ -73,7 +73,6 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         if(onTarget) { // 맨처음 로드 될 때만 사용
             OpenITarget.ActiveObj(!active);
         }
-        Debug.Log($"{gameObject.name} : {active}");
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);

@@ -88,7 +88,6 @@ public class Level {
                 checker.ActiveObj(!active, isReversal);
             }
             else {
-                Debug.Log(checker.name);
                 checker.ActiveObj(active); // ≈≥∞≈¿”
             }
         }

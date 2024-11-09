@@ -16,7 +16,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
     private Level _currentLevel;
     private int _exp;
-    private int _levelIndex = 0;
+    private int _levelIndex = 1;
 
     private GameData _gameData;
 
@@ -138,9 +138,10 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         _gameData = data;
 
-        _currentLevel = _gameData.level;
+        _currentLevel = levelDatas[_levelIndex];
         _levelIndex = _gameData.levelIndex;
         _exp = _gameData.exp;
+
 
         foreach (var levelData in levelDatas) {
             //levelData.AfterSetting();
