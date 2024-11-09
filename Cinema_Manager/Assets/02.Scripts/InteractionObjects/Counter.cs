@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Counter : MonoBehaviour, IIneractionable
@@ -31,6 +32,15 @@ public class Counter : MonoBehaviour, IIneractionable
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
     }
 
+    private void Start()
+    {
+        checkPoint.position = new Vector3(
+                checkPoint.position.x - lineInterval,
+                checkPoint.position.y,
+                checkPoint.position.z
+            );
+    }
+
     public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
@@ -51,13 +61,7 @@ public class Counter : MonoBehaviour, IIneractionable
         while (_isEnterInteraction && lineList.Count > 0)
         {
             if (lineList[0].CanSetDestination())
-            {
-                _moneyDummy.AddMoneyObject(1);
-
-                lineList[0].customerData.isCalculate = true;
-                lineList.Remove(lineList[0]);
-                SettingLine();
-            }
+                RemoveCustomer();
 
             yield return null;
         }
@@ -67,10 +71,15 @@ public class Counter : MonoBehaviour, IIneractionable
     {
         lineList.Add(customer);
 
-        if (isStart)
+        if (isStart || lineList.Count == 1)
         {
             customer.customerData.isBuy = true;
             isStart = false;
+            checkPoint.position = new Vector3(
+                checkPoint.position.x + lineInterval,
+                checkPoint.position.y,
+                checkPoint.position.z
+            );
         }
         else
         {
@@ -82,8 +91,15 @@ public class Counter : MonoBehaviour, IIneractionable
         }
     }
 
-    public void SettingLine()
+    public void RemoveCustomer()
     {
+        _moneyDummy.AddMoneyObject(1);
+
+        lineList[0].customerData.isCalculate = true;
+        lineList.Remove(lineList[0]);
+
+        lineList = lineList.OrderBy(c => lineList).ToList();
+
         checkPoint.position = new Vector3(
                 checkPoint.position.x - lineInterval,
                 checkPoint.position.y,
@@ -98,16 +114,17 @@ public class Counter : MonoBehaviour, IIneractionable
             {
                 customers.customerData.isBuy = true;
                 lineIsStart = false;
-
+            }
+            
+            if(beforeCustomer == null)
+            {
                 customers.Agent.SetDestination(new Vector3(
                     customers.Agent.destination.x - lineInterval,
                     customers.Agent.destination.y,
                     customers.Agent.destination.z)
                 );
-                return;
             }
-            
-            if(beforeCustomer != null)
+            else
             {
                 customers.Agent.SetDestination(new Vector3(
                     beforeCustomer.Agent.destination.x + lineInterval,
