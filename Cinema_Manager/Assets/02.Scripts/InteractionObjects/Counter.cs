@@ -50,8 +50,7 @@ public class Counter : MonoBehaviour, IIneractionable
     {
         while (_isEnterInteraction && lineList.Count > 0)
         {
-            // 여기서 계산 하는거 해주면 됨
-            if (lineList[0].customerData.isBuy && lineList[0].CanSetDestination())
+            if (lineList[0].CanSetDestination())
             {
                 _moneyDummy.AddMoneyObject(1);
 
@@ -85,6 +84,12 @@ public class Counter : MonoBehaviour, IIneractionable
 
     public void SettingLine()
     {
+        checkPoint.position = new Vector3(
+                checkPoint.position.x - lineInterval,
+                checkPoint.position.y,
+                checkPoint.position.z
+            );
+
         bool lineIsStart = true;
         Customer beforeCustomer = null;
         foreach (var customers in lineList)
@@ -93,17 +98,16 @@ public class Counter : MonoBehaviour, IIneractionable
             {
                 customers.customerData.isBuy = true;
                 lineIsStart = false;
-            }
 
-            if (beforeCustomer == null)
-            {
                 customers.Agent.SetDestination(new Vector3(
                     customers.Agent.destination.x - lineInterval,
                     customers.Agent.destination.y,
                     customers.Agent.destination.z)
                 );
+                return;
             }
-            else
+            
+            if(beforeCustomer != null)
             {
                 customers.Agent.SetDestination(new Vector3(
                     beforeCustomer.Agent.destination.x + lineInterval,
