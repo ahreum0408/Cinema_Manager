@@ -21,6 +21,12 @@ public class FindFood : Action
     public override void OnStart()
     {
         stand = ObjectManager.Instance.FindDisplayStand(customer.Value.customerData.objectType);
+        if(stand == null)
+        {
+            PoolManager.Instance.Push(customer.Value.CurrentCustomerType.ToString() + "Customer", customer.Value.gameObject);
+            return;
+        }
+
         stand.AddCustomer(customer.Value);
         customer.Value.currentStand = stand;
 
