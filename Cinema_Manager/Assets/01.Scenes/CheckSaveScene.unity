@@ -521,6 +521,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 3873446684796643323, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: _exp
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609597177787775817, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: _exp
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 9133975283715901661, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: m_LocalPosition.x

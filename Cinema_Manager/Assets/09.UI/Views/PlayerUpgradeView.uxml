@@ -2,8 +2,9 @@
     <Style src="project://database/Assets/09.UI/USS/Main_USS.uss?fileID=7433441132597879392&amp;guid=ac0eb11ece132c14c8283d2efee773c1&amp;type=3#Main_USS" />
     <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/09.UI/USS/Upgrade_USS.uss?fileID=7433441132597879392&amp;guid=bfa203c725e68ca48873f5461d8f68dd&amp;type=3#Upgrade_USS" />
+    <Style src="project://database/Assets/09.UI/USS/Button_USS.uss?fileID=7433441132597879392&amp;guid=e14bf1679fc6d6f4dad2eae9b0c340ca&amp;type=3#Button_USS" />
     <ui:VisualElement name="container" class="base-container">
-        <ui:VisualElement name="top-container" style="width: 100%; height: 17%; align-items: center;">
+        <ui:VisualElement name="top-container" style="align-items: center; width: 100%; height: 150px;">
             <ui:VisualElement name="title-content" class="title-content">
                 <ui:Label tabindex="-1" text="플레이어" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_100" />
             </ui:VisualElement>
@@ -28,8 +29,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="button-container" class="button-container">
-                        <ui:Button text="광고 시청" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ect-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
-                        <ui:Button text="구매" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upgrade-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
+                        <ui:Button text="광고 시청" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ect-btn" class="text_middle-array_50 upgrade-btn" />
+                        <ui:Button text="구매" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upgrade-btn" class="text_middle-array_50 upgrade-btn" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
@@ -51,8 +52,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="button-container" class="button-container">
-                        <ui:Button text="광고 시청" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ect-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
-                        <ui:Button text="구매" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upgrade-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
+                        <ui:Button text="광고 시청" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ect-btn" class="text_middle-array_50 upgrade-btn" />
+                        <ui:Button text="구매" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upgrade-btn" class="text_middle-array_50 upgrade-btn" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
@@ -74,8 +75,8 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="button-container" class="button-container">
-                        <ui:Button text="광고 시청" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ect-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
-                        <ui:Button text="구매" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upgrade-btn" class="text_middle-array_50" style="width: 350px; height: 90px; flex-grow: 0; margin-top: 20px; margin-bottom: 20px;" />
+                        <ui:Button text="광고 시청" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ect-btn" class="text_middle-array_50 upgrade-btn" />
+                        <ui:Button text="구매" parse-escape-sequences="true" display-tooltip-when-elided="true" name="upgrade-btn" class="text_middle-array_50 upgrade-btn" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
