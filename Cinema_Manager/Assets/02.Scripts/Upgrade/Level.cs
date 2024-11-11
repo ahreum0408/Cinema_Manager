@@ -23,6 +23,8 @@ public class Level {
 
     private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
 
+    private Dictionary<TargetType, int> _targetDictionary = new Dictionary<TargetType, int>();
+
 
     // 내 타겟의 데이터의 종류 별로 분류
     public void Init() {

@@ -8,6 +8,7 @@ using static AyunDefine;
 public class Table : MonoBehaviour, IIneractionable, IOpenTarget
 {
     [HideInInspector] public GameObject GameObject => gameObject;
+    [SerializeField] private TargetType _targetType;
     public Transform staffPoint;
 
     public List<Point> points;
@@ -21,6 +22,7 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
 
     private bool _isOpen = false;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+    public TargetType type { get => _targetType; set => _targetType = value; }
 
     [Header("Trash")]
     [SerializeField] private float _trashYSpacing;

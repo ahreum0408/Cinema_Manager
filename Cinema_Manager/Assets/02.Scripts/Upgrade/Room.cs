@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class Room : MonoBehaviour, IOpenTarget {
     [SerializeField] private GameObject _openTarget;
+    [SerializeField] private TargetType _targetType;
 
     private bool _isOpen;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+    public TargetType type { get => _targetType; set => _targetType = value; }
 
     public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;

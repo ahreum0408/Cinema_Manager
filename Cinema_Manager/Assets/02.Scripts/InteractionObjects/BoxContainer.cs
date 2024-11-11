@@ -6,6 +6,7 @@ using static AyunDefine;
 public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
 {
     [HideInInspector] public GameObject GameObject => gameObject;
+    [SerializeField] private TargetType _targetType;
 
     public Transform staffPoint;
 
@@ -15,6 +16,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
 
     private bool _isOpen;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+    public TargetType type { get => _targetType; set => _targetType = value; }
 
     [Header("Box")]
     [SerializeField] private PoolableType _poolObjType;

@@ -22,12 +22,14 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
     #endregion
 
     [HideInInspector] public GameObject GameObject => gameObject;
+    [SerializeField] private TargetType _targetType;
     private Stack<ITakeable> _boxStack;
     public int CurrentBoxCnt => _boxStack.Count;
     public int StackMaxCnt => _stackMaxCnt;
 
     private bool _isOpen;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+    public TargetType type { get => _targetType; set => _targetType = value; }
 
     [Header("Box")]
     [SerializeField] private Transform _spawnTrm;

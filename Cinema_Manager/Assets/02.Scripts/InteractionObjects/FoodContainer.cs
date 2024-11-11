@@ -6,6 +6,7 @@ using static AyunDefine;
 public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget {
 
     [HideInInspector] public GameObject GameObject => gameObject;
+    [SerializeField] private TargetType _targetType;
     public Transform staffPoint;
 
     private Stack<ITakeable> _foodStack;
@@ -27,6 +28,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget {
 
     private bool _isOpen = false;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+    public TargetType type { get => _targetType; set => _targetType = value; }
 
     #region 나중에 업그레이드로 빼야할 것들
     private int _stackMaxCnt = 8; // 스택에 쌓이는 음식 개수

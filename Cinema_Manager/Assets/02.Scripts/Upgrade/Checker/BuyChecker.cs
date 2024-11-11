@@ -6,6 +6,7 @@ public class BuyChecker : CheckerArea, IOpenTarget {
     [SerializeField] private TextMeshPro _priceTxt;
     [SerializeField] private GameObject _openTarget;
     [SerializeField] private int _exp;
+    [SerializeField] private TargetType _targetType;
     
     public int Price { 
         get { 
@@ -23,6 +24,7 @@ public class BuyChecker : CheckerArea, IOpenTarget {
 
     private bool _isOpen;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+    public TargetType type { get => _targetType; set => _targetType = value; }
 
     private void Awake() {
         CalculateWeght();
