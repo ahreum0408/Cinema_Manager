@@ -183,4 +183,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openAngle: 110
-  _rotationSpeed: 150
+  _rotationSpeed: 250
