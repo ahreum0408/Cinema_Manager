@@ -424,6 +424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staffPoint: {fileID: 3330495155776126073}
   points: []
+  IsWorking: 0
+  _trashYSpacing: 0.403
 --- !u!1 &7216448757811145443
 GameObject:
   m_ObjectHideFlags: 0

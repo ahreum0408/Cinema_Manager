@@ -22,6 +22,9 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
     private bool _isOpen = false;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
 
+    [Header("Trash")]
+    [SerializeField] private float _trashYSpacing;
+
     private void Awake()
     {
         _moneyDummy = transform.GetComponentInChildren<MoneyDummy>();
@@ -55,7 +58,7 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
                     if (agent.CanTakeFood(PoolableType.Trash))
                     {
                         agent.OnTakeTakeable?.Invoke
-                            (points[i].trash.GetComponent<ITakeable>(), PoolableType.Trash, 0.01f, true);
+                            (points[i].trash.GetComponent<ITakeable>(), PoolableType.Trash, _trashYSpacing, true);
 
                         points[i].ChangeDirtyState(false);
                         points[i].trash = null;
