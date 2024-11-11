@@ -10,7 +10,6 @@ public class PlayerController : AgentController
     [SerializeField] private FloatingJoystick _joystick;
 
     [Header("UI")]
-    [SerializeField] private Canvas _playerCanvas;
     [SerializeField] private TextMeshProUGUI _stackMaxText;
 
     // Component
