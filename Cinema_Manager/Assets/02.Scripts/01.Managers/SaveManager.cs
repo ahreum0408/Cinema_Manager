@@ -54,7 +54,7 @@ public class SaveManager : MonoBehaviour {
     #region handle
     void ViewShown() {
         if (gameDataManager.GameData != null) {
-            GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
+            //GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
         }
     }
     // 이거 지금 안씀
