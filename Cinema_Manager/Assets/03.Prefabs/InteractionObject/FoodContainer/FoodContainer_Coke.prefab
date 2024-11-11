@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7644059d59bffe4fbce046b8efdde92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetType: 1
   staffPoint: {fileID: 9174058110250349186}
   _spawnTrm: {fileID: 6524745711836338250}
   _poolObjType: 2

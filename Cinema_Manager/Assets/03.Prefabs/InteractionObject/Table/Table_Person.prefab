@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7605d6bc3890f8f45bc65599c88ea680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetType: 3
   staffPoint: {fileID: 1479421400881937060}
   points: []
   IsWorking: 0

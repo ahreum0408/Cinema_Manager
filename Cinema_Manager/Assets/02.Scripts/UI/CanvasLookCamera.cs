@@ -11,8 +11,6 @@ public class CanvasLookCamera : MonoBehaviour
 
     private void Update()
     {
-
-        transform.LookAt(transform.position + _mainCam.transform.rotation * Vector3.forward,
-                         _mainCam.transform.rotation * Vector3.up);
+        transform.rotation = _mainCam.transform.rotation;
     }
 }

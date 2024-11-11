@@ -23,7 +23,7 @@ public class Level {
 
     private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
 
-    private Dictionary<TargetType, int> _targetDictionary = new Dictionary<TargetType, int>();
+    public Dictionary<TargetType, int> _targetDictionary = new Dictionary<TargetType, int>();
 
 
     // 내 타겟의 데이터의 종류 별로 분류
@@ -35,50 +35,65 @@ public class Level {
                 GameObject target = checker.OpenGTarget;
 
                 if (target.TryGetComponent(out DisplayStand stand)) {
+                    if (_targetDictionary.TryGetValue(stand.Type, out int value)) {
+                        _targetDictionary[stand.Type] = value;
+                    }
+                    else {
+                        _targetDictionary.Add(stand.Type, 1);
+                    }
                     _standList.Add(stand);
                 }
                 else if (target.TryGetComponent(out FoodContainer foodtruck)) {
+                    if (_targetDictionary.TryGetValue(foodtruck.Type, out int value)) {
+                        _targetDictionary[foodtruck.Type] = value;
+                    }
+                    else {
+                        _targetDictionary.Add(foodtruck.Type, 1);
+                    }
                     _foodTruckList.Add(foodtruck);
                 }
                 else if (target.TryGetComponent(out BoxContainer boxtruck)) {
+                    if (_targetDictionary.TryGetValue(boxtruck.Type, out int value)) {
+                        _targetDictionary[boxtruck.Type] = value;
+                    }
+                    else {
+                        _targetDictionary.Add(boxtruck.Type, 1);
+                    }
                     _boxTruckList.Add(boxtruck);
                 }
                 else if (target.TryGetComponent(out Table table)) {
+                    if (_targetDictionary.TryGetValue(table.Type, out int value)) {
+                        _targetDictionary[table.Type] = value;
+                    }
+                    else {
+                        _targetDictionary.Add(table.Type, 1);
+                    }
                     _tableList.Add(table);
                 }
                 else if (target.TryGetComponent(out ParcelService service)) {
+                    if (_targetDictionary.TryGetValue(service.Type, out int value)) {
+                        _targetDictionary[service.Type] = value;
+                    }
+                    else {
+                        _targetDictionary.Add(service.Type, 1);
+                    }
                     _parcelServiceList.Add(service);
                 }
                 else if (target.TryGetComponent(out Room room)) {
+                    if (_targetDictionary.TryGetValue(room.Type, out int value)) {
+                        _targetDictionary[room.Type] = value;
+                    }
+                    else {
+                        _targetDictionary.Add(room.Type, 1);
+                    }
                     _roomList.Add(room);
                 }
                 else {
                     Debug.LogWarning("너는 누구신가요..");
                 }
             }
-            /*else {
-                var obj = area.GetComponent<IOpenTarget>();
-
-                if (area.TryGetComponent(out DisplayStand stand)) {
-                    _standList.Add(stand);
-                }
-                else if (area.TryGetComponent(out FoodContainer truck)) {
-                    _foodTruckList.Add(truck);
-                }
-                else if (area.TryGetComponent(out Table table)) {
-                    _tableList.Add(table);
-                }
-
-                _anotherObjList.Add(obj);
-            }*/
         }
     }
- /*   public void AfterSetting() {
-        foreach (IOpenTarget obj in _anotherObjList) {
-            Debug.Log("after init");
-            obj.ActiveObj(true);
-        }
-    }*/
     public void SetCheckerActive(bool active, bool isReversal = false) { // checker와 target에 적용 되는 값을 뒤집을 건인가?
         foreach (BuyChecker checker in _buyCheckersList) {
             if (isReversal) {
@@ -91,6 +106,9 @@ public class Level {
     } // 이거 아마 바꿔야할거임 LevelManager 참고
     
     #region GetList
+    public Dictionary<TargetType, int> GetTargetDictionary() {
+        return _targetDictionary;
+    }
     public List<BuyChecker> GetCheckerList() {
         return _buyCheckersList;
     }

@@ -29,7 +29,7 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
 
     private bool _isOpen;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
-    public TargetType type { get => _targetType; set => _targetType = value; }
+    public TargetType Type { get => _targetType; set => _targetType = value; }
 
     [Header("Box")]
     [SerializeField] private Transform _spawnTrm;

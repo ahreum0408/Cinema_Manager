@@ -24,6 +24,7 @@ public class Counter : MonoBehaviour, IIneractionable
 
     [HideInInspector] public GameObject GameObject => gameObject;
     private bool _isEnterInteraction = false;
+    private bool _isCounterStaffStay = false;
 
     private MoneyDummy _moneyDummy;
     private NotifyImageComponent _notifyImageComponent;
@@ -45,6 +46,11 @@ public class Counter : MonoBehaviour, IIneractionable
 
     public void EnterInteraction(AgentController agent)
     {
+        if (_isCounterStaffStay) return;
+
+        if (agent as CounterStaffController != null)
+            _isCounterStaffStay = true;
+
         _isEnterInteraction = true;
         _notifyImageComponent.SetNotifySensorImage(1.1f);
         StartCoroutine(CheckPayLoop());
@@ -52,6 +58,8 @@ public class Counter : MonoBehaviour, IIneractionable
 
     public void ExitInteraction(AgentController agent)
     {
+        if (_isCounterStaffStay) return;
+
         _isEnterInteraction = false;
         StopCoroutine(CheckPayLoop());
         _notifyImageComponent.SetNotifySensorImage(1.0f);
@@ -60,13 +68,17 @@ public class Counter : MonoBehaviour, IIneractionable
     // 지불 확인 작업 (플레이어가 카운터에 상호작용하고 있을 때만 실행)
     private IEnumerator CheckPayLoop()
     {
-        while (_isEnterInteraction && lineList.Count > 0)
+        Debug.Log("CheckPayLoop");
+        while (_isEnterInteraction)
         {
+            yield return new WaitUntil(() => lineList.Count > 0);
+
             if (lineList[0].CanSetDestination())
                 RemoveCustomer();
 
             yield return null;
         }
+        Debug.Log("CheckPayLoop 끝");
     }
 
     public void AddCustomer(Customer customer)

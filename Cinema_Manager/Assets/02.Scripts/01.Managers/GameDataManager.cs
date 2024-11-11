@@ -15,6 +15,7 @@ public class GameDataManager : MonoBehaviour {
     }
 
     private void OnEnable() {
+        LevelUpEvents.GameDataUpdatEvent += LevelUpDataUpdate;
         LevelEvents.GameDataUpdatEvent += LevelDataUpdate;
         MainEvents.GameDataUpdatEvent += MainDataUpdate;
         SettingEvents.GameDataUpdatEvent += SettingDataUpdate;
@@ -24,6 +25,7 @@ public class GameDataManager : MonoBehaviour {
         EmployeeUpgradeEvents.GameDataUpdatEvent += EmpolyeeDataUpdate;
     }
     private void OnDisable() {
+        LevelUpEvents.GameDataUpdatEvent -= LevelUpDataUpdate;
         LevelEvents.GameDataUpdatEvent -= LevelDataUpdate;
         MainEvents.GameDataUpdatEvent -= MainDataUpdate;
         SettingEvents.GameDataUpdatEvent -= SettingDataUpdate;
@@ -32,10 +34,20 @@ public class GameDataManager : MonoBehaviour {
         PackageMachineUpgradeEvents.GameDataUpdatEvent -= PackageMachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent -= EmpolyeeDataUpdate;
     }
+
+    private void LevelUpDataUpdate(GameData data) {
+        if (data == null) {
+            return;
+        }
+        //_gameData.level = data.level;
+
+    }
+
     private void LevelDataUpdate(GameData data) {
         if (data == null) {
             return;
         }
+
         _gameData.isMinimumExecution = data.isMinimumExecution;
 
         _gameData.allCheckOnOffList = data.allCheckOnOffList;

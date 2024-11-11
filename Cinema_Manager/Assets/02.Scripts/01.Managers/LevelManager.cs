@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Debug = UnityEngine.Debug;
 
@@ -129,8 +128,9 @@ public class LevelManager : MonoSingleton<LevelManager> {
     }
     private void LevelUp() {
         _currentLevel = levelDatas[++_levelIndex];
-        MainEvents.UpgradeLevelEvent?.Invoke(levelDatas[_levelIndex], _levelIndex);
         _currentLevel.SetCheckerActive(true); // 다음 스테이지 켜주고
+        MainEvents.UpgradeLevelEvent?.Invoke(levelDatas[_levelIndex], _levelIndex);
+        LevelUpEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     #endregion
 

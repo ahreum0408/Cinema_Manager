@@ -521,77 +521,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
-    - target: {fileID: 434015875861831520, guid: b7fd11435216ba14686e91ec034f2d92,
+    - target: {fileID: 3266808503590282488, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 604994035033822824, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1330925635268225715, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3375017051739703183, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3445593540970201107, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3858978090908624644, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: _targetType
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3873446684796643323, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: _exp
       value: 15
       objectReference: {fileID: 0}
-    - target: {fileID: 5368629443312929009, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5874716259176279889, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5959267482022891349, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7582609914682463042, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7609597177787775817, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: _exp
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 8015177340540097349, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8465892605390198342, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 1fe18ccdc55bb8e49afcdab8ee650229,
-        type: 2}
     - target: {fileID: 9133975283715901661, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1915,7 +1859,7 @@ MonoBehaviour:
   - 1.5
   - 1.6
   - 1.8
-  employeeMoveSpeedStat: 08000000090000000a0000000b0000000c000000
+  employeeMoveSpeedStat: 03000000090000000a0000000b0000000c000000
   employeeVolumeStat: 0500000006000000070000000800000009000000
   employeeAddStat: 0200000003000000040000000500000006000000
 --- !u!4 &1213296464
