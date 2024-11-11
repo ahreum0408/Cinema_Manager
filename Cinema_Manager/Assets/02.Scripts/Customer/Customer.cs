@@ -35,7 +35,10 @@ public class Customer : AgentController
 
     public float defualtSpeed = 3.5f;
 
+    public float SpacingY = 0f;
+    public bool IsFood = false;
     private int foodTypeSum = 1;
+
 
     [SerializeField] private LayerMask _whatIsPlayer;
 

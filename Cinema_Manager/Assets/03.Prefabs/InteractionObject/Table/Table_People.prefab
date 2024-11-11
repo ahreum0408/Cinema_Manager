@@ -422,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7605d6bc3890f8f45bc65599c88ea680, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetType: 0
   staffPoint: {fileID: 3330495155776126073}
   points: []
   IsWorking: 0
@@ -605,7 +606,7 @@ PrefabInstance:
     - target: {fileID: 3599267568132858191, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.85
+      value: -7.17
       objectReference: {fileID: 0}
     - target: {fileID: 3599267568132858191, guid: 54e1133912acd5443ab2d0dae2703ce1,
         type: 3}

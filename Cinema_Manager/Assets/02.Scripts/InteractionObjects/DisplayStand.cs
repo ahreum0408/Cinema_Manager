@@ -115,7 +115,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     public void GiveFood()
     {
-
         if (_currentFoodCnt > 0)
         {
             StartCoroutine(GiveFoodRoutine());
@@ -154,6 +153,8 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         if (_customerDic.Count >= points.Count)
             return;
 
+        customer.SpacingY = _spacingY;
+        customer.IsFood = _isFood;
         _customerDic.Add(customer, _customerCount);
         _customerCount++;
 

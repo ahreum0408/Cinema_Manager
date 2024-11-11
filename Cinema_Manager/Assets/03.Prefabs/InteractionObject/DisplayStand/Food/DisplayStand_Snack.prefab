@@ -256,6 +256,7 @@ MonoBehaviour:
   _spawnTrmList:
   - {fileID: 6208565010780702510}
   - {fileID: 4064112860185868424}
+  _targetType: 0
   IsWorking: 0
   _spacingY: 0.242
   _spacingX: 1.1
@@ -550,7 +551,7 @@ GameObject:
   - component: {fileID: 619428430074152013}
   - component: {fileID: 6520432236977631676}
   - component: {fileID: 7992953221273200231}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,8 +14,13 @@ internal class StackCheckState : AgentState
     {
         if(!agent.IsStacked)
         {
-            agent.displayStand = null;
-            agent.ChangeState(new MoveToTargetState(agent, agent.restPos.position, new IdleState(agent)));
+            if(agent.displayStand != null)
+            {
+                agent.displayStand.IsWorking = false;
+                agent.displayStand = null;
+            }
+            
+            agent.ChangeState(new MoveToTargetState(agent, agent.restPos, new IdleState(agent)));
         }
     }
 

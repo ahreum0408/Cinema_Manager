@@ -21,14 +21,17 @@ public class IdleState : AgentState
         else if (agent.displayStand != null)
         {
             agent.foodContainer = FindFoodContainer();
-            agent.ChangeState(new MoveToTargetState
-                (agent, agent.foodContainer.staffPoint.transform.position, new MoveContainerState(agent)));
+            if (agent.foodContainer != null)
+            {
+                agent.ChangeState(new MoveToTargetState
+                    (agent, agent.foodContainer.staffPoint.transform.position, new MoveContainerState(agent)));
+            }
         }
-        else if (CheckCounter())
-        {
-            Vector3 counterPos = ObjectManager.Instance.counter.staffPoint.transform.position;
-            agent.ChangeState(new MoveToTargetState(agent, counterPos, new CounterState(agent)));
-        }
+        //else if (CheckCounter())
+        //{
+        //    Vector3 counterPos = ObjectManager.Instance.counter.staffPoint.transform.position;
+        //    agent.ChangeState(new MoveToTargetState(agent, counterPos, new CounterState(agent)));
+        //}
         else if (CheckPackage())
         {
             Vector3 parcelPos = ObjectManager.Instance.parcelService.staffPoint.transform.position;
@@ -59,7 +62,8 @@ public class IdleState : AgentState
         foreach (DisplayStand displayStand in ObjectManager.Instance.displayStands)
         {
             if (displayStand.gameObject.active && displayStand.CurrentLine > 0
-                && !displayStand.IsWorking)
+                && !displayStand.IsWorking && 
+                agent.StackCompo.MaxStackCount <= displayStand.StackMaxCnt - displayStand.GetFoodStack())
             {
                 displayStand.IsWorking = true;
                 return displayStand;
@@ -72,7 +76,8 @@ public class IdleState : AgentState
     {
         foreach(FoodContainer foodContainer in ObjectManager.Instance.foodContainers)
         {
-            if(foodContainer.GetPoolObjType() == agent.displayStand.GetPoolObjType())
+            if(foodContainer.GetPoolObjType() == agent.displayStand.GetPoolObjType()
+                && foodContainer.gameObject.active)
                 return foodContainer;
         }
         return null;

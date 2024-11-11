@@ -56,7 +56,7 @@ public class UIManager : MonoBehaviour {
         _playerUpgradeView = new PlayerUpgradeView(root.Q<VisualElement>(upgradePlayerViewName)); // Landing modal screen
         _truckMachineUpgradeView = new TruckMachineUpgradeView(root.Q<VisualElement>(upgradeTruckMachineViewName)); // Landing modal screen
         _packageMachineUpgradeView = new PackageMachineUpgradeView(root.Q<VisualElement>(upgradePackageMachineViewName)); // Landing modal screen
-        _levelUpView = new LevelUpView(root.Q<VisualElement>(levelUpViewName)); // Landing modal screen
+        //_levelUpView = new LevelUpView(root.Q<VisualElement>(levelUpViewName)); // Landing modal screen
 
         _allViews.Add(_mainView);
         _allViews.Add(_settingView);
@@ -66,8 +66,8 @@ public class UIManager : MonoBehaviour {
         _allViews.Add(_packageMachineUpgradeView);
         _allViews.Add(_levelUpView);
 
-        //_mainView.Show();
-        _levelUpView.Show();
+        _mainView.Show();
+        //_levelUpView.Show();
     }
     private void ChangeShowView(UIView newView) {
         if (_currentView != null && _currentView != _mainView) { // 지금 보고 있는 view가 있으면 꺼
