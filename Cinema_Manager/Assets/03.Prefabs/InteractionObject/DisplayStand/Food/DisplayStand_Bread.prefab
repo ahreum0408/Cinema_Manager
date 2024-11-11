@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 6254381670320808372}
   - component: {fileID: 7533002166602470542}
   - component: {fileID: 5592523912221751104}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,6 +681,7 @@ MonoBehaviour:
   _spawnTrmList:
   - {fileID: 8963324724043744260}
   - {fileID: 7664934876989542979}
+  _targetType: 0
   IsWorking: 0
   _spacingY: 0.382
   _spacingX: 1.1

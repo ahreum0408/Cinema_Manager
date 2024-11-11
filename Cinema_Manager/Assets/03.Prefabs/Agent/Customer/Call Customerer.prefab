@@ -2211,6 +2211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentCustomerType: 2
   defualtSpeed: 3.5
+  SpacingY: 0
+  IsFood: 0
   _whatIsPlayer:
     serializedVersion: 2
     m_Bits: 256
@@ -2966,6 +2968,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BadCustomerCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885878526507076048, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885878526507076048, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885878526507076048, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885878526507076048, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885878526507076048, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885878526507076048, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885878526507076048, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8075489876420598795, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
         type: 3}

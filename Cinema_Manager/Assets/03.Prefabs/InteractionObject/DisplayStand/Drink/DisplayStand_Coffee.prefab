@@ -375,6 +375,7 @@ MonoBehaviour:
   - {fileID: 4305622717018041257}
   - {fileID: 6795467994135815465}
   - {fileID: 5204847569394089036}
+  _targetType: 0
   IsWorking: 0
   _spacingY: 0.87
   _spacingX: 0.6
@@ -669,7 +670,7 @@ GameObject:
   - component: {fileID: 918855999369374906}
   - component: {fileID: 6468215784222430933}
   - component: {fileID: 5596669191109806750}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

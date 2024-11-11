@@ -19,6 +19,7 @@ public class AgentStackComponent : AgentComponent
     // Counts
     public int CurrentStackCount => _takeObjectStack.Count;
     public int RemainingStackCount => _maxStackCount - CurrentStackCount;
+    public int MaxStackCount => _maxStackCount;
 
     // Bool
     public bool IsStackMax => CurrentStackCount >= _maxStackCount;

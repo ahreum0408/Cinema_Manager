@@ -26,7 +26,7 @@ public class CleanTableState : AgentState
 
     private bool IsCleaningComplete()
     {
-        if (agent.table.FindDirtyChair() == null)
+        if (agent.table.FindDirtyChair() == null || agent.StackCompo.RemainingStackCount == 0)
         {
             agent.table.IsWorking = false;
             agent.table = null;

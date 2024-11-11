@@ -23,7 +23,7 @@ public class UseTable : Conditional
     public override TaskStatus OnUpdate()
     {
         if(customer.Value.IsStacked)
-            customer.Value.currentChair.TakeFood(customer.Value, 0.25f);
+            customer.Value.currentChair.TakeFood(customer.Value, customer.Value.SpacingY, customer.Value.IsFood);
 
         if (currentEat == 0)
         {

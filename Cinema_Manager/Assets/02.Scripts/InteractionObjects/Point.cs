@@ -17,7 +17,7 @@ public class Point : MonoBehaviour, IIneractionable
     public PoolableType currentFoodType;
 
     public Stack<ITakeable> foodStack;
-    private int _currentFoodCnt;
+    private int _currentFoodCnt => foodStack.Count;
 
     private void Awake()
     {
@@ -27,24 +27,23 @@ public class Point : MonoBehaviour, IIneractionable
     private void Start()
     {
         trash = null;
-        _currentFoodCnt = 0;
     }
 
-    public void TakeFood(Customer customer, float spacingY)
+    public void TakeFood(Customer customer, float spacingY, bool isFood)
     {
         currentFoodType = customer.StackCompo.CurrentHoldType;
-        StartCoroutine(TakeFoodRoutine(customer, spacingY));
+        StartCoroutine(TakeFoodRoutine(customer, spacingY, isFood));
     }
 
-    private IEnumerator TakeFoodRoutine(Customer customer, float spacingY)
+    private IEnumerator TakeFoodRoutine(Customer customer, float spacingY, bool isFood)
     {
-        _currentFoodCnt++;
         ITakeable food = customer.OnGiveTakeable?.Invoke();
         
         Vector3 foodPos = Vector3.zero;
-        foodPos.z += spacingY * _currentFoodCnt-1;
+        foodPos.z = spacingY * _currentFoodCnt;
+        Vector3 rotation = isFood == false ? new Vector3(-90, 0, 0) : Vector3.zero;
 
-        food.Take(holder.transform, -foodPos, Vector3.zero);
+        food.Take(holder.transform, foodPos, rotation);
         foodStack.Push(food);
         
         yield return new WaitForSeconds(1f);
@@ -54,8 +53,6 @@ public class Point : MonoBehaviour, IIneractionable
     {
         if(foodStack != null)
         {
-            _currentFoodCnt--;
-
             PoolManager.Instance.Push(currentFoodType.ToString(), holder.GetChild(holder.childCount -1).gameObject);
 
             foodStack.Pop();
