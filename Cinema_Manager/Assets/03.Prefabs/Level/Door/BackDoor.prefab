@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _openAngle: 110
-  _rotationSpeed: 200
+  _rotationSpeed: 250
 --- !u!1 &8104166801440157514
 GameObject:
   m_ObjectHideFlags: 0

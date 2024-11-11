@@ -32,7 +32,7 @@ public class IdleState : AgentState
         else if (CheckPackage())
         {
             Vector3 parcelPos = ObjectManager.Instance.parcelService.staffPoint.transform.position;
-            agent.ChangeState(new MoveToTargetState(agent, parcelPos, new CounterState(agent)));
+            agent.ChangeState(new MoveToTargetState(agent, parcelPos, new MovePackageState(agent)));
         }
     }
 
@@ -45,8 +45,11 @@ public class IdleState : AgentState
         foreach(Table table in ObjectManager.Instance.tables)
         {
             Point point = table.FindDirtyChair();
-            if (point != null)
+            if (point != null && !table.IsWorking)
+            {
+                table.IsWorking = true;
                 return table;
+            }
         }
         return null; 
     }
@@ -55,8 +58,12 @@ public class IdleState : AgentState
     {
         foreach (DisplayStand displayStand in ObjectManager.Instance.displayStands)
         {
-            if (displayStand.gameObject.active && displayStand.CurrentLine > 0)
+            if (displayStand.gameObject.active && displayStand.CurrentLine > 0
+                && !displayStand.IsWorking)
+            {
+                displayStand.IsWorking = true;
                 return displayStand;
+            }
         }
         return null;
     }
@@ -74,14 +81,22 @@ public class IdleState : AgentState
     private bool CheckCounter()
     {
         Counter counter = ObjectManager.Instance.counter;
+
+        if (counter.IsWorking)
+            return false;
+
+        counter.IsWorking = true;
         return counter.lineList.Count > 0 && !counter.IsInteraction;
     }
 
     private bool CheckPackage()
     {
-        if (!ObjectManager.Instance.parcelService.gameObject.active) return false;
-
         ParcelService parcelService = ObjectManager.Instance.parcelService;
+
+        if (!ObjectManager.Instance.parcelService.gameObject.active || parcelService.IsWorking) 
+            return false;
+
+        parcelService.IsWorking = true;
         return parcelService.CurrentBoxCnt > 0 && !parcelService.IsInteraction;
     }
 }

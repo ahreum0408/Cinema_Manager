@@ -28,6 +28,7 @@ public class CleanTableState : AgentState
     {
         if (agent.table.FindDirtyChair() == null)
         {
+            agent.table.IsWorking = false;
             agent.table = null;
             return true;
         }

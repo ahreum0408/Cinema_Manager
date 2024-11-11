@@ -15,6 +15,7 @@ internal class MovePackageState : AgentState
     {
         if(CheckPackage())
         {
+            ObjectManager.Instance.parcelService.IsWorking = false;
             Vector3 parcelPos = ObjectManager.Instance.boxContainer.staffPoint.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, parcelPos, new IdleState(agent)));
         }
