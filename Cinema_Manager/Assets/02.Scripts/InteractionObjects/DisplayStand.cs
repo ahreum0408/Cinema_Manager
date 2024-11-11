@@ -24,6 +24,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
 
     #region ¼­¿¬
+    public bool IsWorking = false;
     public bool IsFullLine => _customerDic.Count == points.Count;
     public int CurrentLine => _customerDic.Count;
 

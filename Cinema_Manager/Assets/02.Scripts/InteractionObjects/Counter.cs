@@ -6,6 +6,8 @@ using UnityEngine;
 public class Counter : MonoBehaviour, IIneractionable
 {
     #region ¼­¿¬
+    public bool IsWorking = false;
+
     public Transform staffPoint;
 
     [SerializeField] private float lineInterval;

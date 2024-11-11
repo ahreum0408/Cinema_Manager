@@ -16,6 +16,7 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
 
     private bool isStart = true; // Ã¹ ¼Õ´ÔÀÎ°¡?
 
+    public bool IsWorking = false;
     public bool IsInteraction => _isEnterInteraction;
 
     #endregion

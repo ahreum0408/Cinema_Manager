@@ -17,6 +17,7 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
     private MoneyDummy _moneyDummy;
     private NotifyImageComponent _notifyImageComponent;
 
+    public bool IsWorking = false;
 
     private bool _isOpen = false;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
