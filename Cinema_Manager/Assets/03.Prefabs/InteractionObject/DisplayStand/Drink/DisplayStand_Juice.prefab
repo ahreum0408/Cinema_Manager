@@ -113,6 +113,7 @@ MonoBehaviour:
   - {fileID: 694170354566397455}
   - {fileID: 5663303123265235350}
   - {fileID: 4665229810300243776}
+  IsWorking: 0
   _spacingY: 1.485
   _spacingX: 0.6
   _isFood: 0
@@ -323,7 +324,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121623461619720907}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 4.91}
+  m_LocalPosition: {x: 0, y: 0, z: 2.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -332,7 +333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -2.04, y: 0}
+  m_AnchoredPosition: {x: -2.04, y: 0.1}
   m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &756160706254584729

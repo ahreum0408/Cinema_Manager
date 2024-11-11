@@ -60,6 +60,7 @@ MonoBehaviour:
   - {fileID: 7442919495669911995}
   - {fileID: 6022167076766534249}
   - {fileID: 2773570639322437693}
+  IsWorking: 0
   _spacingY: 1.531
   _spacingX: 0.6
   _isFood: 0
@@ -655,7 +656,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7287243955038426165}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 4.91}
+  m_LocalPosition: {x: 0, y: 0, z: 2.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

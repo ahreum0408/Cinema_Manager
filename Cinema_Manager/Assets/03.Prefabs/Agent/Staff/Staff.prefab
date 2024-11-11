@@ -1278,7 +1278,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 864d9a570a624fa40a5dc8d77eb57c0c, type: 2}
+  - {fileID: -8241442714594928060, guid: 5b71aef1866b73c41bb17b2a9240e8ba, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1985,7 +1985,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 70370b5fda1f7654dba2a55b1d561ef9, type: 2}
+  - {fileID: -8241442714594928060, guid: 5b71aef1866b73c41bb17b2a9240e8ba, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2878,7 +2878,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a504508af08c91544bd5c50f6dfab05d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.258
+      value: 0.247
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a504508af08c91544bd5c50f6dfab05d,
         type: 3}
@@ -2888,12 +2888,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a504508af08c91544bd5c50f6dfab05d,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.69637847
+      value: 0.7200748
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a504508af08c91544bd5c50f6dfab05d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.7176748
+      value: -0.6938965
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a504508af08c91544bd5c50f6dfab05d,
         type: 3}
@@ -2908,7 +2908,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a504508af08c91544bd5c50f6dfab05d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -91.726
+      value: -87.879
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a504508af08c91544bd5c50f6dfab05d,
         type: 3}
