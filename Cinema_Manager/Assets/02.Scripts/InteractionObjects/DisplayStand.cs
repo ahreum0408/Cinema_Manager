@@ -61,6 +61,12 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         _isStart = true;
     }
 
+    private void FixedUpdate()
+    {
+        if(_currentCustomer != null && !_currentCustomer.customerData.isGive)
+            _currentCustomer.customerData.isGive = true;
+    }
+
     public void ActiveObj(bool active, bool addCustomer = false) {
         _isOpen = active;
         gameObject.SetActive(active);
@@ -133,19 +139,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
             }
             yield return new WaitForSeconds(0.15f);
         }
-    }
-
-    // 서있을 곳이 있나?
-    public Point CanStandPoint()
-    {
-        foreach (var point in points)
-        {
-            if (!point.IsUsing)
-            {
-                return point;
-            }
-        }
-        return null;
     }
 
     public void AddCustomer(Customer customer)

@@ -15,7 +15,7 @@ internal class CounterState : AgentState
         if (CheckCounter())
         {
             ObjectManager.Instance.counter.IsWorking = false;
-            agent.ChangeState(new MoveToTargetState(agent, agent.restPos, new IdleState(agent)));
+            agent.ChangeState(new MoveToTargetState(agent, agent.restPos.position, new IdleState(agent)));
         }
     }
 

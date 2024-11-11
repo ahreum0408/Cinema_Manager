@@ -11,7 +11,8 @@ public class EndCustomer : Action
     private Vector3 _destination;
     public override void OnStart()
     {
-        _destination = customer.Value.startPos;
+        _destination = 
+            new Vector3(customer.Value.startPos.x, customer.Value.startPos.y, customer.Value.startPos.z -4);
         customer.Value.Agent.SetDestination(_destination);
     }
 

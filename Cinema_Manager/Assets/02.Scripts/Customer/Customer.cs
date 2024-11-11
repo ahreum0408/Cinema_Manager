@@ -167,7 +167,7 @@ public class Customer : AgentController
 
             DisplayStand stand = ObjectManager.Instance.FindDisplayStand(customerData.objectType);
 
-            if (stand != null && stand.CanStandPoint() != null)
+            if (stand != null && !stand.IsFullLine)
             {
                 currentStand = stand;
                 break;
@@ -181,7 +181,7 @@ public class Customer : AgentController
             foreach (var objType in Enum.GetValues(typeof(PoolableType)))
             {
                 DisplayStand stand = ObjectManager.Instance.FindDisplayStand((PoolableType)objType);
-                if (stand != null && stand.CanStandPoint() != null)
+                if (stand != null && !stand.IsFullLine)
                 {
                     customerData.objectType = (PoolableType)objType;
                     currentStand = stand;

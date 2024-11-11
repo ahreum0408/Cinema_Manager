@@ -20,7 +20,7 @@ internal class StackCheckState : AgentState
                 agent.displayStand = null;
             }
             
-            agent.ChangeState(new MoveToTargetState(agent, agent.restPos, new IdleState(agent)));
+            agent.ChangeState(new MoveToTargetState(agent, agent.restPos.position, new IdleState(agent)));
         }
     }
 

@@ -100,4 +100,9 @@ public class AgentStackComponent : AgentComponent
     }
 
     public override void ControllerUpdate() { }
+
+    public void ResetStack()
+    {
+        _takeObjectStack.Clear();
+    }
 }

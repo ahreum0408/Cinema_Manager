@@ -43,7 +43,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach(var stand in displayStands)
         {
-            if (stand.CanStandPoint() != null)
+            if (!stand.IsFullLine)
                 return true;
         }
         return false;

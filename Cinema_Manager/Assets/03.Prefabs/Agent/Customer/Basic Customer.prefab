@@ -611,6 +611,7 @@ GameObject:
   - component: {fileID: 7223601966082715255}
   - component: {fileID: 1914197146350831109}
   - component: {fileID: 3887497220639728959}
+  - component: {fileID: -2360030854503301557}
   m_Layer: 10
   m_Name: Basic Customer
   m_TagString: Untagged
@@ -649,7 +650,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -671,9 +672,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentCustomerType: 0
   defualtSpeed: 3.5
+  SpacingY: 0
+  IsFood: 0
   _whatIsPlayer:
     serializedVersion: 2
     m_Bits: 0
+  badCustomerCanvas: {fileID: 0}
+  gauge: {fileID: 0}
   startPos: {x: 0, y: 0, z: 0}
   currentStand: {fileID: 0}
   currentChair: {fileID: 0}
@@ -767,6 +772,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c003d2819323b04d86855a73a8a9b41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &-2360030854503301557
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2709680208365037779}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2787524014264040887
 GameObject:
   m_ObjectHideFlags: 0
