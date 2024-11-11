@@ -6,13 +6,13 @@ using static AyunDefine;
 public class AgentInteractionTrigger : MonoBehaviour
 {
     private AgentController _agentController;
-    private IIneractionable _currentInteractionObject;
     private StaffController _staffController;
+    private IIneractionable _currentInteractionObject;
 
     private void Awake()
     {
         _agentController = GetComponent<AgentController>();
-        _staffController = GetComponent<StaffController>();
+        _staffController = _agentController as StaffController;
     }
 
     private void OnTriggerEnter(Collider other)
