@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour {
     private UIView _playerUpgradeView;
     private UIView _truckMachineUpgradeView;
     private UIView _packageMachineUpgradeView;
+    private UIView _levelUpView;
 
 
     public const string mainViewName = "MainView";
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour {
     public const string upgradePlayerViewName = "PlayerUpgradeView";
     public const string upgradeTruckMachineViewName = "TruckMachineUpgradeView";
     public const string upgradePackageMachineViewName = "PackageMachineUpgradeView";
+    public const string levelUpViewName = "LevelUpView";
 
     void OnEnable() {
         _uiDocument = GetComponent<UIDocument>();
@@ -54,6 +56,7 @@ public class UIManager : MonoBehaviour {
         _playerUpgradeView = new PlayerUpgradeView(root.Q<VisualElement>(upgradePlayerViewName)); // Landing modal screen
         _truckMachineUpgradeView = new TruckMachineUpgradeView(root.Q<VisualElement>(upgradeTruckMachineViewName)); // Landing modal screen
         _packageMachineUpgradeView = new PackageMachineUpgradeView(root.Q<VisualElement>(upgradePackageMachineViewName)); // Landing modal screen
+        _levelUpView = new LevelUpView(root.Q<VisualElement>(levelUpViewName)); // Landing modal screen
 
         _allViews.Add(_mainView);
         _allViews.Add(_settingView);
@@ -61,8 +64,10 @@ public class UIManager : MonoBehaviour {
         _allViews.Add(_playerUpgradeView);
         _allViews.Add(_truckMachineUpgradeView);
         _allViews.Add(_packageMachineUpgradeView);
+        _allViews.Add(_levelUpView);
 
-        _mainView.Show();
+        //_mainView.Show();
+        _levelUpView.Show();
     }
     private void ChangeShowView(UIView newView) {
         if (_currentView != null && _currentView != _mainView) { // 지금 보고 있는 view가 있으면 꺼
@@ -74,7 +79,6 @@ public class UIManager : MonoBehaviour {
 
         if (_currentView != null){ // 지금 볼거 있으면 그거 켜주고 지금 보고 있는 view가 변경됬음을 알려줘
             _currentView.Show();
-            //MainMenuUIEvents.CurrentViewChanged?.Invoke(_currentView.GetType().Name);
         }
     }
     private void CloseCurrentView() {
@@ -91,6 +95,7 @@ public class UIManager : MonoBehaviour {
         MainEvents.EmployeeUpgradeViewShow += ShowEmployeeUpgradeView;
         MainEvents.TruckMachineUpgradeViewShow += ShowTruckMachineUpgradeView;
         MainEvents.PackageMachineUpgradeViewShow += ShowPackageMachineUpgradeView;
+        MainEvents.LevelUpViewShow += ShowLevelUpView;
 
         MainEvents.CloseCurrentEvent += CloseCurrentView;
     }
@@ -101,9 +106,11 @@ public class UIManager : MonoBehaviour {
         MainEvents.EmployeeUpgradeViewShow -= ShowEmployeeUpgradeView;
         MainEvents.TruckMachineUpgradeViewShow -= ShowTruckMachineUpgradeView;
         MainEvents.PackageMachineUpgradeViewShow -= ShowPackageMachineUpgradeView;
+        MainEvents.LevelUpViewShow -= ShowLevelUpView;
 
-        MainEvents.CloseCurrentEvent += CloseCurrentView;
+        MainEvents.CloseCurrentEvent -= CloseCurrentView;
     }
+
 
     #region ShowViews
     private void ShowMainView() {
@@ -123,6 +130,9 @@ public class UIManager : MonoBehaviour {
     }
     private void ShowPackageMachineUpgradeView() {
         ChangeShowView(_packageMachineUpgradeView);
+    }
+    private void ShowLevelUpView() {
+        ChangeShowView(_levelUpView);
     }
     #endregion
 }

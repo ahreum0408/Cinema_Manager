@@ -16,15 +16,13 @@ public class Level {
 
     private List<DisplayStand> _standList = new List<DisplayStand>();
     private List<FoodContainer> _foodTruckList = new List<FoodContainer>();
-    private List<BoxContainer> _bosTruckList = new List<BoxContainer>();
+    private List<BoxContainer> _boxTruckList = new List<BoxContainer>();
     private List<Table> _tableList = new List<Table>();
     private List<ParcelService> _parcelServiceList = new List<ParcelService>();
     private List<Room> _roomList = new List<Room>();
 
     private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
 
-
-    // 기타 다른 것들도 받아야 함
 
     // 내 타겟의 데이터의 종류 별로 분류
     public void Init() {
@@ -41,7 +39,7 @@ public class Level {
                     _foodTruckList.Add(foodtruck);
                 }
                 else if (target.TryGetComponent(out BoxContainer boxtruck)) {
-                    _bosTruckList.Add(boxtruck);
+                    _boxTruckList.Add(boxtruck);
                 }
                 else if (target.TryGetComponent(out Table table)) {
                     _tableList.Add(table);
@@ -79,9 +77,6 @@ public class Level {
             obj.ActiveObj(true);
         }
     }*/
-    public void LoadCheckerData() {
-
-    }
     public void SetCheckerActive(bool active, bool isReversal = false) { // checker와 target에 적용 되는 값을 뒤집을 건인가?
         foreach (BuyChecker checker in _buyCheckersList) {
             if (isReversal) {
@@ -104,7 +99,7 @@ public class Level {
         return _foodTruckList;
     }
     public List<BoxContainer> GetBoxTruckList() {
-        return _bosTruckList;
+        return _boxTruckList;
     }
     public List<Table> GetTableList() {
         return _tableList;
@@ -114,6 +109,29 @@ public class Level {
     }
     public List<Room> GetRoomList() {
         return _roomList;
+    }
+    #endregion
+    #region GetLength
+    public int GetCheckerListLength() {
+        return _buyCheckersList.Count;
+    }
+    public int GetStandListLength() {
+        return _standList.Count;
+    }
+    public int GetFoodTruckListLength() {
+        return _foodTruckList.Count;
+    }
+    public int GetBoxTruckListLength() {
+        return _boxTruckList.Count;
+    }
+    public int GetTableListLength() {
+        return _tableList.Count;
+    }
+    public int GetParcelServiceListLength() {
+        return _parcelServiceList.Count;
+    }
+    public int GetRoomListLength() {
+        return _roomList.Count;
     }
     #endregion
 }

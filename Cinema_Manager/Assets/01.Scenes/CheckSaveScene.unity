@@ -1033,6 +1033,7 @@ GameObject:
   - component: {fileID: 800807329}
   - component: {fileID: 800807328}
   - component: {fileID: 800807327}
+  - component: {fileID: 800807336}
   m_Layer: 0
   m_Name: Controller
   m_TagString: Untagged
@@ -1151,6 +1152,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &800807336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800807326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88dfee124539cfd4285ed8f9c643bb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &823318264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,7 +1846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fcc0605438293e4d90171dd94239396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoveSpeedStat: 0a0000000c0000000e0000001000000012000000
+  playerMoveSpeedStat: 08000000090000000a0000000b0000000c000000
   playerVolumeStat: 0500000006000000070000000800000009000000
   playerSellingcostStat:
   - 1.2
@@ -1841,7 +1854,7 @@ MonoBehaviour:
   - 1.5
   - 1.6
   - 1.8
-  employeeMoveSpeedStat: 0c0000000e000000100000001200000014000000
+  employeeMoveSpeedStat: 08000000090000000a0000000b0000000c000000
   employeeVolumeStat: 0500000006000000070000000800000009000000
   employeeAddStat: 0200000003000000040000000500000006000000
 --- !u!4 &1213296464

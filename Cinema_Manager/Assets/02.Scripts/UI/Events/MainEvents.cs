@@ -19,6 +19,8 @@ public static class MainEvents {
     public static Action EmployeeUpgradeViewShow;
     public static Action TruckMachineUpgradeViewShow;
     public static Action PackageMachineUpgradeViewShow;
+    public static Action LevelUpViewShow;
+
 
     // 각 view에서 사용
     public static Action ShowViewEvent;

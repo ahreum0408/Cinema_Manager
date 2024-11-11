@@ -9,10 +9,10 @@
                     <ui:Label tabindex="-1" text="레벨업" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text_middle-array_90" style="font-size: 90px; bottom: 35px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="main-container" style="flex-grow: 1;" />
+            <ui:VisualElement name="main-container" style="align-items: center; justify-content: center; flex-direction: row; flex-grow: 1; padding-top: 120px; flex-wrap: wrap;" />
             <ui:VisualElement name="bottom-container" style="height: 15%;">
                 <ui:VisualElement name="button-content" style="flex-grow: 1; justify-content: center; align-items: center;">
-                    <ui:Button text="확인" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ok-btn" class="base-btn btn-middle-array_60" />
+                    <ui:Button text="확인" parse-escape-sequences="true" display-tooltip-when-elided="true" name="close-btn" class="base-btn btn-middle-array_60" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
