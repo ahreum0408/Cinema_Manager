@@ -7,7 +7,7 @@ public enum TargetType {
     Room
 }
 public interface IOpenTarget{
-    public TargetType type { get; set; }
+    public TargetType Type { get; set; }
     public bool IsOpen { get; set; }
     public void ActiveObj(bool active, bool on = false);
 }

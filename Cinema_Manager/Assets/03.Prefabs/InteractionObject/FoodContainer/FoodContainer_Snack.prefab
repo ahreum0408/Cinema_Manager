@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7644059d59bffe4fbce046b8efdde92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _targetType: 1
   staffPoint: {fileID: 2471650199554003520}
   _spawnTrm: {fileID: 4369934561617441516}
   _poolObjType: 5

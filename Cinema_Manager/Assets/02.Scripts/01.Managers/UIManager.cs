@@ -66,8 +66,7 @@ public class UIManager : MonoBehaviour {
         _allViews.Add(_packageMachineUpgradeView);
         _allViews.Add(_levelUpView);
 
-        //_mainView.Show();
-        _levelUpView.Show();
+        _mainView.Show();
     }
     private void ChangeShowView(UIView newView) {
         if (_currentView != null && _currentView != _mainView) { // 지금 보고 있는 view가 있으면 꺼

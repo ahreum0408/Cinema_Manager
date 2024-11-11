@@ -20,7 +20,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     [SerializeField] private int _columnSpawnCnt;
     [SerializeField] private List<Transform> _spawnTrmList = new List<Transform>();
     [SerializeField] private TargetType _targetType;
-    public TargetType type { get => _targetType; set => _targetType = value; }
+    public TargetType Type { get => _targetType; set => _targetType = value; }
 
     private bool _isOpen = false;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }

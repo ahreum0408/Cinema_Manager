@@ -116,6 +116,8 @@ MonoBehaviour:
   lineInterval: 3
   checkPoint: {fileID: 6095809580758112845}
   lineList: []
+  IsWorking: 0
+  _targetType: 4
   _spawnTrm: {fileID: 832740345389559067}
   _poolObjType: 13
   _spacingY: 0.611
