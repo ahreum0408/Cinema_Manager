@@ -13,7 +13,7 @@
         <ui:VisualElement name="main-container" style="flex-direction: row; align-items: center; justify-content: space-around; flex-grow: 1;">
             <ui:VisualElement name="upgrade-movespeed-content" class="upgrade-content">
                 <ui:VisualElement name="updrade-panel" class="upgrade-panel">
-                    <ui:VisualElement name="top-container" style="width: 100%; height: 80px;">
+                    <ui:VisualElement name="top-container" class="upgrade-panel-top-container">
                         <ui:VisualElement name="title-content" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="이동속도 증가" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_50" />
                         </ui:VisualElement>
@@ -36,7 +36,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="upgrade-volume-content" class="upgrade-content">
                 <ui:VisualElement name="updrade-panel" class="upgrade-panel">
-                    <ui:VisualElement name="top-container" style="width: 100%; height: 80px;">
+                    <ui:VisualElement name="top-container" class="upgrade-panel-top-container">
                         <ui:VisualElement name="title-content" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="용량" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_50" />
                         </ui:VisualElement>
@@ -59,7 +59,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="upgrade-sellingcost-content" class="upgrade-content">
                 <ui:VisualElement name="updrade-panel" class="upgrade-panel">
-                    <ui:VisualElement name="top-container" style="width: 100%; height: 80px;">
+                    <ui:VisualElement name="top-container" class="upgrade-panel-top-container">
                         <ui:VisualElement name="title-content" style="flex-grow: 1;">
                             <ui:Label tabindex="-1" text="판매 비용 증가" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title" class="text_middle-array_50" />
                         </ui:VisualElement>
