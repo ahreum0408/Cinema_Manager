@@ -68,7 +68,6 @@ public class Counter : MonoBehaviour, IIneractionable
     // 지불 확인 작업 (플레이어가 카운터에 상호작용하고 있을 때만 실행)
     private IEnumerator CheckPayLoop()
     {
-        Debug.Log("CheckPayLoop");
         while (_isEnterInteraction)
         {
             yield return new WaitUntil(() => lineList.Count > 0);
@@ -78,7 +77,6 @@ public class Counter : MonoBehaviour, IIneractionable
 
             yield return null;
         }
-        Debug.Log("CheckPayLoop 끝");
     }
 
     public void AddCustomer(Customer customer)
