@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static AyunDefine;
 
 public class MoneyDummy : MonoBehaviour, IIneractionable
@@ -16,6 +17,8 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
 
     private readonly Vector3 _moneyRotation = new Vector3(0, 90, 0);
 
+    private Transform _moneySpawnTrm;
+
     [Header("Spacing")]
     [SerializeField] private float _spacingX = 0.85f;
     [SerializeField] private float _spacingY = 0.25f;
@@ -23,6 +26,7 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
 
     private void Awake()
     {
+        _moneySpawnTrm = transform.Find("MoneySpawnTrm").GetComponent<Transform>();
         _moneyStack = new Stack<Money>();
     }
 
@@ -64,15 +68,16 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
 
     private IEnumerator AddMoneyRoutine(int newMoneyAmount)
     {
-        while (_isClearing)
-        {
-            yield return null;
-        }
+        yield return new WaitUntil(() => !_isClearing);
 
         for (int i = 0; i < newMoneyAmount; i++)
         {
-            GameObject money = PoolManager.Instance.Pop(PoolableType.Money.ToString(), transform,
-                GetMoneyPosition(), Quaternion.Euler(_moneyRotation));
+            GameObject money = PoolManager.Instance.Pop(PoolableType.Money.ToString(), _moneySpawnTrm,
+                Vector3.zero, Quaternion.Euler(_moneyRotation));
+
+            if (money.TryGetComponent(out ITakeable takeable))
+                takeable.Take(transform, GetMoneyPosition(), _moneyRotation, 1f);
+
             _moneyStack.Push(money.transform.GetComponent<Money>());
         }
     }

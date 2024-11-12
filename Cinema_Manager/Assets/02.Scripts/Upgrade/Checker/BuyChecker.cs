@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -78,5 +79,13 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);
+    }
+
+    public void ScaleSetting()
+    {
+        float time = 0.5f;
+        Vector3 originScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }

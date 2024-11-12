@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -110,5 +111,13 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeTableActiveEvent?.Invoke(this, active);
+    }
+
+    public void ScaleSetting()
+    {
+        float time = 0.5f;
+        Vector3 originScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }

@@ -1,10 +1,11 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static AyunDefine;
 
-public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget {
-
+public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget 
+{
     [HideInInspector] public GameObject GameObject => gameObject;
     [SerializeField] private TargetType _targetType;
     public Transform staffPoint;
@@ -121,5 +122,13 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget {
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeFoodTruckActiveEvent?.Invoke(this, active);
+    }
+
+    public void ScaleSetting()
+    {
+        float time = 0.5f;
+        Vector3 originScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }
