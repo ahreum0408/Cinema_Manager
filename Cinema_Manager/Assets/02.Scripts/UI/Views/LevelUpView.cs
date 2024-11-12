@@ -60,6 +60,7 @@ namespace UIToolkit {
         }
         private void SettingLevelContent() {
             Dictionary<TargetType, int> targetDictionary = CurrentLevel.GetTargetDictionary();
+            _mainContent.Clear(); // 이전 값 비워주기
 
             foreach (var item in targetDictionary) {
                 var addPanel = _addItemAsset.Instantiate("addItem-container");
