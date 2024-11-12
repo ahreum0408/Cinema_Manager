@@ -1,9 +1,9 @@
-using BehaviorDesigner.Runtime.Tasks.Unity.UnityNavMeshAgent;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 using static AyunDefine;
 
 public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
@@ -63,15 +63,17 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     private void FixedUpdate()
     {
-        if(_currentCustomer != null && !_currentCustomer.customerData.isGive)
+        if (_currentCustomer != null && !_currentCustomer.customerData.isGive)
             _currentCustomer.customerData.isGive = true;
     }
 
-    public void ActiveObj(bool active, bool addCustomer = false) {
+    public void ActiveObj(bool active, bool addCustomer = false)
+    {
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeStandActiveEvent?.Invoke(this, active);
-        if (active && addCustomer) { // 여기 문제 있을거임 주의**
+        if (active && addCustomer)
+        { // 여기 문제 있을거임 주의**
             CustomerSpawnManager.Instance.SetMaxCustomer(GetPoolObjType());
         }
     }
@@ -219,6 +221,10 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         {
             AddItemToStand(1);
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ScaleSetting();
+        }
     }
 
     public void AddItemToStand(int addItemCount = 1)
@@ -231,4 +237,11 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         }
     }
 
+    public void ScaleSetting()
+    {
+        float time = 0.5f;
+        Vector3 originScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
+    }
 }

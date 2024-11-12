@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class Room : MonoBehaviour, IOpenTarget {
@@ -13,5 +15,13 @@ public class Room : MonoBehaviour, IOpenTarget {
         gameObject.SetActive(!active);
         _openTarget.gameObject.SetActive(active);
         LevelEvents.ChangeRoomActiveEvent?.Invoke(this, active);
+    }
+
+    public void ScaleSetting()
+    {
+        float time = 0.5f;
+        Vector3 originScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }

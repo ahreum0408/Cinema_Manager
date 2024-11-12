@@ -9,20 +9,18 @@ public class TakeableBase : MonoBehaviour, ITakeable
     public PoolableType PoolType => _poolType;
 
     private Rigidbody _rigid;
-    //private Animator _animator;
-    private ObjectMovement _objectMovement;
+    protected ObjectMovement _objectMovement;
 
     private Vector3 _originScale;
     private Vector3 _currentScale;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         _rigid = GetComponent<Rigidbody>();
-        //_animator = transform.Find("Visual").GetComponent<Animator>();
         _objectMovement = GetComponent<ObjectMovement>();
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         _originScale = transform.localScale;
 
@@ -32,7 +30,7 @@ public class TakeableBase : MonoBehaviour, ITakeable
         ResetPositionAndRotation();
     }
 
-    public void Take(Transform parentTransform, Vector3 takePosition, Vector3 takeRotation)
+    public void Take(Transform parentTransform, Vector3 takePosition, Vector3 takeRotation, float playTime = 0.2f)
     {
         PhysicsSetting(true);
         transform.SetParent(parentTransform);
@@ -42,7 +40,7 @@ public class TakeableBase : MonoBehaviour, ITakeable
         Vector3 pos = new Vector3(takePosition.x * (_currentScale.x / _originScale.x),
                                   takePosition.y * (_currentScale.y / _originScale.y),
                                   takePosition.z * (_currentScale.z / _originScale.z));
-        _objectMovement.JumpToPosition(pos);
+        _objectMovement.JumpToPosition(pos, playTime);
     }
 
     protected void PhysicsSetting(bool isOn)
