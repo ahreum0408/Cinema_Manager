@@ -3035,12 +3035,17 @@ PrefabInstance:
     - target: {fileID: 7485368598801594279, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
         type: 3}
       propertyPath: m_BlockingMask.m_Bits
-      value: 0
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8075489876420598795, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8075489876420598795, guid: 6aefa0f5c5c2eb44da360fbd6643e92d,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
