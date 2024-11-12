@@ -2267,10 +2267,10 @@ MonoBehaviour:
   startWhenEnabled: 1
   asynchronousLoad: 0
   pauseWhenDisabled: 0
-  restartWhenComplete: 0
+  restartWhenComplete: 1
   logTaskChanges: 0
   group: 0
-  resetValuesOnRestart: 0
+  resetValuesOnRestart: 1
   externalBehavior: {fileID: 11400000, guid: 6994ad1b50781a341a7c7db70130b4dc, type: 2}
   mBehaviorSource:
     behaviorName: Behavior

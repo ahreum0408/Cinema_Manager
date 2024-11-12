@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 using static AyunDefine;
 using UnityEngine.UI;
+using static BehaviorDesigner.Runtime.BehaviorManager;
+using BehaviorTree = BehaviorDesigner.Runtime.BehaviorTree;
 
 public enum CustomerType
 {
@@ -56,6 +58,8 @@ public class Customer : AgentController
     public AgentStackComponent StackCompo { get; private set; }
     public AgentAnimationComponent AnimationCompo { get; private set; }
 
+    private BehaviorTree behaviorTree;
+
     protected override void Init()
     {
         Animator = GetComponentInChildren<Animator>();
@@ -63,15 +67,13 @@ public class Customer : AgentController
         Agent = GetComponent<NavMeshAgent>();
         StackCompo = GetComponent<AgentStackComponent>();
         AnimationCompo = GetComponent<AgentAnimationComponent>();
+        behaviorTree = GetComponent<BehaviorTree>();
     }
 
     protected override void OnEnable()
     {
         customerData = new CustomerData();
-    }
-
-    private void Start()
-    {
+        RestartBehaviorTree();
         Agent.speed = defualtSpeed;
 
         startPos = CustomerSpawnManager.Instance.transform.position;
@@ -85,10 +87,24 @@ public class Customer : AgentController
         OnGiveTakeable += HandleGiveTakeable;
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        OnTakeTakeable -= HandleTakeTakeable;
+        OnGiveTakeable -= HandleGiveTakeable;
+    }
+
     private void Update()
     {
         SetMoveAniamtion();
     }
+
+    public void RestartBehaviorTree()
+    {
+        behaviorTree.DisableBehavior();
+        behaviorTree.EnableBehavior();
+    }
+
     private void SetMoveAniamtion()
     {
         if (Agent.velocity.sqrMagnitude > 0)
@@ -100,10 +116,13 @@ public class Customer : AgentController
     public bool CheckPlayer()
     {
         Collider[] col = Physics.OverlapSphere(transform.position, 4f, _whatIsPlayer);
-        if (col.Length > 0)
-            return true;
-        else
-            return false;
+
+        for (int i = 0; i < col.Length; i++)
+        {
+            if (col[i].GetComponent<PlayerController>() != null)
+                return true;
+        }
+        return false;
     }
 
     public bool CanSetDestination()

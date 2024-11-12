@@ -43,7 +43,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach(var stand in displayStands)
         {
-            if (!stand.IsFullLine)
+            if (stand.gameObject.active && !stand.IsFullLine)
                 return true;
         }
         return false;
@@ -54,7 +54,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach (var table in tables)
         {
-            if (table.CanSeatChair() && table.gameObject.active)
+            if (table.gameObject.active && table.CanSeatChair())
             {
                 return table;
             }
