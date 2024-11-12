@@ -34,7 +34,7 @@
     height: 30px;
     flex-direction: row;
     justify-content: space-between;
-    bottom: -25px;
+    margin-top: 15px;
 }
 
 .upgrade-gauge {

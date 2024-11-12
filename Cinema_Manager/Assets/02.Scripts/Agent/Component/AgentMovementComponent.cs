@@ -53,7 +53,7 @@ public class AgentMovementComponent : AgentComponent
         Quaternion moveQuat = Quaternion.Slerp(_rigidbody.rotation, dirQuat, rotateSpeed * Time.fixedDeltaTime);
         _rigidbody.MoveRotation(moveQuat);
     }
-    public void SetMoveSpeed(int speed) {
+    public void SetMoveSpeed(float speed) {
         moveSpeed = speed;
     }
 }

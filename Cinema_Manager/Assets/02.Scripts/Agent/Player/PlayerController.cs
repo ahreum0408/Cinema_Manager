@@ -140,7 +140,7 @@ public class PlayerController : AgentController
     }
     #endregion
 
-    public void SetPlayerStat(float weight, int speed, int stack) {
+    public void SetPlayerStat(float weight, float speed, int stack) {
         SetSellingCost(weight);
         _agentMovement.SetMoveSpeed(speed);
         _stackComponent.SetMaxStackCount(stack);
