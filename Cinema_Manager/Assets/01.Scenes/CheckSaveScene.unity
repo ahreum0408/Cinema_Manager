@@ -1851,7 +1851,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fcc0605438293e4d90171dd94239396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoveSpeedStat: 08000000090000000a0000000b0000000c0000000d000000
+  playerMoveSpeedStat:
+  - 8
+  - 8.2
+  - 8.4
+  - 8.6
+  - 8.8
+  - 9
   playerVolumeStat: 05000000060000000700000008000000090000000a000000
   playerSellingcostStat:
   - 1.2
@@ -1860,7 +1866,13 @@ MonoBehaviour:
   - 1.6
   - 1.8
   - 1.8
-  employeeMoveSpeedStat: 030000000400000005000000060000000700000008000000
+  employeeMoveSpeedStat:
+  - 3
+  - 3.2
+  - 3.4
+  - 3.6
+  - 3.8
+  - 4
   employeeVolumeStat: 05000000060000000700000008000000090000000a000000
   employeeAddStat: 010000000100000001000000010000000100000001000000
 --- !u!4 &1213296464
