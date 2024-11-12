@@ -74,7 +74,6 @@ public class Customer : AgentController
     {
         customerData = new CustomerData();
         RestartBehaviorTree();
-        StackCompo.ResetStack();
         Agent.speed = defualtSpeed;
 
         startPos = CustomerSpawnManager.Instance.transform.position;
