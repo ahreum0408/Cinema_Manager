@@ -43,7 +43,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach(var stand in displayStands)
         {
-            if (!stand.IsFullLine)
+            if (!stand.IsFullLine && stand.gameObject.active)
                 return true;
         }
         return false;

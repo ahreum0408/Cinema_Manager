@@ -54,7 +54,6 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
         GameObject customer = PoolManager.Instance.Pop
             (selectedCustomer.CurrentCustomerType.ToString() + "Customer",
             transform.position, Quaternion.identity);
-        customer.GetComponent<AgentStackComponent>().ResetStack();
 
         RandomCustomerSet(customer, CustomerSetType.skin, _skinMat);
         RandomCustomerSet(customer, CustomerSetType.tshirt, _shirtMat);
