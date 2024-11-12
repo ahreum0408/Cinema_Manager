@@ -44,6 +44,11 @@ public class AgentStackComponent : AgentComponent
             return;
         }
 
+        for (int i = 0; i < _takeObjectStack.Count; i++)
+        {
+            _takeObjectStack.Pop();
+        }
+
         _takeObjectStack.Clear();
     }
 

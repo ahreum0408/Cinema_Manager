@@ -76,8 +76,7 @@ public class IdleState : AgentState
     {
         foreach(FoodContainer foodContainer in ObjectManager.Instance.foodContainers)
         {
-            if(foodContainer.GetPoolObjType() == agent.displayStand.GetPoolObjType()
-                && foodContainer.gameObject.active)
+            if(foodContainer.gameObject.active && foodContainer.GetPoolObjType() == agent.displayStand.GetPoolObjType())
                 return foodContainer;
         }
         return null;

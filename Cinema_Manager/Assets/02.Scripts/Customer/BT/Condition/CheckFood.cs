@@ -86,11 +86,7 @@ public class CheckFood : Conditional
 
         for (int i = currentIndex; i < customers.Count; i++)
         {
-            if (customers[i].Agent.isStopped)
-            {
-                customers[i].Agent.isStopped = false;
-                customers[i].Agent.SetDestination(customer.Value.currentStand.points[i].transform.position);
-            }
+            customers[i].Agent.isStopped = false;
         }
     }
 }
