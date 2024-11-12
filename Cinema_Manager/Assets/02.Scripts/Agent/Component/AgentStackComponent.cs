@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 using static AyunDefine;
 
 public class AgentStackComponent : AgentComponent
@@ -37,16 +38,17 @@ public class AgentStackComponent : AgentComponent
 
     private void OnEnable()
     {
-        _takeObjectStack ??= new Stack<ITakeable>();
+        _takeObjectStack = new Stack<ITakeable>();
+
+        for (int i = 0; i < _takeObjectStack.Count; i++)
+        {
+            PoolManager.Instance.Push
+                (_currentHoldType.ToString(), _holderTransform.GetChild(i).gameObject);
+        }
 
         if (_takeObjectStack.Count <= 0)
         {
             return;
-        }
-
-        for (int i = 0; i < _takeObjectStack.Count; i++)
-        {
-            _takeObjectStack.Pop();
         }
 
         _takeObjectStack.Clear();
