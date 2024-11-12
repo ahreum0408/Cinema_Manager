@@ -1,17 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class Money : MonoBehaviour
+public class Money : TakeableBase
 {
-    private ObjectMovement _objectMovement;
-
-    private void Awake()
+    protected override void OnEnable()
     {
-        _objectMovement = GetComponent<ObjectMovement>();
-    }
-
-    private void OnEnable()
-    {
+        base.OnEnable();
         transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.Euler(0, 0, 0));
     }
 
@@ -22,8 +16,8 @@ public class Money : MonoBehaviour
 
     private IEnumerator JumpRoutine(Vector3 position)
     {
-        _objectMovement.JumpToPosition(position, Space.World);
-        yield return new WaitForSeconds(_objectMovement.AnimationDuration);
+        _objectMovement.JumpToPosition(position, 0.2f, Space.World);
+        yield return new WaitForSeconds(0.2f);
         PoolManager.Instance.Push(transform.name, gameObject);
     }
 }

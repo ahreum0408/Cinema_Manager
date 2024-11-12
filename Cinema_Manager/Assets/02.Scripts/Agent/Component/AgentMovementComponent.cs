@@ -1,16 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AgentMovementComponent : AgentComponent
 {
-    private Rigidbody _rigidbody;
-
-    private Vector3 moveVelocity;
-
+    [Header("Move")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotateSpeed;
+
+    [Header("VFX")]
+    [SerializeField] private ParticleSystem _footStepParticle;
+    private float _currentTime = 0, _delayTime = 0.5f;
+
+    private Rigidbody _rigidbody;
+    private Vector3 moveVelocity;
 
     public override void Init(AgentController controller)
     {
@@ -30,11 +34,14 @@ public class AgentMovementComponent : AgentComponent
         {
             Move();
             Rotate();
+            ParticleRoutine();
         }
     }
 
-    public void SetVelocity(Vector3 velocity) {
-        if (velocity == Vector3.zero) {
+    public void SetVelocity(Vector3 velocity) 
+    {
+        if (velocity == Vector3.zero) 
+        {
             _rigidbody.velocity = Vector3.zero;
         }
 
@@ -53,6 +60,17 @@ public class AgentMovementComponent : AgentComponent
         Quaternion moveQuat = Quaternion.Slerp(_rigidbody.rotation, dirQuat, rotateSpeed * Time.fixedDeltaTime);
         _rigidbody.MoveRotation(moveQuat);
     }
+
+    private void ParticleRoutine()
+    {
+        _currentTime += Time.fixedDeltaTime;
+        if (_currentTime > _delayTime)
+        {
+            _currentTime = 0;
+            _footStepParticle.Play();
+        }
+    }
+
     public void SetMoveSpeed(float speed) {
         moveSpeed = speed;
     }
