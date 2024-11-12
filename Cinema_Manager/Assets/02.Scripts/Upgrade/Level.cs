@@ -29,67 +29,70 @@ public class Level {
     // 내 타겟의 데이터의 종류 별로 분류
     public void Init() {
         foreach (GameObject area in openNewMapList) {
-            if (area.TryGetComponent(out BuyChecker checker)) { // checker를 통하여 열 애들
+            Transform checkerPos = area.gameObject.transform.GetChild(0);
+            Transform targetPos = area.gameObject.transform.GetChild(1);
+            if (checkerPos.TryGetComponent(out BuyChecker checker)) {
                 _buyCheckersList.Add(checker);
-
-                GameObject target = checker.OpenGTarget;
-
-                if (target.TryGetComponent(out DisplayStand stand)) {
-                    if (_targetDictionary.TryGetValue(stand.Type, out int value)) {
-                        _targetDictionary[stand.Type] = value;
-                    }
-                    else {
-                        _targetDictionary.Add(stand.Type, 1);
-                    }
-                    _standList.Add(stand);
-                }
-                else if (target.TryGetComponent(out FoodContainer foodtruck)) {
-                    if (_targetDictionary.TryGetValue(foodtruck.Type, out int value)) {
-                        _targetDictionary[foodtruck.Type] = value;
-                    }
-                    else {
-                        _targetDictionary.Add(foodtruck.Type, 1);
-                    }
-                    _foodTruckList.Add(foodtruck);
-                }
-                else if (target.TryGetComponent(out BoxContainer boxtruck)) {
-                    if (_targetDictionary.TryGetValue(boxtruck.Type, out int value)) {
-                        _targetDictionary[boxtruck.Type] = value;
-                    }
-                    else {
-                        _targetDictionary.Add(boxtruck.Type, 1);
-                    }
-                    _boxTruckList.Add(boxtruck);
-                }
-                else if (target.TryGetComponent(out Table table)) {
-                    if (_targetDictionary.TryGetValue(table.Type, out int value)) {
-                        _targetDictionary[table.Type] = value;
-                    }
-                    else {
-                        _targetDictionary.Add(table.Type, 1);
-                    }
-                    _tableList.Add(table);
-                }
-                else if (target.TryGetComponent(out ParcelService service)) {
-                    if (_targetDictionary.TryGetValue(service.Type, out int value)) {
-                        _targetDictionary[service.Type] = value;
-                    }
-                    else {
-                        _targetDictionary.Add(service.Type, 1);
-                    }
-                    _parcelServiceList.Add(service);
-                }
-                else if (target.TryGetComponent(out Room room)) {
-                    if (_targetDictionary.TryGetValue(room.Type, out int value)) {
-                        _targetDictionary[room.Type] = value;
-                    }
-                    else {
-                        _targetDictionary.Add(room.Type, 1);
-                    }
-                    _roomList.Add(room);
-                }
-                else {
-                    Debug.LogWarning("너는 누구신가요..");
+            }
+            if (targetPos.TryGetComponent(out IOpenTarget target)) { // checker를 통하여 열 애들
+                switch (target.Type) {
+                    case TargetType.DisplayStand:
+                        if (_targetDictionary.TryGetValue(target.Type, out int value)) {
+                            _targetDictionary[target.Type] = value;
+                        }
+                        else {
+                            _targetDictionary.Add(target.Type, 1);
+                        }
+                        _standList.Add(target as DisplayStand);
+                        break;
+                    case TargetType.FoodContainer:
+                        if (_targetDictionary.TryGetValue(target.Type, out int value1)) {
+                            _targetDictionary[target.Type] = value1;
+                        }
+                        else {
+                            _targetDictionary.Add(target.Type, 1);
+                        }
+                        _foodTruckList.Add(target as FoodContainer);
+                        break;
+                    case TargetType.BoxContainer:
+                        if (_targetDictionary.TryGetValue(target.Type, out int value2)) {
+                            _targetDictionary[target.Type] = value2;
+                        }
+                        else {
+                            _targetDictionary.Add(target.Type, 1);
+                        }
+                        _boxTruckList.Add(target as BoxContainer);
+                        break;
+                    case TargetType.Table:
+                        if (_targetDictionary.TryGetValue(target.Type, out int value3)) {
+                            _targetDictionary[target.Type] = value3;
+                        }
+                        else {
+                            _targetDictionary.Add(target.Type, 1);
+                        }
+                        _tableList.Add(target as Table);
+                        break;
+                    case TargetType.ParcelService:
+                        if (_targetDictionary.TryGetValue(target.Type, out int value4)) {
+                            _targetDictionary[target.Type] = value4;
+                        }
+                        else {
+                            _targetDictionary.Add(target.Type, 1);
+                        }
+                        _parcelServiceList.Add(target as ParcelService);
+                        break;
+                    case TargetType.Room:
+                        if (_targetDictionary.TryGetValue(target.Type, out int value5)) {
+                            _targetDictionary[target.Type] = value5;
+                        }
+                        else {
+                            _targetDictionary.Add(target.Type, 1);
+                        }
+                        _roomList.Add(target as Room);
+                        break;
+                    default:
+                        Debug.LogWarning("너는 누구신가요..");
+                        break;
                 }
             }
         }
