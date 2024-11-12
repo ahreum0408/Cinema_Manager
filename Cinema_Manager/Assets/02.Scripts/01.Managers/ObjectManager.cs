@@ -32,8 +32,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach(var stand in displayStands)
         {
-            if (stand.GetPoolObjType() == foodType && !stand.IsFullLine 
-                && stand.gameObject.active)
+            if (stand.gameObject.active && stand.GetPoolObjType() == foodType && !stand.IsFullLine)
                 return stand;
         }
         return null;
