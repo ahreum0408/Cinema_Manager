@@ -89,7 +89,7 @@ public class CheckFood : Conditional
             if (customers[i].Agent.isStopped)
             {
                 customers[i].Agent.isStopped = false;
-                customers[i].Agent.SetDestination(customer.Value.Agent.destination);
+                customers[i].Agent.SetDestination(customer.Value.currentStand.points[i].transform.position);
             }
         }
     }
