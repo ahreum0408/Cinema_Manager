@@ -71,6 +71,7 @@ public class BuyChecker : CheckerArea, IOpenTarget {
     }
     private void UpdatePriceText(int coin) {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
+        LevelEvents.PriceChangingEvent?.Invoke(transform);
     }
     public void ActiveObj(bool active, bool onTarget = false) {
         if(onTarget) { // 맨처음 로드 될 때만 사용

@@ -2,11 +2,11 @@ using System;
 using UIToolkit;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static AyunDefine;
 
 public class SettingView : UIView {
 
-    private Toggle _bgmToggle;
-    private Toggle _effctToggle;
+    private Toggle _soundToggle;
     private Toggle _hapticToggle;
 
     private Button _closeBtn;
@@ -27,8 +27,7 @@ public class SettingView : UIView {
     protected override void SetVisualElements() {
         base.SetVisualElements();
 
-        _bgmToggle = topElement.Q<Toggle>("bgm-toggle");
-        _effctToggle = topElement.Q<Toggle>("effect-toggle");
+        _soundToggle = topElement.Q<Toggle>("sound-toggle");
         _hapticToggle = topElement.Q<Toggle>("haptic-toggle");
 
         _closeBtn = topElement.Q<Button>("closee-btn");
@@ -37,30 +36,25 @@ public class SettingView : UIView {
     protected override void RegisterButtonCallbacks() {
         base.RegisterButtonCallbacks();
 
-        _bgmToggle.RegisterCallback<ChangeEvent<bool>>(ChangBgmValue);
-        _effctToggle.RegisterCallback<ChangeEvent<bool>>(ChangEffectValue);
+        _soundToggle.RegisterCallback<ChangeEvent<bool>>(ChangSoundValue);
         _hapticToggle.RegisterCallback<ChangeEvent<bool>>(ChangeHapticValue);
 
         _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
     }
     protected override void UnRegisterButtonCallbacks() {
         base.UnRegisterButtonCallbacks();
-        _bgmToggle.UnregisterCallback<ChangeEvent<bool>>(ChangBgmValue);
-        _effctToggle.UnregisterCallback<ChangeEvent<bool>>(ChangEffectValue);
+        _soundToggle.UnregisterCallback<ChangeEvent<bool>>(ChangSoundValue);
         _hapticToggle.UnregisterCallback<ChangeEvent<bool>>(ChangeHapticValue);
 
         _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
     }
 
     #region registercallback
-    private void ChangBgmValue(ChangeEvent<bool> evt) {
+    private void ChangSoundValue(ChangeEvent<bool> evt) {
         evt.StopPropagation();
         _gameData.bgm = evt.newValue;
-        SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
-    }
-    private void ChangEffectValue(ChangeEvent<bool> evt) {
-        evt.StopPropagation();
-        _gameData.effect = evt.newValue;
+        SoundManager.Instance.SoundSet(evt.newValue);
+        SoundManager.Instance.Play(AudioClips.Click, 1);
         SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ChangeHapticValue(ChangeEvent<bool> evt) {
@@ -80,8 +74,7 @@ public class SettingView : UIView {
         }
         _gameData = data;
 
-        _bgmToggle.value = _gameData.bgm;
-        _effctToggle.value = _gameData.effect;
+        _soundToggle.value = _gameData.bgm;
         _hapticToggle.value = _gameData.haptic;
 
         SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);

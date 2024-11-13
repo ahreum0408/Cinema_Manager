@@ -2,25 +2,18 @@
     <Style src="project://database/Assets/09.UI/USS/Setting_USS.uss?fileID=7433441132597879392&amp;guid=3e9fde11ccb9f9a4f8fa7fbfaa0ea2b1&amp;type=3#Setting_USS" />
     <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/09.UI/USS/Main_USS.uss?fileID=7433441132597879392&amp;guid=ac0eb11ece132c14c8283d2efee773c1&amp;type=3#Main_USS" />
-    <ui:VisualElement name="background" style="border-top-left-radius: 35px; border-top-right-radius: 35px; border-bottom-right-radius: 35px; border-bottom-left-radius: 35px; align-items: center; justify-content: space-between; background-color: rgb(255, 255, 255); width: 60%; height: 60%;">
+    <ui:VisualElement name="background" style="border-top-left-radius: 35px; border-top-right-radius: 35px; border-bottom-right-radius: 35px; border-bottom-left-radius: 35px; align-items: center; justify-content: space-between; background-color: rgb(255, 255, 255); width: 60%; height: 40%;">
         <ui:VisualElement name="top-container" class="top_bottom-container">
             <ui:Label tabindex="-1" text="설정" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title-txt" class="text_middle-array_100" />
         </ui:VisualElement>
         <ui:VisualElement name="main-container" class="main-container">
             <ui:VisualElement style="flex-grow: 1; flex-wrap: nowrap; flex-direction: column;">
-                <ui:VisualElement name="bgm-content" class="sound-content">
+                <ui:VisualElement name="sound-content" class="sound-content">
                     <ui:VisualElement style="right: 30px;">
                         <ui:VisualElement name="icon" class="settingView-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/bgm_icon.png?fileID=21300000&amp;guid=3b73f2a7a7daa004c8a3dab2b212af10&amp;type=3#bgm_icon&quot;);" />
                         <ui:Label tabindex="-1" text="배경음" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text_middle-array_50" />
                     </ui:VisualElement>
-                    <ui:Toggle name="bgm-toggle" style="width: 80px; height: 80px;" />
-                </ui:VisualElement>
-                <ui:VisualElement name="effect-content" class="sound-content">
-                    <ui:VisualElement style="right: 30px;">
-                        <ui:VisualElement name="icon" class="settingView-icon" style="background-image: url(&quot;project://database/Assets/04.Sprites/UI/Icon/effect_icon.png?fileID=21300000&amp;guid=5a9d249cf767ee94985feb3dca36d5c4&amp;type=3#effect_icon&quot;);" />
-                        <ui:Label tabindex="-1" text="효과음" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text_middle-array_50" />
-                    </ui:VisualElement>
-                    <ui:Toggle name="effect-toggle" style="width: 80px; height: 80px;" />
+                    <ui:Toggle name="sound-toggle" style="width: 80px; height: 80px;" />
                 </ui:VisualElement>
                 <ui:VisualElement name="ect-content" class="sound-content">
                     <ui:VisualElement style="right: 30px;">

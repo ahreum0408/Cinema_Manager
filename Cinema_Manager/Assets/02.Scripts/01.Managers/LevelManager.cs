@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 public class LevelManager : MonoSingleton<LevelManager> {
     public List<Level> levelDatas = new List<Level>();
 
+    #region lists
     private List<BuyChecker> _allCheckers = new List<BuyChecker>();
 
     private List<DisplayStand> _allStand = new List<DisplayStand>();
@@ -12,6 +14,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
     private List<Table> _allTable = new List<Table>();
     private List<ParcelService> _allParcelService = new List<ParcelService>();
     private List<Room> _allRoom = new List<Room>();
+    #endregion
 
     private Level _currentLevel;
     private int _exp;
@@ -132,6 +135,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
         MainEvents.UpgradeLevelEvent?.Invoke(levelDatas[_levelIndex], _levelIndex);
         LevelUpEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
+
     #endregion
 
     #region DataLoad

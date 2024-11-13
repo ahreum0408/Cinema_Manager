@@ -47,6 +47,7 @@ namespace UIToolkit {
 
         private void ClickCloseBtn(ClickEvent evt) {
             MainEvents.MainViewShow?.Invoke();
+            LevelUpEvents.CloseView?.Invoke();
         }
 
         private void GameDataLoad(GameData data) {
