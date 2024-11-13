@@ -40,17 +40,19 @@ public class AgentStackComponent : AgentComponent
     {
         _takeObjectStack = new Stack<ITakeable>();
 
-        for (int i = 0; i < _takeObjectStack.Count; i++)
+        if (GetComponentInParent<PlayerController>() != null ||
+            _holderTransform.childCount <= 0) return;
+
+        while(_holderTransform.childCount > 0)
         {
             PoolManager.Instance.Push
-                (_currentHoldType.ToString(), _holderTransform.GetChild(i).gameObject);
+                (_currentHoldType.ToString(), _holderTransform.GetChild(0).gameObject);
         }
 
-        if (_takeObjectStack.Count <= 0)
-        {
-            return;
-        }
-
+        //if (_takeObjectStack.Count <= 0)
+        //{
+        //    return;
+        //}
         _takeObjectStack.Clear();
     }
 

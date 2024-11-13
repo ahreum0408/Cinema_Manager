@@ -73,7 +73,7 @@ public class Counter : MonoBehaviour, IIneractionable
             yield return new WaitUntil(() => lineList.Count > 0);
 
             if (lineList[0].CanSetDestination())
-                StartCoroutine(RemoveCustomer());
+                RemoveCustomer();
 
             yield return null;
         }
@@ -103,7 +103,7 @@ public class Counter : MonoBehaviour, IIneractionable
         }
     }
 
-    public IEnumerator RemoveCustomer()
+    public void RemoveCustomer()
     {
         _moneyDummy.AddMoneyObject(1);
 
@@ -124,7 +124,6 @@ public class Counter : MonoBehaviour, IIneractionable
         {
             if (lineIsStart)
             {
-                yield return new WaitForSeconds(1.5f);
                 customers.customerData.isBuy = true;
                 lineIsStart = false;
             }
