@@ -1,6 +1,7 @@
 using UIToolkit;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static AyunDefine;
 
 public class MainView : UIView {
     private Button _settingBtn;

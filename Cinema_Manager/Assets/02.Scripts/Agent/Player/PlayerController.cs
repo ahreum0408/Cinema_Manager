@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using static AyunDefine;
+using static LevelEvents;
 
 public class PlayerController : AgentController
 {
@@ -58,6 +59,24 @@ public class PlayerController : AgentController
         OnGetPaid += HandleOnGetPaid;
         OnPaidCost += HandleOnPaidCost;
         OnStackMaxed += HandleStackMaxed;
+
+        PriceChangingEvent += HandlePriceChangingEvent;
+    }
+
+    private void HandlePriceChangingEvent(Transform moveTrm)
+    {
+        StartCoroutine(PriceChangingRoutine(moveTrm));
+    }
+
+    private IEnumerator PriceChangingRoutine(Transform moveTrm)
+    {
+        GameObject money = PoolManager.Instance.Pop(PoolableType.Money.ToString(), transform);
+        if (money.TryGetComponent(out ITakeable takeable))
+        {
+            takeable.Take(moveTrm, Vector3.zero, Vector3.zero);
+            yield return new WaitForSeconds(0.4f);
+            PoolManager.Instance.Push(PoolableType.Money.ToString(), money);
+        }
     }
 
     private void Update()
@@ -140,12 +159,14 @@ public class PlayerController : AgentController
     }
     #endregion
 
-    public void SetPlayerStat(float weight, float speed, int stack) {
+    public void SetPlayerStat(float weight, float speed, int stack)
+    {
         SetSellingCost(weight);
         _agentMovement.SetMoveSpeed(speed);
         _stackComponent.SetMaxStackCount(stack);
     }
-    private void SetSellingCost(float weight) {
+    private void SetSellingCost(float weight)
+    {
         _sellingCostWeigth = weight;
     }
 }
