@@ -1073,11 +1073,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 773058961574668392, guid: c832520e45db63046b24510b6e4e7d13,
-        type: 3}
-      propertyPath: _footStepParticle
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5356315659304152913, guid: c832520e45db63046b24510b6e4e7d13,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1133,11 +1128,6 @@ PrefabInstance:
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 5980932526047312062}
-    - target: {fileID: 6194434912573632712, guid: c832520e45db63046b24510b6e4e7d13,
-        type: 3}
-      propertyPath: _playerCanvas
-      value: 
-      objectReference: {fileID: 978245305}
     - target: {fileID: 6509899670829021156, guid: c832520e45db63046b24510b6e4e7d13,
         type: 3}
       propertyPath: m_Name
