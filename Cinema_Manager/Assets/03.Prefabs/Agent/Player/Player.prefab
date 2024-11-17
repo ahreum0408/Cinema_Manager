@@ -1910,6 +1910,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6500418515034636369}
+  - {fileID: 3459542519841697434}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8495565678475070390
@@ -1975,7 +1976,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _joystick: {fileID: 0}
-  _playerCanvas: {fileID: 0}
   _stackMaxText: {fileID: 638240921676193860}
 --- !u!114 &4409733391579948672
 MonoBehaviour:
@@ -2003,6 +2003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   rotateSpeed: 10
+  _footStepParticle: {fileID: 1294997541098958176}
 --- !u!114 &3613467518855992434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3392,3 +3393,83 @@ Transform:
   - {fileID: 7555955592014541546}
   m_Father: {fileID: 2173184022847289391}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3967661991336156733
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5356315659304152913}
+    m_Modifications:
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155621496604023887, guid: 6f65d75dfd935214c92445268d134a5f,
+        type: 3}
+      propertyPath: m_Name
+      value: StapSmokeParticle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6f65d75dfd935214c92445268d134a5f, type: 3}
+--- !u!198 &1294997541098958176 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2807773263694672733, guid: 6f65d75dfd935214c92445268d134a5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3967661991336156733}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3459542519841697434 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 508119613245960359, guid: 6f65d75dfd935214c92445268d134a5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 3967661991336156733}
+  m_PrefabAsset: {fileID: 0}

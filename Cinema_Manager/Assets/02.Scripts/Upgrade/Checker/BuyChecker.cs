@@ -29,7 +29,7 @@ public class BuyChecker : CheckerArea, IOpenTarget {
 
     private void Awake() {
         CalculateWeght();
-        UpdatePriceText(_price);
+        //UpdatePriceText(_price);
     }
 
     public override void EnterInteraction(AgentController agent) {

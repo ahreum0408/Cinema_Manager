@@ -63,15 +63,10 @@ public class PlayerController : AgentController
         PriceChangingEvent += HandlePriceChangingEvent;
     }
 
-    private void HandlePriceChangingEvent(Transform moveTrm)
-    {
-        StartCoroutine(PriceChangingRoutine(moveTrm));
-    }
-
     private IEnumerator PriceChangingRoutine(Transform moveTrm)
     {
         GameObject money = PoolManager.Instance.Pop(PoolableType.Money.ToString(), transform);
-        if (money.TryGetComponent(out ITakeable takeable))
+        if (money != null && money.TryGetComponent(out ITakeable takeable))
         {
             takeable.Take(moveTrm, Vector3.zero, Vector3.zero);
             yield return new WaitForSeconds(0.4f);
@@ -93,6 +88,8 @@ public class PlayerController : AgentController
         OnGetPaid -= HandleOnGetPaid;
         OnPaidCost -= HandleOnPaidCost;
         OnStackMaxed -= HandleStackMaxed;
+
+        PriceChangingEvent -= HandlePriceChangingEvent;
     }
     #endregion
 
@@ -156,6 +153,11 @@ public class PlayerController : AgentController
         // UI Update
 
         return 0;
+    }
+
+    private void HandlePriceChangingEvent(Transform moveTrm)
+    {
+        StartCoroutine(PriceChangingRoutine(moveTrm));
     }
     #endregion
 
