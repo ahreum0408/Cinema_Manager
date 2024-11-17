@@ -107,6 +107,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 860400311103875491}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3902838028527878377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4456710973225511242, guid: 36603ac8496a93142a04ac69e812a95e,
+    type: 3}
+  m_PrefabInstance: {fileID: 860400311103875491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7114949721629553095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,6 +125,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BuyChecker
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
+        type: 3}
+      propertyPath: _exp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
+        type: 3}
+      propertyPath: _openTarget
+      value: 
+      objectReference: {fileID: 3902838028527878377}
+    - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
+        type: 3}
+      propertyPath: _targetType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5002195067618426230, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
