@@ -10,7 +10,8 @@ public class AgentMovementComponent : AgentComponent
     [SerializeField] private float rotateSpeed;
 
     [Header("VFX")]
-    [SerializeField] private ParticleSystem _footStepParticle;
+    [SerializeField] private ParticleSystem _stapParticle;
+    private Transform _stapParticleSpawnTrm;
     private float _currentTime = 0, _delayTime = 0.5f;
 
     private Rigidbody _rigidbody;
@@ -24,6 +25,8 @@ public class AgentMovementComponent : AgentComponent
         {
             _rigidbody = controller.Rigidbody;
         }
+
+        _stapParticleSpawnTrm = transform.Find("StapParticleSpawnTrm").GetComponent<Transform>();
     }
 
     public override void ControllerUpdate() {}
@@ -67,7 +70,9 @@ public class AgentMovementComponent : AgentComponent
         if (_currentTime > _delayTime)
         {
             _currentTime = 0;
-            _footStepParticle.Play();
+            Transform trm = Instantiate(_stapParticle.transform, _stapParticleSpawnTrm.position, Quaternion.identity);
+            if (trm.TryGetComponent(out ParticleSystem particle))
+                particle.Play();
         }
     }
 
