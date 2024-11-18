@@ -8,6 +8,7 @@ using static AyunDefine;
 public class MoneyDummy : MonoBehaviour, IIneractionable
 {
     private Stack<Money> _moneyStack;
+    [SerializeField] private int _price; // 한개당 가격이 얼마인지
 
     [HideInInspector] public GameObject GameObject => gameObject;
     private int _moneyAmount => _moneyStack.Count;
@@ -46,7 +47,7 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
         {
             _isClearing = true;
 
-            player.OnGetPaid?.Invoke(_moneyAmount);
+            player.OnGetPaid?.Invoke(_moneyAmount * _price);
 
             foreach (Money money in _moneyStack)
             {
@@ -79,6 +80,8 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
                 takeable.Take(transform, GetMoneyPosition(), _moneyRotation, 1f);
 
             _moneyStack.Push(money.transform.GetComponent<Money>());
+
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
