@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using static AyunDefine;
 
 public class GameDataManager : MonoBehaviour {
     [SerializeField] private GameData _gameData;
@@ -12,6 +13,7 @@ public class GameDataManager : MonoBehaviour {
     }
     private void Start() {
         _saveManager.LoadGame();
+        SoundManager.Instance.Play(AudioClips.BGM3, 1, null, true);
     }
 
     private void OnEnable() {
