@@ -68,7 +68,7 @@ public class PlayerController : AgentController
         GameObject money = PoolManager.Instance.Pop(PoolableType.Money.ToString(), transform);
         if (money != null && money.TryGetComponent(out ITakeable takeable))
         {
-            takeable.Take(moveTrm, Vector3.zero, Vector3.zero);
+            takeable.Take(null, moveTrm.position, Vector3.zero);
             yield return new WaitForSeconds(0.4f);
             PoolManager.Instance.Push(PoolableType.Money.ToString(), money);
         }
