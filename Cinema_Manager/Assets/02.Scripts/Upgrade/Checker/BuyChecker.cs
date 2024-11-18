@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BuyChecker : CheckerArea, IOpenTarget {
     [SerializeField] private TextMeshPro _priceTxt;
-    [SerializeField] private GameObject _openTarget;
+    [SerializeField] public GameObject _openTarget;
     [SerializeField] private int _exp;
     [SerializeField] private TargetType _targetType;
     

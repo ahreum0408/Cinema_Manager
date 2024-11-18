@@ -101,6 +101,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dba83731abfe2ae4b8218de6251719f0, type: 3}
+--- !u!1 &2596338510867405074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7343501608822565409, guid: dba83731abfe2ae4b8218de6251719f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4747172036874072883}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5542046540885342750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 939029279925913901, guid: dba83731abfe2ae4b8218de6251719f0,
@@ -120,6 +126,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuyChecker
       objectReference: {fileID: 0}
+    - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
+        type: 3}
+      propertyPath: _exp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4438593976502070005, guid: 97b11d17023763d47a9114828a563509,
+        type: 3}
+      propertyPath: _openTarget
+      value: 
+      objectReference: {fileID: 2596338510867405074}
     - target: {fileID: 5002195067618426230, guid: 97b11d17023763d47a9114828a563509,
         type: 3}
       propertyPath: m_LocalPosition.x

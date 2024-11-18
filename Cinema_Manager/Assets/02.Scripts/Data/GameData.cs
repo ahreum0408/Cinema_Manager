@@ -67,8 +67,8 @@ public class GameData {
         this.levelIndex = 1;
         this.exp = 0;
 
-        this.allCheckOnOffList = new List<bool> ( new bool[20] );
-        this.allCheckPriceList = new List<int> (Enumerable.Repeat(100, 20).ToArray());
+        this.allCheckOnOffList = new List<bool> ( new bool[50] );
+        this.allCheckPriceList = new List<int> (Enumerable.Repeat(100, 50).ToArray());
 
         this.allStandOnOffList = new List<bool>(new bool[20]);
         this.allStandItemCountList = new List<int>(new int[20]);
@@ -80,7 +80,7 @@ public class GameData {
 
         this.allParcelServiceOnOffList = new List<bool>(new bool[1]);
 
-        this.allRoomOnOffList = new List<bool>(new bool[1]);
+        this.allRoomOnOffList = new List<bool>(new bool[3]);
 
         this.p_movespeedLevel = 0;
         this.p_movespeedLevel = 0;
