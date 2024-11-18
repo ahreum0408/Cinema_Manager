@@ -53,8 +53,8 @@ public class SettingView : UIView {
     private void ChangSoundValue(ChangeEvent<bool> evt) {
         evt.StopPropagation();
         _gameData.bgm = evt.newValue;
-        SoundManager.Instance.SoundSet(evt.newValue);
         SoundManager.Instance.Play(AudioClips.Click, 1);
+        SoundManager.Instance.SoundSet(evt.newValue);
         SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ChangeHapticValue(ChangeEvent<bool> evt) {

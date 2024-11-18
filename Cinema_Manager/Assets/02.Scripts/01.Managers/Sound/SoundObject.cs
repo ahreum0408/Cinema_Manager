@@ -39,6 +39,7 @@ public class SoundObject : MonoBehaviour
             // Reset
             if (is3DSound) _audioSource.spatialBlend = 0;
             PoolManager.Instance.Push(gameObject.name, gameObject);
+            SoundManager.Instance.RemoveSoundObjList(gameObject);
         }
     }
 }

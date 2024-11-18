@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using static AyunDefine;
 
 public class BuyChecker : CheckerArea, IOpenTarget {
     [SerializeField] private TextMeshPro _priceTxt;
@@ -68,10 +69,16 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         LevelManager.Instance.GetExp(_exp);
         ActiveObj(false); // 나 끄고
         OpenITarget.ActiveObj(true, true); // 타겟 키고
+
+        // Sound
+        SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
     }
     private void UpdatePriceText(int coin) {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
         LevelEvents.PriceChangingEvent?.Invoke(transform);
+
+        // Sound
+        SoundManager.Instance.Play(AudioClips.Stack, 1);
     }
     public void ActiveObj(bool active, bool onTarget = false) {
         if(onTarget) { // 맨처음 로드 될 때만 사용

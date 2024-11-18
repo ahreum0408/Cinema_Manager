@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static AyunDefine;
 using Debug = UnityEngine.Debug;
 
 public class LevelManager : MonoSingleton<LevelManager> {
@@ -134,6 +135,9 @@ public class LevelManager : MonoSingleton<LevelManager> {
         _currentLevel.SetCheckerActive(true); // 다음 스테이지 켜주고
         MainEvents.UpgradeLevelEvent?.Invoke(levelDatas[_levelIndex], _levelIndex);
         LevelUpEvents.GameDataUpdatEvent?.Invoke(_gameData);
+
+        // Sound
+        SoundManager.Instance.Play(AudioClips.LevelUp, 1f);
     }
 
     #endregion

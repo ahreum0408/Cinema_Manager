@@ -23,6 +23,7 @@ public static class AyunDefine
         public static readonly AudioClip Stack    = Resources.Load<AudioClip>("Sound/StackSound");
         public static readonly AudioClip Trashcan = Resources.Load<AudioClip>("Sound/TrashcanSound");
         public static readonly AudioClip BoxPacking = Resources.Load<AudioClip>("Sound/BoxPacking");
+        public static readonly AudioClip BuyObject = Resources.Load<AudioClip>("Sound/BuyObject");
 
         // Truck
         public static readonly AudioClip TruckStart  = Resources.Load<AudioClip>("Sound/TruckStartSound");
@@ -37,6 +38,7 @@ public static class AyunDefine
         // BGM
         public static readonly AudioClip BGM1 = Resources.Load<AudioClip>("Sound/BGM 1");
         public static readonly AudioClip BGM2 = Resources.Load<AudioClip>("Sound/BGM 2");
+        public static readonly AudioClip BGM3 = Resources.Load<AudioClip>("Sound/BGM 3");
     }
 
     public static class ObjectPriceInt
