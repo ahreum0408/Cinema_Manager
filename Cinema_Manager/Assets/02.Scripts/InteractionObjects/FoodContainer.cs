@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ using static AyunDefine;
 
 public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget 
 {
+    public event Action OnScaleSettingEndEvent;
+
     [HideInInspector] public GameObject GameObject => gameObject;
     [SerializeField] private TargetType _targetType;
     public Transform staffPoint;
@@ -127,9 +130,16 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget
 
     public void ScaleSetting()
     {
+        int tweenId = transform.GetInstanceID();
+
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack)
+            .OnComplete(() =>
+        {
+            DOTween.Kill(tweenId);
+            OnScaleSettingEndEvent?.Invoke();
+        });
     }
 }

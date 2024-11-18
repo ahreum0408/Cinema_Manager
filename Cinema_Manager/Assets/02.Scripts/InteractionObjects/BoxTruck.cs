@@ -14,7 +14,7 @@ public class BoxTruck : MonoBehaviour
     public Transform EndTrm =>_endTrm;
     [SerializeField] private float _moveTime = 3;
 
-    private bool _isWithBox = true;
+    private bool _isWithBox = false;
 
     #region 나중에 업그레이드로 빼야할 것들
     private float _truckBringTime = 8f; // 음식 가져오는데 걸리는 시간
@@ -22,10 +22,30 @@ public class BoxTruck : MonoBehaviour
     #endregion
     private float _currentBringTime = 0;
 
+    private BoxContainer _boxContainer;
+
+    private void Awake()
+    {
+        _boxContainer = GetComponentInParent<BoxContainer>();
+    }
+
     private void Start()
     {
+        _boxContainer.OnScaleSettingEndEvent += HandleOnScaleSettingEndEvent;
+
+        _isWithBox = false;
+        _visualTrm.gameObject.SetActive(false);
+    }
+
+    private void HandleOnScaleSettingEndEvent()
+    {
+        _visualTrm.DOKill();
+
         _currentBringTime = _truckBringTime;
+        _isWithBox = true;
+
         _visualTrm.position = _startTrm.position;
+        _visualTrm.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -61,8 +81,6 @@ public class BoxTruck : MonoBehaviour
 
     private void TruckMove(Vector3 targetPos, bool isBringFood)
     {
-        if (_visualTrm.position == targetPos) return;
-
         _visualTrm.DOMove(targetPos, _moveTime)
             .SetEase(Ease.InBack)
             .OnComplete(() =>

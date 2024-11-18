@@ -33,7 +33,6 @@ public class SoundManager : MonoSingleton<SoundManager>
     public void SoundSet(bool isSoundOn)
     {
         _isSoundOn = isSoundOn;
-        Debug.Log(_isSoundOn);
 
         foreach (GameObject go in _soundObjList)
         {
