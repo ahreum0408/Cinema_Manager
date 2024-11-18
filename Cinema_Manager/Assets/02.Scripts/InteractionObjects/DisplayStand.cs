@@ -72,6 +72,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeStandActiveEvent?.Invoke(this, active);
+        ScaleSetting();
         if (active && addCustomer)
         { // 여기 문제 있을거임 주의**
             CustomerSpawnManager.Instance.SetMaxCustomer(GetPoolObjType());

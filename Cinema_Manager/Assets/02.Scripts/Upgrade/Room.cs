@@ -15,6 +15,7 @@ public class Room : MonoBehaviour, IOpenTarget {
         gameObject.SetActive(!active);
         _openTarget.gameObject.SetActive(active);
         LevelEvents.ChangeRoomActiveEvent?.Invoke(this, active);
+        ScaleSetting();
     }
 
     public void ScaleSetting()

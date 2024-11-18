@@ -87,6 +87,7 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);
+        ScaleSetting();
     }
 
     public void ScaleSetting()
