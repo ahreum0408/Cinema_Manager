@@ -16,7 +16,9 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     [SerializeField] private Customer parcelCustomer;
 
     [SerializeField] private int maxCustomer = 3;
+    [SerializeField] private int maxBadCustomer = 3;
     private int currentCustomer = 0;
+    private int currentBadCustomer = 0;
 
     [SerializeField] private float spawnCoolTime = 3f;
     private float spawnTime;
@@ -35,20 +37,22 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     private void SpawnRandomCustomer()
     {
         int rand = Random.Range(0, 100);
-        Customer selectedCustomer;
+        Customer selectedCustomer = basicCustomer;
 
         if (rand < 60)
             selectedCustomer = basicCustomer;
-        else if (rand < 65)
-            selectedCustomer = callCustomer;
-        else if (rand < 70)
-            selectedCustomer = sleepCustomer;
-        else
+        else if(rand < 90)
         {
             if (isParcel)
                 selectedCustomer = parcelCustomer;
-            else
-                selectedCustomer = basicCustomer;
+        }
+        else if(currentBadCustomer < maxBadCustomer)
+        {
+            if (rand < 95)
+                selectedCustomer = callCustomer;
+            else if (rand < 100)
+                selectedCustomer = sleepCustomer;
+            currentBadCustomer++;
         }
 
         GameObject customer = PoolManager.Instance.Pop
@@ -119,6 +123,11 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     public void MinusCustomer()
     {
         currentCustomer--;
+    }
+
+    public void MinusBadCustomer()
+    {
+        currentBadCustomer--;
     }
 
     public void SetSpawnCoolTime(float spawnCool)

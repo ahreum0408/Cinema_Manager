@@ -18,8 +18,8 @@ public class Counter : MonoBehaviour, IIneractionable
     private bool isStart = true; // Ã¹ ¼Õ´ÔÀÎ°¡?
     [SerializeField] private int maxCustomer;
 
-    [HideInInspector] public bool IsInteraction => _isEnterInteraction;
-    [HideInInspector] public bool IsCanStand => lineList.Count <= maxCustomer;
+    public bool IsInteraction => _isEnterInteraction;
+    public bool IsCanStand => lineList.Count <= maxCustomer;
     #endregion
 
     [HideInInspector] public GameObject GameObject => gameObject;
@@ -28,6 +28,7 @@ public class Counter : MonoBehaviour, IIneractionable
 
     private MoneyDummy _moneyDummy;
     private NotifyImageComponent _notifyImageComponent;
+    public MoneyDummy moneyDummy => _moneyDummy;
 
     private void Awake()
     {
@@ -105,7 +106,7 @@ public class Counter : MonoBehaviour, IIneractionable
 
     public void RemoveCustomer()
     {
-        _moneyDummy.AddMoneyObject(1);
+        _moneyDummy.AddMoneyObject(3);
 
         lineList[0].customerData.isCalculate = true;
         lineList.Remove(lineList[0]);
