@@ -16,6 +16,7 @@ public class Counter : MonoBehaviour, IIneractionable
     [HideInInspector] public List<Customer> lineList = new List<Customer>();
 
     private bool isStart = true; // Ã¹ ¼Õ´ÔÀÎ°¡?
+    private bool isBuy = false;
     [SerializeField] private int maxCustomer;
 
     public bool IsInteraction => _isEnterInteraction;
@@ -106,7 +107,13 @@ public class Counter : MonoBehaviour, IIneractionable
 
     public void RemoveCustomer()
     {
-        _moneyDummy.AddMoneyObject(3);
+        if(!isBuy)
+        {
+            _moneyDummy.AddMoneyObject(3);
+            isBuy = true;
+        }
+
+        if (_moneyDummy.IsAddMoney) return;
 
         lineList[0].customerData.isCalculate = true;
         lineList.Remove(lineList[0]);
@@ -147,5 +154,6 @@ public class Counter : MonoBehaviour, IIneractionable
             }
             beforeCustomer = customers;
         }
+        isBuy = false;
     }
 }

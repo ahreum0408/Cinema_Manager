@@ -8,7 +8,8 @@ public class CheckBuy : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if (customer.Value.customerData.isBuy == true && customer.Value.CanSetDestination())
+        if (customer.Value.customerData.isBuy == true && customer.Value.CanSetDestination()
+            && !ObjectManager.Instance.counter.moneyDummy.IsAddMoney)
         {
             return TaskStatus.Success;
         }

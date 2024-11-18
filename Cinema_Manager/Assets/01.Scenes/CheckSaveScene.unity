@@ -1648,6 +1648,7 @@ MonoBehaviour:
   parcelCustomer: {fileID: 5008099957065270370, guid: 446c324dc473d8340bbff468ca3d5c99,
     type: 3}
   maxCustomer: 0
+  maxBadCustomer: 3
   spawnCoolTime: 2
 --- !u!4 &1373088266
 Transform:
@@ -2353,6 +2354,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8465892605390198342, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 84967efac1bc9c44a8ff7782dd8cf140,
+        type: 2}
     - target: {fileID: 9133975283715901661, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: m_LocalPosition.x

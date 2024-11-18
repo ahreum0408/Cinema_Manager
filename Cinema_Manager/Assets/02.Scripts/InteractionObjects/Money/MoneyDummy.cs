@@ -8,13 +8,15 @@ using static AyunDefine;
 public class MoneyDummy : MonoBehaviour, IIneractionable
 {
     private Stack<Money> _moneyStack;
-    [SerializeField] private int _price; // 한개당 가격이 얼마인지
+    [SerializeField] private int _price = 2; // 한개당 가격이 얼마인지
 
     [HideInInspector] public GameObject GameObject => gameObject;
+    public bool IsAddMoney => _isAddMoney;
     private int _moneyAmount => _moneyStack.Count;
 
     // Bool
     private bool _isClearing = false;
+    private bool _isAddMoney = false;
 
     private readonly Vector3 _moneyRotation = new Vector3(0, 90, 0);
 
@@ -64,6 +66,9 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
     public void AddMoneyObject(int newMoneyAmount)
     {
         // isClearing 될 때 까지 기다려야함
+        if (IsAddMoney) return;
+
+        _isAddMoney = true;
         StartCoroutine(AddMoneyRoutine(newMoneyAmount));
     }
 
@@ -81,8 +86,9 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
 
             _moneyStack.Push(money.transform.GetComponent<Money>());
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.2f);
         }
+        _isAddMoney = false;
     }
 
     public Vector3 GetMoneyPosition()
