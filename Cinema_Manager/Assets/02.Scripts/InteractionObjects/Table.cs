@@ -111,6 +111,7 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeTableActiveEvent?.Invoke(this, active);
+        ScaleSetting();
     }
 
     public void ScaleSetting()

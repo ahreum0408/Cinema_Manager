@@ -144,6 +144,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeBoxTruckActiveEvent?.Invoke(this, active);
+        ScaleSetting();
     }
 
     public void ScaleSetting()
