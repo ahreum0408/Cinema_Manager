@@ -156,13 +156,13 @@ public class LevelManager : MonoSingleton<LevelManager> {
         _levelIndex = _gameData.levelIndex;
         _exp = _gameData.exp;
 
+
         if (!_gameData.isMinimumExecution) { // 최소 실행인가? ex.튜토리얼
             OnLevel(0, true);
-            //OnLevel(1, true);
             _gameData.isMinimumExecution = true;
         }
-
         StartCoroutine(LoadData());
+
     }
 
     private IEnumerator LoadData() {
@@ -171,8 +171,8 @@ public class LevelManager : MonoSingleton<LevelManager> {
         SettingCheckerPrice();
     }
 
-    private void OnLevel(int level, bool active, bool isReversal = false) {
-        levelDatas[level].SetCheckerActive(active);
+    private void OnLevel(int level, bool active) {
+        levelDatas[level].SetCheckerActive(active, true);
     }
     private void SetData() {
         // 각각의 checker에 값 적용
@@ -236,7 +236,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
     #endregion
 
     #region Handle
-    private void ChangeCheckerActive(BuyChecker checker, bool active) {
+    private void ChangeCheckerActive(BuyChecker checker, bool active) { 
         int index = _allCheckers.IndexOf(checker); // 내 체커 끄고
         _gameData.allCheckOnOffList[index] = active;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);

@@ -97,9 +97,9 @@ public class Level {
             }
         }
     }
-    public void SetCheckerActive(bool active) {
+    public void SetCheckerActive(bool active, bool firstLoad = false) {
         foreach (BuyChecker checker in _buyCheckersList) {
-            checker.ActiveObj(active);
+            checker.ActiveObj(active, firstLoad);
         }
     } // 이거 아마 바꿔야할거임 LevelManager 참고
     

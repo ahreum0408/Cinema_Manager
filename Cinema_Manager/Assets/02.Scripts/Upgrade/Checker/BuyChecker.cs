@@ -80,10 +80,12 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         // Sound
         SoundManager.Instance.Play(AudioClips.Stack, 1);
     }
-    public void ActiveObj(bool active, bool onTarget = false) {
+    public void ActiveObj(bool active, bool firstLoad = false) {
         _isOpen = active;
         gameObject.SetActive(active);
-        ScaleSetting();
+        if (!firstLoad) {
+            ScaleSetting();
+        }
         LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);
     }
 
