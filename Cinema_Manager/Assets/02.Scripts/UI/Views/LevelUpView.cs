@@ -22,8 +22,6 @@ namespace UIToolkit {
             LevelUpEvents.GameDataLoadEvent -= GameDataLoad;
             LevelUpEvents.LevelUpUpdate -= GameDataUpdate;
         }
-
-
         public override void Show() {
             base.Show();
             MainEvents.ShowViewEvent?.Invoke();
@@ -57,11 +55,15 @@ namespace UIToolkit {
             _gameData = data;
         }
         private void GameDataUpdate(GameData data) {
+            if (data == null) {
+                return;
+            }
+            _gameData = data;
             SettingLevelContent();
         }
         private void SettingLevelContent() {
-            Dictionary<TargetType, int> targetDictionary = CurrentLevel.GetTargetDictionary();
             _mainContent.Clear(); // 이전 값 비워주기
+            Dictionary<TargetType, int> targetDictionary = CurrentLevel.GetTargetDictionary();
 
             foreach (var item in targetDictionary) {
                 var addPanel = _addItemAsset.Instantiate("addItem-container");

@@ -21,7 +21,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
     private Level _currentLevel;
     private int _exp;
-    private int _levelIndex = 1;
+    private int _levelIndex = 0;
 
     private GameData _gameData;
 

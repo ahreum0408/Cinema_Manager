@@ -51,7 +51,7 @@ MonoBehaviour:
   _price: 100
   _priceTxt: {fileID: 6967606078705620579}
   _openTarget: {fileID: 0}
-  _exp: 0
+  _exp: 10
   _targetType: 0
 --- !u!1 &2837216399462786531
 GameObject:

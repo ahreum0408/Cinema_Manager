@@ -64,7 +64,7 @@ public class GameData {
         this.gam = 0;
 
         this.level = new Level(); 
-        this.levelIndex = 1;
+        this.levelIndex = 0;
         this.exp = 0;
 
         this.allCheckOnOffList = new List<bool> ( new bool[50] );

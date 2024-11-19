@@ -4,7 +4,7 @@ using UnityEngine;
 
 [Serializable]
 public class Level {
-    public int levelNumder = 1; // 현제 레벨
+    public int levelNumder = 0; // 현제 레벨
 
     // 레벨의 경험치에 대한 최소 최댓값
     public int lowValue = 0;
@@ -38,7 +38,7 @@ public class Level {
                 switch (target.Type) {
                     case TargetType.DisplayStand:
                         if (_targetDictionary.TryGetValue(target.Type, out int value)) {
-                            _targetDictionary[target.Type] = value;
+                            _targetDictionary[target.Type] = ++value;
                         }
                         else {
                             _targetDictionary.Add(target.Type, 1);
@@ -65,7 +65,7 @@ public class Level {
                         break;
                     case TargetType.Table:
                         if (_targetDictionary.TryGetValue(target.Type, out int value3)) {
-                            _targetDictionary[target.Type] = value3;
+                            _targetDictionary[target.Type] = ++value3;
                         }
                         else {
                             _targetDictionary.Add(target.Type, 1);
