@@ -61,7 +61,7 @@ public class IdleState : AgentState
     {
         foreach (DisplayStand displayStand in ObjectManager.Instance.displayStands)
         {
-            if (displayStand.gameObject.active && displayStand.CurrentLine > 0
+            if (displayStand.gameObject.activeInHierarchy && displayStand.CurrentLine > 0
                 && !displayStand.IsWorking && 
                 agent.StackCompo.MaxStackCount <= displayStand.StackMaxCnt - displayStand.GetFoodStack())
             {
@@ -76,7 +76,7 @@ public class IdleState : AgentState
     {
         foreach(FoodContainer foodContainer in ObjectManager.Instance.foodContainers)
         {
-            if(foodContainer.gameObject.active && foodContainer.GetPoolObjType() == agent.displayStand.GetPoolObjType())
+            if(foodContainer.gameObject.activeInHierarchy && foodContainer.GetPoolObjType() == agent.displayStand.GetPoolObjType())
                 return foodContainer;
         }
         return null;
@@ -97,7 +97,7 @@ public class IdleState : AgentState
     {
         ParcelService parcelService = ObjectManager.Instance.parcelService;
 
-        if (!ObjectManager.Instance.parcelService.gameObject.active || parcelService.IsWorking) 
+        if (!ObjectManager.Instance.parcelService.gameObject.activeInHierarchy || parcelService.IsWorking) 
             return false;
 
         parcelService.IsWorking = true;

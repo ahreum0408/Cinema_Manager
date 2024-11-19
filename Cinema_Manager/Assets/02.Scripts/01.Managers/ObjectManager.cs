@@ -32,7 +32,8 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach(var stand in displayStands)
         {
-            if (stand.gameObject.active && stand.GetPoolObjType() == foodType && !stand.IsFullLine)
+            if (stand.gameObject.activeInHierarchy &&
+                stand.GetPoolObjType() == foodType && !stand.IsFullLine)
                 return stand;
         }
         return null;
@@ -42,7 +43,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach(var stand in displayStands)
         {
-            if (stand.gameObject.active && !stand.IsFullLine)
+            if (stand.gameObject.activeInHierarchy && !stand.IsFullLine)
                 return true;
         }
         return false;
@@ -53,7 +54,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     {
         foreach (var table in tables)
         {
-            if (table.gameObject.active && table.CanSeatChair())
+            if (table.gameObject.activeInHierarchy && table.CanSeatChair())
             {
                 return table;
             }

@@ -86,7 +86,7 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
 
             _moneyStack.Push(money.transform.GetComponent<Money>());
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.15f);
         }
         _isAddMoney = false;
     }
