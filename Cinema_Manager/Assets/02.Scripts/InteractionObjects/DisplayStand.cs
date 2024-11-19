@@ -211,20 +211,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         return _customerDic.Keys.ToList();
     }
 
-
-    // 임시로 스텐드에 음식 채우는 함수
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            AddItemToStand(1);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ScaleSetting(true);
-        }
-    }
-
     public void AddItemToStand(int addItemCount = 1)
     {
         for (int i = 0; i < addItemCount; i++)
