@@ -57,7 +57,7 @@ public class UseTable : Conditional
                         CustomerSpawnManager.Instance.MinusBadCustomer();
 
                         // Stop Sound
-                        SoundManager.Instance.RemoveSoundObjList(_soundObj);
+                        SoundManager.Instance.PushSoundObj(_soundObj);
                     }
                 }
                 else

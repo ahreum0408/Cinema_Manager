@@ -45,7 +45,7 @@ public class CheckFood : Conditional
                     CustomerSpawnManager.Instance.MinusBadCustomer();
 
                     // Stop Sound
-                    SoundManager.Instance.RemoveSoundObjList(_soundObj);
+                    SoundManager.Instance.PushSoundObj(_soundObj);
 
                     ResumeCustomers();
                 }

@@ -1828,6 +1828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba4bdf85c8952948bfbea0320faeb8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mainMixer: {fileID: 24100000, guid: 75237a9b3840fb24f870463be70a68be, type: 2}
   _isSoundOn: 1
 --- !u!4 &1429285753
 Transform:
