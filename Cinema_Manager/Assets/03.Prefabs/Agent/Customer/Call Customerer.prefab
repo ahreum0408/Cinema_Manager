@@ -2216,7 +2216,7 @@ MonoBehaviour:
   IsFood: 0
   _whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   badCustomerCanvas: {fileID: 8572820545951332810}
   gauge: {fileID: 678698972335559736}
   startPos: {x: 0, y: 0, z: 0}

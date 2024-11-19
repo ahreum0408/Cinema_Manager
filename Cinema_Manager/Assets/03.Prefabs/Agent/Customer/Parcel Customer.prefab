@@ -2224,7 +2224,7 @@ MonoBehaviour:
   IsFood: 0
   _whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   badCustomerCanvas: {fileID: 0}
   gauge: {fileID: 0}
   startPos: {x: 0, y: 0, z: 0}
