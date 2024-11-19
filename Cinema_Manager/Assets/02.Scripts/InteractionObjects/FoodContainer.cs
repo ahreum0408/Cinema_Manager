@@ -124,11 +124,11 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget
     public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
-        LevelEvents.ChangeFoodTruckActiveEvent?.Invoke(this, active);
-        ScaleSetting();
+        //LevelEvents.ChangeFoodTruckActiveEvent?.Invoke(this, active);
+        ScaleSetting(active);
     }
 
-    public void ScaleSetting()
+    public void ScaleSetting(bool active)
     {
         int tweenId = transform.GetInstanceID();
 
@@ -140,6 +140,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget
         {
             DOTween.Kill(tweenId);
             OnScaleSettingEndEvent?.Invoke();
+            LevelEvents.ChangeFoodTruckActiveEvent?.Invoke(this, active);
         });
     }
 }

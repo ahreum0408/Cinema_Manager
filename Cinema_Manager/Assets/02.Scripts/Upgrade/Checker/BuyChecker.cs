@@ -86,15 +86,15 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         }
         _isOpen = active;
         gameObject.SetActive(active);
-        LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);
-        ScaleSetting();
+        //LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);
+        ScaleSetting(active);
     }
 
-    public void ScaleSetting()
+    public void ScaleSetting(bool active)
     {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack).OnComplete(()=> LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active));
     }
 }
