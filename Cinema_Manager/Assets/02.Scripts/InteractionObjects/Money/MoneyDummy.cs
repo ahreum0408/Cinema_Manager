@@ -65,7 +65,6 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
     // 지불 (돈 생성)
     public void AddMoneyObject(int newMoneyAmount)
     {
-        // isClearing 될 때 까지 기다려야함
         if (IsAddMoney) return;
 
         _isAddMoney = true;
@@ -74,8 +73,6 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
 
     private IEnumerator AddMoneyRoutine(int newMoneyAmount)
     {
-        yield return new WaitUntil(() => !_isClearing);
-
         for (int i = 0; i < newMoneyAmount; i++)
         {
             GameObject money = PoolManager.Instance.Pop(PoolableType.Money.ToString(), _moneySpawnTrm,
@@ -84,6 +81,8 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
             if (money.TryGetComponent(out ITakeable takeable))
                 takeable.Take(transform, GetMoneyPosition(), _moneyRotation, 1f);
 
+            // isClearing 될 때 까지 기다려야함
+            yield return new WaitUntil(() => !_isClearing);
             _moneyStack.Push(money.transform.GetComponent<Money>());
 
             yield return new WaitForSeconds(0.15f);
