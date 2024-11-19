@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static AyunDefine;
@@ -164,11 +166,15 @@ public class LevelManager : MonoSingleton<LevelManager> {
             _gameData.isMinimumExecution = true;
         }
 
-        SetData();
+        StartCoroutine(LoadData());
+    }
 
-        // 체커의 가격도 맞춰주고 가격에 따라서 stand도 켜줌
+    private IEnumerator LoadData() {
+        SetData();
+        yield return new WaitForSeconds(0.6f);
         SettingCheckerPrice();
     }
+
     private void OnLevel(int level, bool active, bool isReversal = false) {
         levelDatas[level].SetCheckerActive(active, isReversal);
     }
