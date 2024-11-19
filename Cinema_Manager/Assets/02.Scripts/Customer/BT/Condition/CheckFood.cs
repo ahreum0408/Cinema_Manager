@@ -2,6 +2,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AyunDefine;
 
 public class CheckFood : Conditional
 {
@@ -11,10 +12,17 @@ public class CheckFood : Conditional
     private float startTime;
     private bool isCustomerStop = false;
 
+    private GameObject _soundObj;
+
     public override void OnStart()
     {
         if (customer.Value.CurrentCustomerType == CustomerType.Call)
+        {
+            // Play Sound
+            _soundObj = SoundManager.Instance.Play(AudioClips.CallCustomer, true, 1.5f, null, true);
+
             customer.Value.AnimationCompo.CallAnimation(1);
+        }
     }
 
     public override TaskStatus OnUpdate()
@@ -35,6 +43,9 @@ public class CheckFood : Conditional
                     customer.Value.AnimationCompo.CallAnimation(-1);
                     customer.Value.CurrentCustomerType = CustomerType.Basic;
                     CustomerSpawnManager.Instance.MinusBadCustomer();
+
+                    // Stop Sound
+                    SoundManager.Instance.RemoveSoundObjList(_soundObj);
 
                     ResumeCustomers();
                 }
