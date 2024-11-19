@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Money : TakeableBase
@@ -16,6 +17,8 @@ public class Money : TakeableBase
 
     private IEnumerator JumpRoutine(Vector3 position)
     {
+        if (gameObject.activeSelf == false) yield break;
+
         _objectMovement.JumpToPosition(position, 0.2f, Space.World);
         yield return new WaitForSeconds(0.2f);
         PoolManager.Instance.Push(transform.name, gameObject);

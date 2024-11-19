@@ -13,6 +13,10 @@ public class UseTable : Conditional
     public float clearTime; // 진상 퇴치하는데 걸리는 시간
     private float startTime;
 
+    // Sound
+    private bool _isPlayingSound = false;
+    private GameObject _soundObj;
+
     public override void OnStart()
     {
         customer.Value.AnimationCompo.SeatAnimation(1);
@@ -29,6 +33,12 @@ public class UseTable : Conditional
         {
             if(customer.Value.CurrentCustomerType == CustomerType.Sleep)
             {
+                if (false == _isPlayingSound)
+                {
+                    _isPlayingSound = true;
+                    _soundObj = SoundManager.Instance.Play(AudioClips.SleepCustomer, true, 1, null, true);
+                }
+
                 customer.Value.SetCanvas(true);
 
                 customer.Value.AnimationCompo.SeatAnimation(-1);
@@ -45,6 +55,9 @@ public class UseTable : Conditional
                         customer.Value.AnimationCompo.SleepAnimation(-1);
                         customer.Value.CurrentCustomerType = CustomerType.Basic;
                         CustomerSpawnManager.Instance.MinusBadCustomer();
+
+                        // Stop Sound
+                        SoundManager.Instance.RemoveSoundObjList(_soundObj);
                     }
                 }
                 else
