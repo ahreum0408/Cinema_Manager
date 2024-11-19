@@ -166,9 +166,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     public void RemoveCustomer(Customer customer)
     {
-        if (!_customerDic.ContainsKey(customer))
-            return;
-
         _customerDic.Remove(customer);
         _customerCount--;
 

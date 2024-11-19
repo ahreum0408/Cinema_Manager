@@ -650,6 +650,18 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 564922360}
+--- !u!114 &795765745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5413237765996494373, guid: b7fd11435216ba14686e91ec034f2d92,
+    type: 3}
+  m_PrefabInstance: {fileID: 1742612772}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &800807326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1915,18 +1927,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1467052007 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6934070168659370727, guid: b7fd11435216ba14686e91ec034f2d92,
-    type: 3}
-  m_PrefabInstance: {fileID: 1742612772}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ddfcbbb163ec65429cf97209f8377d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1467052008 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4220578963391074134, guid: b7fd11435216ba14686e91ec034f2d92,
@@ -2355,16 +2355,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
-    - target: {fileID: 7650490016643059084, guid: b7fd11435216ba14686e91ec034f2d92,
+    - target: {fileID: 1409082908445157755, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: _openTarget
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8465892605390198342, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 84967efac1bc9c44a8ff7782dd8cf140,
+      objectReference: {fileID: 23800000, guid: 517a1b35c46269845abc4d67b678dcf6,
         type: 2}
     - target: {fileID: 9133975283715901661, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
@@ -2803,7 +2803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayStands:
   - {fileID: 1467052009}
-  - {fileID: 1467052007}
+  - {fileID: 795765745}
   - {fileID: 1467052006}
   - {fileID: 1467052005}
   - {fileID: 1467052000}
