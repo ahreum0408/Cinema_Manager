@@ -91,7 +91,7 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     }
 
     // 택배가 해금되면 true 하기
-    private void SetIsParcel(bool parcel)
+    public void SetIsParcel(bool parcel)
     {
         isParcel = parcel;
     }

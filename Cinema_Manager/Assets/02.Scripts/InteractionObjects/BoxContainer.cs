@@ -146,11 +146,11 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
     public void ActiveObj(bool active , bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
-        LevelEvents.ChangeBoxTruckActiveEvent?.Invoke(this, active);
-        ScaleSetting();
+        //LevelEvents.ChangeBoxTruckActiveEvent?.Invoke(this, active);
+        ScaleSetting(active);
     }
 
-    public void ScaleSetting()
+    public void ScaleSetting(bool active)
     {
         int tweenId = transform.GetInstanceID();
 
@@ -162,6 +162,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
             {
                 DOTween.Kill(tweenId);
                 OnScaleSettingEndEvent?.Invoke();
+                LevelEvents.ChangeBoxTruckActiveEvent?.Invoke(this, active);
             });
     }
 }
