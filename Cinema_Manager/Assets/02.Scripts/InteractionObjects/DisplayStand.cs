@@ -166,9 +166,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     public void RemoveCustomer(Customer customer)
     {
-        if (!_customerDic.ContainsKey(customer))
-            return;
-
         _customerDic.Remove(customer);
         _customerCount--;
 
@@ -212,20 +209,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     public List<Customer> GetAllCustomers()
     {
         return _customerDic.Keys.ToList();
-    }
-
-
-    // 임시로 스텐드에 음식 채우는 함수
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            AddItemToStand(1);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ScaleSetting(true);
-        }
     }
 
     public void AddItemToStand(int addItemCount = 1)

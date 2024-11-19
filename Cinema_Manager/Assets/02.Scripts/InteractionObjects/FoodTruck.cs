@@ -48,8 +48,6 @@ public class FoodTruck : MonoBehaviour
 
     private void HandleOnScaleSettingEndEvent()
     {
-        _visualTrm.DOKill();
-
         _currentBringTime = _truckBringTime;
         _isBringFood = true;
 
@@ -79,7 +77,7 @@ public class FoodTruck : MonoBehaviour
         SoundManager.Instance.Play(AudioClips.TruckHorn, true, 1, _visualTrm);
 
         _isBringFood = true;
-        TruckMove(_startTrm.position, true);
+        TruckMove(_startTrm.position, false);
     }
 
     // À½½Ä °¡Á®¿È
