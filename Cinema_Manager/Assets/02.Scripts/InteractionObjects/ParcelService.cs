@@ -167,6 +167,7 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
         gameObject.SetActive(active);
         LevelEvents.ChangeParcelServiceActiveEvent?.Invoke(this, active);
         ScaleSetting();
+        CustomerSpawnManager.Instance.SetIsParcel(active);
     }
 
     public void ScaleSetting()
