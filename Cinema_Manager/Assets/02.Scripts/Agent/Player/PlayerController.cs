@@ -141,7 +141,7 @@ public class PlayerController : AgentController
         CoinManager.Instance.Coin += (int)(moneyAmount * _sellingCostWeigth);
 
         // Sound
-        SoundManager.Instance.Play(AudioClips.Money, 1, null, false);
+        SoundManager.Instance.Play(AudioClips.Money, 1);
 
         // UI Update
     }
