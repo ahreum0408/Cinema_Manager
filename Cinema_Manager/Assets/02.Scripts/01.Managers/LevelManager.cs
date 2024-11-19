@@ -156,13 +156,9 @@ public class LevelManager : MonoSingleton<LevelManager> {
         _levelIndex = _gameData.levelIndex;
         _exp = _gameData.exp;
 
-
-        foreach (var levelData in levelDatas) {
-            //levelData.AfterSetting();
-        }
         if (!_gameData.isMinimumExecution) { // 최소 실행인가? ex.튜토리얼
-            OnLevel(0, true, true);
-            OnLevel(1, true);
+            OnLevel(0, true);
+            //OnLevel(1, true);
             _gameData.isMinimumExecution = true;
         }
 
@@ -176,7 +172,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
     }
 
     private void OnLevel(int level, bool active, bool isReversal = false) {
-        levelDatas[level].SetCheckerActive(active, isReversal);
+        levelDatas[level].SetCheckerActive(active);
     }
     private void SetData() {
         // 각각의 checker에 값 적용

@@ -14,15 +14,15 @@ public class Room : MonoBehaviour, IOpenTarget {
         _isOpen = active;
         gameObject.SetActive(!active);
         _openTarget.gameObject.SetActive(active);
-        //LevelEvents.ChangeRoomActiveEvent?.Invoke(this, active);
-        ScaleSetting(active);
+        LevelEvents.ChangeRoomActiveEvent?.Invoke(this, active);
+        ScaleSetting();
     }
 
-    public void ScaleSetting(bool active)
+    public void ScaleSetting()
     {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack).OnComplete(()=> LevelEvents.ChangeRoomActiveEvent?.Invoke(this, active));
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }

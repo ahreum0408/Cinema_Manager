@@ -71,8 +71,8 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     {
         _isOpen = active;
         gameObject.SetActive(active);
-        //LevelEvents.ChangeStandActiveEvent?.Invoke(this, active);
-        ScaleSetting(active);
+        LevelEvents.ChangeStandActiveEvent?.Invoke(this, active);
+        ScaleSetting();
         if (active && addCustomer)
         { // 여기 문제 있을거임 주의**
             CustomerSpawnManager.Instance.SetMaxCustomer(GetPoolObjType());
@@ -221,11 +221,11 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         }
     }
 
-    public void ScaleSetting(bool active)
+    public void ScaleSetting()
     {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack).OnComplete(()=> LevelEvents.ChangeStandActiveEvent?.Invoke(this, active));
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }

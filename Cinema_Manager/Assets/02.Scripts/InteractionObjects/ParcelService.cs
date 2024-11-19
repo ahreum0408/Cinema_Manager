@@ -165,16 +165,16 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
     public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
-        //LevelEvents.ChangeParcelServiceActiveEvent?.Invoke(this, active);
-        ScaleSetting(active);
+        LevelEvents.ChangeParcelServiceActiveEvent?.Invoke(this, active);
+        ScaleSetting();
         CustomerSpawnManager.Instance.SetIsParcel(active);
     }
 
-    public void ScaleSetting(bool active)
+    public void ScaleSetting()
     {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack).OnComplete(()=> LevelEvents.ChangeParcelServiceActiveEvent?.Invoke(this, active));
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }

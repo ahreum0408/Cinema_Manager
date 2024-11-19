@@ -81,20 +81,17 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         SoundManager.Instance.Play(AudioClips.Stack, 1);
     }
     public void ActiveObj(bool active, bool onTarget = false) {
-        if(onTarget) { // 맨처음 로드 될 때만 사용
-            OpenITarget.ActiveObj(!active);
-        }
         _isOpen = active;
         gameObject.SetActive(active);
-        //LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);
-        ScaleSetting(active);
+        ScaleSetting();
+        LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);
     }
 
-    public void ScaleSetting(bool active)
+    public void ScaleSetting()
     {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack).OnComplete(()=> LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active));
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }

@@ -110,15 +110,15 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
     public void ActiveObj(bool active, bool on = false) {
         _isOpen = active;
         gameObject.SetActive(active);
-        //LevelEvents.ChangeTableActiveEvent?.Invoke(this, active);
-        ScaleSetting(active);
+        LevelEvents.ChangeTableActiveEvent?.Invoke(this, active);
+        ScaleSetting();
     }
 
-    public void ScaleSetting(bool active)
+    public void ScaleSetting()
     {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack).OnComplete(()=> LevelEvents.ChangeTableActiveEvent?.Invoke(this, active));
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }
