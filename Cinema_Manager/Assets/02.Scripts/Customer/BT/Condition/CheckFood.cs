@@ -85,7 +85,7 @@ public class CheckFood : Conditional
         int currentIndex = customer.Value.currentStand.GetCustomerIndex(customer.Value);
         var customers = customer.Value.currentStand.GetAllCustomers();
 
-        for (int i = currentIndex; i < customers.Count; i++)
+        for (int i = 0; i < customers.Count; i++)
         {
             customers[i].Agent.isStopped = false;
         }

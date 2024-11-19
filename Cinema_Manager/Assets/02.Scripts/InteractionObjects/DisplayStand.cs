@@ -187,11 +187,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
             else
                 currentCustomer.customerData.isGive = false;
         }
-
-        if (customerList.Count == 0)
-        {
-            _currentCustomer = null;
-        }
     }
 
     public PoolableType GetPoolObjType() => _poolObjType;
