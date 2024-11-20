@@ -76,6 +76,7 @@ public class SettingView : UIView {
 
         _soundToggle.value = _gameData.bgm;
         _hapticToggle.value = _gameData.haptic;
+        SoundManager.Instance.SoundSet(_gameData.bgm);
 
         SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }

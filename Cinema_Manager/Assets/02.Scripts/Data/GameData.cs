@@ -58,7 +58,7 @@ public class GameData {
     public GameData() {
         this.isMinimumExecution = false;
 
-        this.bgm = true;
+        this.bgm = false;
         //this.effect = true;
         this.haptic = true;
 
