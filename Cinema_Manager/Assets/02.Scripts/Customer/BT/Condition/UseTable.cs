@@ -58,6 +58,7 @@ public class UseTable : Conditional
 
                         // Stop Sound
                         SoundManager.Instance.PushSoundObj(_soundObj);
+                        SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
                     }
                 }
                 else
