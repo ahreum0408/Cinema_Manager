@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ public struct PoolingPair
     public int poolCount;
 }
 
-[CreateAssetMenu (menuName = "SO/PoolingBase")]
+[CreateAssetMenu(menuName = "SO/PoolingBase")]
 public class SO_PoolingBase : ScriptableObject
 {
     public List<PoolingPair> pairs;

@@ -1,6 +1,3 @@
-using System;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public static class AyunDefine
@@ -19,17 +16,17 @@ public static class AyunDefine
 
     public static class AudioClips
     {
-        public static readonly AudioClip Money    = Resources.Load<AudioClip>("Sound/MoneySound");
-        public static readonly AudioClip Stack    = Resources.Load<AudioClip>("Sound/StackSound");
+        public static readonly AudioClip Money = Resources.Load<AudioClip>("Sound/MoneySound");
+        public static readonly AudioClip Stack = Resources.Load<AudioClip>("Sound/StackSound");
         public static readonly AudioClip Trashcan = Resources.Load<AudioClip>("Sound/TrashcanSound");
         public static readonly AudioClip BoxPacking = Resources.Load<AudioClip>("Sound/BoxPacking");
         public static readonly AudioClip BuyObject = Resources.Load<AudioClip>("Sound/BuyObject");
 
         // Truck
-        public static readonly AudioClip TruckStart  = Resources.Load<AudioClip>("Sound/TruckStartSound");
-        public static readonly AudioClip TruckStop   = Resources.Load<AudioClip>("Sound/TruckStopSound");
+        public static readonly AudioClip TruckStart = Resources.Load<AudioClip>("Sound/TruckStartSound");
+        public static readonly AudioClip TruckStop = Resources.Load<AudioClip>("Sound/TruckStopSound");
         public static readonly AudioClip TruckEngine = Resources.Load<AudioClip>("Sound/TruckEngineSound");
-        public static readonly AudioClip TruckHorn   = Resources.Load<AudioClip>("Sound/TruckHornSound");
+        public static readonly AudioClip TruckHorn = Resources.Load<AudioClip>("Sound/TruckHornSound");
 
         // Customer
         public static readonly AudioClip SleepCustomer = Resources.Load<AudioClip>("Sound/SleepCustomer");

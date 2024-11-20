@@ -176,7 +176,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         if (!_gameData.isMinimumExecution) { // 최소 실행인가? ex.튜토리얼
             OnLevel(0, true);
-            OnLevel(1, true);
             _gameData.isMinimumExecution = true;
         }
         StartCoroutine(LoadData());

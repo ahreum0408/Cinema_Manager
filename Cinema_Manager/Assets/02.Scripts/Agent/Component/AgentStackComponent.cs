@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.WSA;
 using static AyunDefine;
 
 public class AgentStackComponent : AgentComponent
@@ -44,7 +42,7 @@ public class AgentStackComponent : AgentComponent
         if (GetComponentInParent<PlayerController>() != null ||
             _holderTransform.childCount <= 0) return;
 
-        while(_holderTransform.childCount > 0)
+        while (_holderTransform.childCount > 0)
         {
             Transform child = _holderTransform.GetChild(0);
             PoolManager.Instance.Push

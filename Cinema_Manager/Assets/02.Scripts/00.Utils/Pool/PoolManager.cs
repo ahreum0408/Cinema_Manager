@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -15,7 +14,7 @@ public class PoolManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
-        
+
         MakeObj();
     }
 
@@ -26,15 +25,15 @@ public class PoolManager : MonoBehaviour
         {
             poolDic.Add(poolingPairs[i].prefabTypeName, new Queue<GameObject>());
         }
-        
-		for (int i = 0; i < poolingPairs.Length; i++)
-		{
+
+        for (int i = 0; i < poolingPairs.Length; i++)
+        {
             for (int j = 0; j < poolingPairs[i].poolCount; j++)
-			{
+            {
                 GameObject poolObject = Instantiate(poolingPairs[i].prefab, Vector3.zero, Quaternion.identity);
-                poolObject.name = poolObject.name.Replace("(Clone)","");
+                poolObject.name = poolObject.name.Replace("(Clone)", "");
                 Push(poolingPairs[i].prefabTypeName, poolObject);
-			}
+            }
         }
     }
 
@@ -49,13 +48,13 @@ public class PoolManager : MonoBehaviour
                 if (PoolingBase.pairs[i].prefabTypeName == type)
                 {
                     GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab, Vector3.zero, Quaternion.identity);
-                    poolObject.name = poolObject.name.Replace("(Clone)","");
+                    poolObject.name = poolObject.name.Replace("(Clone)", "");
                     Push(type, poolObject);
                     break;
                 }
             }
         }
-        
+
         obj.SetActive(true);
         obj.transform.position = vec;
         obj.transform.rotation = rot;
@@ -75,13 +74,13 @@ public class PoolManager : MonoBehaviour
                     GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab);
                     poolObject.transform.localPosition = Vector3.zero;
                     poolObject.transform.localRotation = Quaternion.identity;
-                    poolObject.name = poolObject.name.Replace("(Clone)","");
+                    poolObject.name = poolObject.name.Replace("(Clone)", "");
                     Push(type, poolObject);
                     break;
                 }
             }
         }
-        
+
         obj.SetActive(true);
         obj.transform.SetParent(parentTrm);
         obj.transform.localPosition = Vector3.zero;
@@ -101,13 +100,13 @@ public class PoolManager : MonoBehaviour
                     GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab);
                     poolObject.transform.localPosition = vec;
                     poolObject.transform.localRotation = rot;
-                    poolObject.name = poolObject.name.Replace("(Clone)","");
+                    poolObject.name = poolObject.name.Replace("(Clone)", "");
                     Push(type, poolObject);
                     break;
                 }
             }
         }
-        
+
         obj.SetActive(true);
         obj.transform.SetParent(parentTrm);
         obj.transform.localPosition = vec;
