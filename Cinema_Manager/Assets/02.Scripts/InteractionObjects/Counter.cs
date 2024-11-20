@@ -42,15 +42,6 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
     }
 
-    private void Start()
-    {
-        checkPoint.position = new Vector3(
-                checkPoint.position.x - lineInterval,
-                checkPoint.position.y,
-                checkPoint.position.z
-            );
-    }
-
     public void EnterInteraction(AgentController agent)
     {
         if (_isCounterStaffStay) return;
@@ -173,6 +164,18 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack)
+            .OnComplete(() =>
+            {
+                if (gameObject.activeInHierarchy)
+                {
+                    checkPoint = GetComponentInChildren<Point>().transform;
+                    checkPoint.position = new Vector3(
+                        checkPoint.position.x - lineInterval,
+                        checkPoint.position.y,
+                        checkPoint.position.z
+                        );
+                }
+            });
     }
 }
