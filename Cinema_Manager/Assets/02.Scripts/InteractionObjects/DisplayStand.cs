@@ -42,7 +42,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     private Dictionary<Customer, int> _customerDic;
     private bool _isStart;
-    private bool _dicIsStart;
     private int _customerCount = 0;
     #endregion
 
@@ -53,7 +52,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _foodStack = new Stack<ITakeable>();
 
-        points = GetComponentsInChildren<Point>().ToList();
     }
 
     private void Start()
@@ -78,6 +76,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
             CustomerSpawnManager.Instance.SetMaxCustomer(GetPoolObjType());
         }
     }
+
     public void EnterInteraction(AgentController agent)
     {
         _isEnterInteraction = true;
@@ -221,6 +220,11 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack)
+            .OnComplete(() =>
+            {
+                if (gameObject.activeInHierarchy)
+                    points = GetComponentsInChildren<Point>().ToList();
+            });
     }
 }

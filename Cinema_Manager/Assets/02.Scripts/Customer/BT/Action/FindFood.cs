@@ -6,27 +6,11 @@ public class FindFood : Action
 {
     public SharedCustomer customer;
 
-    private DisplayStand stand;
-
-    private Vector3 _destination;
-    private NavMeshAgent _agent;
-
     private bool _isStarted;
-
-    public override void OnAwake()
-    {
-        _agent = customer.Value.Agent;
-    }
 
     public override void OnStart()
     {
-        stand = customer.Value.currentStand;
-
-        stand.AddCustomer(customer.Value);
-        customer.Value.currentStand = stand;
-
-        _destination = customer.Value.Agent.destination;
-        _agent.SetDestination(_destination);
+        customer.Value.currentStand.AddCustomer(customer.Value);
         _isStarted = true;
     }
 
