@@ -61,6 +61,9 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     private void FixedUpdate()
     {
+        if(_customerDic.Count >0 && _currentCustomer == null)
+            _currentCustomer = _customerDic.Keys.First();
+
         if (_currentCustomer != null && !_currentCustomer.customerData.isGive)
             _currentCustomer.customerData.isGive = true;
     }
