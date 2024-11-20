@@ -33,7 +33,7 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         CalculateWeght();
     }
     private void Start() {
-        UpdatePriceText(_price);
+        UpdatePriceText(_price, true);
     }
 
     public override void EnterInteraction(AgentController agent) {
@@ -76,9 +76,11 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         // Sound
         SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
     }
-    private void UpdatePriceText(int coin) {
+    private void UpdatePriceText(int coin, bool load = false) {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
-        LevelEvents.PriceChangingEvent?.Invoke(transform);
+        if (!load) {
+            LevelEvents.PriceChangingEvent?.Invoke(transform);
+        }
 
         // Sound
         SoundManager.Instance.Play(AudioClips.Stack, 1);

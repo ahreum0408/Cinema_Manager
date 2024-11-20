@@ -51,7 +51,7 @@ public class CoinManager : MonoSingleton<CoinManager> {
     }
     private void Update() {
         if (Input.GetKeyDown(KeyCode.C)) {
-            Coin += 1000;
+            Coin += 10000;
         }
     }
 
