@@ -56,7 +56,7 @@ public class GameDataManager : MonoBehaviour {
 
         _gameData.allRoomOnOffList = data.allRoomOnOffList;
         _gameData.allCounterOnOffList = data.allCounterOnOffList;
-        _gameData.allTrashBinOnOffList = data.allTrashBinOnOffList;
+        _gameData.allSignBoardOnOffList = data.allSignBoardOnOffList;
     }
     private void MainDataUpdate(GameData data) {
         if (data == null) {

@@ -34,7 +34,7 @@ public class GameData {
 
     public List<bool> allRoomOnOffList;
     public List<bool> allCounterOnOffList;
-    public List<bool> allTrashBinOnOffList;
+    public List<bool> allSignBoardOnOffList;
 
     // player
     public int p_movespeedLevel = 0; // 플레이어 이속
@@ -62,7 +62,7 @@ public class GameData {
         //this.effect = true;
         this.haptic = true;
 
-        this.coin = 10000; // 375
+        this.coin = 10000; // 475
         this.gam = 0;
 
         this.level = new Level(); 
@@ -84,7 +84,7 @@ public class GameData {
 
         this.allRoomOnOffList = new List<bool>(new bool[3]);
         this.allCounterOnOffList = new List<bool>(new bool[3]);
-        this.allTrashBinOnOffList = new List<bool>(new bool[3]);
+        this.allSignBoardOnOffList = new List<bool>(new bool[3]);
 
         this.p_movespeedLevel = 0;
         this.p_movespeedLevel = 0;

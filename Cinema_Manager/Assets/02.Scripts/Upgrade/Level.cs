@@ -21,7 +21,7 @@ public class Level {
     private List<ParcelService> _parcelServiceList = new List<ParcelService>();
     private List<Room> _roomList = new List<Room>();
     private List<Counter> _counterList = new List<Counter>();
-    private List<TrashBin> _trachBinList = new List<TrashBin>();
+    private List<SignBoard> _signBoardList = new List<SignBoard>();
 
     private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
 
@@ -101,14 +101,14 @@ public class Level {
                         }
                         _counterList.Add(target as Counter);
                         break;
-                    case TargetType.TrashBin:
+                    case TargetType.SignBoard:
                         if (_targetDictionary.TryGetValue(target.Type, out int value7)) {
                             _targetDictionary[target.Type] = value7;
                         }
                         else {
                             _targetDictionary.Add(target.Type, 1);
                         }
-                        _trachBinList.Add(target as TrashBin);
+                        _signBoardList.Add(target as SignBoard);
                         break;
                     default:
                         Debug.LogWarning("너는 누구신가요..");
@@ -151,8 +151,8 @@ public class Level {
     public List<Counter> GetCounterList() {
         return _counterList;
     }
-    public List<TrashBin> GetTrashBinList() {
-        return _trachBinList;
+    public List<SignBoard> GetSignBoardList() {
+        return _signBoardList;
     }
     #endregion
 }

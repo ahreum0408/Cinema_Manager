@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using static AyunDefine;
 
-public class TrashBin : MonoBehaviour, IIneractionable, IOpenTarget {
+public class TrashBin : MonoBehaviour, IIneractionable {
     [HideInInspector] public GameObject GameObject => gameObject;
 
     public Transform staffPoint;
@@ -13,11 +13,6 @@ public class TrashBin : MonoBehaviour, IIneractionable, IOpenTarget {
     private bool _isEnterInteraction = false;
 
     private NotifyImageComponent _notifyImageComponent;
-
-    [SerializeField] private TargetType _targetType;
-    private bool _isOpen = false;
-    public TargetType Type { get => _targetType; set => _targetType = value; }
-    public bool IsOpen { get => _isOpen; set => _isOpen = value; }
 
     private void Awake()
     {
@@ -54,19 +49,5 @@ public class TrashBin : MonoBehaviour, IIneractionable, IOpenTarget {
             }
             yield return new WaitForSeconds(0.15f);
         }
-    }
-
-    public void ActiveObj(bool active, bool on = false) {
-        _isOpen = active;
-        gameObject.SetActive(active);
-        LevelEvents.ChangeTrashBinActiveEvent?.Invoke(this, active);
-        ScaleSetting();
-    }
-
-    public void ScaleSetting() {
-        float time = 0.5f;
-        Vector3 originScale = transform.localScale;
-        transform.localScale = Vector3.zero;
-        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }

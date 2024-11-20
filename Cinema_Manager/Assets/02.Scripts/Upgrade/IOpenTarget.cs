@@ -8,7 +8,7 @@ public enum TargetType {
     ParcelService,
     Room,
     Counter,
-    TrashBin
+    SignBoard
 }
 public interface IOpenTarget{
     public TargetType Type { get; set; }

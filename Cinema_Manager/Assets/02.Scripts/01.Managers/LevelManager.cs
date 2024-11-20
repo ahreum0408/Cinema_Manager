@@ -18,7 +18,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
     private List<ParcelService> _allParcelService = new List<ParcelService>();
     private List<Room> _allRoom = new List<Room>();
     private List<Counter> _allCounter = new List<Counter>();
-    private List<TrashBin> _allTrashBin = new List<TrashBin>();
+    private List<SignBoard> _allSignBoard = new List<SignBoard>();
     #endregion
 
     private Level _currentLevel;
@@ -48,7 +48,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         LevelEvents.ChangeRoomActiveEvent += ChangRoomActive;
         LevelEvents.ChangeCounterActiveEvent += ChangCounterActive;
-        LevelEvents.ChangeTrashBinActiveEvent += ChangTrashBinActive;
+        LevelEvents.ChangeSignBoardActiveEvent += ChangTrashBinActive;
     }
     private void OnDisable() {
         LevelEvents.GameDataLoadEvent -= GameDataLoad;
@@ -68,7 +68,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         LevelEvents.ChangeRoomActiveEvent -= ChangRoomActive;
         LevelEvents.ChangeCounterActiveEvent -= ChangCounterActive;
-        LevelEvents.ChangeTrashBinActiveEvent -= ChangTrashBinActive;
+        LevelEvents.ChangeSignBoardActiveEvent -= ChangTrashBinActive;
     }
     private void Init() {
         // level에 존재하는 모든 데이터 값을 level에서 찾아 넣어줌
@@ -83,7 +83,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
             List<ParcelService> ParcelServiceList = data.GetParcelServiceList();
             List<Room> roomList = data.GetRoomList();
             List<Counter> counterList = data.GetCounterList();
-            List<TrashBin> trachBinList = data.GetTrashBinList();
+            List<SignBoard> SignBoardList = data.GetSignBoardList();
 
             if (buyCheckers != null) {
                 foreach (var checker in buyCheckers) {
@@ -125,9 +125,9 @@ public class LevelManager : MonoSingleton<LevelManager> {
                     _allCounter.Add(counter);
                 }
             }
-            if (trachBinList != null) {
-                foreach (var trashBin in trachBinList) {
-                    _allTrashBin.Add(trashBin);
+            if (SignBoardList != null) {
+                foreach (var board in SignBoardList) {
+                    _allSignBoard.Add(board);
                 }
             }
         }
@@ -233,9 +233,9 @@ public class LevelManager : MonoSingleton<LevelManager> {
                 _allCounter[i].ActiveObj(_gameData.allCounterOnOffList[i]);
             }
         }
-        for (int i = 0; i < _allTrashBin.Count; i++) {
-            if (_allTrashBin[i] != null) {
-                _allTrashBin[i].ActiveObj(_gameData.allTrashBinOnOffList[i]);
+        for (int i = 0; i < _allSignBoard.Count; i++) {
+            if (_allSignBoard[i] != null) {
+                _allSignBoard[i].ActiveObj(_gameData.allSignBoardOnOffList[i]);
             }
         }
     }
@@ -326,9 +326,9 @@ public class LevelManager : MonoSingleton<LevelManager> {
         _gameData.allCounterOnOffList[index] = active;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void ChangTrashBinActive(TrashBin activeObj, bool active) {
-        int index = _allTrashBin.IndexOf(activeObj); // 내가 누구인지 index뽑고
-        _gameData.allTrashBinOnOffList[index] = active;
+    private void ChangTrashBinActive(SignBoard activeObj, bool active) {
+        int index = _allSignBoard.IndexOf(activeObj); // 내가 누구인지 index뽑고
+        _gameData.allSignBoardOnOffList[index] = active;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     #endregion
