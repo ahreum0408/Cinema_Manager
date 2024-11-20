@@ -6,12 +6,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 {
     [SerializeField] private AudioMixer _mainMixer;
 
-    [HideInInspector] public bool _isSoundOn = true;
-
     public GameObject Play(AudioClip clip, float pitch = 1f, Transform parent = null, bool isLooping = false)
     {
-        if (false == _isSoundOn) return null;
-
         GameObject go = PoolManager.Instance.Pop(PoolableType.SoundObject.ToString(), parent);
 
         if (go.TryGetComponent(out SoundObject soundObj))
@@ -22,8 +18,6 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public GameObject Play(AudioClip clip, bool is3DSound = false, float pitch = 1f, Transform parent = null, bool isLooping = false)
     {
-        if (false == _isSoundOn) return null;
-
         GameObject go = PoolManager.Instance.Pop(PoolableType.SoundObject.ToString(), parent);
 
         if (go.TryGetComponent(out SoundObject soundObj))
@@ -34,8 +28,6 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public void SoundSet(bool isSoundOn)
     {
-        _isSoundOn = isSoundOn;
-
         float volume = isSoundOn ? 0f : -80f;
         _mainMixer.SetFloat("Master", volume);
     }

@@ -19,6 +19,7 @@ public class CheckFood : Conditional
         if (customer.Value.CurrentCustomerType == CustomerType.Call)
         {
             // Play Sound
+            Debug.Log("Play Sound");
             _soundObj = SoundManager.Instance.Play(AudioClips.CallCustomer, true, 1.5f, null, true);
 
             customer.Value.AnimationCompo.CallAnimation(1);
@@ -45,7 +46,9 @@ public class CheckFood : Conditional
                     CustomerSpawnManager.Instance.MinusBadCustomer();
 
                     // Stop Sound
+                    Debug.Log("Stop Sound");
                     SoundManager.Instance.PushSoundObj(_soundObj);
+                    SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
 
                     ResumeCustomers();
                 }
