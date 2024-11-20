@@ -31,7 +31,9 @@ public class BuyChecker : CheckerArea, IOpenTarget {
 
     private void Awake() {
         CalculateWeght();
-        //UpdatePriceText(_price);
+    }
+    private void Start() {
+        UpdatePriceText(_price);
     }
 
     public override void EnterInteraction(AgentController agent) {

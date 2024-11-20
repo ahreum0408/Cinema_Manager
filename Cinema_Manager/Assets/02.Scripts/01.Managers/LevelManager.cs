@@ -243,16 +243,24 @@ public class LevelManager : MonoSingleton<LevelManager> {
         for (int i = 0; i < _allCheckers.Count; i++) {
             var checker = _allCheckers[i];
             if (checker.OpenITarget != null) {
-                if(checker.OpenITarget.IsOpen) { // ¿ÀÇÂµÇ¾ú´Ù
-                    OnStandItem(checker);
+                if (_gameData.isMinimumExecution) {
+                    SetCheckerPrice(checker);
                 }
                 else {
-                    checker.Price = _gameData.allCheckPriceList[i];
+                    if(checker.OpenITarget.IsOpen) { // ¿ÀÇÂµÇ¾ú´Ù
+                        OnStandItem(checker);
+                    }
+                    else {
+                        checker.Price = _gameData.allCheckPriceList[i];
+                    }
                 }
-
             }
         }
     }
+    private void SetCheckerPrice(BuyChecker checker) {
+        ChangeCheckerPrice(checker, checker.Price);
+    }
+
     private void OnStandItem(BuyChecker checker) {
         if(checker.OpenGTarget.TryGetComponent(out DisplayStand stand)){
             int index = _allStand.IndexOf(stand);
