@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3026826173434650389}
+  - component: {fileID: 2990436245075667989}
   m_Layer: 0
   m_Name: Wall_SignBoard
   m_TagString: Untagged
@@ -35,6 +36,19 @@ Transform:
   - {fileID: 6477864615485791366}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2990436245075667989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4915323169047330797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81107c32f312f674f9cecb36ae8a79fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetType: 7
 --- !u!1001 &283075577160485206
 PrefabInstance:
   m_ObjectHideFlags: 0
