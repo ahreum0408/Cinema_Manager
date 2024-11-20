@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using UIToolkit;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoSingleton<UIManager> {
     private UIDocument _uiDocument;
 
     private UIView _currentView; // 현재뷰
@@ -110,7 +111,6 @@ public class UIManager : MonoBehaviour {
         MainEvents.CloseCurrentEvent -= CloseCurrentView;
     }
 
-
     #region ShowViews
     private void ShowMainView() {
         ChangeShowView(_mainView);
@@ -134,4 +134,12 @@ public class UIManager : MonoBehaviour {
         ChangeShowView(_levelUpView);
     }
     #endregion
+    public void ActiveMainView(bool active) {
+        if(active) {
+            _mainView.Show();
+        }
+        else {
+            _mainView.Hide();
+        }
+    }
 }
