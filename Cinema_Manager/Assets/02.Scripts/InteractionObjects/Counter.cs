@@ -1,10 +1,10 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Counter : MonoBehaviour, IIneractionable
-{
+public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
     #region ¼­¿¬
     public bool IsWorking = false;
 
@@ -30,6 +30,11 @@ public class Counter : MonoBehaviour, IIneractionable
     private MoneyDummy _moneyDummy;
     private NotifyImageComponent _notifyImageComponent;
     public MoneyDummy moneyDummy => _moneyDummy;
+
+    [SerializeField] private TargetType _targetType;
+    private bool _isOpen = false;
+    public TargetType Type { get => _targetType; set => _targetType = value; }
+    public bool IsOpen { get => _isOpen; set => _isOpen = value; }
 
     private void Awake()
     {
@@ -155,5 +160,19 @@ public class Counter : MonoBehaviour, IIneractionable
             beforeCustomer = customers;
         }
         isBuy = false;
+    }
+
+    public void ActiveObj(bool active, bool on = false) {
+        _isOpen = active;
+        gameObject.SetActive(active);
+        LevelEvents.ChangeCounterActiveEvent?.Invoke(this, active);
+        ScaleSetting();
+    }
+
+    public void ScaleSetting() {
+        float time = 0.5f;
+        Vector3 originScale = transform.localScale;
+        transform.localScale = Vector3.zero;
+        transform.DOScale(originScale, time).SetEase(Ease.OutBack);
     }
 }

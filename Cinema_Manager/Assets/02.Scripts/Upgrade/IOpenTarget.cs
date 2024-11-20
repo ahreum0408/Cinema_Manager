@@ -6,7 +6,9 @@ public enum TargetType {
     BoxContainer,
     Table,
     ParcelService,
-    Room
+    Room,
+    Counter,
+    TrashBin
 }
 public interface IOpenTarget{
     public TargetType Type { get; set; }

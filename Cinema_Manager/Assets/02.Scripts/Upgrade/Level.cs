@@ -20,6 +20,8 @@ public class Level {
     private List<Table> _tableList = new List<Table>();
     private List<ParcelService> _parcelServiceList = new List<ParcelService>();
     private List<Room> _roomList = new List<Room>();
+    private List<Counter> _counterList = new List<Counter>();
+    private List<TrashBin> _trachBinList = new List<TrashBin>();
 
     private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
 
@@ -29,6 +31,7 @@ public class Level {
     // 내 타겟의 데이터의 종류 별로 분류
     public void Init() {
         foreach (GameObject area in openNewMapList) {
+            Debug.Log($"{levelNumder}-{area.name} : {area.transform.childCount}");
             Transform checkerPos = area.gameObject.transform.GetChild(0);
             Transform targetPos = area.gameObject.transform.GetChild(1);
             if (checkerPos.TryGetComponent(out BuyChecker checker)) {
@@ -90,6 +93,26 @@ public class Level {
                         }
                         _roomList.Add(target as Room);
                         break;
+                    case TargetType.Counter:
+                        if (_targetDictionary.TryGetValue(target.Type, out int value6)) {
+                            _targetDictionary[target.Type] = value6;
+                        }
+                        else {
+                            Debug.Log("Add Coutunter");
+                            _targetDictionary.Add(target.Type, 1);
+                        }
+                        _counterList.Add(target as Counter);
+                        break;
+                    case TargetType.TrashBin:
+                        if (_targetDictionary.TryGetValue(target.Type, out int value7)) {
+                            _targetDictionary[target.Type] = value7;
+                        }
+                        else {
+                            Debug.Log("Add TrashBin");
+                            _targetDictionary.Add(target.Type, 1);
+                        }
+                        _trachBinList.Add(target as TrashBin);
+                        break;
                     default:
                         Debug.LogWarning("너는 누구신가요..");
                         break;
@@ -128,28 +151,11 @@ public class Level {
     public List<Room> GetRoomList() {
         return _roomList;
     }
-    #endregion
-    #region GetLength
-    public int GetCheckerListLength() {
-        return _buyCheckersList.Count;
+    public List<Counter> GetCounterList() {
+        return _counterList;
     }
-    public int GetStandListLength() {
-        return _standList.Count;
-    }
-    public int GetFoodTruckListLength() {
-        return _foodTruckList.Count;
-    }
-    public int GetBoxTruckListLength() {
-        return _boxTruckList.Count;
-    }
-    public int GetTableListLength() {
-        return _tableList.Count;
-    }
-    public int GetParcelServiceListLength() {
-        return _parcelServiceList.Count;
-    }
-    public int GetRoomListLength() {
-        return _roomList.Count;
+    public List<TrashBin> GetTrashBinList() {
+        return _trachBinList;
     }
     #endregion
 }

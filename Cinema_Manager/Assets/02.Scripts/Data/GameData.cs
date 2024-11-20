@@ -33,6 +33,8 @@ public class GameData {
     public List<bool> allParcelServiceOnOffList;
 
     public List<bool> allRoomOnOffList;
+    public List<bool> allCounterOnOffList;
+    public List<bool> allTrashBinOnOffList;
 
     // player
     public int p_movespeedLevel = 0; // 플레이어 이속
@@ -81,6 +83,8 @@ public class GameData {
         this.allParcelServiceOnOffList = new List<bool>(new bool[1]);
 
         this.allRoomOnOffList = new List<bool>(new bool[3]);
+        this.allCounterOnOffList = new List<bool>(new bool[3]);
+        this.allTrashBinOnOffList = new List<bool>(new bool[3]);
 
         this.p_movespeedLevel = 0;
         this.p_movespeedLevel = 0;

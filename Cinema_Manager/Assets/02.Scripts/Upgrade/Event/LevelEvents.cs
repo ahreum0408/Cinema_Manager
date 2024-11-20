@@ -19,4 +19,6 @@ public static class LevelEvents  {
     public static Action<Table, bool> ChangeTableActiveEvent;
 
     public static Action<Room, bool> ChangeRoomActiveEvent;
+    public static Action<Counter, bool> ChangeCounterActiveEvent;
+    public static Action<TrashBin, bool> ChangeTrashBinActiveEvent;
 }
