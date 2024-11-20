@@ -8,7 +8,7 @@ public class Level {
 
     // 레벨의 경험치에 대한 최소 최댓값
     public int lowValue = 0;
-    public int highValue = 20;
+    public int highValue = 10;
 
     [SerializeField] private List<GameObject> openNewMapList;
 
@@ -31,7 +31,6 @@ public class Level {
     // 내 타겟의 데이터의 종류 별로 분류
     public void Init() {
         foreach (GameObject area in openNewMapList) {
-            Debug.Log($"{levelNumder}-{area.name} : {area.transform.childCount}");
             Transform checkerPos = area.gameObject.transform.GetChild(0);
             Transform targetPos = area.gameObject.transform.GetChild(1);
             if (checkerPos.TryGetComponent(out BuyChecker checker)) {
@@ -98,7 +97,6 @@ public class Level {
                             _targetDictionary[target.Type] = value6;
                         }
                         else {
-                            Debug.Log("Add Coutunter");
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _counterList.Add(target as Counter);
@@ -108,7 +106,6 @@ public class Level {
                             _targetDictionary[target.Type] = value7;
                         }
                         else {
-                            Debug.Log("Add TrashBin");
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _trachBinList.Add(target as TrashBin);

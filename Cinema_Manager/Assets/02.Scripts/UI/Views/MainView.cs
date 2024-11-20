@@ -70,7 +70,12 @@ public class MainView : UIView {
         MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void UpdateLevel(Level data, int index) {
-        _levelTxt.text = data.levelNumder.ToString();
+        if (index > 10 ) {
+            _levelTxt.text = "Max";
+        }
+        else {
+            _levelTxt.text = data.levelNumder.ToString();
+        }
         SetLevelBarMinMaxValue(data);
         _gameData.level = data;
         _gameData.levelIndex = index;

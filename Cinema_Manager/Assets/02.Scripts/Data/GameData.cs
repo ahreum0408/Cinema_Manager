@@ -7,7 +7,7 @@ public class GameData {
 
     // setting view
     public bool bgm;
-    public bool effect;
+    //public bool effect;
     public bool haptic;
 
     // main view
@@ -58,8 +58,8 @@ public class GameData {
     public GameData() {
         this.isMinimumExecution = false;
 
-        this.bgm = true;
-        this.effect = true;
+        this.bgm = false;
+        //this.effect = true;
         this.haptic = true;
 
         this.coin = 10000;

@@ -71,7 +71,6 @@ public class PlayerUpgradeView : UIView {
                 return;
             }
         }
-        Debug.Log("change data");
     }
     private void ClickVolumeBtn(ClickEvent evt) {
         foreach (VisualElement gauge in _volumeGaugeList) {

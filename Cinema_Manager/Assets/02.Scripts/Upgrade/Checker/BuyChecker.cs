@@ -9,7 +9,8 @@ public class BuyChecker : CheckerArea, IOpenTarget {
     [SerializeField] public GameObject _openTarget;
     [SerializeField] private int _exp;
     [SerializeField] private TargetType _targetType;
-    
+
+    public int Exp => _exp;
     public int Price { 
         get { 
             return _price; 
