@@ -64,9 +64,10 @@ public class PlayerUpgradeView : UIView {
     #region registercallback
     private void ClickUpgradeMoveSpeedBtn(ClickEvent evt) {
         foreach(VisualElement gauge in _moveSpeedGaugeList) {
-            if (gauge.ClassListContains("off")) {
+            if (gauge.ClassListContains("off") && UpgradeManager.Instance.CanUpgrade(UpgradeTarget.playerMoveSpeedStat)) {
                 gauge.RemoveFromClassList("off");
                 _gameData.p_movespeedLevel++;
+                UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.playerMoveSpeedStat);
                 PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
@@ -74,9 +75,10 @@ public class PlayerUpgradeView : UIView {
     }
     private void ClickVolumeBtn(ClickEvent evt) {
         foreach (VisualElement gauge in _volumeGaugeList) {
-            if (gauge.ClassListContains("off")) {
+            if (gauge.ClassListContains("off") && UpgradeManager.Instance.CanUpgrade(UpgradeTarget.playerVolumeStat)) {
                 gauge.RemoveFromClassList("off");
                 _gameData.p_volumeLevel++;
+                UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.playerVolumeStat);
                 PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
@@ -84,9 +86,10 @@ public class PlayerUpgradeView : UIView {
     }
     private void ClickSellingCostBtn(ClickEvent evt) {
         foreach (VisualElement gauge in _sellingCostGaugeList) {
-            if (gauge.ClassListContains("off")) {
+            if (gauge.ClassListContains("off") && UpgradeManager.Instance.CanUpgrade(UpgradeTarget.playerSellingcostStat)) {
                 gauge.RemoveFromClassList("off");
                 _gameData.p_sellingcostLevel++;
+                UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.playerSellingcostStat);
                 PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }

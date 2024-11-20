@@ -68,9 +68,10 @@ public class EmployeeUpgradeView : UIView {
     #region registercallback
     private void ClickUpgradeMoveSpeedBtn(ClickEvent evt) {
         foreach(VisualElement gauge in _moveSpeedGaugeList) {
-            if (gauge.ClassListContains("off")) {
+            if (gauge.ClassListContains("off") && UpgradeManager.Instance.CanUpgrade(UpgradeTarget.employeeMoveSpeedStat)) {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_movespeedLevel++;
+                UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.employeeMoveSpeedStat);
                 EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
@@ -78,9 +79,10 @@ public class EmployeeUpgradeView : UIView {
     }
     private void ClickVolumeBtn(ClickEvent evt) {
         foreach (VisualElement gauge in _volumeGaugeList) {
-            if (gauge.ClassListContains("off")) {
+            if (gauge.ClassListContains("off") && UpgradeManager.Instance.CanUpgrade(UpgradeTarget.employeeVolumeVolumeStat)) {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_volumeLevel++;
+                UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.employeeVolumeVolumeStat);
                 EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }
@@ -88,9 +90,10 @@ public class EmployeeUpgradeView : UIView {
     }
     private void ClickEmploymentBtn(ClickEvent evt) {
         foreach (VisualElement gauge in _employmentGaugeList) {
-            if (gauge.ClassListContains("off")) {
+            if (gauge.ClassListContains("off") && UpgradeManager.Instance.CanUpgrade(UpgradeTarget.employeeAddStat)) {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_employmentLevel++;
+                UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.employeeAddStat);
                 EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
             }

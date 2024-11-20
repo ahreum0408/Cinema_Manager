@@ -2,9 +2,12 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class SignBoard : MonoBehaviour, IOpenTarget
 {
+    [SerializeField] private PlayableDirector _startTimeline;
+
     private MoneyDummy _moneyDummy;
 
     [SerializeField] private TargetType _targetType;
@@ -31,6 +34,10 @@ public class SignBoard : MonoBehaviour, IOpenTarget
     }
 
     public void ActiveObj(bool active, bool on = false) {
+        // Timeline
+        if (true == active && false == gameObject.activeSelf)
+            _startTimeline.Play();
+
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeSignBoardActiveEvent?.Invoke(this, active);

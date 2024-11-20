@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
     #region ¼­¿¬
@@ -23,6 +24,9 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
     public bool IsCanStand => lineList.Count <= maxCustomer;
     #endregion
 
+    [Header("Timeline")]
+    [SerializeField] private PlayableDirector _truckCameraTimeline;
+
     [HideInInspector] public GameObject GameObject => gameObject;
     private bool _isEnterInteraction = false;
     private bool _isCounterStaffStay = false;
@@ -31,6 +35,7 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
     private NotifyImageComponent _notifyImageComponent;
     public MoneyDummy moneyDummy => _moneyDummy;
 
+    [Space]
     [SerializeField] private TargetType _targetType;
     private bool _isOpen = false;
     public TargetType Type { get => _targetType; set => _targetType = value; }
@@ -154,6 +159,10 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
     }
 
     public void ActiveObj(bool active, bool on = false) {
+        // Timeline
+        if (true == active && false == gameObject.activeSelf)
+            _truckCameraTimeline.Play();
+        
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeCounterActiveEvent?.Invoke(this, active);
