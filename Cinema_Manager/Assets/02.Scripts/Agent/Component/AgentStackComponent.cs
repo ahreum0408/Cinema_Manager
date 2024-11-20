@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.WSA;
 using static AyunDefine;
@@ -45,8 +46,9 @@ public class AgentStackComponent : AgentComponent
 
         while(_holderTransform.childCount > 0)
         {
+            Transform child = _holderTransform.GetChild(0);
             PoolManager.Instance.Push
-                (_currentHoldType.ToString(), _holderTransform.GetChild(0).gameObject);
+                (child.GetComponent<TakeableBase>().PoolType.ToString(), child.gameObject);
         }
 
         //if (_takeObjectStack.Count <= 0)
