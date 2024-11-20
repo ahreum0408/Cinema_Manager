@@ -354,7 +354,7 @@ MonoBehaviour:
   levelDatas:
   - levelNumder: 0
     lowValue: 0
-    highValue: 10
+    highValue: 7
     openNewMapList:
     - {fileID: 1886407182}
     - {fileID: 1742612789}
@@ -1537,7 +1537,7 @@ MonoBehaviour:
   - 3.8
   - 4
   employeeVolumeStat: 05000000060000000700000008000000090000000a000000
-  employeeAddStat: 010000000100000001000000010000000100000001000000
+  employeeAddStat: 000000000100000002000000030000000400000005000000
 --- !u!4 &1213296464
 Transform:
   m_ObjectHideFlags: 0
@@ -1745,7 +1745,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMixer: {fileID: 24100000, guid: 75237a9b3840fb24f870463be70a68be, type: 2}
-  _isSoundOn: 1
 --- !u!4 &1429285753
 Transform:
   m_ObjectHideFlags: 0
@@ -2654,14 +2653,12 @@ PrefabInstance:
       value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4699769990583403843, guid: b7fd11435216ba14686e91ec034f2d92, type: 3}
+    - {fileID: 5447757110711716923, guid: b7fd11435216ba14686e91ec034f2d92, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7444105047989437924, guid: b7fd11435216ba14686e91ec034f2d92,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 8524888177264803916, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}

@@ -139,7 +139,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
             Debug.LogWarning("현제 최고 레벨에 도달함");
             return;
         }
-
         _exp += exp;
         MainEvents.GetExpEvent?.Invoke(_exp);
         if (_levelIndex < levelDatas.Count - 1 && _exp >= _currentLevel.highValue) {
@@ -170,8 +169,8 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         _gameData = data;
 
-        _currentLevel = levelDatas[_levelIndex];
         _levelIndex = _gameData.levelIndex;
+        _currentLevel = levelDatas[_levelIndex];
         _exp = _gameData.exp;
 
 
