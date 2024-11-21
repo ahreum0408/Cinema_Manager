@@ -2,7 +2,8 @@
     <Style src="project://database/Assets/09.UI/USS/Setting_USS.uss?fileID=7433441132597879392&amp;guid=3e9fde11ccb9f9a4f8fa7fbfaa0ea2b1&amp;type=3#Setting_USS" />
     <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/09.UI/USS/Main_USS.uss?fileID=7433441132597879392&amp;guid=ac0eb11ece132c14c8283d2efee773c1&amp;type=3#Main_USS" />
-    <ui:VisualElement name="background" style="border-top-left-radius: 35px; border-top-right-radius: 35px; border-bottom-right-radius: 35px; border-bottom-left-radius: 35px; align-items: center; justify-content: space-between; background-color: rgb(255, 255, 255); width: 60%; height: 40%;">
+    <Style src="project://database/Assets/09.UI/USS/Button_USS.uss?fileID=7433441132597879392&amp;guid=e14bf1679fc6d6f4dad2eae9b0c340ca&amp;type=3#Button_USS" />
+    <ui:VisualElement name="background" style="border-top-left-radius: 35px; border-top-right-radius: 35px; border-bottom-right-radius: 35px; border-bottom-left-radius: 35px; align-items: center; justify-content: space-between; background-color: rgb(255, 255, 255); width: 60%; height: 40%; min-height: 900px;">
         <ui:VisualElement name="top-container" class="top_bottom-container">
             <ui:Label tabindex="-1" text="설정" parse-escape-sequences="true" display-tooltip-when-elided="true" name="title-txt" class="text_middle-array_100" />
         </ui:VisualElement>
@@ -24,9 +25,9 @@
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="bottom-container" class="top_bottom-container">
-            <ui:VisualElement name="buttom-content" class="button-content">
-                <ui:Button text="닫기" parse-escape-sequences="true" display-tooltip-when-elided="true" name="closee-btn" class="text_middle-array_70" style="width: 50%; height: 70%;" />
+        <ui:VisualElement name="bottom-container" class="top_bottom-container" style="margin-top: 0; margin-bottom: 0;">
+            <ui:VisualElement name="buttom-content" class="button-content" style="flex-grow: 1; width: 100%;">
+                <ui:Button text="닫기" parse-escape-sequences="true" display-tooltip-when-elided="true" name="closee-btn" class="text_middle-array_70 base-btn" style="height: 100%; max-height: 100px; max-width: 300px; width: 50%;" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

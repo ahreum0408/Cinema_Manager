@@ -5,6 +5,8 @@
     width: 100%;
     margin-bottom: 20px;
     margin-top: 20px;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-container {
@@ -25,7 +27,6 @@
 }
 
 .button-content {
-    flex-grow: 1;
     align-items: center;
     justify-content: center;
 }

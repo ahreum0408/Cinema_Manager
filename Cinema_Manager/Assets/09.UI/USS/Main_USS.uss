@@ -1,6 +1,6 @@
 .top-container {
     height: 350px;
-    margin-top: 200px;
+    margin-top: 5%;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -93,8 +93,8 @@
 .button {
     -unity-font-definition: initial;
     -unity-font: url("project://database/Assets/10.Fonts/Rix%20X%20ladywatermelon%20Regular.ttf?fileID=12800000&guid=060932080ae844041bd53088467dfd1f&type=3#Rix X ladywatermelon Regular");
-    width: 140px;
-    height: 140px;
+    width: 42%;
+    height: 31%;
     margin-left: 30px;
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);

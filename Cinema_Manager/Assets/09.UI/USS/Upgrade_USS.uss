@@ -1,6 +1,6 @@
 .base-container {
     position: absolute;
-    height: 38%;
+    height: 950px;
     width: 100%;
     bottom: 0;
     background-color: rgba(255, 192, 84, 0.53);
@@ -53,6 +53,7 @@
     height: 30px;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 .upgrade-gauge {
