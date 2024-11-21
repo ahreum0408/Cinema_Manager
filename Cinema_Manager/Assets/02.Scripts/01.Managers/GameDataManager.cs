@@ -15,7 +15,6 @@ public class GameDataManager : MonoBehaviour
     private void Start()
     {
         _saveManager.LoadGame();
-        SoundManager.Instance.Play(AudioClips.BGM, 1, null, true);
     }
 
     private void OnEnable()
