@@ -8,7 +8,7 @@ public class Level {
 
     // 레벨의 경험치에 대한 최소 최댓값
     public int lowValue = 0;
-    public int highValue = 10;
+    public int highValue = 7; // 0레벨 일 때 값
 
     [SerializeField] private List<GameObject> openNewMapList;
 

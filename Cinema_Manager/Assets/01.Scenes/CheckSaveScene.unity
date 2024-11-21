@@ -500,7 +500,7 @@ MonoBehaviour:
     - {fileID: 1503813725}
   - levelNumder: 1
     lowValue: 0
-    highValue: 19
+    highValue: 21
     openNewMapList:
     - {fileID: 1629606282}
     - {fileID: 1742612786}
@@ -3118,6 +3118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9158910016069980358, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: _exp
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
