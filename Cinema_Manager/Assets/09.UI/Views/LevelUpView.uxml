@@ -3,9 +3,9 @@
     <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/09.UI/USS/Button_USS.uss?fileID=7433441132597879392&amp;guid=e14bf1679fc6d6f4dad2eae9b0c340ca&amp;type=3#Button_USS" />
     <ui:VisualElement name="background" style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.5); width: 100%;">
-        <ui:VisualElement name="container" style="width: 70%; height: 50%;">
-            <ui:VisualElement name="top-container" style="height: 15%;">
-                <ui:VisualElement name="title-content" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/04.Sprites/UI/LevelUp_.png?fileID=21300000&amp;guid=97586b656ae518645be79e1162533941&amp;type=3#LevelUp_&quot;);">
+        <ui:VisualElement name="container" style="width: 90%; height: 50%;">
+            <ui:VisualElement name="top-container" style="height: 15%; align-items: center;">
+                <ui:VisualElement name="title-content" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/04.Sprites/UI/LevelUp_.png?fileID=21300000&amp;guid=97586b656ae518645be79e1162533941&amp;type=3#LevelUp_&quot;); width: 90%;">
                     <ui:Label tabindex="-1" text="레벨업" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text_middle-array_90" style="font-size: 90px; bottom: 35px;" />
                 </ui:VisualElement>
             </ui:VisualElement>
