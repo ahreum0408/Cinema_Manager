@@ -68,7 +68,6 @@ public class BuyChecker : CheckerArea, IOpenTarget
             {
                 _minusCoin = 1; // 여기 나중에 수정 필요함
             }
-            Debug.Log(_minusCoin);
             _price -= _minusCoin; // chcker 돈 빼고
             CoinManager.Instance.Coin -= _minusCoin; // 실직적인 돈 빼고
             UpdatePriceText(_price);

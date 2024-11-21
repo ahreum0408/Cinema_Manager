@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UIToolkit;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 [Serializable]
@@ -11,6 +12,10 @@ public class EmployeeUpgradeView : UIView
     private Button _upgradeMovespeedBtn;
     private Button _upgradeVolumeBtn;
     private Button _upgradeEmploymentBtn;
+
+    private Label _moveSpeedUpgradePrice;
+    private Label _volumeUpgradePrice;
+    private Label _employmentUpgradePrice;
 
     private List<VisualElement> _moveSpeedGaugeList;
     private List<VisualElement> _volumeGaugeList;
@@ -49,6 +54,10 @@ public class EmployeeUpgradeView : UIView
         _upgradeMovespeedBtn = upgradeMoveSpeedContent.Q<Button>("upgrade-btn");
         _upgradeVolumeBtn = upgradeVolumeContent.Q<Button>("upgrade-btn");
         _upgradeEmploymentBtn = upgradeEmploymentContent.Q<Button>("upgrade-btn");
+
+        _moveSpeedUpgradePrice = upgradeMoveSpeedContent.Q<Label>("movespeed-upgrade-price");
+        _volumeUpgradePrice = upgradeVolumeContent.Q<Label>("volume-upgrade-price");
+        _employmentUpgradePrice = upgradeEmploymentContent.Q<Label>("employment-upgrade-price");
     }
 
     protected override void RegisterButtonCallbacks()
@@ -77,8 +86,18 @@ public class EmployeeUpgradeView : UIView
         {
             if (gauge.ClassListContains("off") && UpgradeManager.Instance.CanUpgrade(UpgradeTarget.employeeMoveSpeedStat))
             {
+                Debug.Log("in");
                 gauge.RemoveFromClassList("off");
                 _gameData.e_movespeedLevel++;
+
+                if (_gameData.e_movespeedLevel > 4) {
+                    _moveSpeedUpgradePrice.text = "Max";
+                }
+                else {
+                    int moveSpeedPrice = UpgradeManager.Instance.GetEmployeeUpgradePrice(_gameData.e_movespeedLevel);
+                    _moveSpeedUpgradePrice.text = moveSpeedPrice.ToString();
+                }
+
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.employeeMoveSpeedStat);
                 EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
@@ -93,6 +112,15 @@ public class EmployeeUpgradeView : UIView
             {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_volumeLevel++;
+
+                if (_gameData.e_volumeLevel > 4) {
+                    _volumeUpgradePrice.text = "Max";
+                }
+                else {
+                    int volumePrice = UpgradeManager.Instance.GetEmployeeUpgradePrice(_gameData.e_volumeLevel);
+                    _volumeUpgradePrice.text = volumePrice.ToString();
+                }
+
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.employeeVolumeVolumeStat);
                 EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
@@ -107,6 +135,15 @@ public class EmployeeUpgradeView : UIView
             {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_employmentLevel++;
+
+                if (_gameData.e_volumeLevel > 4){
+                    _employmentUpgradePrice.text = "Max";
+                }
+                else {
+                    int employmentPrice = UpgradeManager.Instance.GetEmployeeUpgradePrice(_gameData.e_employmentLevel);
+                    _employmentUpgradePrice.text = employmentPrice.ToString();
+                }
+
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.employeeAddStat);
                 EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
@@ -128,6 +165,8 @@ public class EmployeeUpgradeView : UIView
         }
         _gameData = data;
 
+        SettingPrice();
+
         // gaugeÄÑ±â
         for (int i = 4; i >= 0; i--)
         {
@@ -143,6 +182,31 @@ public class EmployeeUpgradeView : UIView
             {
                 _employmentGaugeList[i].RemoveFromClassList("off");
             }
+        }
+    }
+    private void SettingPrice() {
+        if (_gameData.e_movespeedLevel > 4) {
+            _moveSpeedUpgradePrice.text = "Max";
+        }
+        else {
+            int moveSpeedPrice = UpgradeManager.Instance.GetEmployeeUpgradePrice(_gameData.e_movespeedLevel);
+            _moveSpeedUpgradePrice.text = moveSpeedPrice.ToString();
+        }
+
+        if (_gameData.e_volumeLevel > 4) {
+            _volumeUpgradePrice.text = "Max";
+        }
+        else {
+            int volumePrice = UpgradeManager.Instance.GetEmployeeUpgradePrice(_gameData.e_volumeLevel);
+            _volumeUpgradePrice.text = volumePrice.ToString();
+        }
+
+        if (_gameData.e_volumeLevel > 4) {
+            _employmentUpgradePrice.text = "Max";
+        }
+        else {
+            int employmentPrice = UpgradeManager.Instance.GetEmployeeUpgradePrice(_gameData.e_employmentLevel);
+            _employmentUpgradePrice.text = employmentPrice.ToString();
         }
     }
 }

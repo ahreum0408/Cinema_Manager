@@ -12,6 +12,10 @@ public class PlayerUpgradeView : UIView
     private Button _upgradeVolumeBtn;
     private Button _upgradeSellingCostBtn;
 
+    private Label _moveSpeedUpgradePrice;
+    private Label _volumeUpgradePrice;
+    private Label _sellingCostPrice;
+
     private List<VisualElement> _moveSpeedGaugeList;
     private List<VisualElement> _volumeGaugeList;
     private List<VisualElement> _sellingCostGaugeList;
@@ -47,6 +51,10 @@ public class PlayerUpgradeView : UIView
         _upgradeMovespeedBtn = upgradeMoveSpeedContent.Q<Button>("upgrade-btn");
         _upgradeVolumeBtn = upgradeVolumeContent.Q<Button>("upgrade-btn");
         _upgradeSellingCostBtn = upgradeEmploymentContent.Q<Button>("upgrade-btn");
+
+        _moveSpeedUpgradePrice = upgradeMoveSpeedContent.Q<Label>("movespeed-upgrade-price");
+        _volumeUpgradePrice = upgradeVolumeContent.Q<Label>("volume-upgrade-price");
+        _sellingCostPrice = upgradeEmploymentContent.Q<Label>("sellingcost-upgrade-price");
     }
     protected override void RegisterButtonCallbacks()
     {
@@ -76,6 +84,15 @@ public class PlayerUpgradeView : UIView
             {
                 gauge.RemoveFromClassList("off");
                 _gameData.p_movespeedLevel++;
+
+                if (_gameData.p_movespeedLevel > 4) {
+                    _moveSpeedUpgradePrice.text = "Max";
+                }
+                else {
+                    int moveSpeedPrice = UpgradeManager.Instance.GetPlayerUpgradePrice(_gameData.p_movespeedLevel);
+                    _moveSpeedUpgradePrice.text = moveSpeedPrice.ToString();
+                }
+
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.playerMoveSpeedStat);
                 PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
@@ -90,6 +107,15 @@ public class PlayerUpgradeView : UIView
             {
                 gauge.RemoveFromClassList("off");
                 _gameData.p_volumeLevel++;
+
+                if (_gameData.p_volumeLevel > 4) {
+                    _volumeUpgradePrice.text = "Max";
+                }
+                else {
+                    int volumePrice = UpgradeManager.Instance.GetPlayerUpgradePrice(_gameData.p_volumeLevel);
+                    _volumeUpgradePrice.text = volumePrice.ToString();
+                }
+
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.playerVolumeStat);
                 PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
@@ -104,6 +130,15 @@ public class PlayerUpgradeView : UIView
             {
                 gauge.RemoveFromClassList("off");
                 _gameData.p_sellingcostLevel++;
+
+                if (_gameData.p_sellingcostLevel > 4) {
+                    _sellingCostPrice.text = "Max";
+                }
+                else {
+                    int sellingcostPrice = UpgradeManager.Instance.GetPlayerUpgradePrice(_gameData.p_sellingcostLevel);
+                    _sellingCostPrice.text = sellingcostPrice.ToString();
+                }
+
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.playerSellingcostStat);
                 PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
                 return;
@@ -125,6 +160,8 @@ public class PlayerUpgradeView : UIView
         }
         _gameData = data;
 
+        SettingPrice();
+
         // gaugeÄÑ±â
         for (int i = 4; i >= 0; i--)
         {
@@ -143,5 +180,30 @@ public class PlayerUpgradeView : UIView
         }
 
         //PlayerUpgradeEvents.GameDataUpdatEvent.Invoke(_gameData);
+    }
+    private void SettingPrice() {
+        if (_gameData.p_movespeedLevel > 4) {
+            _moveSpeedUpgradePrice.text = "Max";
+        }
+        else {
+            int moveSpeedPrice = UpgradeManager.Instance.GetPlayerUpgradePrice(_gameData.p_movespeedLevel);
+            _moveSpeedUpgradePrice.text = moveSpeedPrice.ToString();
+        }
+
+        if (_gameData.p_volumeLevel > 4) {
+            _volumeUpgradePrice.text = "Max";
+        }
+        else {
+            int volumePrice = UpgradeManager.Instance.GetPlayerUpgradePrice(_gameData.p_volumeLevel);
+            _volumeUpgradePrice.text = volumePrice.ToString();
+        }
+
+        if (_gameData.p_sellingcostLevel > 4) {
+            _sellingCostPrice.text = "Max";
+        }
+        else {
+            int sellingcostPrice = UpgradeManager.Instance.GetPlayerUpgradePrice(_gameData.p_sellingcostLevel);
+            _sellingCostPrice.text = sellingcostPrice.ToString();
+        }
     }
 }

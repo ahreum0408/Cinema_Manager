@@ -66,7 +66,7 @@ public class GameData
         //this.effect = true;
         this.haptic = true;
 
-        this.coin = 470; // 475
+        this.coin = 10000;//470; // 475
         this.gam = 0;
 
         this.level = new Level();

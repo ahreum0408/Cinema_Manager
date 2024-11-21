@@ -31,8 +31,9 @@ public class UpgradeManager : MonoSingleton<UpgradeManager>
 
     private PlayerController _player;
 
-    private void Awake()
+    protected override void Awake()
     {
+       base.Awake();
         _player = FindObjectOfType<PlayerController>();
     }
     private void OnEnable()
@@ -140,5 +141,12 @@ public class UpgradeManager : MonoSingleton<UpgradeManager>
                 break;
         }
         return minusCoin;
+    }
+
+    public int GetEmployeeUpgradePrice(int index) {
+        return employeeUpgradePrice[index];
+    }
+    public int GetPlayerUpgradePrice(int index) {
+        return playerUpgradePrice[index];
     }
 }
