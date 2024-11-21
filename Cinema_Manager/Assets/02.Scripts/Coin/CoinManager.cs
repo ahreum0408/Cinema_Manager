@@ -59,13 +59,6 @@ public class CoinManager : MonoSingleton<CoinManager>
 
         MainEvents.GameDataLoadEvent += GameDataLoad;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Coin += 10000;
-        }
-    }
 
     public string CalculatePriceText(int price)
     {

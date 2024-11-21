@@ -58,7 +58,7 @@ public class SaveManager : MonoBehaviour
             gameDataManager.GameData = NewData();
         }
         if (FileManager.LoadFromFile(_saveFilename, out var jsonString))
-        { // jsonString : 데이터 내용
+        { 
             gameDataManager.GameData.LoadJson(jsonString);
         }
         if (gameDataManager.GameData != null)
@@ -69,8 +69,10 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGameData()
     {
-        string jsonFile = gameDataManager.GameData.ToJson();
-        FileManager.WriteToFile(_saveFilename, jsonFile);
+        if (gameDataManager.GameData != null) {
+            string jsonFile = gameDataManager.GameData.ToJson();
+            FileManager.WriteToFile(_saveFilename, jsonFile);
+        }
     }
 
     #region handle

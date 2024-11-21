@@ -9,6 +9,7 @@ public class SettingView : UIView
     private Toggle _hapticToggle;
 
     private Button _closeBtn;
+    private Button _moneyBtn;
 
     public SettingView(VisualElement topElement) : base(topElement)
     {
@@ -34,6 +35,7 @@ public class SettingView : UIView
         _hapticToggle = topElement.Q<Toggle>("haptic-toggle");
 
         _closeBtn = topElement.Q<Button>("closee-btn");
+        _moneyBtn = topElement.Q<Button>("money-btn");
     }
 
     protected override void RegisterButtonCallbacks()
@@ -44,6 +46,7 @@ public class SettingView : UIView
         _hapticToggle.RegisterCallback<ChangeEvent<bool>>(ChangeHapticValue);
 
         _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
+        _moneyBtn.RegisterCallback<ClickEvent>(ClickMoneyBtn);
     }
     protected override void UnRegisterButtonCallbacks()
     {
@@ -52,6 +55,7 @@ public class SettingView : UIView
         _hapticToggle.UnregisterCallback<ChangeEvent<bool>>(ChangeHapticValue);
 
         _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
+        _moneyBtn.UnregisterCallback<ClickEvent>(ClickMoneyBtn);
     }
 
     #region registercallback
@@ -73,6 +77,9 @@ public class SettingView : UIView
     {
         MainEvents.MainViewShow?.Invoke();
         // 창 변경 됬다는거 uimanager한테 안알려줬음 주의 할 것
+    }
+    private void ClickMoneyBtn(ClickEvent evt) {
+        CoinManager.Instance.Coin += 1000;
     }
 
     #endregion

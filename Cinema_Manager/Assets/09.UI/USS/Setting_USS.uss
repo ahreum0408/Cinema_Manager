@@ -29,6 +29,9 @@
 .button-content {
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
+    flex-direction: row;
+    width: 100%;
 }
 
 .unity-base-field > VisualElement > #unity-checkmark {
