@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using VibrationUtility;
 using static AyunDefine;
 
 public class BuyChecker : CheckerArea, IOpenTarget
@@ -89,6 +90,7 @@ public class BuyChecker : CheckerArea, IOpenTarget
 
         // Sound
         SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
+        Vibration.Vibrate(700);
     }
     private void UpdatePriceText(int coin, bool load = false)
     {

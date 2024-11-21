@@ -1,4 +1,5 @@
 using UnityEngine;
+using VibrationUtility;
 using static AyunDefine;
 
 public class LodingView : MonoBehaviour
@@ -11,10 +12,15 @@ public class LodingView : MonoBehaviour
     private float _minDelayTime = 0.8f;
     private float _maxDelayTime = 1.2f;
 
+    private void Awake()
+    {
+        VibrationUtil.Init();
+        _delayTime = Random.Range(_minDelayTime, _maxDelayTime);
+        StartLoding();
+    }
+
     private void Start()
     {
-        StartLoding();
-        _delayTime = Random.Range(_minDelayTime, _maxDelayTime);
     }
 
     private void Update()

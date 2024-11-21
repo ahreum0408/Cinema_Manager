@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using VibrationUtility;
 using static AyunDefine;
 using static LevelEvents;
 
@@ -108,14 +109,14 @@ public class PlayerController : AgentController
     protected override void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
     {
         base.HandleTakeTakeable(takeable, type, spacingY, isFood);
-
+        Vibration.Vibrate(300);
         OnStackMaxed(IsStackMax);
     }
 
     protected override ITakeable HandleGiveTakeable()
     {
         OnStackMaxed(IsStackMax);
-
+        Vibration.Vibrate(300);
         return base.HandleGiveTakeable();
     }
 
