@@ -2899,6 +2899,16 @@ PrefabInstance:
       propertyPath: autoRandomSeed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2141319837228181097, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141319837228181097, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.07
+      objectReference: {fileID: 0}
     - target: {fileID: 2864442148465448634, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: _truckCameraTimeline
