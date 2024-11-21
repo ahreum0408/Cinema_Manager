@@ -36,6 +36,8 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
 
     private void SpawnRandomCustomer()
     {
+        spawnCoolTime = Random.Range(1.5f, 3f);
+
         int rand = Random.Range(0, 100);
         Customer selectedCustomer = basicCustomer;
 
