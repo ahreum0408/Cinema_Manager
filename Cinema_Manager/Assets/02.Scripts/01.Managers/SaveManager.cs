@@ -24,11 +24,15 @@ public class SaveManager : MonoBehaviour
     }
     void OnApplicationQuit()
     {
+        SaveGameData();
     }
     private void OnApplicationFocus(bool focus) {
         if (!focus) {
             SaveGameData();
         }
+    }
+    private void OnApplicationPause(bool pause) {
+        SaveGameData();
     }
 
     void OnEnable()
