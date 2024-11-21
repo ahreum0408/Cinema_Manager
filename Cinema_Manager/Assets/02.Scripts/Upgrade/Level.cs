@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class Level {
+public class Level
+{
     public int levelNumder = 0; // 현제 레벨
 
     // 레벨의 경험치에 대한 최소 최댓값
@@ -30,92 +31,115 @@ public class Level {
 
 
     // 내 타겟의 데이터의 종류 별로 분류
-    public void Init() {
-        foreach (GameObject area in openNewMapList) {
+    public void Init()
+    {
+        foreach (GameObject area in openNewMapList)
+        {
             Transform checkerPos = area.gameObject.transform.GetChild(0);
             Transform targetPos = area.gameObject.transform.GetChild(1);
-            if (checkerPos.TryGetComponent(out BuyChecker checker)) {
+            if (checkerPos.TryGetComponent(out BuyChecker checker))
+            {
                 _buyCheckersList.Add(checker);
             }
-            if (targetPos.TryGetComponent(out IOpenTarget target)) { // checker를 통하여 열 애들
-                switch (target.Type) {
+            if (targetPos.TryGetComponent(out IOpenTarget target))
+            { // checker를 통하여 열 애들
+                switch (target.Type)
+                {
                     case TargetType.DisplayStand:
-                        if (_targetDictionary.TryGetValue(target.Type, out int value)) {
+                        if (_targetDictionary.TryGetValue(target.Type, out int value))
+                        {
                             _targetDictionary[target.Type] = ++value;
                         }
-                        else {
+                        else
+                        {
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _standList.Add(target as DisplayStand);
                         break;
                     case TargetType.FoodContainer:
-                        if (_targetDictionary.TryGetValue(target.Type, out int value1)) {
+                        if (_targetDictionary.TryGetValue(target.Type, out int value1))
+                        {
                             _targetDictionary[target.Type] = value1;
                         }
-                        else {
+                        else
+                        {
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _foodTruckList.Add(target as FoodContainer);
                         break;
                     case TargetType.BoxContainer:
-                        if (_targetDictionary.TryGetValue(target.Type, out int value2)) {
+                        if (_targetDictionary.TryGetValue(target.Type, out int value2))
+                        {
                             _targetDictionary[target.Type] = value2;
                         }
-                        else {
+                        else
+                        {
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _boxTruckList.Add(target as BoxContainer);
                         break;
                     case TargetType.Table:
-                        if (_targetDictionary.TryGetValue(target.Type, out int value3)) {
+                        if (_targetDictionary.TryGetValue(target.Type, out int value3))
+                        {
                             _targetDictionary[target.Type] = ++value3;
                         }
-                        else {
+                        else
+                        {
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _tableList.Add(target as Table);
                         break;
                     case TargetType.ParcelService:
-                        if (_targetDictionary.TryGetValue(target.Type, out int value4)) {
+                        if (_targetDictionary.TryGetValue(target.Type, out int value4))
+                        {
                             _targetDictionary[target.Type] = value4;
                         }
-                        else {
+                        else
+                        {
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _parcelServiceList.Add(target as ParcelService);
                         break;
                     case TargetType.Room:
-                        if (_targetDictionary.TryGetValue(target.Type, out int value5)) {
+                        if (_targetDictionary.TryGetValue(target.Type, out int value5))
+                        {
                             _targetDictionary[target.Type] = value5;
                         }
-                        else {
+                        else
+                        {
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _roomList.Add(target as Room);
                         break;
                     case TargetType.Counter:
-                        if (_targetDictionary.TryGetValue(target.Type, out int value6)) {
+                        if (_targetDictionary.TryGetValue(target.Type, out int value6))
+                        {
                             _targetDictionary[target.Type] = value6;
                         }
-                        else {
+                        else
+                        {
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _counterList.Add(target as Counter);
                         break;
                     case TargetType.SignBoard:
-                        if (_targetDictionary.TryGetValue(target.Type, out int value7)) {
+                        if (_targetDictionary.TryGetValue(target.Type, out int value7))
+                        {
                             _targetDictionary[target.Type] = value7;
                         }
-                        else {
+                        else
+                        {
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _signBoardList.Add(target as SignBoard);
                         break;
                     case TargetType.CounterStaff:
-                        if (_targetDictionary.TryGetValue(target.Type, out int value8)) {
+                        if (_targetDictionary.TryGetValue(target.Type, out int value8))
+                        {
                             _targetDictionary[target.Type] = value8;
                         }
-                        else {
+                        else
+                        {
                             _targetDictionary.Add(target.Type, 1);
                         }
                         _counterStaffList.Add(target as CounterStaffController);
@@ -127,44 +151,57 @@ public class Level {
             }
         }
     }
-    public void SetCheckerActive(bool active, bool firstLoad = false) {
-        foreach (BuyChecker checker in _buyCheckersList) {
+    public void SetCheckerActive(bool active, bool firstLoad = false)
+    {
+        foreach (BuyChecker checker in _buyCheckersList)
+        {
             checker.ActiveObj(active, firstLoad);
         }
     } // 이거 아마 바꿔야할거임 LevelManager 참고
-    
+
     #region GetList
-    public Dictionary<TargetType, int> GetTargetDictionary() {
+    public Dictionary<TargetType, int> GetTargetDictionary()
+    {
         return _targetDictionary;
     }
-    public List<BuyChecker> GetCheckerList() {
+    public List<BuyChecker> GetCheckerList()
+    {
         return _buyCheckersList;
     }
-    public List<DisplayStand> GetStandList() {
+    public List<DisplayStand> GetStandList()
+    {
         return _standList;
     }
-    public List<FoodContainer> GetFoodTruckList() {
+    public List<FoodContainer> GetFoodTruckList()
+    {
         return _foodTruckList;
     }
-    public List<BoxContainer> GetBoxTruckList() {
+    public List<BoxContainer> GetBoxTruckList()
+    {
         return _boxTruckList;
     }
-    public List<Table> GetTableList() {
+    public List<Table> GetTableList()
+    {
         return _tableList;
     }
-    public List<ParcelService> GetParcelServiceList() {
+    public List<ParcelService> GetParcelServiceList()
+    {
         return _parcelServiceList;
     }
-    public List<Room> GetRoomList() {
+    public List<Room> GetRoomList()
+    {
         return _roomList;
     }
-    public List<Counter> GetCounterList() {
+    public List<Counter> GetCounterList()
+    {
         return _counterList;
     }
-    public List<SignBoard> GetSignBoardList() {
+    public List<SignBoard> GetSignBoardList()
+    {
         return _signBoardList;
     }
-    public List<CounterStaffController> GetCounterStaffList() {
+    public List<CounterStaffController> GetCounterStaffList()
+    {
         return _counterStaffList;
     }
     #endregion

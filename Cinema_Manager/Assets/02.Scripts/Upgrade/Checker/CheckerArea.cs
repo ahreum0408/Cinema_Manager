@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
-using TMPro;
 using UnityEngine;
 
-public abstract class CheckerArea : MonoBehaviour, IIneractionable {
+public abstract class CheckerArea : MonoBehaviour, IIneractionable
+{
     [HideInInspector] public GameObject GameObject => gameObject;
 
     [SerializeField] protected int _calculateWeight = 1; // 돈빠지는 속도
@@ -14,7 +12,8 @@ public abstract class CheckerArea : MonoBehaviour, IIneractionable {
     public abstract void EnterInteraction(AgentController agent);
     public abstract void ExitInteraction(AgentController agent);
 
-    protected void CalculateWeght() {
+    protected void CalculateWeght()
+    {
         _minusCoin = 1 * _calculateWeight;
     }
 }

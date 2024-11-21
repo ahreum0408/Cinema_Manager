@@ -1,10 +1,11 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace UIToolkit {
-    public class LevelUpView : UIView {
+namespace UIToolkit
+{
+    public class LevelUpView : UIView
+    {
         private VisualTreeAsset _addItemAsset;
 
         private StyleBackground _boxTruckIcon;
@@ -20,7 +21,8 @@ namespace UIToolkit {
         private Button _closeBtn;
         private Level CurrentLevel => _gameData.level;
 
-        public LevelUpView(VisualElement topElement) : base(topElement) {
+        public LevelUpView(VisualElement topElement) : base(topElement)
+        {
             _addItemAsset = Resources.Load<VisualTreeAsset>("UI/Templeate/AddItem");
 
             Sprite boxTruckIcon = Resources.Load<Sprite>("LevelUpView/box-truck");
@@ -42,61 +44,74 @@ namespace UIToolkit {
             LevelUpEvents.GameDataLoadEvent += GameDataLoad;
             LevelUpEvents.LevelUpUpdate += GameDataUpdate;
         }
-        public override void Dispose() {
+        public override void Dispose()
+        {
             base.Dispose();
             LevelUpEvents.GameDataLoadEvent -= GameDataLoad;
             LevelUpEvents.LevelUpUpdate -= GameDataUpdate;
         }
-        public override void Show() {
+        public override void Show()
+        {
             base.Show();
             MainEvents.ShowViewEvent?.Invoke();
         }
 
-        protected override void SetVisualElements() {
+        protected override void SetVisualElements()
+        {
             base.SetVisualElements();
 
             _mainContent = topElement.Q<VisualElement>("main-container");
-            _closeBtn = topElement.Q<Button>("close-btn");  
+            _closeBtn = topElement.Q<Button>("close-btn");
         }
-        protected override void RegisterButtonCallbacks() {
+        protected override void RegisterButtonCallbacks()
+        {
             base.RegisterButtonCallbacks();
             _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
         }
 
-        protected override void UnRegisterButtonCallbacks() {
+        protected override void UnRegisterButtonCallbacks()
+        {
             base.UnRegisterButtonCallbacks();
             _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
         }
 
-        private void ClickCloseBtn(ClickEvent evt) {
+        private void ClickCloseBtn(ClickEvent evt)
+        {
             MainEvents.MainViewShow?.Invoke();
             LevelUpEvents.CloseView?.Invoke();
         }
 
-        private void GameDataLoad(GameData data) {
-            if (data == null) {
+        private void GameDataLoad(GameData data)
+        {
+            if (data == null)
+            {
                 return;
             }
             _gameData = data;
         }
-        private void GameDataUpdate(GameData data) {
-            if (data == null) {
+        private void GameDataUpdate(GameData data)
+        {
+            if (data == null)
+            {
                 return;
             }
             _gameData = data;
             SettingLevelContent();
         }
-        private void SettingLevelContent() {
+        private void SettingLevelContent()
+        {
             _mainContent.Clear(); // 이전 값 비워주기
             Dictionary<TargetType, int> targetDictionary = CurrentLevel.GetTargetDictionary();
 
-            foreach (var item in targetDictionary) {
+            foreach (var item in targetDictionary)
+            {
                 var addPanel = _addItemAsset.Instantiate("addItem-container");
                 var icon = addPanel.Q<VisualElement>("icon");
                 var itemNameLebel = addPanel.Q<Label>("item-name");
                 var itemCountLebel = addPanel.Q<Label>("item-count");
 
-                switch (item.Key) {
+                switch (item.Key)
+                {
                     case TargetType.DisplayStand:
                         itemNameLebel.text = "진열대";
                         icon.style.backgroundImage = _standIcon;
@@ -115,7 +130,7 @@ namespace UIToolkit {
                     case TargetType.Table:
                         itemNameLebel.text = "테이블";
                         icon.style.backgroundImage = _tableIcon;
-                        itemCountLebel.text = $"{item.Value}개"; 
+                        itemCountLebel.text = $"{item.Value}개";
                         break;
                     case TargetType.ParcelService:
                         itemNameLebel.text = "택배서비스";
@@ -124,12 +139,12 @@ namespace UIToolkit {
                         break;
                     case TargetType.Room:
                         itemNameLebel.text = "구역";
-                        icon.style.backgroundImage =_newAreaIcon;
+                        icon.style.backgroundImage = _newAreaIcon;
                         itemCountLebel.text = $"{item.Value}개";
                         break;
                     case TargetType.CounterStaff:
                         itemNameLebel.text = "직원";
-                        icon.style.backgroundImage =_counterStaffIcon;
+                        icon.style.backgroundImage = _counterStaffIcon;
                         itemCountLebel.text = $"{item.Value}개";
                         break;
                     default:

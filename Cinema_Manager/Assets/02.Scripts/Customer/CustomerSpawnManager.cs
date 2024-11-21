@@ -43,12 +43,12 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
 
         if (rand < 60)
             selectedCustomer = basicCustomer;
-        else if(rand < 90)
+        else if (rand < 90)
         {
             if (isParcel)
                 selectedCustomer = parcelCustomer;
         }
-        else if(currentBadCustomer < maxBadCustomer)
+        else if (currentBadCustomer < maxBadCustomer)
         {
             if (rand < 95)
                 selectedCustomer = callCustomer;
@@ -69,8 +69,10 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
         spawnTime = Time.time;
     }
 
-    private void RandomCustomerSet(GameObject customer, CustomerSetType type, List<Material> matList) {
-        if (type == CustomerSetType.skin) {
+    private void RandomCustomerSet(GameObject customer, CustomerSetType type, List<Material> matList)
+    {
+        if (type == CustomerSetType.skin)
+        {
             int rand = Random.Range(0, matList.Count);
 
             SkinnedMeshRenderer renderer = customer.transform.Find("Visual")
@@ -84,7 +86,8 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
             renderer.material = matList[rand];
 
         }
-        else {
+        else
+        {
             SkinnedMeshRenderer renderer = customer.transform.Find("Visual")
                 .transform.Find("Male_" + type.ToString())
                 .GetComponent<SkinnedMeshRenderer>();
@@ -101,7 +104,8 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     // display 1개가 해금되면 max 2명씩 늘어나게하기
     public void SetMaxCustomer(PoolableType foodType)
     {
-        switch (foodType) {
+        switch (foodType)
+        {
             case PoolableType.TriangleKimbap:
             case PoolableType.CupRamen:
             case PoolableType.Snack:

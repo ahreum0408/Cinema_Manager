@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEngine;
 using static AyunDefine;
 
 public class ObjectManager : MonoSingleton<ObjectManager>
@@ -30,7 +26,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
     // 원하는 음식이 있는 진열대 찾기
     public DisplayStand FindDisplayStand(PoolableType foodType)
     {
-        foreach(var stand in displayStands)
+        foreach (var stand in displayStands)
         {
             if (stand.gameObject.activeInHierarchy &&
                 stand.GetPoolObjType() == foodType && !stand.IsFullLine)
@@ -41,7 +37,7 @@ public class ObjectManager : MonoSingleton<ObjectManager>
 
     public bool CanUseDisplayStand()
     {
-        foreach(var stand in displayStands)
+        foreach (var stand in displayStands)
         {
             if (stand.gameObject.activeInHierarchy && !stand.IsFullLine)
                 return true;

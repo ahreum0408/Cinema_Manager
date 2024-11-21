@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UIToolkit;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 [Serializable]
-public class TruckMachineUpgradeView : UIView {
+public class TruckMachineUpgradeView : UIView
+{
     private Button _closeBtn;
 
     private Button _upgradeDeliverySpeedBtn;
@@ -16,19 +16,23 @@ public class TruckMachineUpgradeView : UIView {
     private List<VisualElement> _volumeGaugeList;
     private List<VisualElement> _storageGaugeList;
 
-    public TruckMachineUpgradeView(VisualElement topElement) : base(topElement) {
+    public TruckMachineUpgradeView(VisualElement topElement) : base(topElement)
+    {
         TruckMachineUpgradeEvents.GameDataLoadEvent += GameDataLoad;
     }
-    public override void Dispose() {
+    public override void Dispose()
+    {
         base.Dispose();
         TruckMachineUpgradeEvents.GameDataLoadEvent -= GameDataLoad;
     }
-    public override void Show() {
+    public override void Show()
+    {
         base.Show();
         MainEvents.ShowViewEvent?.Invoke();
     }
 
-    protected override void SetVisualElements() {
+    protected override void SetVisualElements()
+    {
         base.SetVisualElements();
 
         _closeBtn = topElement.Q<Button>("close-btn");
@@ -37,16 +41,17 @@ public class TruckMachineUpgradeView : UIView {
         var upgradeVolumeContent = topElement.Q<VisualElement>("upgrade-volume-content");
         var upgradeStorageContent = topElement.Q<VisualElement>("upgrade-storage-content");
 
-        _deliverySpeedGaugeList = upgradeProductionSpeedContent.Query<VisualElement>(name : "gauge").ToList();
-        _volumeGaugeList = upgradeVolumeContent.Query<VisualElement>(name : "gauge").ToList();
-        _storageGaugeList = upgradeStorageContent.Query<VisualElement>(name : "gauge").ToList();
+        _deliverySpeedGaugeList = upgradeProductionSpeedContent.Query<VisualElement>(name: "gauge").ToList();
+        _volumeGaugeList = upgradeVolumeContent.Query<VisualElement>(name: "gauge").ToList();
+        _storageGaugeList = upgradeStorageContent.Query<VisualElement>(name: "gauge").ToList();
 
         _upgradeDeliverySpeedBtn = upgradeProductionSpeedContent.Q<Button>("upgrade-btn");
         _upgradeVolumeBtn = upgradeVolumeContent.Q<Button>("upgrade-btn");
         _upgradeStorageBtn = upgradeStorageContent.Q<Button>("upgrade-btn");
     }
 
-    protected override void RegisterButtonCallbacks() {
+    protected override void RegisterButtonCallbacks()
+    {
         base.RegisterButtonCallbacks();
 
         _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
@@ -55,7 +60,8 @@ public class TruckMachineUpgradeView : UIView {
         _upgradeVolumeBtn.RegisterCallback<ClickEvent>(ClickVolumeBtn);
         _upgradeStorageBtn.RegisterCallback<ClickEvent>(ClickStorageBtn);
     }
-    protected override void UnRegisterButtonCallbacks() {
+    protected override void UnRegisterButtonCallbacks()
+    {
         base.UnRegisterButtonCallbacks();
 
         _upgradeDeliverySpeedBtn.UnregisterCallback<ClickEvent>(ClickProductionSpeedBtn);
@@ -64,9 +70,12 @@ public class TruckMachineUpgradeView : UIView {
     }
 
     #region registercallback
-    private void ClickProductionSpeedBtn(ClickEvent evt) {
-        foreach(VisualElement gauge in _deliverySpeedGaugeList) {
-            if (gauge.ClassListContains("off")) {
+    private void ClickProductionSpeedBtn(ClickEvent evt)
+    {
+        foreach (VisualElement gauge in _deliverySpeedGaugeList)
+        {
+            if (gauge.ClassListContains("off"))
+            {
                 gauge.RemoveFromClassList("off");
                 _gameData.mt_productionspeedLevel++;
                 TruckMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
@@ -74,9 +83,12 @@ public class TruckMachineUpgradeView : UIView {
             }
         }
     }
-    private void ClickVolumeBtn(ClickEvent evt) {
-        foreach (VisualElement gauge in _volumeGaugeList) {
-            if (gauge.ClassListContains("off")) {
+    private void ClickVolumeBtn(ClickEvent evt)
+    {
+        foreach (VisualElement gauge in _volumeGaugeList)
+        {
+            if (gauge.ClassListContains("off"))
+            {
                 gauge.RemoveFromClassList("off");
                 _gameData.e_volumeLevel++;
                 TruckMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
@@ -84,9 +96,12 @@ public class TruckMachineUpgradeView : UIView {
             }
         }
     }
-    private void ClickStorageBtn(ClickEvent evt) {
-        foreach (VisualElement gauge in _storageGaugeList) {
-            if (gauge.ClassListContains("off")) {
+    private void ClickStorageBtn(ClickEvent evt)
+    {
+        foreach (VisualElement gauge in _storageGaugeList)
+        {
+            if (gauge.ClassListContains("off"))
+            {
                 gauge.RemoveFromClassList("off");
                 _gameData.mt_storageLevel++;
                 TruckMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
@@ -95,26 +110,33 @@ public class TruckMachineUpgradeView : UIView {
         }
     }
 
-    private void ClickCloseBtn(ClickEvent evt) {
+    private void ClickCloseBtn(ClickEvent evt)
+    {
         MainEvents.MainViewShow?.Invoke();
     }
     #endregion
 
-    private void GameDataLoad(GameData data) {
-        if (data == null) {
+    private void GameDataLoad(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
         _gameData = data;
 
         // gaugeÄÑ±â
-        for (int i = 4; i >= 0; i--) {
-            if (_gameData.mt_productionspeedLevel > i) {
+        for (int i = 4; i >= 0; i--)
+        {
+            if (_gameData.mt_productionspeedLevel > i)
+            {
                 _deliverySpeedGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.mt_volumeLevel > i) {
+            if (_gameData.mt_volumeLevel > i)
+            {
                 _volumeGaugeList[i].RemoveFromClassList("off");
             }
-            if (_gameData.mt_storageLevel > i) {
+            if (_gameData.mt_storageLevel > i)
+            {
                 _storageGaugeList[i].RemoveFromClassList("off");
             }
         }

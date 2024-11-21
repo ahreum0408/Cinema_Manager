@@ -1,9 +1,9 @@
-using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using static AyunDefine;
 
-public class TrashBin : MonoBehaviour, IIneractionable {
+public class TrashBin : MonoBehaviour, IIneractionable
+{
     [HideInInspector] public GameObject GameObject => gameObject;
 
     public Transform staffPoint;

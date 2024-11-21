@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-internal class MoveContainerState : AgentState
+﻿internal class MoveContainerState : AgentState
 {
     public MoveContainerState(StaffController agent) : base(agent)
     {
@@ -12,7 +10,7 @@ internal class MoveContainerState : AgentState
 
     public override void Update()
     {
-        if(CheckFoodContainer())
+        if (CheckFoodContainer())
             agent.ChangeState(new MoveToTargetState
                 (agent, agent.displayStand.staffPoint.transform.position, new StackCheckState(agent)));
     }
@@ -23,7 +21,7 @@ internal class MoveContainerState : AgentState
 
     private bool CheckFoodContainer()
     {
-        if((agent.foodContainer.currentFoodCnt == 0 && agent.IsStacked) || agent.StackCompo.IsStackMax)
+        if ((agent.foodContainer.currentFoodCnt == 0 && agent.IsStacked) || agent.StackCompo.IsStackMax)
         {
             agent.foodContainer = null;
             return true;

@@ -1,9 +1,9 @@
 using UIToolkit;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static AyunDefine;
 
-public class MainView : UIView {
+public class MainView : UIView
+{
     private Button _settingBtn;
     private Button _storeBtn;
 
@@ -13,7 +13,8 @@ public class MainView : UIView {
     private ProgressBar _levelBar;
     private Label _levelTxt;
 
-    public MainView(VisualElement topElement) : base(topElement) {
+    public MainView(VisualElement topElement) : base(topElement)
+    {
         MainEvents.GameDataLoadEvent += GameDataLoad;
 
         MainEvents.ChangeCoinEvent += UpdateCoinTxt;
@@ -22,7 +23,8 @@ public class MainView : UIView {
         MainEvents.GetExpEvent += UpdateExp;
         MainEvents.UpgradeLevelEvent += UpdateLevel;
     }
-    public override void Dispose() {
+    public override void Dispose()
+    {
         base.Dispose();
         MainEvents.GameDataLoadEvent -= GameDataLoad;
 
@@ -32,7 +34,8 @@ public class MainView : UIView {
         MainEvents.GetExpEvent -= UpdateExp;
         MainEvents.UpgradeLevelEvent -= UpdateLevel;
     }
-    protected override void SetVisualElements() {
+    protected override void SetVisualElements()
+    {
         base.SetVisualElements();
 
         _settingBtn = topElement.Q<Button>("setting-btn");
@@ -44,32 +47,37 @@ public class MainView : UIView {
         _levelBar = topElement.Q<ProgressBar>("gaugebar");
         _levelTxt = topElement.Q<Label>("level-txt");
     }
-    protected override void RegisterButtonCallbacks() {
+    protected override void RegisterButtonCallbacks()
+    {
         base.RegisterButtonCallbacks();
 
         _settingBtn.RegisterCallback<ClickEvent>(ClickSettingBtn);
         _storeBtn.RegisterCallback<ClickEvent>(ClickStoreBtn);
     }
-    protected override void UnRegisterButtonCallbacks() {
+    protected override void UnRegisterButtonCallbacks()
+    {
         base.UnRegisterButtonCallbacks();
 
         _settingBtn.UnregisterCallback<ClickEvent>(ClickSettingBtn);
         _settingBtn.UnregisterCallback<ClickEvent>(ClickStoreBtn);
     }
 
-    public override void Show() {
+    public override void Show()
+    {
         base.Show();
         MainEvents.ShowViewEvent?.Invoke();
     }
 
     #region level-bar
-    private void UpdateExp(int exp) {
+    private void UpdateExp(int exp)
+    {
         _levelBar.value = exp;
         _levelBar.title = $"{exp} / {_gameData.level.highValue}";
         _gameData.exp = exp;
         MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void UpdateLevel(Level data, int index) {
+    private void UpdateLevel(Level data, int index)
+    {
         _levelTxt.text = data.levelNumder.ToString();
         SetLevelBarMinMaxValue(data);
         _gameData.level = data;
@@ -77,22 +85,27 @@ public class MainView : UIView {
         UpdateExp(_gameData.exp);
         MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void SetLevelBarMinMaxValue(Level data) {
+    private void SetLevelBarMinMaxValue(Level data)
+    {
         _levelBar.lowValue = data.lowValue;
         _levelBar.highValue = data.highValue;
     }
     #endregion
 
     #region Handle
-    private void ClickSettingBtn(ClickEvent evt) {
+    private void ClickSettingBtn(ClickEvent evt)
+    {
         MainEvents.SettingViewShow?.Invoke();
     }
-    private void ClickStoreBtn(ClickEvent evt) {
+    private void ClickStoreBtn(ClickEvent evt)
+    {
         Debug.Log("»óÁ¡Ã¢ ÄÑÁü");
     }
     #endregion
-    private void GameDataLoad(GameData data) {
-        if (data == null) {
+    private void GameDataLoad(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
         _gameData = data;
@@ -108,10 +121,12 @@ public class MainView : UIView {
 
         //SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void UpdateCoinTxt(string coin) {
+    private void UpdateCoinTxt(string coin)
+    {
         _coinTxt.text = coin;
     }
-    private void UpdateGamTxt(string gam) {
+    private void UpdateGamTxt(string gam)
+    {
         _gamTxt.text = gam;
     }
 }

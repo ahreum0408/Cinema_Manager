@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 
@@ -38,22 +37,22 @@ public class Point : MonoBehaviour, IIneractionable
     private IEnumerator TakeFoodRoutine(Customer customer, float spacingY, bool isFood)
     {
         ITakeable food = customer.OnGiveTakeable?.Invoke();
-        
+
         Vector3 foodPos = Vector3.zero;
         foodPos.z = spacingY * _currentFoodCnt;
         Vector3 rotation = isFood == false ? new Vector3(-90, 0, 0) : Vector3.zero;
 
         food.Take(holder.transform, foodPos, rotation);
         foodStack.Push(food);
-        
+
         yield return new WaitForSeconds(1f);
     }
 
     public void EatFood()
     {
-        if(foodStack != null)
+        if (foodStack != null)
         {
-            PoolManager.Instance.Push(currentFoodType.ToString(), holder.GetChild(holder.childCount -1).gameObject);
+            PoolManager.Instance.Push(currentFoodType.ToString(), holder.GetChild(holder.childCount - 1).gameObject);
 
             foodStack.Pop();
         }
@@ -63,7 +62,7 @@ public class Point : MonoBehaviour, IIneractionable
 
     public void ChangeDirtyState(bool isDirty) => IsDirty = isDirty;
 
-    public void EnterInteraction(AgentController agent) {}
+    public void EnterInteraction(AgentController agent) { }
 
-    public void ExitInteraction(AgentController agent) {}
+    public void ExitInteraction(AgentController agent) { }
 }

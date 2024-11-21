@@ -1,6 +1,4 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CounterStaffController : AgentController, IOpenTarget
@@ -13,14 +11,16 @@ public class CounterStaffController : AgentController, IOpenTarget
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
     public TargetType Type { get => _targetType; set => _targetType = value; }
 
-    public void ActiveObj(bool active, bool on = false) {
+    public void ActiveObj(bool active, bool on = false)
+    {
         _isOpen = active;
         gameObject.SetActive(active);
         ScaleSetting();
         LevelEvents.ChangeCounterStaffActiveEvent?.Invoke(this, active);
     }
 
-    public void ScaleSetting() {
+    public void ScaleSetting()
+    {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;

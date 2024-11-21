@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static AyunDefine;
 
-public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget 
+public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget
 {
     public event Action OnScaleSettingEndEvent;
 
@@ -121,10 +121,11 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget
 
     public PoolableType GetPoolObjType() => _poolObjType;
 
-    public void ActiveObj(bool active, bool on = false) {
+    public void ActiveObj(bool active, bool on = false)
+    {
         _isOpen = active;
         gameObject.SetActive(active);
-       LevelEvents.ChangeFoodTruckActiveEvent?.Invoke(this, active);
+        LevelEvents.ChangeFoodTruckActiveEvent?.Invoke(this, active);
         ScaleSetting();
     }
 

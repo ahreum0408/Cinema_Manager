@@ -1,15 +1,19 @@
-using System;
 using UnityEngine;
 
-public class LevelController : MonoBehaviour {
-    private void OnEnable() {
+public class LevelController : MonoBehaviour
+{
+    private void OnEnable()
+    {
         SaveManager.GameDataLoadedEvent += GameDataLoad;
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         SaveManager.GameDataLoadedEvent -= GameDataLoad;
     }
-    private void GameDataLoad(GameData data) {
-        if (data == null) {
+    private void GameDataLoad(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
 

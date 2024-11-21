@@ -1,6 +1,4 @@
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -34,7 +32,8 @@ public class SignBoard : MonoBehaviour, IOpenTarget
         _moneyDummy.AddMoneyObject(36);
     }
 
-    public void ActiveObj(bool active, bool on = false) {
+    public void ActiveObj(bool active, bool on = false)
+    {
         // Timeline
         if (true == active && false == gameObject.activeSelf)
         {
@@ -52,7 +51,8 @@ public class SignBoard : MonoBehaviour, IOpenTarget
         ScaleSetting();
     }
 
-    public void ScaleSetting() {
+    public void ScaleSetting()
+    {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;

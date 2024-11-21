@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using UnityEngine.AI;
-using static AyunDefine;
 
 public class StaffController : AgentController
 {

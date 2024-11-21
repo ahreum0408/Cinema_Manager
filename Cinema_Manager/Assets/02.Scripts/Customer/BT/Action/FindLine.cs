@@ -1,5 +1,4 @@
 using BehaviorDesigner.Runtime.Tasks;
-using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -35,7 +34,7 @@ public class FindLine : Action
             ObjectManager.Instance.counter.AddCustomer(customer.Value);
             _destination = ObjectManager.Instance.counter.checkPoint.position;
         }
-        
+
         _agent.SetDestination(_destination);
         _isStarted = true;
     }

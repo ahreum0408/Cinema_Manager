@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-internal class CounterState : AgentState
+﻿internal class CounterState : AgentState
 {
     public CounterState(StaffController agent) : base(agent)
     {

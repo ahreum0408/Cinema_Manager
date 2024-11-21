@@ -1,7 +1,4 @@
 using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class CheckSeat : Conditional
 {
@@ -9,7 +6,7 @@ public class CheckSeat : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if(customer.Value.customerData.isSeat && ObjectManager.Instance.CanUseTable() != null)
+        if (customer.Value.customerData.isSeat && ObjectManager.Instance.CanUseTable() != null)
         {
             customer.Value.currentChair = ObjectManager.Instance.CanUseTable().CanSeatChair();
             customer.Value.currentChair.ChangeUsingState(true);

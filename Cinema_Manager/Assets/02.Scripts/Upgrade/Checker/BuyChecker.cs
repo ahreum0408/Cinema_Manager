@@ -4,22 +4,26 @@ using TMPro;
 using UnityEngine;
 using static AyunDefine;
 
-public class BuyChecker : CheckerArea, IOpenTarget {
+public class BuyChecker : CheckerArea, IOpenTarget
+{
     [SerializeField] private TextMeshPro _priceTxt;
     [SerializeField] public GameObject _openTarget;
     [SerializeField] private int _exp;
     [SerializeField] private TargetType _targetType;
 
     public int Exp => _exp;
-    public int Price { 
-        get { 
-            return _price; 
+    public int Price
+    {
+        get
+        {
+            return _price;
         }
 
-        set { 
+        set
+        {
             _price = value;
             UpdatePriceText(_price);
-        } 
+        }
     }
     public GameObject OpenGTarget => _openTarget;
     public IOpenTarget OpenITarget => _openTarget.GetComponent<IOpenTarget>();
@@ -29,44 +33,54 @@ public class BuyChecker : CheckerArea, IOpenTarget {
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
     public TargetType Type { get => _targetType; set => _targetType = value; }
 
-    private void Awake() {
+    private void Awake()
+    {
         CalculateWeght();
     }
-    private void Start() {
+    private void Start()
+    {
         UpdatePriceText(_price, true);
     }
 
-    public override void EnterInteraction(AgentController agent) {
+    public override void EnterInteraction(AgentController agent)
+    {
         _isCalaulate = true;
         StartCoroutine(CalculateCoin());
     }
-    public override void ExitInteraction(AgentController agent) {
+    public override void ExitInteraction(AgentController agent)
+    {
         _isCalaulate = false;
         LevelEvents.ChangePriceEvent?.Invoke(this, _price);
         StopCoroutine(CalculateCoin());
     }
 
-    protected IEnumerator CalculateCoin() {
-        while (_isCalaulate) {
+    protected IEnumerator CalculateCoin()
+    {
+        while (_isCalaulate)
+        {
             WaitForSeconds waitTime = new WaitForSeconds(0.05f);
-            if (currentCoin <= 0) {
+            if (currentCoin <= 0)
+            {
                 _isCalaulate = false;
                 break;
             }
-            if (_price - _minusCoin < 0) {
+            if (_price - _minusCoin < 0)
+            {
                 _minusCoin = 1; // 여기 나중에 수정 필요함
             }
             _price -= _minusCoin;
             CoinManager.Instance.Coin -= _minusCoin;
             UpdatePriceText(_price);
-            if (_price <= 0) {
+            if (_price <= 0)
+            {
                 EndCal();
                 break;
             }
             yield return waitTime;
         }
     }
-    private void EndCal() {
+    private void EndCal()
+    {
         _isCalaulate = false;
         LevelEvents.ChangePriceEvent?.Invoke(this, _price);
         LevelManager.Instance.GetExp(_exp);
@@ -76,19 +90,23 @@ public class BuyChecker : CheckerArea, IOpenTarget {
         // Sound
         SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
     }
-    private void UpdatePriceText(int coin, bool load = false) {
+    private void UpdatePriceText(int coin, bool load = false)
+    {
         _priceTxt.text = CoinManager.Instance.CalculatePriceText(coin);
-        if (!load) {
+        if (!load)
+        {
             LevelEvents.PriceChangingEvent?.Invoke(transform);
         }
 
         // Sound
         SoundManager.Instance.Play(AudioClips.Stack, 1);
     }
-    public void ActiveObj(bool active, bool firstLoad = false) {
+    public void ActiveObj(bool active, bool firstLoad = false)
+    {
         _isOpen = active;
         gameObject.SetActive(active);
-        if (!firstLoad) {
+        if (!firstLoad)
+        {
             ScaleSetting();
         }
         LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);

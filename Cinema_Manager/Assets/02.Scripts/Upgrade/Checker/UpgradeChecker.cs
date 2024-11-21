@@ -2,14 +2,18 @@ using UIToolkit;
 using UnityEngine;
 
 
-public class UpgradeChecker : CheckerArea {
+public class UpgradeChecker : CheckerArea
+{
     public UpgradeViewType viewType;
 
-    public override void EnterInteraction(AgentController agent) {
+    public override void EnterInteraction(AgentController agent)
+    {
         FindViewRegister(viewType);
     }
-    private void FindViewRegister(UpgradeViewType type) {
-        switch (type) {
+    private void FindViewRegister(UpgradeViewType type)
+    {
+        switch (type)
+        {
             case UpgradeViewType.PlayerUpgradeView:
                 MainEvents.PlayerUpgradeViewShow?.Invoke();
                 break;
@@ -28,8 +32,8 @@ public class UpgradeChecker : CheckerArea {
         }
     }
 
-    public override void ExitInteraction(AgentController agent) {
+    public override void ExitInteraction(AgentController agent)
+    {
         MainEvents.CloseCurrentEvent?.Invoke();
     }
 }
-    

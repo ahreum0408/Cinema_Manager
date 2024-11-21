@@ -1,7 +1,4 @@
 using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class CheckCustomerType : Conditional
 {
@@ -9,9 +6,9 @@ public class CheckCustomerType : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if(customer.Value.CurrentCustomerType == CustomerType.Basic) 
+        if (customer.Value.CurrentCustomerType == CustomerType.Basic)
             return TaskStatus.Success;
-        
+
         return TaskStatus.Failure;
     }
 }

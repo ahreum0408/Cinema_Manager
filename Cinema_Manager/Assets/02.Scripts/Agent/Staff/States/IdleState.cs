@@ -43,9 +43,9 @@ public class IdleState : AgentState
     {
     }
 
-    private Table CheckTable() 
-    { 
-        foreach(Table table in ObjectManager.Instance.tables)
+    private Table CheckTable()
+    {
+        foreach (Table table in ObjectManager.Instance.tables)
         {
             Point point = table.FindDirtyChair();
             if (point != null && !table.IsWorking)
@@ -54,15 +54,15 @@ public class IdleState : AgentState
                 return table;
             }
         }
-        return null; 
+        return null;
     }
 
-    private DisplayStand CheckDisplay() 
+    private DisplayStand CheckDisplay()
     {
         foreach (DisplayStand displayStand in ObjectManager.Instance.displayStands)
         {
             if (displayStand.gameObject.activeInHierarchy && displayStand.CurrentLine > 0
-                && !displayStand.IsWorking && 
+                && !displayStand.IsWorking &&
                 agent.StackCompo.MaxStackCount <= displayStand.StackMaxCnt - displayStand.GetFoodStack())
             {
                 displayStand.IsWorking = true;
@@ -74,9 +74,9 @@ public class IdleState : AgentState
 
     private FoodContainer FindFoodContainer()
     {
-        foreach(FoodContainer foodContainer in ObjectManager.Instance.foodContainers)
+        foreach (FoodContainer foodContainer in ObjectManager.Instance.foodContainers)
         {
-            if(foodContainer.gameObject.activeInHierarchy && foodContainer.GetPoolObjType() == agent.displayStand.GetPoolObjType())
+            if (foodContainer.gameObject.activeInHierarchy && foodContainer.GetPoolObjType() == agent.displayStand.GetPoolObjType())
                 return foodContainer;
         }
         return null;
@@ -97,7 +97,7 @@ public class IdleState : AgentState
     {
         ParcelService parcelService = ObjectManager.Instance.parcelService;
 
-        if (!ObjectManager.Instance.parcelService.gameObject.activeInHierarchy || parcelService.IsWorking) 
+        if (!ObjectManager.Instance.parcelService.gameObject.activeInHierarchy || parcelService.IsWorking)
             return false;
 
         parcelService.IsWorking = true;

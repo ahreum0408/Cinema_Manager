@@ -2,12 +2,10 @@ using BehaviorDesigner.Runtime;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
-
-using static AyunDefine;
 using UnityEngine.UI;
-using static BehaviorDesigner.Runtime.BehaviorManager;
+using static AyunDefine;
 using BehaviorTree = BehaviorDesigner.Runtime.BehaviorTree;
+using Random = UnityEngine.Random;
 
 public enum CustomerType
 {
@@ -127,8 +125,8 @@ public class Customer : AgentController
 
     public bool CanSetDestination()
     {
-        return !Agent.isPathStale && 
-                Vector3.Distance(Agent.destination, transform.position) < Agent.stoppingDistance + 0.1f && 
+        return !Agent.isPathStale &&
+                Vector3.Distance(Agent.destination, transform.position) < Agent.stoppingDistance + 0.1f &&
                 Agent.velocity.sqrMagnitude < 0.01f;
     }
 
@@ -160,14 +158,14 @@ public class Customer : AgentController
         else
             customerData.isSeat = true;
     }
-    
+
     // ¼Õ´Ô Å¸ÀÔ
     private void SetCustomerType()
     {
         if (CurrentCustomerType == CustomerType.Basic || CurrentCustomerType == CustomerType.Parcel)
             return;
 
-        if(CurrentCustomerType == CustomerType.Sleep)
+        if (CurrentCustomerType == CustomerType.Sleep)
             customerData.isSeat = true;
 
         customerData.isBad = true;

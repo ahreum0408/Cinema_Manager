@@ -11,7 +11,7 @@ public class BoxTruck : MonoBehaviour
     [SerializeField] private Transform _visualTrm;
     [SerializeField] private Transform _startTrm;
     [SerializeField] private Transform _endTrm;
-    public Transform EndTrm =>_endTrm;
+    public Transform EndTrm => _endTrm;
     [SerializeField] private float _moveTime = 3;
 
     private bool _isWithBox = false;

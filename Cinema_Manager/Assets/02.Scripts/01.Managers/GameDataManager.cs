@@ -1,22 +1,25 @@
-using System;
 using UnityEngine;
 using static AyunDefine;
 
-public class GameDataManager : MonoBehaviour {
+public class GameDataManager : MonoBehaviour
+{
     [SerializeField] private GameData _gameData;
     public GameData GameData { set => _gameData = value; get => _gameData; }
 
     private SaveManager _saveManager;
 
-    private void Awake() {
+    private void Awake()
+    {
         _saveManager = GetComponent<SaveManager>();
     }
-    private void Start() {
+    private void Start()
+    {
         _saveManager.LoadGame();
         SoundManager.Instance.Play(AudioClips.BGM, 1, null, true);
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         LevelEvents.GameDataUpdatEvent += LevelDataUpdate;
         MainEvents.GameDataUpdatEvent += MainDataUpdate;
         SettingEvents.GameDataUpdatEvent += SettingDataUpdate;
@@ -25,7 +28,8 @@ public class GameDataManager : MonoBehaviour {
         PackageMachineUpgradeEvents.GameDataUpdatEvent += PackageMachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent += EmpolyeeDataUpdate;
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         LevelEvents.GameDataUpdatEvent -= LevelDataUpdate;
         MainEvents.GameDataUpdatEvent -= MainDataUpdate;
         SettingEvents.GameDataUpdatEvent -= SettingDataUpdate;
@@ -34,8 +38,10 @@ public class GameDataManager : MonoBehaviour {
         PackageMachineUpgradeEvents.GameDataUpdatEvent -= PackageMachineDataUpdate;
         EmployeeUpgradeEvents.GameDataUpdatEvent -= EmpolyeeDataUpdate;
     }
-    private void LevelDataUpdate(GameData data) {
-        if (data == null) {
+    private void LevelDataUpdate(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
 
@@ -51,15 +57,17 @@ public class GameDataManager : MonoBehaviour {
         _gameData.allBoxTruckOnOffList = data.allBoxTruckOnOffList;
 
         _gameData.allTableOnOffList = data.allTableOnOffList;
-        
+
         _gameData.allParcelServiceOnOffList = data.allParcelServiceOnOffList;
 
         _gameData.allRoomOnOffList = data.allRoomOnOffList;
         _gameData.allCounterOnOffList = data.allCounterOnOffList;
         _gameData.allSignBoardOnOffList = data.allSignBoardOnOffList;
     }
-    private void MainDataUpdate(GameData data) {
-        if (data == null) {
+    private void MainDataUpdate(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
 
@@ -68,8 +76,10 @@ public class GameDataManager : MonoBehaviour {
         _gameData.exp = data.exp;
         _gameData.level = data.level;
     }
-    private void SettingDataUpdate(GameData data) {
-        if (data == null) { 
+    private void SettingDataUpdate(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
 
@@ -77,8 +87,10 @@ public class GameDataManager : MonoBehaviour {
         //_gameData.effect = data.effect;
         _gameData.haptic = data.haptic;
     }
-    private void PlayerDataUpdate(GameData data) {
-        if (data == null) {
+    private void PlayerDataUpdate(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
 
@@ -88,8 +100,10 @@ public class GameDataManager : MonoBehaviour {
 
         UpgradeEvents.ChangePlayerDataEvent?.Invoke(_gameData);
     }
-    private void TruckMachineDataUpdate(GameData data) {
-        if(data == null) {
+    private void TruckMachineDataUpdate(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
 
@@ -97,16 +111,20 @@ public class GameDataManager : MonoBehaviour {
         _gameData.mt_volumeLevel = data.mt_volumeLevel;
         _gameData.mt_storageLevel = data.mt_storageLevel;
     }
-    private void PackageMachineDataUpdate(GameData data) {
-        if (data == null) {
+    private void PackageMachineDataUpdate(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
 
         _gameData.mp_packingspeedLevel = data.mp_packingspeedLevel;
         _gameData.mp_volumeLevel = data.mp_volumeLevel;
     }
-    private void EmpolyeeDataUpdate(GameData data) {
-        if (data == null) {
+    private void EmpolyeeDataUpdate(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
 

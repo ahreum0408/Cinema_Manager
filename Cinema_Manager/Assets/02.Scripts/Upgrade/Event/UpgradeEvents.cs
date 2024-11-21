@@ -1,7 +1,7 @@
 using System;
-using UnityEngine;
 
-public static class UpgradeEvents {
+public static class UpgradeEvents
+{
     public static Action<GameData> GameDataUpdatEvent;
     public static Action<GameData> GameDataLoadEvent;
 

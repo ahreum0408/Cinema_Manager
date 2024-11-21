@@ -26,12 +26,12 @@ public class UseTable : Conditional
 
     public override TaskStatus OnUpdate()
     {
-        if(customer.Value.IsStacked)
+        if (customer.Value.IsStacked)
             customer.Value.currentChair.TakeFood(customer.Value, customer.Value.SpacingY, customer.Value.IsFood);
 
         if (currentEat == 0)
         {
-            if(customer.Value.CurrentCustomerType == CustomerType.Sleep)
+            if (customer.Value.CurrentCustomerType == CustomerType.Sleep)
             {
                 if (false == _isPlayingSound)
                 {
@@ -63,7 +63,7 @@ public class UseTable : Conditional
                 }
                 else
                 {
-                    if(startTime >= 0)
+                    if (startTime >= 0)
                         startTime -= Time.deltaTime;
                     customer.Value.SetGauge(startTime / clearTime);
                 }
@@ -76,7 +76,7 @@ public class UseTable : Conditional
                 customer.Value.AnimationCompo.SeatAnimation(-1);
 
                 customer.Value.currentChair.trash =
-                    PoolManager.Instance.Pop(PoolableType.Trash.ToString(),customer.Value.currentChair.holder);
+                    PoolManager.Instance.Pop(PoolableType.Trash.ToString(), customer.Value.currentChair.holder);
 
                 customer.Value.currentChair.GetComponentInParent<Table>().AddMoney();
                 return TaskStatus.Failure;

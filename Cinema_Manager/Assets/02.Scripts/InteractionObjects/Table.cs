@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using UnityEngine;
 using static AyunDefine;
@@ -107,7 +106,8 @@ public class Table : MonoBehaviour, IIneractionable, IOpenTarget
         return null;
     }
 
-    public void ActiveObj(bool active, bool on = false) {
+    public void ActiveObj(bool active, bool on = false)
+    {
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeTableActiveEvent?.Invoke(this, active);

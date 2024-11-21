@@ -1,8 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EndCustomer : Action
 {
@@ -11,8 +8,8 @@ public class EndCustomer : Action
     private Vector3 _destination;
     public override void OnStart()
     {
-        _destination = 
-            new Vector3(customer.Value.startPos.x, customer.Value.startPos.y, customer.Value.startPos.z -4);
+        _destination =
+            new Vector3(customer.Value.startPos.x, customer.Value.startPos.y, customer.Value.startPos.z - 4);
         customer.Value.Agent.SetDestination(_destination);
     }
 

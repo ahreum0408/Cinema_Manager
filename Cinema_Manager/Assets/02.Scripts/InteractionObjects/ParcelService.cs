@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using static AyunDefine;
 
@@ -162,7 +161,8 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
         }
     }
 
-    public void ActiveObj(bool active, bool on = false) {
+    public void ActiveObj(bool active, bool on = false)
+    {
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeParcelServiceActiveEvent?.Invoke(this, active);

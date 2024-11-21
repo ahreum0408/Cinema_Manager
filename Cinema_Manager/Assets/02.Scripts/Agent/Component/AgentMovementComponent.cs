@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AgentMovementComponent : AgentComponent
@@ -13,6 +10,8 @@ public class AgentMovementComponent : AgentComponent
     [SerializeField] private ParticleSystem _stapParticle;
     private Transform _stapParticleSpawnTrm;
     private float _currentTime = 0, _delayTime = 0.5f;
+
+    private bool _isTimelinePlaying = false;
 
     private Rigidbody _rigidbody;
     private Vector3 moveVelocity;
@@ -29,7 +28,7 @@ public class AgentMovementComponent : AgentComponent
         _stapParticleSpawnTrm = transform.Find("StapParticleSpawnTrm").GetComponent<Transform>();
     }
 
-    public override void ControllerUpdate() {}
+    public override void ControllerUpdate() { }
 
     public override void ControllerFixedUpdate()
     {
@@ -41,9 +40,11 @@ public class AgentMovementComponent : AgentComponent
         }
     }
 
-    public void SetVelocity(Vector3 velocity) 
+    public void SetVelocity(Vector3 velocity)
     {
-        if (velocity == Vector3.zero) 
+        if (_isTimelinePlaying) return;
+
+        if (velocity == Vector3.zero)
         {
             _rigidbody.velocity = Vector3.zero;
         }
@@ -76,7 +77,20 @@ public class AgentMovementComponent : AgentComponent
         }
     }
 
-    public void SetMoveSpeed(float speed) {
+    public void SetMoveSpeed(float speed)
+    {
         moveSpeed = speed;
+    }
+
+    public void StopMovement()
+    {
+        _isTimelinePlaying = true;
+        _rigidbody.velocity = Vector3.zero;
+        moveVelocity = Quaternion.Euler(0, -45f, 0) * Vector3.zero;
+    }
+
+    public void PlayMovement()
+    {
+        _isTimelinePlaying = false;
     }
 }

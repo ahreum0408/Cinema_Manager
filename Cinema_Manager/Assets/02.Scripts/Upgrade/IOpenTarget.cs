@@ -1,6 +1,5 @@
-using System.Collections;
-
-public enum TargetType {
+public enum TargetType
+{
     DisplayStand,
     FoodContainer,
     BoxContainer,
@@ -11,7 +10,8 @@ public enum TargetType {
     SignBoard,
     CounterStaff
 }
-public interface IOpenTarget{
+public interface IOpenTarget
+{
     public TargetType Type { get; set; }
     public bool IsOpen { get; set; }
     public void ActiveObj(bool active, bool on = false);

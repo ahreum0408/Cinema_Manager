@@ -1,6 +1,4 @@
 using BehaviorDesigner.Runtime.Tasks;
-using UnityEngine;
-using UnityEngine.AI;
 
 public class FindFood : Action
 {

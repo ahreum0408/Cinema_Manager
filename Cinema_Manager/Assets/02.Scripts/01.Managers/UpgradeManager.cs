@@ -1,16 +1,16 @@
-using System;
-using TMPro;
 using UnityEngine;
 
-public enum UpgradeTarget {
+public enum UpgradeTarget
+{
     playerMoveSpeedStat,
     playerVolumeStat,
     playerSellingcostStat,
-    employeeMoveSpeedStat, 
+    employeeMoveSpeedStat,
     employeeVolumeVolumeStat,
     employeeAddStat
 }
-public class UpgradeManager : MonoSingleton<UpgradeManager> {
+public class UpgradeManager : MonoSingleton<UpgradeManager>
+{
     [Header("Player")]
     public float[] playerMoveSpeedStat = new float[5];
     public int[] playerVolumeStat = new int[5];
@@ -31,21 +31,26 @@ public class UpgradeManager : MonoSingleton<UpgradeManager> {
 
     private PlayerController _player;
 
-    private void Awake() {
+    private void Awake()
+    {
         _player = FindObjectOfType<PlayerController>();
     }
-    private void OnEnable() {
+    private void OnEnable()
+    {
         UpgradeEvents.GameDataLoadEvent += GameDataLoad;
         UpgradeEvents.ChangePlayerDataEvent += PlayerDataChange;
         UpgradeEvents.ChangeEmployeeDataEvent += EmployeeDataChange;
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         UpgradeEvents.GameDataLoadEvent -= GameDataLoad;
         UpgradeEvents.ChangePlayerDataEvent -= PlayerDataChange;
         UpgradeEvents.ChangeEmployeeDataEvent -= EmployeeDataChange;
     }
-    private void GameDataLoad(GameData data) {
-        if (data == null) {
+    private void GameDataLoad(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
         _gameData = data;
@@ -53,55 +58,68 @@ public class UpgradeManager : MonoSingleton<UpgradeManager> {
         SettingPlayerStat();
         SettingEmployeeStat();
     }
-    private void PlayerDataChange(GameData data) {
-        if (data == null) {
+    private void PlayerDataChange(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
         _gameData = data;
 
         SettingPlayerStat();
     }
-    private void EmployeeDataChange(GameData data) {
-        if (data == null) {
+    private void EmployeeDataChange(GameData data)
+    {
+        if (data == null)
+        {
             return;
         }
         _gameData = data;
 
         SettingEmployeeStat();
     }
-    private void SettingPlayerStat() {
+    private void SettingPlayerStat()
+    {
         float costWeight = playerSellingcostStat[_gameData.p_sellingcostLevel];
         float speed = playerMoveSpeedStat[_gameData.p_movespeedLevel];
         int stack = playerVolumeStat[_gameData.p_volumeLevel];
 
         _player.SetPlayerStat(costWeight, speed, stack);
     }
-    private void SettingEmployeeStat() {
+    private void SettingEmployeeStat()
+    {
         float speed = employeeMoveSpeedStat[_gameData.e_movespeedLevel];
         int stack = employeeVolumeStat[_gameData.e_volumeLevel];
         int employeeCount = employeeAddStat[_gameData.e_employmentLevel];
 
         StaffManager.Instance.SetStaffStat(speed, stack, employeeCount);
     }
-    public void FindDataAndCalculate(UpgradeTarget target) {
+    public void FindDataAndCalculate(UpgradeTarget target)
+    {
         int minusCoin = FindMatchData(target, 1);
         CalcualteMinusCoin(minusCoin);
     }
-    private void CalcualteMinusCoin(int coin) {
+    private void CalcualteMinusCoin(int coin)
+    {
         CoinManager.Instance.Coin -= coin;
     }
-    public bool CanUpgrade(UpgradeTarget target) {
+    public bool CanUpgrade(UpgradeTarget target)
+    {
         int minusCoin = FindMatchData(target);
-        if (CoinManager.Instance.Coin - minusCoin < 0) {
+        if (CoinManager.Instance.Coin - minusCoin < 0)
+        {
             return false;
         }
-        else {
+        else
+        {
             return true;
         }
     }
-    private int FindMatchData(UpgradeTarget target, int minusIndex = 0) {
+    private int FindMatchData(UpgradeTarget target, int minusIndex = 0)
+    {
         int index = 0, minusCoin = 0;
-        switch (target) {
+        switch (target)
+        {
             case UpgradeTarget.playerMoveSpeedStat:
                 minusCoin = playerUpgradePrice[_gameData.p_movespeedLevel - minusIndex];
                 break;

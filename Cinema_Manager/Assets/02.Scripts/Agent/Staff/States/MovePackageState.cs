@@ -13,7 +13,7 @@ internal class MovePackageState : AgentState
 
     public override void Update()
     {
-        if(CheckPackage())
+        if (CheckPackage())
         {
             ObjectManager.Instance.parcelService.IsWorking = false;
             Vector3 parcelPos = ObjectManager.Instance.boxContainer.staffPoint.transform.position;

@@ -1,6 +1,7 @@
 using System;
 
-public static class MainEvents {
+public static class MainEvents
+{
     // 기본적으로 가지고 있을거
     public static Action<GameData> GameDataUpdatEvent;
     public static Action<GameData> GameDataLoadEvent;

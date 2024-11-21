@@ -1,5 +1,4 @@
 using BehaviorDesigner.Runtime.Tasks;
-using UnityEngine;
 
 // 구매 가능한 상태인지 체크
 public class CheckBuy : Conditional

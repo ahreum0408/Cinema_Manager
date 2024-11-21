@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GameData {
+public class GameData
+{
     public bool isMinimumExecution;
 
     // setting view
@@ -27,7 +28,7 @@ public class GameData {
 
     public List<bool> allFoodTruckOnOffList;
     public List<bool> allBoxTruckOnOffList;
-    
+
     public List<bool> allTableOnOffList;
 
     public List<bool> allParcelServiceOnOffList;
@@ -57,7 +58,8 @@ public class GameData {
     public int mp_packingspeedLevel = 0; // 포장 증가
     public int mp_volumeLevel = 0; // 보관량 증가
 
-    public GameData() {
+    public GameData()
+    {
         this.isMinimumExecution = false;
 
         this.bgm = false;
@@ -67,12 +69,12 @@ public class GameData {
         this.coin = 10000; // 475
         this.gam = 0;
 
-        this.level = new Level(); 
+        this.level = new Level();
         this.levelIndex = 0;
         this.exp = 0;
 
-        this.allCheckOnOffList = new List<bool> ( new bool[50] );
-        this.allCheckPriceList = new List<int> (Enumerable.Repeat(100, 50).ToArray());
+        this.allCheckOnOffList = new List<bool>(new bool[50]);
+        this.allCheckPriceList = new List<int>(Enumerable.Repeat(100, 50).ToArray());
 
         this.allStandOnOffList = new List<bool>(new bool[20]);
         this.allStandItemCountList = new List<int>(new int[20]);
@@ -103,10 +105,12 @@ public class GameData {
         this.mt_storageLevel = 0;
     }
 
-    public string ToJson() {
+    public string ToJson()
+    {
         return JsonUtility.ToJson(this); // 쓰기
     }
-    public void LoadJson(string jsonFilepath) {
+    public void LoadJson(string jsonFilepath)
+    {
         JsonUtility.FromJsonOverwrite(jsonFilepath, this); // 경로 부분에 덮어 쓰기
     }
 }

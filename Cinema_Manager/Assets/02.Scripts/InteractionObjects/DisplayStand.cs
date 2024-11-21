@@ -1,9 +1,9 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using DG.Tweening;
 using static AyunDefine;
 
 public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
@@ -61,7 +61,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     private void FixedUpdate()
     {
-        if(_customerDic.Count >0 && _currentCustomer == null)
+        if (_customerDic.Count > 0 && _currentCustomer == null)
             _currentCustomer = _customerDic.Keys.First();
 
         if (_currentCustomer != null && !_currentCustomer.customerData.isGive)

@@ -5,7 +5,8 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
+public class Counter : MonoBehaviour, IIneractionable, IOpenTarget
+{
     #region ¼­¿¬
     public bool IsWorking = false;
 
@@ -108,7 +109,7 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
 
     public void RemoveCustomer()
     {
-        if(!isBuy)
+        if (!isBuy)
         {
             _moneyDummy.AddMoneyObject(3);
             isBuy = true;
@@ -136,8 +137,8 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
                 customers.customerData.isBuy = true;
                 lineIsStart = false;
             }
-            
-            if(beforeCustomer == null)
+
+            if (beforeCustomer == null)
             {
                 customers.Agent.SetDestination(new Vector3(
                     customers.Agent.destination.x - lineInterval,
@@ -158,18 +159,20 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget {
         isBuy = false;
     }
 
-    public void ActiveObj(bool active, bool on = false) {
+    public void ActiveObj(bool active, bool on = false)
+    {
         // Timeline
         if (true == active && false == gameObject.activeSelf)
             _truckCameraTimeline.Play();
-        
+
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeCounterActiveEvent?.Invoke(this, active);
         ScaleSetting();
     }
 
-    public void ScaleSetting() {
+    public void ScaleSetting()
+    {
         float time = 0.5f;
         Vector3 originScale = transform.localScale;
         transform.localScale = Vector3.zero;

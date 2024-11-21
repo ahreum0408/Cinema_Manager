@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using static AyunDefine;
 

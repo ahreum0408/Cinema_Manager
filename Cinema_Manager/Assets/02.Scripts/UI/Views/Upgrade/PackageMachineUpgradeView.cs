@@ -1,10 +1,10 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace UIToolkit {
-    public class PackageMachineUpgradeView : UIView {
+namespace UIToolkit
+{
+    public class PackageMachineUpgradeView : UIView
+    {
         private Button _closeBtn;
 
         private Button _upgradePackingSpeedBtn;
@@ -13,19 +13,23 @@ namespace UIToolkit {
         private List<VisualElement> _packingSpeedGaugeList;
         private List<VisualElement> _volumeGaugeList;
 
-        public PackageMachineUpgradeView(VisualElement topElement) : base(topElement) {
+        public PackageMachineUpgradeView(VisualElement topElement) : base(topElement)
+        {
             PackageMachineUpgradeEvents.GameDataLoadEvent += GameDataLoad;
         }
-        public override void Dispose() {
+        public override void Dispose()
+        {
             base.Dispose();
             PackageMachineUpgradeEvents.GameDataLoadEvent -= GameDataLoad;
         }
-        public override void Show() {
+        public override void Show()
+        {
             base.Show();
             MainEvents.ShowViewEvent?.Invoke();
         }
 
-        protected override void SetVisualElements() {
+        protected override void SetVisualElements()
+        {
             base.SetVisualElements();
             _closeBtn = topElement.Q<Button>("close-btn");
 
@@ -39,7 +43,8 @@ namespace UIToolkit {
             _upgradeVolumeBtn = upgradeVolumeContent.Q<Button>("upgrade-btn");
         }
 
-        protected override void RegisterButtonCallbacks() {
+        protected override void RegisterButtonCallbacks()
+        {
             base.RegisterButtonCallbacks();
 
             _closeBtn.RegisterCallback<ClickEvent>(ClickCloseBtn);
@@ -47,7 +52,8 @@ namespace UIToolkit {
             _upgradePackingSpeedBtn.RegisterCallback<ClickEvent>(ClickPackingSpeedBtn);
             _upgradeVolumeBtn.RegisterCallback<ClickEvent>(ClickVolumeBtn);
         }
-        protected override void UnRegisterButtonCallbacks() {
+        protected override void UnRegisterButtonCallbacks()
+        {
             base.UnRegisterButtonCallbacks();
             _closeBtn.UnregisterCallback<ClickEvent>(ClickCloseBtn);
 
@@ -55,13 +61,17 @@ namespace UIToolkit {
             _upgradeVolumeBtn.UnregisterCallback<ClickEvent>(ClickVolumeBtn);
         }
         #region registercallback
-        private void ClickCloseBtn(ClickEvent evt) {
+        private void ClickCloseBtn(ClickEvent evt)
+        {
             MainEvents.MainViewShow?.Invoke();
         }
 
-        private void ClickPackingSpeedBtn(ClickEvent evt) {
-            foreach (VisualElement gauge in _packingSpeedGaugeList) {
-                if (gauge.ClassListContains("off")) {
+        private void ClickPackingSpeedBtn(ClickEvent evt)
+        {
+            foreach (VisualElement gauge in _packingSpeedGaugeList)
+            {
+                if (gauge.ClassListContains("off"))
+                {
                     gauge.RemoveFromClassList("off");
                     _gameData.mp_packingspeedLevel++;
                     PackageMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
@@ -70,9 +80,12 @@ namespace UIToolkit {
             }
         }
 
-        private void ClickVolumeBtn(ClickEvent evt) {
-            foreach (VisualElement gauge in _volumeGaugeList) {
-                if (gauge.ClassListContains("off")) {
+        private void ClickVolumeBtn(ClickEvent evt)
+        {
+            foreach (VisualElement gauge in _volumeGaugeList)
+            {
+                if (gauge.ClassListContains("off"))
+                {
                     gauge.RemoveFromClassList("off");
                     _gameData.mp_volumeLevel++;
                     PackageMachineUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
@@ -82,17 +95,22 @@ namespace UIToolkit {
         }
         #endregion
 
-        private void GameDataLoad(GameData data) {
-            if (data == null) {
+        private void GameDataLoad(GameData data)
+        {
+            if (data == null)
+            {
                 return;
             }
             _gameData = data;
             // gaugeÄÑ±â
-            for (int i = 4; i >= 0; i--) {
-                if (_gameData.mp_packingspeedLevel > i) {
+            for (int i = 4; i >= 0; i--)
+            {
+                if (_gameData.mp_packingspeedLevel > i)
+                {
                     _packingSpeedGaugeList[i].RemoveFromClassList("off");
                 }
-                if (_gameData.mp_volumeLevel > i) {
+                if (_gameData.mp_volumeLevel > i)
+                {
                     _volumeGaugeList[i].RemoveFromClassList("off");
                 }
             }

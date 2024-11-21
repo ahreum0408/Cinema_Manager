@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UIToolkit;
-using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UIManager : MonoSingleton<UIManager> {
+public class UIManager : MonoSingleton<UIManager>
+{
     private UIDocument _uiDocument;
 
     private UIView _currentView; // 현재뷰
@@ -31,7 +29,8 @@ public class UIManager : MonoSingleton<UIManager> {
     public const string upgradePackageMachineViewName = "PackageMachineUpgradeView";
     public const string levelUpViewName = "LevelUpView";
 
-    void OnEnable() {
+    void OnEnable()
+    {
         _uiDocument = GetComponent<UIDocument>();
 
         SetupViews();
@@ -40,15 +39,18 @@ public class UIManager : MonoSingleton<UIManager> {
         // Start with the home screen
         //ChangeShowView(_mainView);
     }
-    void OnDisable() {
+    void OnDisable()
+    {
         UnRegisterToEvents();
 
-        foreach (UIView view in _allViews) {
+        foreach (UIView view in _allViews)
+        {
             view.Dispose();
         }
     }
 
-    private void SetupViews() {
+    private void SetupViews()
+    {
         VisualElement root = _uiDocument.rootVisualElement;
 
         _mainView = new MainView(root.Q<VisualElement>(mainViewName)); // Landing modal screen
@@ -69,26 +71,32 @@ public class UIManager : MonoSingleton<UIManager> {
 
         _mainView.Show();
     }
-    private void ChangeShowView(UIView newView) {
-        if (_currentView != null && _currentView != _mainView) { // 지금 보고 있는 view가 있으면 꺼
+    private void ChangeShowView(UIView newView)
+    {
+        if (_currentView != null && _currentView != _mainView)
+        { // 지금 보고 있는 view가 있으면 꺼
             _currentView.Hide();
         }
 
         _previousView = _currentView;
         _currentView = newView;
 
-        if (_currentView != null){ // 지금 볼거 있으면 그거 켜주고 지금 보고 있는 view가 변경됬음을 알려줘
+        if (_currentView != null)
+        { // 지금 볼거 있으면 그거 켜주고 지금 보고 있는 view가 변경됬음을 알려줘
             _currentView.Show();
         }
     }
-    private void CloseCurrentView() {
-        if(_currentView != null && _currentView != _mainView) {
+    private void CloseCurrentView()
+    {
+        if (_currentView != null && _currentView != _mainView)
+        {
             _currentView.Hide();
         }
     }
 
     // 이벤트 등록 및 해제
-    private void RegisterToEvents() {
+    private void RegisterToEvents()
+    {
         MainEvents.MainViewShow += ShowMainView;
         MainEvents.SettingViewShow += ShowSettingView;
         MainEvents.PlayerUpgradeViewShow += ShowPlayerView;
@@ -99,7 +107,8 @@ public class UIManager : MonoSingleton<UIManager> {
 
         MainEvents.CloseCurrentEvent += CloseCurrentView;
     }
-    private void UnRegisterToEvents() {
+    private void UnRegisterToEvents()
+    {
         MainEvents.MainViewShow -= ShowMainView;
         MainEvents.SettingViewShow -= ShowSettingView;
         MainEvents.PlayerUpgradeViewShow -= ShowPlayerView;
@@ -112,33 +121,43 @@ public class UIManager : MonoSingleton<UIManager> {
     }
 
     #region ShowViews
-    private void ShowMainView() {
+    private void ShowMainView()
+    {
         ChangeShowView(_mainView);
     }
-    private void ShowSettingView() {
+    private void ShowSettingView()
+    {
         ChangeShowView(_settingView);
     }
-    private void ShowPlayerView() {
+    private void ShowPlayerView()
+    {
         ChangeShowView(_playerUpgradeView);
     }
-    private void ShowEmployeeUpgradeView() {
+    private void ShowEmployeeUpgradeView()
+    {
         ChangeShowView(_employeeUpgradeView);
     }
-    private void ShowTruckMachineUpgradeView() {
+    private void ShowTruckMachineUpgradeView()
+    {
         ChangeShowView(_truckMachineUpgradeView);
     }
-    private void ShowPackageMachineUpgradeView() {
+    private void ShowPackageMachineUpgradeView()
+    {
         ChangeShowView(_packageMachineUpgradeView);
     }
-    private void ShowLevelUpView() {
+    private void ShowLevelUpView()
+    {
         ChangeShowView(_levelUpView);
     }
     #endregion
-    public void ActiveMainView(bool active) {
-        if(active) {
+    public void ActiveMainView(bool active)
+    {
+        if (active)
+        {
             _mainView.Show();
         }
-        else {
+        else
+        {
             _mainView.Hide();
         }
     }

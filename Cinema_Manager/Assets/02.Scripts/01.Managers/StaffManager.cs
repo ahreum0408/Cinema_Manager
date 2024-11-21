@@ -5,9 +5,11 @@ public class StaffManager : MonoSingleton<StaffManager>
 {
     private List<StaffController> staffList = new List<StaffController>();
 
-    public void SetStaffStat(float speed, int stack, int staffCount) {
+    public void SetStaffStat(float speed, int stack, int staffCount)
+    {
         int length = staffCount - staffList.Count;
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++)
+        {
             GameObject obj = PoolManager.Instance.Pop("Staff", transform.position, Quaternion.identity);
             staffList.Add(obj.GetComponent<StaffController>());
         }

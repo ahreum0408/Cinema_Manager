@@ -143,7 +143,8 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
         _boxStack.Push(box);
     }
 
-    public void ActiveObj(bool active , bool on = false) {
+    public void ActiveObj(bool active, bool on = false)
+    {
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeBoxTruckActiveEvent?.Invoke(this, active);
