@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using TMPro;
@@ -170,5 +171,10 @@ public class PlayerController : AgentController
     private void SetSellingCost(float weight)
     {
         _sellingCostWeigth = weight;
+    }
+
+    public void TimelineRotationSet()
+    {
+        transform.DORotate(new Vector3(transform.rotation.x, -260f, transform.rotation.z), 1f);
     }
 }
