@@ -51,14 +51,6 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
         _boxStack = new Stack<ITakeable>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            BoxSpawn();
-        }
-    }
-
     // 스택이 다 찼는지 확인
     public bool BoxStackCheck()
     {
