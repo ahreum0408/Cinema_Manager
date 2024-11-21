@@ -14,8 +14,8 @@
 }
 
 .item-icon {
-    width: 250px;
-    height: 250px;
+    width: 85%;
+    height: 71%;
     margin-top: 15px;
     background-image: url("project://database/Assets/04.Sprites/UI/Icon/star_icon.png?fileID=21300000&guid=c935a904c587f2649937d4175657b00f&type=3#star_icon");
 }

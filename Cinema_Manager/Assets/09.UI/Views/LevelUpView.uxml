@@ -1,15 +1,23 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="AddItem" src="project://database/Assets/Resources/UI/Templeate/AddItem.uxml?fileID=9197481963319205126&amp;guid=c8ad1953faaf2be4f9acb2feb4a587d3&amp;type=3#AddItem" />
     <Style src="project://database/Assets/09.UI/USS/LevelUp_USS.uss?fileID=7433441132597879392&amp;guid=27d90713af5749c4b9de9965ef70f523&amp;type=3#LevelUp_USS" />
     <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
     <Style src="project://database/Assets/09.UI/USS/Button_USS.uss?fileID=7433441132597879392&amp;guid=e14bf1679fc6d6f4dad2eae9b0c340ca&amp;type=3#Button_USS" />
     <ui:VisualElement name="background" style="flex-grow: 1; align-items: center; justify-content: center; background-color: rgba(0, 0, 0, 0.5); width: 100%;">
-        <ui:VisualElement name="container" style="width: 90%; height: 60%;">
+        <ui:VisualElement name="container" style="width: 90%; min-height: 1300px;">
             <ui:VisualElement name="top-container" style="align-items: center; flex-basis: 200px;">
                 <ui:VisualElement name="title-content" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/04.Sprites/UI/LevelUp_.png?fileID=21300000&amp;guid=97586b656ae518645be79e1162533941&amp;type=3#LevelUp_&quot;); width: 75%;">
                     <ui:Label tabindex="-1" text="레벨업" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text_middle-array_90" style="font-size: 90px; bottom: 16%;" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="main-container" style="align-items: center; justify-content: center; flex-direction: row; flex-grow: 1; padding-top: 120px; flex-wrap: wrap;" />
+            <ui:VisualElement name="main-container" style="align-items: center; justify-content: center; flex-direction: row; padding-top: 5%; flex-wrap: wrap; padding-bottom: 5%;">
+                <ui:Instance template="AddItem" name="AddItem" />
+                <ui:Instance template="AddItem" name="AddItem" />
+                <ui:Instance template="AddItem" name="AddItem" />
+                <ui:Instance template="AddItem" name="AddItem" />
+                <ui:Instance template="AddItem" name="AddItem" />
+                <ui:Instance template="AddItem" name="AddItem" />
+            </ui:VisualElement>
             <ui:VisualElement name="bottom-container" style="height: 15%;">
                 <ui:VisualElement name="button-content" style="flex-grow: 1; justify-content: center; align-items: center;">
                     <ui:Button text="확인" parse-escape-sequences="true" display-tooltip-when-elided="true" name="close-btn" class="base-btn btn-middle-array_60" />
