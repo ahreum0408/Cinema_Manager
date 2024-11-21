@@ -19,6 +19,7 @@ public class LevelManager : MonoSingleton<LevelManager> {
     private List<Room> _allRoom = new List<Room>();
     private List<Counter> _allCounter = new List<Counter>();
     private List<SignBoard> _allSignBoard = new List<SignBoard>();
+    private List<CounterStaffController> _allCounterStaff = new List<CounterStaffController>();
     #endregion
 
     private Level _currentLevel;
@@ -46,9 +47,11 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         LevelEvents.ChangeTableActiveEvent += ChangeTableActive;
 
-        LevelEvents.ChangeRoomActiveEvent += ChangRoomActive;
-        LevelEvents.ChangeCounterActiveEvent += ChangCounterActive;
-        LevelEvents.ChangeSignBoardActiveEvent += ChangTrashBinActive;
+        LevelEvents.ChangeRoomActiveEvent += ChangeRoomActive;
+        LevelEvents.ChangeCounterActiveEvent += ChangeCounterActive;
+        LevelEvents.ChangeSignBoardActiveEvent += ChangeTrashBinActive;
+
+        LevelEvents.ChangeCounterStaffActiveEvent += ChangeCounterStaffActive;
     }
     private void OnDisable() {
         LevelEvents.GameDataLoadEvent -= GameDataLoad;
@@ -66,9 +69,11 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         LevelEvents.ChangeTableActiveEvent -= ChangeTableActive;
 
-        LevelEvents.ChangeRoomActiveEvent -= ChangRoomActive;
-        LevelEvents.ChangeCounterActiveEvent -= ChangCounterActive;
-        LevelEvents.ChangeSignBoardActiveEvent -= ChangTrashBinActive;
+        LevelEvents.ChangeRoomActiveEvent -= ChangeRoomActive;
+        LevelEvents.ChangeCounterActiveEvent -= ChangeCounterActive;
+        LevelEvents.ChangeSignBoardActiveEvent -= ChangeTrashBinActive;
+
+        LevelEvents.ChangeCounterStaffActiveEvent -= ChangeCounterStaffActive;
     }
     private void Init() {
         // level에 존재하는 모든 데이터 값을 level에서 찾아 넣어줌
@@ -83,7 +88,8 @@ public class LevelManager : MonoSingleton<LevelManager> {
             List<ParcelService> ParcelServiceList = data.GetParcelServiceList();
             List<Room> roomList = data.GetRoomList();
             List<Counter> counterList = data.GetCounterList();
-            List<SignBoard> SignBoardList = data.GetSignBoardList();
+            List<SignBoard> signBoardList = data.GetSignBoardList();
+            List<CounterStaffController> counterStaffList = data.GetCounterStaffList();
 
             if (buyCheckers != null) {
                 foreach (var checker in buyCheckers) {
@@ -125,9 +131,14 @@ public class LevelManager : MonoSingleton<LevelManager> {
                     _allCounter.Add(counter);
                 }
             }
-            if (SignBoardList != null) {
-                foreach (var board in SignBoardList) {
+            if (signBoardList != null) {
+                foreach (var board in signBoardList) {
                     _allSignBoard.Add(board);
+                }
+            }
+            if (counterStaffList != null) {
+                foreach (var staff in counterStaffList) {
+                    _allCounterStaff.Add(staff);
                 }
             }
         }
@@ -176,7 +187,6 @@ public class LevelManager : MonoSingleton<LevelManager> {
 
         if (!_gameData.isMinimumExecution) { // 최소 실행인가? ex.튜토리얼
             OnLevel(0, true);
-            OnLevel(1, true);
             _gameData.isMinimumExecution = true;
         }
         StartCoroutine(LoadData());
@@ -237,6 +247,11 @@ public class LevelManager : MonoSingleton<LevelManager> {
         for (int i = 0; i < _allSignBoard.Count; i++) {
             if (_allSignBoard[i] != null) {
                 _allSignBoard[i].ActiveObj(_gameData.allSignBoardOnOffList[i]);
+            }
+        }
+        for (int i = 0; i < _allCounterStaff.Count; i++) {
+            if (_allCounterStaff[i] != null) {
+                _allCounterStaff[i].ActiveObj(_gameData.allCounterStaffOnOffList[i]);
             }
         }
     }
@@ -317,19 +332,24 @@ public class LevelManager : MonoSingleton<LevelManager> {
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
 
-    private void ChangRoomActive(Room activeObj, bool active) {
+    private void ChangeRoomActive(Room activeObj, bool active) {
         int index = _allRoom.IndexOf(activeObj); // 내가 누구인지 index뽑고
         _gameData.allRoomOnOffList[index] = active;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void ChangCounterActive(Counter activeObj, bool active) {
+    private void ChangeCounterActive(Counter activeObj, bool active) {
         int index = _allCounter.IndexOf(activeObj); // 내가 누구인지 index뽑고
         _gameData.allCounterOnOffList[index] = active;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
-    private void ChangTrashBinActive(SignBoard activeObj, bool active) {
+    private void ChangeTrashBinActive(SignBoard activeObj, bool active) {
         int index = _allSignBoard.IndexOf(activeObj); // 내가 누구인지 index뽑고
         _gameData.allSignBoardOnOffList[index] = active;
+        LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
+    }
+    private void ChangeCounterStaffActive(CounterStaffController activeObj, bool active) {
+        int index = _allCounterStaff.IndexOf(activeObj); // 내가 누구인지 index뽑고
+        _gameData.allCounterStaffOnOffList[index] = active;
         LevelEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     #endregion

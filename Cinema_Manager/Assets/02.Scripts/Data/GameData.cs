@@ -36,6 +36,8 @@ public class GameData {
     public List<bool> allCounterOnOffList;
     public List<bool> allSignBoardOnOffList;
 
+    public List<bool> allCounterStaffOnOffList;
+
     // player
     public int p_movespeedLevel = 0; // 플레이어 이속
     public int p_volumeLevel = 0; // 플레이어 용량
@@ -85,6 +87,8 @@ public class GameData {
         this.allRoomOnOffList = new List<bool>(new bool[3]);
         this.allCounterOnOffList = new List<bool>(new bool[3]);
         this.allSignBoardOnOffList = new List<bool>(new bool[3]);
+
+        this.allCounterStaffOnOffList = new List<bool>(new bool[1]);
 
         this.p_movespeedLevel = 0;
         this.p_movespeedLevel = 0;

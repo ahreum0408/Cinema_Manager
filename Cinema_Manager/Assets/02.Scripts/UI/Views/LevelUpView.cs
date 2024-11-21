@@ -96,6 +96,10 @@ namespace UIToolkit {
                         itemNameLebel.text = "구역";
                         itemCountLebel.text = $"{item.Value}개";
                         break;
+                    case TargetType.CounterStaff:
+                        itemNameLebel.text = "직원";
+                        itemCountLebel.text = $"{item.Value}개";
+                        break;
                     default:
                         Debug.LogWarning("올바르지 못한 형식");
                         break;

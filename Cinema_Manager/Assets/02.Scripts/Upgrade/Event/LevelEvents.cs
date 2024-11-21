@@ -21,4 +21,6 @@ public static class LevelEvents  {
     public static Action<Room, bool> ChangeRoomActiveEvent;
     public static Action<Counter, bool> ChangeCounterActiveEvent;
     public static Action<SignBoard, bool> ChangeSignBoardActiveEvent;
+
+    public static Action<CounterStaffController, bool> ChangeCounterStaffActiveEvent;
 }

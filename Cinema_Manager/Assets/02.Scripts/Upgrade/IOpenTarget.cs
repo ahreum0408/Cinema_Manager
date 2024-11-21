@@ -8,7 +8,8 @@ public enum TargetType {
     ParcelService,
     Room,
     Counter,
-    SignBoard
+    SignBoard,
+    CounterStaff
 }
 public interface IOpenTarget{
     public TargetType Type { get; set; }

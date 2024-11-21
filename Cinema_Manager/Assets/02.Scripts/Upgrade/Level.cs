@@ -22,6 +22,7 @@ public class Level {
     private List<Room> _roomList = new List<Room>();
     private List<Counter> _counterList = new List<Counter>();
     private List<SignBoard> _signBoardList = new List<SignBoard>();
+    private List<CounterStaffController> _counterStaffList = new List<CounterStaffController>();
 
     private List<IOpenTarget> _anotherObjList = new List<IOpenTarget>();
 
@@ -110,6 +111,15 @@ public class Level {
                         }
                         _signBoardList.Add(target as SignBoard);
                         break;
+                    case TargetType.CounterStaff:
+                        if (_targetDictionary.TryGetValue(target.Type, out int value8)) {
+                            _targetDictionary[target.Type] = value8;
+                        }
+                        else {
+                            _targetDictionary.Add(target.Type, 1);
+                        }
+                        _counterStaffList.Add(target as CounterStaffController);
+                        break;
                     default:
                         Debug.LogWarning("너는 누구신가요..");
                         break;
@@ -153,6 +163,9 @@ public class Level {
     }
     public List<SignBoard> GetSignBoardList() {
         return _signBoardList;
+    }
+    public List<CounterStaffController> GetCounterStaffList() {
+        return _counterStaffList;
     }
     #endregion
 }
