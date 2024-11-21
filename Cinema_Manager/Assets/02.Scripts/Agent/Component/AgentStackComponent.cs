@@ -49,10 +49,6 @@ public class AgentStackComponent : AgentComponent
                 (child.GetComponent<TakeableBase>().PoolType.ToString(), child.gameObject);
         }
 
-        //if (_takeObjectStack.Count <= 0)
-        //{
-        //    return;
-        //}
         _takeObjectStack.Clear();
     }
 
@@ -63,7 +59,6 @@ public class AgentStackComponent : AgentComponent
 
     public void TakeObject(ITakeable takeableObject, PoolableType type, float spacingY, bool isFood)
     {
-        //Debug.Log("TakeObject");
         if (_currentHoldType == PoolableType.None)
             _currentHoldType = type;
 

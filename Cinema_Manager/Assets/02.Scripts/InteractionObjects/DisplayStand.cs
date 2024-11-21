@@ -106,7 +106,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
                     TakeFood(food);
                 }
             }
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

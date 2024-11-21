@@ -112,7 +112,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget
                 if (agent.CanTakeFood(_poolObjType))
                 {
                     agent.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
-                    yield return new WaitForSeconds(0.15f);
+                    yield return new WaitForSeconds(0.1f);
                 }
             }
             yield return null;

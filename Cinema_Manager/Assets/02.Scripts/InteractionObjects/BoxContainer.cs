@@ -132,7 +132,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
                 yield return new WaitForSeconds(0.5f);
                 _isBoxGiving = false;
             }
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
