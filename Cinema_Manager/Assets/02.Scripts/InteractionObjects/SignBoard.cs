@@ -7,6 +7,7 @@ using UnityEngine.Playables;
 public class SignBoard : MonoBehaviour, IOpenTarget
 {
     [SerializeField] private PlayableDirector _startTimeline;
+    [SerializeField] private BoxCollider _collider;
 
     private MoneyDummy _moneyDummy;
 
@@ -36,10 +37,17 @@ public class SignBoard : MonoBehaviour, IOpenTarget
     public void ActiveObj(bool active, bool on = false) {
         // Timeline
         if (true == active && false == gameObject.activeSelf)
+        {
             _startTimeline.Play();
+            _collider.enabled = false;
+        }
 
         _isOpen = active;
         gameObject.SetActive(active);
+        if (gameObject.activeSelf == true)
+            _collider.enabled = false;
+        else
+            _collider.enabled = true;
         LevelEvents.ChangeSignBoardActiveEvent?.Invoke(this, active);
         ScaleSetting();
     }
