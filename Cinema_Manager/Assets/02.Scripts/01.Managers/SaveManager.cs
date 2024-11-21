@@ -6,8 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(GameDataManager))]
 public class SaveManager : MonoBehaviour
 {
-    public TextMeshProUGUI _path;
-
     public static event Action<GameData> GameDataLoadedEvent;
 
     [SerializeField] private string _saveFilename = "savegame.dat";
@@ -18,9 +16,19 @@ public class SaveManager : MonoBehaviour
     {
         gameDataManager = GetComponent<GameDataManager>();
     }
+    public class QuitApplicationUtility {
+        public static void MoveAndroidApplicationToBack() {
+            AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+            activity.Call<bool>("moveTaskToBack", true);
+        }
+    }
     void OnApplicationQuit()
     {
-        SaveGameData();
+    }
+    private void OnApplicationFocus(bool focus) {
+        if (!focus) {
+            SaveGameData();
+        }
     }
 
     void OnEnable()
@@ -45,7 +53,7 @@ public class SaveManager : MonoBehaviour
         {
             gameDataManager.GameData = NewData();
         }
-        if (FileManager.LoadFromFile(_path, _saveFilename, out var jsonString))
+        if (FileManager.LoadFromFile(_saveFilename, out var jsonString))
         { // jsonString : 데이터 내용
             gameDataManager.GameData.LoadJson(jsonString);
         }

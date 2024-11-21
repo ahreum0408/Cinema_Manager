@@ -27,7 +27,7 @@ public class BuyChecker : CheckerArea, IOpenTarget
     }
     public GameObject OpenGTarget => _openTarget;
     public IOpenTarget OpenITarget => _openTarget.GetComponent<IOpenTarget>();
-    private int currentCoin => CoinManager.Instance.Coin;
+    private int CurrentCoin => CoinManager.Instance.Coin;
 
     private bool _isOpen;
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
@@ -59,17 +59,18 @@ public class BuyChecker : CheckerArea, IOpenTarget
         while (_isCalaulate)
         {
             WaitForSeconds waitTime = new WaitForSeconds(0.05f);
-            if (currentCoin <= 0)
+            if (CurrentCoin <= 0)
             {
                 _isCalaulate = false;
                 break;
             }
-            if (_price - _minusCoin < 0)
+            if (_price - _minusCoin < 0) // 100 -> 90
             {
                 _minusCoin = 1; // 여기 나중에 수정 필요함
             }
-            _price -= _minusCoin;
-            CoinManager.Instance.Coin -= _minusCoin;
+            Debug.Log(_minusCoin);
+            _price -= _minusCoin; // chcker 돈 빼고
+            CoinManager.Instance.Coin -= _minusCoin; // 실직적인 돈 빼고
             UpdatePriceText(_price);
             if (_price <= 0)
             {
