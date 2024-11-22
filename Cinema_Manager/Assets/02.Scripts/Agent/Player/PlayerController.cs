@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using static AyunDefine;
+using static SaveManager;
 using static LevelEvents;
 
 public class PlayerController : AgentController
@@ -15,7 +16,7 @@ public class PlayerController : AgentController
     [SerializeField] private TextMeshProUGUI _stackMaxText;
 
     // Component
-    private AgentMovementComponent _agentMovement;
+    private PlayerMovementComponent _agentMovement;
     private AgentAnimationComponent _agentAnimation;
     private AgentStackComponent _stackComponent;
 
@@ -46,7 +47,7 @@ public class PlayerController : AgentController
     {
         base.SetAgentComponents();
 
-        _agentMovement = GetAgentComponent<AgentMovementComponent>();
+        _agentMovement = GetAgentComponent<PlayerMovementComponent>();
         _agentAnimation = GetAgentComponent<AgentAnimationComponent>();
         _stackComponent = GetAgentComponent<AgentStackComponent>();
     }
@@ -61,6 +62,7 @@ public class PlayerController : AgentController
         OnPaidCost += HandleOnPaidCost;
         OnStackMaxed += HandleStackMaxed;
 
+        GameDataLoadedEvent += HandleGameDataLoadedEvent;
         PriceChangingEvent += HandlePriceChangingEvent;
     }
 
@@ -90,6 +92,7 @@ public class PlayerController : AgentController
         OnPaidCost -= HandleOnPaidCost;
         OnStackMaxed -= HandleStackMaxed;
 
+        GameDataLoadedEvent -= HandleGameDataLoadedEvent;
         PriceChangingEvent -= HandlePriceChangingEvent;
     }
     #endregion
@@ -154,6 +157,16 @@ public class PlayerController : AgentController
         // UI Update
 
         return 0;
+    }
+
+    private void HandleGameDataLoadedEvent(GameData data)
+    {
+        Debug.Log(data.isMinimumExecution);
+        if (true == data.isMinimumExecution)
+        {
+            transform.position = new Vector3(-11.8f, 0, 18.36f);
+            transform.rotation = Quaternion.Euler(0, 90, 0);
+        }
     }
 
     private void HandlePriceChangingEvent(Transform moveTrm)

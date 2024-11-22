@@ -17,10 +17,6 @@ public class LodingView : MonoBehaviour
         StartLoding();
     }
 
-    private void Start()
-    {
-    }
-
     private void Update()
     {
         if (false == _isLodingEnd)
