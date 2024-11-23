@@ -71,6 +71,7 @@ public class SettingView : UIView
     {
         evt.StopPropagation();
         _gameData.haptic = evt.newValue;
+        VibrationManager.Instance.VibrationSet(evt.newValue);
         SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void ClickCloseBtn(ClickEvent evt)
@@ -94,6 +95,7 @@ public class SettingView : UIView
         _soundToggle.value = _gameData.bgm;
         _hapticToggle.value = _gameData.haptic;
         SoundManager.Instance.SoundSet(_gameData.bgm);
+        VibrationManager.Instance.VibrationSet(_gameData.haptic);
 
         SettingEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
