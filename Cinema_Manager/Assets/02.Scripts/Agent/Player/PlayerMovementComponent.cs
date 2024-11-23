@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AgentMovementComponent : AgentComponent
+public class PlayerMovementComponent : AgentComponent
 {
     [Header("Move")]
     [SerializeField] private float moveSpeed;

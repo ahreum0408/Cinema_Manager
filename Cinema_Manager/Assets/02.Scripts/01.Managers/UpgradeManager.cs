@@ -118,7 +118,7 @@ public class UpgradeManager : MonoSingleton<UpgradeManager>
     }
     private int FindMatchData(UpgradeTarget target, int minusIndex = 0)
     {
-        int index = 0, minusCoin = 0;
+        int minusCoin = 0;
         switch (target)
         {
             case UpgradeTarget.playerMoveSpeedStat:

@@ -30,7 +30,7 @@ public class AgentInteractionTrigger : MonoBehaviour
             }
         }
 
-        if (_currentInteractionObject != null && _currentInteractionObject.GameObject.active == true)
+        if (_currentInteractionObject != null && _currentInteractionObject.GameObject.activeSelf == true)
             return;
 
         if (other.CompareTag(ObjectTagString.InteractionableTag))
