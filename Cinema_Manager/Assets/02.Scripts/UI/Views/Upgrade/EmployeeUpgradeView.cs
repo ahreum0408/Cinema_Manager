@@ -164,7 +164,6 @@ public class EmployeeUpgradeView : UIView
             return;
         }
         _gameData = data;
-
         SettingPrice();
 
         // gaugeÄÑ±â

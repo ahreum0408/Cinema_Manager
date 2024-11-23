@@ -217,9 +217,8 @@ public class LevelManager : MonoSingleton<LevelManager>
 
 
         if (!_gameData.isMinimumExecution)
-        { // 최소 실행인가? ex.튜토리얼
+        {
             OnLevel(0, true);
-            _gameData.isMinimumExecution = true;
         }
         StartCoroutine(LoadData());
 
@@ -317,7 +316,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             var checker = _allCheckers[i];
             if (checker.OpenITarget != null)
             {
-                if (_gameData.isMinimumExecution)
+                if (!_gameData.isMinimumExecution)
                 {
                     SetCheckerPrice(checker);
                 }
