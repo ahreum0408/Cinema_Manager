@@ -52,7 +52,7 @@ public class MoneyDummy : MonoBehaviour, IIneractionable
             foreach (Money money in _moneyStack)
             {
                 money.JumpToPositionAndDestory(player.transform.position);
-                Vibration.Vibrate(10, 32);
+                VibrationManager.Instance.Vibrate(10, 32);
                 yield return new WaitForSeconds(0.01f);
             }
 

@@ -111,14 +111,14 @@ public class PlayerController : AgentController
     protected override void HandleTakeTakeable(ITakeable takeable, PoolableType type, float spacingY, bool isFood)
     {
         base.HandleTakeTakeable(takeable, type, spacingY, isFood);
-        Vibration.Vibrate(25, 32);
+        VibrationManager.Instance.Vibrate(25, 32);
         OnStackMaxed(IsStackMax);
     }
 
     protected override ITakeable HandleGiveTakeable()
     {
         OnStackMaxed(IsStackMax);
-        Vibration.Vibrate(25, 32);
+        VibrationManager.Instance.Vibrate(25, 32);
         return base.HandleGiveTakeable();
     }
 
@@ -161,7 +161,6 @@ public class PlayerController : AgentController
 
     private void HandleGameDataLoadedEvent(GameData data)
     {
-        Debug.Log(data.isMinimumExecution);
         if (true == data.isMinimumExecution)
         {
             transform.position = new Vector3(-11.8f, 0, 18.36f);

@@ -3,7 +3,7 @@ using static AyunDefine;
 
 public class LodingView : MonoBehaviour
 {
-    private bool _isLodingEnd = false;
+    private bool _isLoding = true;
 
     private float _currentTime = 0;
     private float _delayTime;
@@ -19,7 +19,7 @@ public class LodingView : MonoBehaviour
 
     private void Update()
     {
-        if (false == _isLodingEnd)
+        if (_isLoding)
         {
             _currentTime += Time.deltaTime;
             if (_currentTime > _delayTime)
@@ -32,15 +32,17 @@ public class LodingView : MonoBehaviour
 
     private void StartLoding()
     {
-        _isLodingEnd = false;
+        _isLoding = true;
+        SoundManager.Instance.LodingSet(_isLoding);
         UIManager.Instance.ActiveMainView(false);
     }
 
     private void EndLoding()
     {
-        _isLodingEnd = true;
+        _isLoding = false;
 
         // Sound
+        SoundManager.Instance.LodingSet(_isLoding);
         SoundManager.Instance.Play(AudioClips.BGM, 1, null, true);
 
         UIManager.Instance.ActiveMainView(true);

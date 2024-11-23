@@ -89,7 +89,7 @@ public class BuyChecker : CheckerArea, IOpenTarget
 
         // Sound
         SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
-        Vibration.Vibrate(100, 36);
+        VibrationManager.Instance.Vibrate(100, 36);
     }
     private void UpdatePriceText(int coin, bool load = false)
     {
@@ -97,7 +97,7 @@ public class BuyChecker : CheckerArea, IOpenTarget
         if (!load)
         {
             LevelEvents.PriceChangingEvent?.Invoke(transform);
-            Vibration.Vibrate(5, 24);
+            VibrationManager.Instance.Vibrate(5, 24);
         }
 
         // Sound

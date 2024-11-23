@@ -5,9 +5,12 @@ using static AyunDefine;
 public class SoundManager : MonoSingleton<SoundManager>
 {
     [SerializeField] private AudioMixer _mainMixer;
+    private bool _isLoding = true;
 
     public GameObject Play(AudioClip clip, float pitch = 1f, Transform parent = null, bool isLooping = false)
     {
+        if (_isLoding) return null;
+
         GameObject go = PoolManager.Instance.Pop(PoolableType.SoundObject.ToString(), parent);
 
         if (go.TryGetComponent(out SoundObject soundObj))
@@ -18,6 +21,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public GameObject Play(AudioClip clip, bool is3DSound = false, float pitch = 1f, Transform parent = null, bool isLooping = false)
     {
+        if (_isLoding) return null;
+
         GameObject go = PoolManager.Instance.Pop(PoolableType.SoundObject.ToString(), parent);
 
         if (go.TryGetComponent(out SoundObject soundObj))
@@ -30,6 +35,11 @@ public class SoundManager : MonoSingleton<SoundManager>
     {
         float volume = isSoundOn ? 0f : -80f;
         _mainMixer.SetFloat("Master", volume);
+    }
+
+    public void LodingSet(bool isLoding)
+    {
+        _isLoding = isLoding;
     }
 
     public void PushSoundObj(GameObject go)
