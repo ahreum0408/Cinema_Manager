@@ -63,9 +63,6 @@ public class SaveManager : MonoBehaviour {
     }
 
     public void SaveGameData() {
-        if (!gameDataManager.GameData.isMinimumExecution) {
-            gameDataManager.GameData.isMinimumExecution = true;
-        }
         string jsonFile = gameDataManager.GameData.ToJson();
         FileManager.WriteToFile(_saveFilename, jsonFile);
     }

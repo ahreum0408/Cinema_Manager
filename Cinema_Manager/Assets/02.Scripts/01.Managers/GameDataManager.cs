@@ -1,15 +1,15 @@
 using UnityEngine;
-using static AyunDefine;
 
-public class GameDataManager : MonoBehaviour
+public class GameDataManager : MonoSingleton<GameDataManager>
 {
     [SerializeField] private GameData _gameData;
     public GameData GameData { set => _gameData = value; get => _gameData; }
 
     private SaveManager _saveManager;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _saveManager = GetComponent<SaveManager>();
     }
     private void Start()
