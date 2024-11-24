@@ -56,21 +56,24 @@ public class BuyChecker : CheckerArea, IOpenTarget
 
     protected IEnumerator CalculateCoin()
     {
+        WaitForSeconds waitTime = new WaitForSeconds(0.05f);
         while (_isCalaulate)
         {
-            WaitForSeconds waitTime = new WaitForSeconds(0.05f);
             if (CurrentCoin <= 0)
             {
                 _isCalaulate = false;
                 break;
             }
-            if (_price - _minusCoin < 0) // 100 -> 90
-            {
-                _minusCoin = 1; // 여기 나중에 수정 필요함
+
+            if (_minusCoin > Mathf.Min(_price, CurrentCoin)) {
+                _minusCoin = Mathf.Min(_price, CurrentCoin);
             }
+
             _price -= _minusCoin; // chcker 돈 빼고
             CoinManager.Instance.Coin -= _minusCoin; // 실직적인 돈 빼고
+
             UpdatePriceText(_price);
+
             if (_price <= 0)
             {
                 EndCal();
