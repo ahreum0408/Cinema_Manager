@@ -27,6 +27,8 @@ public class CheckFood : Conditional
 
     public override TaskStatus OnUpdate()
     {
+        CheckPosition();
+
         if (customer.Value.CurrentCustomerType == CustomerType.Call)
         {
             if (customer.Value.CheckPlayer())
@@ -69,6 +71,16 @@ public class CheckFood : Conditional
         }
 
         return TaskStatus.Running;
+    }
+
+    private void CheckPosition()
+    {
+        if(Vector3.Distance(
+            customer.Value.transform.position, 
+            customer.Value.currentStand.points[0].transform.position) < 0.1f)
+        {
+            customer.Value.customerData.isGive = true;
+        }
     }
 
     private void StopCustomers()

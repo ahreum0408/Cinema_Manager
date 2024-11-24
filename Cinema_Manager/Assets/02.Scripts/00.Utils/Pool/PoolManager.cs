@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -39,8 +40,6 @@ public class PoolManager : MonoBehaviour
 
     public GameObject Pop(string type, Vector3 vec, Quaternion rot)
     {
-        GameObject obj = poolDic[type].Dequeue();
-
         if (poolDic[type].Count == 0)
         {
             for (int i = 0; i < PoolingBase.pairs.Count; i++)
@@ -48,13 +47,14 @@ public class PoolManager : MonoBehaviour
                 if (PoolingBase.pairs[i].prefabTypeName == type)
                 {
                     GameObject poolObject = Instantiate(PoolingBase.pairs[i].prefab, Vector3.zero, Quaternion.identity);
-                    poolObject.name = poolObject.name.Replace("(Clone)", "");
+                    poolObject.name = PoolingBase.pairs[i].prefabTypeName;
                     Push(type, poolObject);
                     break;
                 }
             }
         }
 
+        GameObject obj = poolDic[type].Dequeue();
         obj.SetActive(true);
         obj.transform.position = vec;
         obj.transform.rotation = rot;

@@ -61,7 +61,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     private void FixedUpdate()
     {
-        if (_customerDic.Count > 0 && _currentCustomer == null)
+        if (_customerCount > 0 && _currentCustomer == null)
             _currentCustomer = _customerDic.Keys.First();
 
         if (_currentCustomer != null && !_currentCustomer.customerData.isGive)
@@ -186,8 +186,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
                 _currentCustomer = currentCustomer;
                 _currentCustomer.customerData.isGive = true;
             }
-            else
-                currentCustomer.customerData.isGive = false;
         }
     }
 
