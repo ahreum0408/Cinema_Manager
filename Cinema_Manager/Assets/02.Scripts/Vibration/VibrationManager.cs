@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class VibrationManager : MonoSingleton<VibrationManager>
 {
     private bool _isVibrationOn = true;
