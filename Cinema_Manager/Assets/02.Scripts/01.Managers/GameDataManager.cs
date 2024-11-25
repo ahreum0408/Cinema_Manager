@@ -62,6 +62,8 @@ public class GameDataManager : MonoSingleton<GameDataManager>
         _gameData.allRoomOnOffList = data.allRoomOnOffList;
         _gameData.allCounterOnOffList = data.allCounterOnOffList;
         _gameData.allSignBoardOnOffList = data.allSignBoardOnOffList;
+
+        _gameData.allCounterStaffOnOffList = data.allCounterStaffOnOffList; 
     }
     private void MainDataUpdate(GameData data)
     {
