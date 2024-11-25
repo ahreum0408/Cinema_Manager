@@ -200,7 +200,7 @@ public class EmployeeUpgradeView : UIView
             _volumeUpgradePrice.text = volumePrice.ToString();
         }
 
-        if (_gameData.e_volumeLevel > 4) {
+        if (_gameData.e_employmentLevel > 4) {
             _employmentUpgradePrice.text = "Max";
         }
         else {
