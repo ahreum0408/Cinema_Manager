@@ -33,7 +33,7 @@ namespace UIToolkit
             Sprite standIcon = Resources.Load<Sprite>("LevelUpView/stand");
             Sprite tableIcon = Resources.Load<Sprite>("LevelUpView/table");
 
-            _standIcon = new StyleBackground(boxTruckIcon);
+            _boxTruckIcon = new StyleBackground(boxTruckIcon);
             _foodTruckIcon = new StyleBackground(foodTruckIcon);
             _counterStaffIcon = new StyleBackground(counterStaffIcon);
             _newAreaIcon = new StyleBackground(newAreaIcon);
