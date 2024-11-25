@@ -41,7 +41,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     private Customer _currentCustomer;
 
     private Dictionary<Customer, int> _customerDic;
-    private bool _isStart;
+    private bool _isStart = true;
     private int _customerCount = 0;
     #endregion
 
@@ -52,20 +52,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         _notifyImageComponent = GetComponentInChildren<NotifyImageComponent>();
         _foodStack = new Stack<ITakeable>();
 
-    }
-
-    private void Start()
-    {
-        _isStart = true;
-    }
-
-    private void FixedUpdate()
-    {
-        if (_customerCount > 0 && _currentCustomer == null)
-            _currentCustomer = _customerDic.Keys.First();
-
-        if (_currentCustomer != null && !_currentCustomer.customerData.isGive)
-            _currentCustomer.customerData.isGive = true;
     }
 
     public void ActiveObj(bool active, bool addCustomer = false)
@@ -128,6 +114,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     {
         if (_currentFoodCnt > 0)
         {
+            Debug.Log(gameObject.name + _currentCustomer);
             StartCoroutine(GiveFoodRoutine());
         }
     }
@@ -177,8 +164,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         {
             Customer currentCustomer = customerList[i];
             _customerDic[currentCustomer] = i;
-
-            currentCustomer.Agent.isStopped = false;
             currentCustomer.Agent.SetDestination(points[i].transform.position);
 
             if (i == 0)

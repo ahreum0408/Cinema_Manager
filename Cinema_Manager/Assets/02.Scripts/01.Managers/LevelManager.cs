@@ -192,7 +192,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         _currentLevel = levelDatas[++_levelIndex];
         if (_levelIndex >= 1) {
-            Debug.Log("level 1");
             GameDataManager.Instance.GameData.isMinimumExecution = true;
         }
         _currentLevel.SetCheckerActive(true); // 다음 스테이지 켜주고
@@ -322,7 +321,6 @@ public class LevelManager : MonoSingleton<LevelManager>
             {
                 if (!_gameData.isMinimumExecution)
                 {
-                    Debug.Log("first");
                     SetCheckerPrice(checker);
                 }
                 else

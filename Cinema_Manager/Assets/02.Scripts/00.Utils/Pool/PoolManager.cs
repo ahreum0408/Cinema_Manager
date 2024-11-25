@@ -87,6 +87,7 @@ public class PoolManager : MonoBehaviour
         obj.transform.localRotation = Quaternion.identity;
         return obj;
     }
+
     public GameObject Pop(string type, Transform parentTrm, Vector3 vec, Quaternion rot)
     {
         GameObject obj = poolDic[type].Dequeue();

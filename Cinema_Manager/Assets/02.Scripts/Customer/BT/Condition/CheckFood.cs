@@ -9,28 +9,27 @@ public class CheckFood : Conditional
     public float clearTime;
     private float startTime;
     private bool isCustomerStop = false;
+    private bool isStartBad = true;
 
     private GameObject _soundObj;
 
-    public override void OnStart()
-    {
-        if (customer.Value.CurrentCustomerType == CustomerType.Call)
-        {
-            // Play Sound
-            _soundObj = SoundManager.Instance.Play(AudioClips.CallCustomer, true, 1.5f, null, true);
-
-            StopCustomers();
-            customer.Value.SetCanvas(true);
-            customer.Value.AnimationCompo.CallAnimation(1);
-        }
-    }
-
     public override TaskStatus OnUpdate()
     {
-        CheckPosition();
-
-        if (customer.Value.CurrentCustomerType == CustomerType.Call)
+        if (customer.Value.CurrentCustomerType == CustomerType.Call
+            && customer.Value.currentStand.GetCustomerIndex(customer.Value) == 0)
         {
+            if(isStartBad)
+            {
+                // Play Sound
+                _soundObj = SoundManager.Instance.Play(AudioClips.CallCustomer, true, 1.5f, null, true);
+
+                StopCustomers();
+                customer.Value.SetCanvas(true);
+                customer.Value.AnimationCompo.CallAnimation(1);
+
+                isStartBad = false;
+            }
+
             if (customer.Value.CheckPlayer())
             {
                 startTime += Time.deltaTime;
@@ -71,16 +70,6 @@ public class CheckFood : Conditional
         }
 
         return TaskStatus.Running;
-    }
-
-    private void CheckPosition()
-    {
-        if(Vector3.Distance(
-            customer.Value.transform.position, 
-            customer.Value.currentStand.points[0].transform.position) < 0.1f)
-        {
-            customer.Value.customerData.isGive = true;
-        }
     }
 
     private void StopCustomers()

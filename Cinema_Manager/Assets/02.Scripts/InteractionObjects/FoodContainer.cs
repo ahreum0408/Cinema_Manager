@@ -79,8 +79,19 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget
             // 음료가 아니라면 90도 돌려서 배치
             Quaternion quaternion = _isFood == true ? Quaternion.Euler(-90, 0, 0) : Quaternion.Euler(0, 0, 0);
 
-            GameObject food = PoolManager.Instance.Pop(_poolObjType.ToString(), _spawnTrm, localPos, quaternion);
-            _foodStack.Push(food.GetComponent<ITakeable>());
+            while (true)
+            {
+                GameObject food = PoolManager.Instance.Pop(_poolObjType.ToString(), _spawnTrm, localPos, quaternion);
+                if (food.name != _poolObjType.ToString())
+                {
+                    PoolManager.Instance.Push(food.name, food);
+                }
+                else
+                {
+                    _foodStack.Push(food.GetComponent<ITakeable>());
+                    break;
+                }
+            }
 
             yield return new WaitForSeconds(0.25f);
         }
