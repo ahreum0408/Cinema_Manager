@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor.TextCore.Text;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -56,6 +57,11 @@ public class SaveManager : MonoBehaviour {
         }
         if (FileManager.LoadFromFile(_saveFilename, out var jsonString)) {
             gameDataManager.GameData.LoadJson(jsonString);
+            if (gameDataManager.GameData.isMinimumExecution == false) // 아직 튜토리얼은 안했어
+            {
+                Debug.Log("튜토리얼 안했어");
+                gameDataManager.GameData = NewData();
+            }
         }
         if (gameDataManager.GameData != null) {
             GameDataLoadedEvent?.Invoke(gameDataManager.GameData);

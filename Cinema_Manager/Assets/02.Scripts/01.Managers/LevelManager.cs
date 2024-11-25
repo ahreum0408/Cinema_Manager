@@ -322,7 +322,6 @@ public class LevelManager : MonoSingleton<LevelManager>
             {
                 if (!_gameData.isMinimumExecution)
                 {
-                    Debug.Log("first");
                     SetCheckerPrice(checker);
                 }
                 else
