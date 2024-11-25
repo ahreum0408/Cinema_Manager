@@ -122,6 +122,11 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
     public void RemoveCustomer(Customer customer)
     {
         lineList.Remove(customer);
+        checkPoint.position = new Vector3(
+                checkPoint.position.x - lineInterval,
+                checkPoint.position.y,
+                checkPoint.position.z
+            );
 
         isStart = true;
         Customer beforeCustomer = null;
