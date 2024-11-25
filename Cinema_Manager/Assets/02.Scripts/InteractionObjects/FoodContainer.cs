@@ -83,9 +83,7 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget
             {
                 GameObject food = PoolManager.Instance.Pop(_poolObjType.ToString(), _spawnTrm, localPos, quaternion);
                 if (food.name != _poolObjType.ToString())
-                {
                     PoolManager.Instance.Push(food.name, food);
-                }
                 else
                 {
                     _foodStack.Push(food.GetComponent<ITakeable>());
