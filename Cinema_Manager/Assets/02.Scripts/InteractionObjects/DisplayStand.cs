@@ -54,6 +54,14 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     }
 
+    private void FixedUpdate()
+    {
+        if(_customerDic.Count <= 0)
+        {
+            _isStart = true;
+        }
+    }
+
     public void ActiveObj(bool active, bool addCustomer = false)
     {
         _isOpen = active;
@@ -114,7 +122,6 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     {
         if (_currentFoodCnt > 0)
         {
-            Debug.Log(gameObject.name + _currentCustomer);
             StartCoroutine(GiveFoodRoutine());
         }
     }
@@ -129,7 +136,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
             {
                 _currentCustomer.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
             }
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
@@ -138,23 +145,25 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         if (_customerDic.Count >= points.Count)
             return;
 
+        _customerCount++;
         customer.SpacingY = _spacingY;
         customer.IsFood = _isFood;
-        _customerDic.Add(customer, _customerCount);
-        _customerCount++;
+
+        _customerDic.Add(customer, _customerCount - 1);
 
         if (_isStart)
         {
             _currentCustomer = customer;
-            _currentCustomer.customerData.isGive = true;
             _isStart = false;
         }
 
         customer.Agent.SetDestination(points[_customerDic[customer]].transform.position);
     }
 
+
     public void RemoveCustomer(Customer customer)
     {
+        _currentCustomer = null;
         _customerDic.Remove(customer);
         _customerCount--;
 
@@ -169,10 +178,10 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
             if (i == 0)
             {
                 _currentCustomer = currentCustomer;
-                _currentCustomer.customerData.isGive = true;
             }
         }
     }
+
 
     public PoolableType GetPoolObjType() => _poolObjType;
     public int GetFoodStack() => _currentFoodCnt;

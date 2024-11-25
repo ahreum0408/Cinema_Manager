@@ -15,7 +15,6 @@ public enum CustomerType
 public class CustomerData
 {
     [Header("Customer Type")]
-    public bool isGive = false; // 물건을 선택 할 수 있나
     public bool isBuy = false; // 계산 가능한 상태인가?
     public bool isCalculate = false; // 계산을 해줬는가?
     public bool isSeat; // 식탁을 사용하는 손님인가?
