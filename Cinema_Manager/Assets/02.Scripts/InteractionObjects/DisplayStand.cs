@@ -185,6 +185,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     public PoolableType GetPoolObjType() => _poolObjType;
     public int GetFoodStack() => _currentFoodCnt;
+    public Customer GetFirstCustomer() => _currentCustomer;
 
     public int GetCustomerIndex(Customer customer)
     {

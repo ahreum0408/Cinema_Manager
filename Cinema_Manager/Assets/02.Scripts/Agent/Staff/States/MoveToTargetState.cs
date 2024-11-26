@@ -15,7 +15,6 @@ public class MoveToTargetState : AgentState
     public override void Enter()
     {
         navAgent.SetDestination(targetPosition);
-        navAgent.isStopped = false;
     }
 
     public override void Update()
@@ -28,6 +27,5 @@ public class MoveToTargetState : AgentState
 
     public override void Exit()
     {
-        navAgent.isStopped = true;
     }
 }

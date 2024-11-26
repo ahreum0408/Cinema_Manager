@@ -19,7 +19,7 @@ public class StaffController : AgentController
 
     private AgentState _currentState;
 
-    public bool IsMoving => Agent.velocity.sqrMagnitude > 0;
+    public bool IsMoving => Agent.velocity.sqrMagnitude > 0.1f;
 
     protected override void Init()
     {

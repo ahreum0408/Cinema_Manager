@@ -25,6 +25,8 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
 
     private bool isParcel = false;
 
+    public int FoodTypeSum = 1;
+
     private void Update()
     {
         if (spawnCoolTime < Time.time - spawnTime && currentCustomer < maxCustomer)
@@ -124,6 +126,12 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
                 Debug.LogWarning("올바르지 못한 형식");
                 break;
         }
+    }
+
+    // 음식 종류가 증가할 때 마다(스탠드 갯수 X, 음식 종류)
+    public void SetFoodTypeSum()
+    {
+        FoodTypeSum++;
     }
 
     public void MinusCustomer()

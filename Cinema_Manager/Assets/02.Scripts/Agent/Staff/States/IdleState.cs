@@ -6,19 +6,13 @@ public class IdleState : AgentState
 
     public override void Enter()
     {
-        navAgent.isStopped = true;
     }
 
     public override void Update()
     {
         agent.table = CheckTable();
         agent.displayStand = CheckDisplay();
-        if (agent.table != null)
-        {
-            Vector3 tablePos = agent.table.staffPoint.transform.position;
-            agent.ChangeState(new MoveToTargetState(agent, tablePos, new CleanTableState(agent)));
-        }
-        else if (agent.displayStand != null)
+        if (agent.displayStand != null)
         {
             agent.foodContainer = FindFoodContainer();
             if (agent.foodContainer != null)
@@ -26,6 +20,11 @@ public class IdleState : AgentState
                 agent.ChangeState(new MoveToTargetState
                     (agent, agent.foodContainer.staffPoint.transform.position, new MoveContainerState(agent)));
             }
+        }
+        else if (agent.table != null)
+        {
+            Vector3 tablePos = agent.table.staffPoint.transform.position;
+            agent.ChangeState(new MoveToTargetState(agent, tablePos, new CleanTableState(agent)));
         }
         //else if (CheckCounter())
         //{
@@ -62,8 +61,8 @@ public class IdleState : AgentState
         foreach (DisplayStand displayStand in ObjectManager.Instance.displayStands)
         {
             if (displayStand.gameObject.activeInHierarchy && displayStand.CurrentLine > 0
-                && !displayStand.IsWorking &&
-                agent.StackCompo.MaxStackCount <= displayStand.StackMaxCnt - displayStand.GetFoodStack())
+                && displayStand.GetFirstCustomer().StackCompo.MaxStackCount > displayStand.GetFoodStack()
+                && !displayStand.IsWorking)
             {
                 displayStand.IsWorking = true;
                 return displayStand;

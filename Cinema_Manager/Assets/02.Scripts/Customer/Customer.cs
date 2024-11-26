@@ -36,7 +36,7 @@ public class Customer : AgentController
 
     public float SpacingY = 0f;
     public bool IsFood = false;
-    private int foodTypeSum = 1;
+    private int _foodTypeSum = 1;
 
 
     [SerializeField] private LayerMask _whatIsPlayer;
@@ -69,6 +69,8 @@ public class Customer : AgentController
 
     protected override void OnEnable()
     {
+        _foodTypeSum = CustomerSpawnManager.Instance.FoodTypeSum;
+
         customerData = new CustomerData();
         RestartBehaviorTree();
         Agent.speed = defualtSpeed;
@@ -131,7 +133,7 @@ public class Customer : AgentController
 
     public void SetFoodTypeSum()
     {
-        foodTypeSum++;
+        _foodTypeSum++;
     }
 
     #region SetUI
@@ -178,7 +180,7 @@ public class Customer : AgentController
 
         while (attempts < maxAttempts)
         {
-            int rand = Random.Range(1, foodTypeSum + 1);
+            int rand = Random.Range(1, _foodTypeSum + 1);
             customerData.objectType = (PoolableType)rand;
 
             DisplayStand stand = ObjectManager.Instance.FindDisplayStand(customerData.objectType);
