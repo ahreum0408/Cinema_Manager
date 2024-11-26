@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UIToolkit;
 using UnityEngine.UIElements;
+using static AyunDefine;
 
 [Serializable]
 public class PlayerUpgradeView : UIView
@@ -95,6 +96,9 @@ public class PlayerUpgradeView : UIView
 
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.playerMoveSpeedStat);
                 PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
+
+                SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
+
                 return;
             }
         }
@@ -118,6 +122,9 @@ public class PlayerUpgradeView : UIView
 
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.playerVolumeStat);
                 PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
+
+                SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
+
                 return;
             }
         }
@@ -141,6 +148,9 @@ public class PlayerUpgradeView : UIView
 
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.playerSellingcostStat);
                 PlayerUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
+
+                SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
+
                 return;
             }
         }

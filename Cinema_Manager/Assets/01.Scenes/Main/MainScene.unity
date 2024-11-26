@@ -2374,6 +2374,7 @@ MonoBehaviour:
   maxCustomer: 0
   maxBadCustomer: 3
   spawnCoolTime: 2
+  FoodTypeSum: 1
 --- !u!4 &1373088266
 Transform:
   m_ObjectHideFlags: 0

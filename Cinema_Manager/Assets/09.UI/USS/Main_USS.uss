@@ -26,6 +26,10 @@
     background-color: rgba(0, 0, 0, 0);
 }
 
+#gaugebar > #unity-progress-bar > VisualElement > .unity-progress-bar__title-container > Label {
+    bottom: -4%;
+}
+
 .star-icon {
     width: 120px;
     height: 120px;
@@ -75,7 +79,7 @@
 }
 
 .good-border {
-    width: 85%;
+    width: 90%;
     height: 28%;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -93,8 +97,8 @@
 .button {
     -unity-font-definition: initial;
     -unity-font: url("project://database/Assets/10.Fonts/Rix%20X%20ladywatermelon%20Regular.ttf?fileID=12800000&guid=060932080ae844041bd53088467dfd1f&type=3#Rix X ladywatermelon Regular");
-    width: 42%;
-    height: 31%;
+    width: 55%;
+    height: 41%;
     margin-left: 30px;
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
@@ -106,4 +110,5 @@
 .icon {
     width: 80px;
     height: 80px;
+    margin-left: 12px;
 }
