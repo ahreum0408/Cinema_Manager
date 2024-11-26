@@ -11,6 +11,10 @@
     flex-grow: 1;
     background-color: rgb(255, 241, 173);
     bottom: 75px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .upgrade-icon {
@@ -28,6 +32,14 @@
     background-color: rgb(114, 210, 245);
     flex-grow: 1;
     justify-content: space-around;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
+    padding-top: 7px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 7px;
 }
 
 .main-container {
