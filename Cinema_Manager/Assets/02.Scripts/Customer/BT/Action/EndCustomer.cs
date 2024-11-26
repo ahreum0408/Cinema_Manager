@@ -15,7 +15,9 @@ public class EndCustomer : Action
 
     public override TaskStatus OnUpdate()
     {
-        if (customer.Value.CanSetDestination())
+        if (Vector3.Distance(
+            customer.Value.Agent.destination, transform.position) <
+            customer.Value.Agent.stoppingDistance + 0.5f)
         {
             PoolManager.Instance.Push(customer.Value.CurrentCustomerType.ToString() + "Customer", customer.Value.gameObject);
             return TaskStatus.Failure;
