@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UIToolkit;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static AyunDefine;
 
 [Serializable]
 public class EmployeeUpgradeView : UIView
@@ -86,7 +87,7 @@ public class EmployeeUpgradeView : UIView
         {
             if (gauge.ClassListContains("off") && UpgradeManager.Instance.CanUpgrade(UpgradeTarget.employeeMoveSpeedStat))
             {
-                Debug.Log("in");
+
                 gauge.RemoveFromClassList("off");
                 _gameData.e_movespeedLevel++;
 
@@ -100,6 +101,9 @@ public class EmployeeUpgradeView : UIView
 
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.employeeMoveSpeedStat);
                 EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
+
+                SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
+
                 return;
             }
         }
@@ -123,6 +127,9 @@ public class EmployeeUpgradeView : UIView
 
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.employeeVolumeVolumeStat);
                 EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
+
+                SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
+
                 return;
             }
         }
@@ -146,6 +153,9 @@ public class EmployeeUpgradeView : UIView
 
                 UpgradeManager.Instance.FindDataAndCalculate(UpgradeTarget.employeeAddStat);
                 EmployeeUpgradeEvents.GameDataUpdatEvent?.Invoke(_gameData);
+
+                SoundManager.Instance.Play(AudioClips.BuyObject, 1f);
+
                 return;
             }
         }
