@@ -39,7 +39,7 @@ public class UseTable : Conditional
                     _soundObj = SoundManager.Instance.Play(AudioClips.SleepCustomer, true, 1, null, true);
                 }
 
-                customer.Value.SetCanvas(true);
+                customer.Value.SetBadCanvas(true);
 
                 customer.Value.AnimationCompo.SeatAnimation(-1);
                 customer.Value.AnimationCompo.SleepAnimation(1);
@@ -50,7 +50,7 @@ public class UseTable : Conditional
                     customer.Value.SetGauge(startTime / clearTime);
                     if (clearTime <= startTime)
                     {
-                        customer.Value.SetCanvas(false);
+                        customer.Value.SetBadCanvas(false);
 
                         customer.Value.AnimationCompo.SleepAnimation(-1);
                         customer.Value.CurrentCustomerType = CustomerType.Basic;

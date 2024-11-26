@@ -10,6 +10,7 @@ public class CheckFood : Conditional
     private float startTime;
     private bool isCustomerStop = false;
     private bool isStartBad = true;
+    private bool isStartGive = true;
 
     private GameObject _soundObj;
 
@@ -24,7 +25,7 @@ public class CheckFood : Conditional
                 _soundObj = SoundManager.Instance.Play(AudioClips.CallCustomer, true, 1.5f, null, true);
 
                 StopCustomers();
-                customer.Value.SetCanvas(true);
+                customer.Value.SetBadCanvas(true);
                 customer.Value.AnimationCompo.CallAnimation(1);
 
                 isStartBad = false;
@@ -36,7 +37,7 @@ public class CheckFood : Conditional
                 customer.Value.SetGauge(startTime / clearTime);
                 if (clearTime <= startTime)
                 {
-                    customer.Value.SetCanvas(false);
+                    customer.Value.SetBadCanvas(false);
 
                     customer.Value.AnimationCompo.CallAnimation(-1);
                     customer.Value.CurrentCustomerType = CustomerType.Basic;
@@ -60,11 +61,19 @@ public class CheckFood : Conditional
 
         if (!isCustomerStop && 
             customer.Value.currentStand.GetCustomerIndex(customer.Value) == 0)
+        {
+            if(isStartGive)
+            {
+                customer.Value.SetFoodCanvas(true);
+                isStartGive = false;
+            }
             customer.Value.currentStand.GiveFood();
+        }
 
         if (customer.Value.StackCompo.RemainingStackCount == 0
             && ObjectManager.Instance.counter.IsCanStand)
         {
+            customer.Value.SetFoodCanvas(false);
             customer.Value.currentStand.RemoveCustomer(customer.Value);
             return TaskStatus.Failure;
         }
