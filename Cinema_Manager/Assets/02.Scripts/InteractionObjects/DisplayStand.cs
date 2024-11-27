@@ -136,10 +136,14 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     private IEnumerator GiveFoodRoutine()
     {
-        while (_currentFoodCnt > 0)
+        while (_currentFoodCnt > 0 && _currentCustomer != null)
         {
             _isCoroutinePlay = true;
-            if (!_currentCustomer.CanSetDestination()) break;
+            if (!_currentCustomer.CanSetDestination())
+            {
+                _isCoroutinePlay = false;
+                break;
+            }
 
             if (_currentCustomer.StackCompo.RemainingStackCount != 0)
             {
@@ -147,6 +151,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
                 _currentCustomer.SetFoodNumText(_currentCustomer.StackCompo.RemainingStackCount.ToString());
                 yield return new WaitForSeconds(0.2f);
             }
+            _isCoroutinePlay = false;
             yield return null;
         }
         _isCoroutinePlay = false;
