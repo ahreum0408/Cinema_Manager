@@ -43,16 +43,16 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
         int rand = Random.Range(0, 100);
         Customer selectedCustomer = basicCustomer;
 
-        if (rand < 60)
+        if (rand < 79)
             selectedCustomer = basicCustomer;
-        else if (rand < 90)
+        else if (rand < 94)
         {
             if (isParcel)
                 selectedCustomer = parcelCustomer;
         }
         else if (currentBadCustomer < maxBadCustomer)
         {
-            if (rand < 95)
+            if (rand < 97)
                 selectedCustomer = callCustomer;
             else if (rand < 100)
                 selectedCustomer = sleepCustomer;

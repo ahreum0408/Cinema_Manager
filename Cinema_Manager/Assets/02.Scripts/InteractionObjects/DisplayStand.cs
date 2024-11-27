@@ -46,6 +46,8 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     private Dictionary<Customer, int> _customerDic;
     private bool _isStart = true;
     private int _customerCount = 0;
+
+    private bool _isCoroutinePlay = false;
     #endregion
 
     private void Awake()
@@ -126,7 +128,7 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     public void GiveFood()
     {
-        if (_currentFoodCnt > 0)
+        if (_currentFoodCnt > 0 && !_isCoroutinePlay)
         {
             StartCoroutine(GiveFoodRoutine());
         }
@@ -134,16 +136,20 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
 
     private IEnumerator GiveFoodRoutine()
     {
-        while (_currentFoodCnt > 0 && _currentCustomer != null)
+        while (_currentFoodCnt > 0)
         {
+            _isCoroutinePlay = true;
             if (!_currentCustomer.CanSetDestination()) break;
 
             if (_currentCustomer.StackCompo.RemainingStackCount != 0)
             {
                 _currentCustomer.OnTakeTakeable?.Invoke(_foodStack.Pop(), _poolObjType, _spacingY, _isFood);
+                _currentCustomer.SetFoodNumText(_currentCustomer.StackCompo.RemainingStackCount.ToString());
+                yield return new WaitForSeconds(0.2f);
             }
-            yield return new WaitForSeconds(0.2f);
+            yield return null;
         }
+        _isCoroutinePlay = false;
     }
 
     public void AddCustomer(Customer customer)

@@ -1,5 +1,7 @@
 using BehaviorDesigner.Runtime;
 using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -43,6 +45,11 @@ public class Customer : AgentController
 
     [SerializeField] private Canvas badCustomerCanvas;
     [SerializeField] private Image gauge;
+
+    [SerializeField] private Canvas foodCanvas;
+    [SerializeField] private TextMeshProUGUI foodNumText;
+    [SerializeField] private Image foodImage;
+    [SerializeField] private List<Sprite> foodSprites;
 
     [HideInInspector] public bool IsStacked => StackCompo.IsStacked;
     [HideInInspector] public Vector3 startPos;
@@ -137,7 +144,7 @@ public class Customer : AgentController
     }
 
     #region SetUI
-    public void SetCanvas(bool isCanvas)
+    public void SetBadCanvas(bool isCanvas)
     {
         badCustomerCanvas.enabled = isCanvas;
     }
@@ -145,6 +152,21 @@ public class Customer : AgentController
     public void SetGauge(float value)
     {
         gauge.fillAmount = value;
+    }
+
+    public void SetFoodCanvas(bool isCanvas)
+    {
+        foodCanvas.enabled = isCanvas;
+    }
+
+    public void SetFoodNumText(string text)
+    {
+        foodNumText.text = text;
+    }
+
+    private void SetFoodImage()
+    {
+        foodImage.sprite = foodSprites[(int)customerData.objectType - 1];
     }
 
     #endregion
@@ -207,12 +229,16 @@ public class Customer : AgentController
                 }
             }
         }
+        if (CurrentCustomerType != CustomerType.Parcel)
+            SetFoodImage();
     }
 
     // 구매 수량
     private void SelectBuySum()
     {
         StackCompo.SetMaxStackCount(Random.Range(1, customerData.maxBuySum + 1));
+        if (CurrentCustomerType != CustomerType.Parcel)
+            SetFoodNumText(StackCompo.MaxStackCount.ToString());
     }
     #endregion
 }

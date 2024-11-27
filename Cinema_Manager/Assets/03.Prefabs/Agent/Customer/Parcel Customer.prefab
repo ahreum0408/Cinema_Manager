@@ -2227,6 +2227,10 @@ MonoBehaviour:
     m_Bits: 256
   badCustomerCanvas: {fileID: 0}
   gauge: {fileID: 0}
+  foodCanvas: {fileID: 0}
+  foodNumText: {fileID: 0}
+  foodImage: {fileID: 0}
+  foodSprites: []
   startPos: {x: 0, y: 0, z: 0}
   currentStand: {fileID: 0}
   currentChair: {fileID: 0}
