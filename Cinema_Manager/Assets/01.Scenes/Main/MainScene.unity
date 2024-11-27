@@ -859,8 +859,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB85C\uB529\uC911..."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b198be30c379ca1498cd095610dc2071, type: 2}
-  m_sharedMaterial: {fileID: -5598738732452045673, guid: b198be30c379ca1498cd095610dc2071,
+  m_fontAsset: {fileID: 11400000, guid: 95e8e2fb8f2f09e40b2d6dc8156995c3, type: 2}
+  m_sharedMaterial: {fileID: -3448399262761955084, guid: 95e8e2fb8f2f09e40b2d6dc8156995c3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1797,12 +1797,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 773058961574668392, guid: c832520e45db63046b24510b6e4e7d13,
+    - target: {fileID: 638240921676193860, guid: c832520e45db63046b24510b6e4e7d13,
         type: 3}
-      propertyPath: _stapParticle
-      value: 
-      objectReference: {fileID: 2807773263694672733, guid: 6f65d75dfd935214c92445268d134a5f,
+      propertyPath: m_fontSize
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 638240921676193860, guid: c832520e45db63046b24510b6e4e7d13,
         type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5356315659304152913, guid: c832520e45db63046b24510b6e4e7d13,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1862,11 +1866,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6509899670829021156, guid: c832520e45db63046b24510b6e4e7d13,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4993,6 +4992,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03622749
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802728547754701255, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802728547754701255, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6802728547754701255, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6873029014214332078, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}

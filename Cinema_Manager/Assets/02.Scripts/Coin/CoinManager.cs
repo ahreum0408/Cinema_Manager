@@ -6,7 +6,6 @@ public class CoinManager : MonoSingleton<CoinManager>
     private int _gam = 0;
 
     private char kilo = 'K';
-    private char mega = 'M';
 
     private GameData _gameData;
 
@@ -62,20 +61,22 @@ public class CoinManager : MonoSingleton<CoinManager>
 
     public string CalculatePriceText(int price)
     {
-        int m = 1000000;
         int k = 1000;
+        int h = 100;
         string calP = "";
 
-        if (price / m > 0)
-        { // �鸸
-            calP = (price / m).ToString() + mega;
+        if (price / k > 0) {
+            int kC = price / k;
+            int hC = (price % k) / h;
+            if (hC == 0) {
+                calP = $"{kC}{kilo}";
+            }
+            else {
+                Debug.Log(hC);
+                calP = $"{kC}.{hC}{kilo}";
+            }
         }
-        else if (price / k > 0)
-        { // õ
-            calP = (price / k).ToString() + kilo;
-        }
-        else
-        {
+        else {
             calP = price.ToString();
         }
 

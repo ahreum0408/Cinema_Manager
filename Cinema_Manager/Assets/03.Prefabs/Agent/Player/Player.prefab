@@ -1007,10 +1007,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Max
+  m_text: MAX
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b198be30c379ca1498cd095610dc2071, type: 2}
-  m_sharedMaterial: {fileID: -5598738732452045673, guid: b198be30c379ca1498cd095610dc2071,
+  m_fontAsset: {fileID: 11400000, guid: 95e8e2fb8f2f09e40b2d6dc8156995c3, type: 2}
+  m_sharedMaterial: {fileID: -3448399262761955084, guid: 95e8e2fb8f2f09e40b2d6dc8156995c3,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2034,7 +2034,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   rotateSpeed: 10
-  _stapParticle: {fileID: 0}
+  _stapParticle: {fileID: 2807773263694672733, guid: 6f65d75dfd935214c92445268d134a5f,
+    type: 3}
 --- !u!114 &3613467518855992434
 MonoBehaviour:
   m_ObjectHideFlags: 0
