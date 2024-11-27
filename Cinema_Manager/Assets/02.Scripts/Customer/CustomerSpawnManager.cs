@@ -131,7 +131,6 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
     // 음식 종류가 증가할 때 마다(스탠드 갯수 X, 음식 종류)
     public void SetFoodTypeSum()
     {
-        Debug.Log("add");
         FoodTypeSum++;
     }
 
