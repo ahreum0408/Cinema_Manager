@@ -14,6 +14,11 @@ public class CheckFood : Conditional
 
     private GameObject _soundObj;
 
+    public override void OnStart()
+    {
+        isStartGive = true;
+    }
+
     public override TaskStatus OnUpdate()
     {
         if (customer.Value.CurrentCustomerType == CustomerType.Call

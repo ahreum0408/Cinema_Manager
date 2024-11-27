@@ -4554,6 +4554,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.014384343
       objectReference: {fileID: 0}
+    - target: {fileID: 4665111840051668520, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4704036865489348050, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: randomSeed

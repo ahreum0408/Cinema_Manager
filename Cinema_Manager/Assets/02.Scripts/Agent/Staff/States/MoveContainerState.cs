@@ -21,7 +21,7 @@
 
     private bool CheckFoodContainer()
     {
-        if ((agent.foodContainer.currentFoodCnt == 0 && agent.IsStacked) || agent.StackCompo.IsStackMax)
+        if (agent.IsStacked)
         {
             agent.foodContainer = null;
             return true;

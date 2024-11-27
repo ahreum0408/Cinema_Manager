@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 
@@ -107,10 +108,15 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
     {
         lineList.Add(customer);
 
-        if (isStart)
+        if (isStart || lineList.Count == 1)
         {
             customer.customerData.isBuy = true;
             isStart = false;
+            checkPoint.position = new Vector3(
+                checkPoint.position.x + lineInterval,
+                checkPoint.position.y,
+                checkPoint.position.z
+            );
         }
         else
         {
@@ -125,6 +131,8 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
     public void RemoveCustomer(Customer customer)
     {
         lineList.Remove(customer);
+        lineList = lineList.OrderBy(c => lineList).ToList();
+
         checkPoint.position = new Vector3(
                 checkPoint.position.x - lineInterval,
                 checkPoint.position.y,
@@ -133,6 +141,7 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
 
         isStart = true;
         Customer beforeCustomer = null;
+
         foreach (var customers in lineList)
         {
             if (isStart)
