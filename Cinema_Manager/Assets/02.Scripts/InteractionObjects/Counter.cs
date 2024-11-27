@@ -42,6 +42,9 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget
     public TargetType Type { get => _targetType; set => _targetType = value; }
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
 
+    private bool _isFirst;
+    public bool IsFirst { get => _isFirst; set => _isFirst = value; }
+
     private void Awake()
     {
         _moneyDummy = transform.GetComponentInChildren<MoneyDummy>();
@@ -164,7 +167,6 @@ public class Counter : MonoBehaviour, IIneractionable, IOpenTarget
         // Timeline
         if (true == active && false == gameObject.activeSelf)
             _truckCameraTimeline.Play();
-
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeCounterActiveEvent?.Invoke(this, active);

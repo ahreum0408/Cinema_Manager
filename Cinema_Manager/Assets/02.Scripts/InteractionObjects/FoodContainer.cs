@@ -34,6 +34,9 @@ public class FoodContainer : MonoBehaviour, IIneractionable, IOpenTarget
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
     public TargetType Type { get => _targetType; set => _targetType = value; }
 
+    private bool _isFirst;
+    public bool IsFirst { get => _isFirst; set => _isFirst = value; }
+
     #region 나중에 업그레이드로 빼야할 것들
     private int _stackMaxCnt = 8; // 스택에 쌓이는 음식 개수
     private int _spawnFoodCnt = 4; // 스폰되는 음식 개수

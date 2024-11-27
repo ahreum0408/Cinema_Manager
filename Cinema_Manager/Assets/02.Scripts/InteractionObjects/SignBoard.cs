@@ -14,6 +14,9 @@ public class SignBoard : MonoBehaviour, IOpenTarget
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
     public TargetType Type { get => _targetType; set => _targetType = value; }
 
+    private bool _isFirst;
+    public bool IsFirst { get => _isFirst; set => _isFirst = value; }
+
     private void Awake()
     {
         _moneyDummy = GetComponentInChildren<MoneyDummy>();

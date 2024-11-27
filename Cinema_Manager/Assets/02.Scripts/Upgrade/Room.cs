@@ -10,12 +10,16 @@ public class Room : MonoBehaviour, IOpenTarget
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
     public TargetType Type { get => _targetType; set => _targetType = value; }
 
+    private bool _isFirst;
+    public bool IsFirst { get => _isFirst; set => _isFirst = value; }
+
     public void ActiveObj(bool active, bool on = false)
     {
         _isOpen = active;
         gameObject.SetActive(!active);
         _openTarget.gameObject.SetActive(active);
         LevelEvents.ChangeRoomActiveEvent?.Invoke(this, active);
+
         ScaleSetting();
     }
 

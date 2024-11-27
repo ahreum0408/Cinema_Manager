@@ -22,8 +22,11 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
     [SerializeField] private TargetType _targetType;
     private bool _isOpen = false;
     public TargetType Type { get => _targetType; set => _targetType = value; }
-
+    public PoolableType ItemType { get => _poolObjType; set => _poolObjType = value; }
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
+
+    private bool _isFirst;
+    public bool IsFirst { get => _isFirst; set => _isFirst = value; }
 
     #region 서연
     public bool IsWorking = false;
@@ -67,6 +70,9 @@ public class DisplayStand : MonoBehaviour, IIneractionable, IOpenTarget
         _isOpen = active;
         gameObject.SetActive(active);
         LevelEvents.ChangeStandActiveEvent?.Invoke(this, active);
+        if (active && _isFirst) {
+            CustomerSpawnManager.Instance.SetFoodTypeSum();
+        }
         ScaleSetting();
         if (active && addCustomer)
         { // 여기 문제 있을거임 주의**

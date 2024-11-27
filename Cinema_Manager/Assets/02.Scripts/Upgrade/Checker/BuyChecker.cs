@@ -33,6 +33,9 @@ public class BuyChecker : CheckerArea, IOpenTarget
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
     public TargetType Type { get => _targetType; set => _targetType = value; }
 
+    private bool _isFirst;
+    public bool IsFirst { get => _isFirst; set => _isFirst = value; }
+
     private void Awake()
     {
         CalculateWeght();
@@ -114,6 +117,7 @@ public class BuyChecker : CheckerArea, IOpenTarget
         {
             ScaleSetting();
         }
+        
         LevelEvents.ChangeCheckerActiveEvent?.Invoke(this, active);
     }
 

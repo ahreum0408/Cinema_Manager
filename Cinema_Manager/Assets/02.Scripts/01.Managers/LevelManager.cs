@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static AyunDefine;
 using Debug = UnityEngine.Debug;
@@ -167,6 +168,16 @@ public class LevelManager : MonoSingleton<LevelManager>
                 }
             }
         }
+        _allStand.First(stand => stand.ItemType == PoolableType.TriangleKimbap).IsFirst = true;
+        _allStand.First(stand => stand.ItemType == PoolableType.Coke).IsFirst = true;
+        _allStand.First(stand => stand.ItemType == PoolableType.CupRamen).IsFirst = true;
+        _allStand.First(stand => stand.ItemType == PoolableType.Beer).IsFirst = true;
+        _allStand.First(stand => stand.ItemType == PoolableType.Snack).IsFirst = true;
+        _allStand.First(stand => stand.ItemType == PoolableType.Juice).IsFirst = true;
+        _allStand.First(stand => stand.ItemType == PoolableType.Jelly).IsFirst = true;
+        _allStand.First(stand => stand.ItemType == PoolableType.Coffee).IsFirst = true;
+        _allStand.First(stand => stand.ItemType == PoolableType.Bread).IsFirst = true;
+        _allStand.First(stand => stand.ItemType == PoolableType.Soju).IsFirst = true;
     }
 
     #region Level

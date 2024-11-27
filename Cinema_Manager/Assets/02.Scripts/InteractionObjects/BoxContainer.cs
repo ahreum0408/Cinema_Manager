@@ -22,6 +22,9 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
     public bool IsOpen { get => _isOpen; set => _isOpen = value; }
     public TargetType Type { get => _targetType; set => _targetType = value; }
 
+    private bool _isFirst;
+    public bool IsFirst { get => _isFirst; set => _isFirst = value; }
+
     [Header("Box")]
     [SerializeField] private PoolableType _poolObjType;
     [SerializeField] private Transform _spawnTrm; // 박스에 스폰될 때 위치
@@ -147,6 +150,7 @@ public class BoxContainer : MonoBehaviour, IIneractionable, IOpenTarget
     {
         _isOpen = active;
         gameObject.SetActive(active);
+
         LevelEvents.ChangeBoxTruckActiveEvent?.Invoke(this, active);
         ScaleSetting();
     }

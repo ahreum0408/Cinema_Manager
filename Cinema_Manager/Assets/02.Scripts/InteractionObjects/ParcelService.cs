@@ -40,6 +40,9 @@ public class ParcelService : MonoBehaviour, IIneractionable, IOpenTarget
 
     private NotifyImageComponent _notifyImageComponent;
 
+    private bool _isFirst;
+    public bool IsFirst { get => _isFirst; set => _isFirst = value; }
+
 
     #region 나중에 업그레이드로 빼야할 것들
     private int _stackMaxCnt = 8; // 스택에 쌓이는 음식 개수
