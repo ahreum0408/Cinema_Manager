@@ -26,16 +26,16 @@ public class IdleState : AgentState
             Vector3 tablePos = agent.table.staffPoint.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, tablePos, new CleanTableState(agent)));
         }
-        //else if (CheckCounter())
-        //{
-        //    Vector3 counterPos = ObjectManager.Instance.counter.staffPoint.transform.position;
-        //    agent.ChangeState(new MoveToTargetState(agent, counterPos, new CounterState(agent)));
-        //}
         else if (CheckPackage())
         {
             Vector3 parcelPos = ObjectManager.Instance.parcelService.staffPoint.transform.position;
             agent.ChangeState(new MoveToTargetState(agent, parcelPos, new MovePackageState(agent)));
         }
+        //else if (CheckCounter())
+        //{
+        //    Vector3 counterPos = ObjectManager.Instance.counter.staffPoint.transform.position;
+        //    agent.ChangeState(new MoveToTargetState(agent, counterPos, new CounterState(agent)));
+        //}
     }
 
     public override void Exit()

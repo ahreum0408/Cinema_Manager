@@ -8,6 +8,7 @@ public class CheckFood : Conditional
 
     public float clearTime;
     private float startTime;
+
     private bool isCustomerStop = false;
     private bool isStartBad = true;
     private bool isStartGive = true;
