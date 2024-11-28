@@ -47,7 +47,7 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
             selectedCustomer = basicCustomer;
         else if (rand < 94)
         {
-            if (isParcel)
+            if (isParcel && ObjectManager.Instance.parcelService.BoxStackCheck())
                 selectedCustomer = parcelCustomer;
         }
         else if (currentBadCustomer < maxBadCustomer)
