@@ -72,7 +72,6 @@ public class CoinManager : MonoSingleton<CoinManager>
                 calP = $"{kC}{kilo}";
             }
             else {
-                Debug.Log(hC);
                 calP = $"{kC}.{hC}{kilo}";
             }
         }

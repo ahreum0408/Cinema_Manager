@@ -36,6 +36,8 @@ public class BuyChecker : CheckerArea, IOpenTarget
     private bool _isFirst;
     public bool IsFirst { get => _isFirst; set => _isFirst = value; }
 
+    private float time;
+
     private void Awake()
     {
         CalculateWeght();
@@ -47,16 +49,25 @@ public class BuyChecker : CheckerArea, IOpenTarget
 
     public override void EnterInteraction(AgentController agent)
     {
-        _isCalaulate = true;
-        StartCoroutine(CalculateCoin());
+        StartCoroutine(WaitEnter());
     }
     public override void ExitInteraction(AgentController agent)
     {
+        //StopCoroutine(WaitEnter(true));
+        StopCoroutine(CalculateCoin());
+        Debug.Log("exit");
         _isCalaulate = false;
         LevelEvents.ChangePriceEvent?.Invoke(this, _price);
-        StopCoroutine(CalculateCoin());
     }
+    private IEnumerator WaitEnter(bool isEnd = false) {
+        yield return new WaitForSeconds(1f);
 
+        if (_isCalaulate) {
+            Debug.Log("½ÇÇà");
+            _isCalaulate = true;
+            StartCoroutine(CalculateCoin());
+        }
+    }
     protected IEnumerator CalculateCoin()
     {
         WaitForSeconds waitTime = new WaitForSeconds(0.05f);
