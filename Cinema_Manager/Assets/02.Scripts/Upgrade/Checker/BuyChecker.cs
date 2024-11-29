@@ -53,18 +53,15 @@ public class BuyChecker : CheckerArea, IOpenTarget
     }
     public override void ExitInteraction(AgentController agent)
     {
-        //StopCoroutine(WaitEnter(true));
         StopCoroutine(CalculateCoin());
-        Debug.Log("exit");
         _isCalaulate = false;
         LevelEvents.ChangePriceEvent?.Invoke(this, _price);
     }
-    private IEnumerator WaitEnter(bool isEnd = false) {
-        yield return new WaitForSeconds(1f);
+    private IEnumerator WaitEnter() {
+            _isCalaulate = true;
+        yield return new WaitForSeconds(2f);
 
         if (_isCalaulate) {
-            Debug.Log("½ÇÇà");
-            _isCalaulate = true;
             StartCoroutine(CalculateCoin());
         }
     }

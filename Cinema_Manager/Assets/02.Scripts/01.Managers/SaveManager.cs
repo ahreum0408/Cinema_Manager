@@ -47,13 +47,11 @@ public class SaveManager : MonoBehaviour
     void OnEnable()
     {
         MainEvents.ShowViewEvent += ViewShown;
-        MainEvents.UpdateViewEvent += ViewUpdated;
     }
 
     void OnDisable()
     {
         MainEvents.ShowViewEvent -= ViewShown;
-        MainEvents.UpdateViewEvent -= ViewUpdated;
     }
     public GameData NewData()
     {
@@ -85,8 +83,6 @@ public class SaveManager : MonoBehaviour
         string jsonFile = gameDataManager.GameData.ToJson();
         FileManager.WriteToFile(_saveFilename, jsonFile);
     }
-
-    #region handle
     void ViewShown()
     {
         if (gameDataManager.GameData != null)
@@ -94,10 +90,4 @@ public class SaveManager : MonoBehaviour
             //GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
         }
     }
-    // 이거 지금 안씀
-    void ViewUpdated(GameData gameData)
-    {
-        gameDataManager.GameData = gameData;
-    }
-    #endregion
 }
