@@ -42,11 +42,11 @@ public class EmployeeUpgradeView : UIView
     {
         base.SetVisualElements();
 
-        _closeBtn = topElement.Q<Button>("close-btn");
+        _closeBtn = topContainer.Q<Button>("close-btn");
 
-        var upgradeMoveSpeedContent = topElement.Q<VisualElement>("upgrade-movespeed-content");
-        var upgradeVolumeContent = topElement.Q<VisualElement>("upgrade-volume-content");
-        var upgradeEmploymentContent = topElement.Q<VisualElement>("upgrade-employment-content");
+        var upgradeMoveSpeedContent = topContainer.Q<VisualElement>("upgrade-movespeed-content");
+        var upgradeVolumeContent = topContainer.Q<VisualElement>("upgrade-volume-content");
+        var upgradeEmploymentContent = topContainer.Q<VisualElement>("upgrade-employment-content");
 
         _moveSpeedGaugeList = upgradeMoveSpeedContent.Query<VisualElement>(name: "gauge").ToList();
         _volumeGaugeList = upgradeVolumeContent.Query<VisualElement>(name: "gauge").ToList();

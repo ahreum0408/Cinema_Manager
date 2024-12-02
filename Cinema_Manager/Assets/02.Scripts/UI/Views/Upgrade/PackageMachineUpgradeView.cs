@@ -31,10 +31,10 @@ namespace UIToolkit
         protected override void SetVisualElements()
         {
             base.SetVisualElements();
-            _closeBtn = topElement.Q<Button>("close-btn");
+            _closeBtn = topContainer.Q<Button>("close-btn");
 
-            var upgradeProductionSpeedContent = topElement.Q<VisualElement>("upgrade-packingspeed-content");
-            var upgradeVolumeContent = topElement.Q<VisualElement>("upgrade-volume-content");
+            var upgradeProductionSpeedContent = topContainer.Q<VisualElement>("upgrade-packingspeed-content");
+            var upgradeVolumeContent = topContainer.Q<VisualElement>("upgrade-volume-content");
 
             _packingSpeedGaugeList = upgradeProductionSpeedContent.Query<VisualElement>(name: "gauge").ToList();
             _volumeGaugeList = upgradeVolumeContent.Query<VisualElement>(name: "gauge").ToList();

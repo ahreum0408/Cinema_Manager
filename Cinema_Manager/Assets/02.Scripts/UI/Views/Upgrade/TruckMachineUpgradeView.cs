@@ -35,11 +35,11 @@ public class TruckMachineUpgradeView : UIView
     {
         base.SetVisualElements();
 
-        _closeBtn = topElement.Q<Button>("close-btn");
+        _closeBtn = topContainer.Q<Button>("close-btn");
 
-        var upgradeProductionSpeedContent = topElement.Q<VisualElement>("upgrade-deliveryspeed-content");
-        var upgradeVolumeContent = topElement.Q<VisualElement>("upgrade-volume-content");
-        var upgradeStorageContent = topElement.Q<VisualElement>("upgrade-storage-content");
+        var upgradeProductionSpeedContent = topContainer.Q<VisualElement>("upgrade-deliveryspeed-content");
+        var upgradeVolumeContent = topContainer.Q<VisualElement>("upgrade-volume-content");
+        var upgradeStorageContent = topContainer.Q<VisualElement>("upgrade-storage-content");
 
         _deliverySpeedGaugeList = upgradeProductionSpeedContent.Query<VisualElement>(name: "gauge").ToList();
         _volumeGaugeList = upgradeVolumeContent.Query<VisualElement>(name: "gauge").ToList();

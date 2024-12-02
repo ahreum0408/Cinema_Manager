@@ -60,8 +60,8 @@ namespace UIToolkit
         {
             base.SetVisualElements();
 
-            _mainContent = topElement.Q<VisualElement>("main-container");
-            _closeBtn = topElement.Q<Button>("close-btn");
+            _mainContent = topContainer.Q<VisualElement>("main-container");
+            _closeBtn = topContainer.Q<Button>("close-btn");
         }
         protected override void RegisterButtonCallbacks()
         {

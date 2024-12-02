@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine.UIElements;
 
 namespace UIToolkit
@@ -14,17 +15,20 @@ namespace UIToolkit
     {
         protected bool isOverlay; // 부분 투명 여부
         protected bool hideOnAwake = true;
-        protected VisualElement topElement; // templeateContainer 말하는거임
+        protected VisualElement topContainer; // templeateContainer 말하는거임
+        protected VisualElement topElement;
         protected GameData _gameData;
 
-        public VisualElement Root => topElement;
+        public VisualElement Root => topContainer;
         public bool IsTransparent => isOverlay;
-        public bool IsHidden => topElement.style.display == DisplayStyle.None;
+        public bool IsHidden => topContainer.style.display == DisplayStyle.None;
 
-        public UIView(VisualElement topElement)
+        public UIView(VisualElement topContainer)
         {
             // null이 아니라면 m_TopElement에 topElement넣어주고 
-            this.topElement = topElement ?? throw new ArgumentNullException(nameof(topElement));
+            this.topContainer = topContainer ?? throw new ArgumentNullException(nameof(topContainer));
+            topElement = topContainer.Q<VisualElement>("background");
+
             Initialize();
         }
 
@@ -56,12 +60,15 @@ namespace UIToolkit
 
         public virtual void Show()
         {
-            topElement.style.display = DisplayStyle.Flex;
+            topContainer.style.display = DisplayStyle.Flex;
+            topElement.AddToClassList("openView");
         }
 
-        public virtual void Hide()
+        public async virtual void Hide()
         {
-            topElement.style.display = DisplayStyle.None;
+            topElement.RemoveFromClassList("openView");
+            await Task.Delay(200);
+            topContainer.style.display = DisplayStyle.None;
         }
 
         // 이벤트 핸들러를 등록 해제

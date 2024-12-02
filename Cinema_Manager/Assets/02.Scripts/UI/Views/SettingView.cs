@@ -31,11 +31,11 @@ public class SettingView : UIView
     {
         base.SetVisualElements();
 
-        _soundToggle = topElement.Q<Toggle>("sound-toggle");
-        _hapticToggle = topElement.Q<Toggle>("haptic-toggle");
+        _soundToggle = topContainer.Q<Toggle>("sound-toggle");
+        _hapticToggle = topContainer.Q<Toggle>("haptic-toggle");
 
-        _closeBtn = topElement.Q<Button>("closee-btn");
-        _moneyBtn = topElement.Q<Button>("money-btn");
+        _closeBtn = topContainer.Q<Button>("closee-btn");
+        _moneyBtn = topContainer.Q<Button>("money-btn");
     }
 
     protected override void RegisterButtonCallbacks()

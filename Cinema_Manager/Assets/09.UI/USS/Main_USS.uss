@@ -112,3 +112,10 @@
     height: 80px;
     margin-left: 12px;
 }
+
+.openView {
+    display: flex;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out-back;
+    scale: 1 1;
+}

@@ -13,7 +13,7 @@
     <Style src="project://database/Assets/09.UI/USS/Upgrade_USS.uss?fileID=7433441132597879392&amp;guid=bfa203c725e68ca48873f5461d8f68dd&amp;type=3#Upgrade_USS" />
     <Style src="project://database/Assets/09.UI/USS/Button_USS.uss?fileID=7433441132597879392&amp;guid=e14bf1679fc6d6f4dad2eae9b0c340ca&amp;type=3#Button_USS" />
     <ui:Instance template="MainView" name="MainView" picking-mode="Ignore" />
-    <ui:Instance template="SettingView" name="SettingView" style="width: 100%; align-items: center; justify-content: center; display: none; height: 100%; position: absolute; top: 0; left: 50px;" />
+    <ui:Instance template="SettingView" name="SettingView" style="width: 100%; align-items: center; justify-content: center; height: 100%; position: absolute; display: none;" />
     <ui:Instance template="UpgradeView" name="EmployeeUpgradeView" style="position: absolute; width: 100%; height: 100%; display: none;" />
     <ui:Instance template="PlayerUpgradeView" name="PlayerUpgradeView" style="display: none; width: 100%; height: 100%; position: absolute;" />
     <ui:Instance template="TruckMachineUpgradeView" name="TruckMachineUpgradeView" style="position: absolute; width: 100%; height: 100%; display: none;" />

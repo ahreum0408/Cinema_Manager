@@ -39,14 +39,14 @@ public class MainView : UIView
     {
         base.SetVisualElements();
 
-        _settingBtn = topElement.Q<Button>("setting-btn");
-        _storeBtn = topElement.Q<Button>("store-btn");
+        _settingBtn = topContainer.Q<Button>("setting-btn");
+        _storeBtn = topContainer.Q<Button>("store-btn");
 
-        _coinTxt = topElement.Q<Label>("coin-txt");
-        _gamTxt = topElement.Q<Label>("gam-txt");
+        _coinTxt = topContainer.Q<Label>("coin-txt");
+        _gamTxt = topContainer.Q<Label>("gam-txt");
 
-        _levelBar = topElement.Q<ProgressBar>("gaugebar");
-        _levelTxt = topElement.Q<Label>("level-txt");
+        _levelBar = topContainer.Q<ProgressBar>("gaugebar");
+        _levelTxt = topContainer.Q<Label>("level-txt");
     }
     protected override void RegisterButtonCallbacks()
     {
