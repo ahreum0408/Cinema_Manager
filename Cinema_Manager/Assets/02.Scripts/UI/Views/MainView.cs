@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UIToolkit;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -69,8 +70,20 @@ public class MainView : UIView
     }
 
     #region level-bar
-    private void UpdateExp(int exp)
+    private async void UpdateExp(int exp)
     {
+        float currentExp = _levelBar.value;
+        float duration = 0.3f;
+        float elapsed = 0f;
+
+        while (elapsed < duration) {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            _levelBar.value = Mathf.Lerp(currentExp, exp, t);
+            _levelBar.title = $"{Mathf.RoundToInt(_levelBar.value)} / {_gameData.level.highValue}";
+            await Task.Yield(); // 다음 프레임까지 대기
+        }
+
         _levelBar.value = exp;
         _levelBar.title = $"{exp} / {_gameData.level.highValue}";
         _gameData.exp = exp;
