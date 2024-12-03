@@ -2832,6 +2832,8 @@ PlayableDirector:
     value: {fileID: 961052083}
   - key: {fileID: 74687324707173814, guid: 5cefccefe2345f3409cfdb604e2a88f5, type: 2}
     value: {fileID: 978245302}
+  - key: {fileID: -5033995100244481708, guid: 5cefccefe2345f3409cfdb604e2a88f5, type: 2}
+    value: {fileID: 1034471227}
   m_ExposedReferences:
     m_References:
     - dcf717446c2a2f74fa26df4ce908752f: {fileID: 682439026}
@@ -6192,6 +6194,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e5a1e95d538ff3b4d95af40651a9e69f, type: 2}
     - {fileID: 11400000, guid: 62cb6ab7ecc3a454ea3ae9eb8d11dfae, type: 2}
     - {fileID: 11400000, guid: 6d24ad3d49d95c548ab3548c2411bab9, type: 2}
+    - {fileID: 11400000, guid: 6b2fcd45ca602bd438d1eff4b93e74be, type: 2}
+    - {fileID: 11400000, guid: c18b8660b4b255b4d91e191eef2286b3, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -6226,6 +6230,34 @@ MonoBehaviour:
         - m_Target: {fileID: 1034471236}
           m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
           m_MethodName: TimelineRotationSet
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1859390512}
+          m_TargetAssemblyTypeName: PlayerMovementComponent, Assembly-CSharp
+          m_MethodName: StopMovement
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1859390512}
+          m_TargetAssemblyTypeName: PlayerMovementComponent, Assembly-CSharp
+          m_MethodName: PlayMovement
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
