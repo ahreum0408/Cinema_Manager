@@ -7,12 +7,6 @@ public class AgentInteractionTrigger : MonoBehaviour
     private StaffController _staffController;
     private IIneractionable _currentInteractionObject;
 
-    private void Awake()
-    {
-        _agentController = GetComponent<AgentController>();
-        _staffController = _agentController as StaffController;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (_staffController != null)
@@ -81,6 +75,7 @@ public class AgentInteractionTrigger : MonoBehaviour
                 if (_staffController.foodContainer.GetPoolObjType() !=
                 other.GetComponentInParent<FoodContainer>().GetPoolObjType()) return;
             }
+
             if (other.GetComponentInParent<DisplayStand>() != null && _staffController.displayStand != null)
             {
                 if (other.GetComponentInParent<DisplayStand>() != _staffController.displayStand) return;
@@ -93,5 +88,11 @@ public class AgentInteractionTrigger : MonoBehaviour
         }
 
         _currentInteractionObject = null;
+    }
+
+    private void Awake()
+    {
+        _agentController = GetComponent<AgentController>();
+        _staffController = _agentController as StaffController;
     }
 }
