@@ -53,6 +53,7 @@ MonoBehaviour:
   _openTarget: {fileID: 0}
   _exp: 10
   _targetType: 0
+  _waitTime: 0.6
 --- !u!1 &2837216399462786531
 GameObject:
   m_ObjectHideFlags: 0

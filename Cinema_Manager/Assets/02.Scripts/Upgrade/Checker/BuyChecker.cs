@@ -10,6 +10,7 @@ public class BuyChecker : CheckerArea, IOpenTarget
     [SerializeField] public GameObject _openTarget;
     [SerializeField] private int _exp;
     [SerializeField] private TargetType _targetType;
+    [SerializeField] private float _waitTime = 0.8f;
 
     public int Exp => _exp;
     public int Price
@@ -58,8 +59,8 @@ public class BuyChecker : CheckerArea, IOpenTarget
         LevelEvents.ChangePriceEvent?.Invoke(this, _price);
     }
     private IEnumerator WaitEnter() {
-            _isCalaulate = true;
-        yield return new WaitForSeconds(2f);
+        _isCalaulate = true;
+        yield return new WaitForSeconds(_waitTime);
 
         if (_isCalaulate) {
             StartCoroutine(CalculateCoin());

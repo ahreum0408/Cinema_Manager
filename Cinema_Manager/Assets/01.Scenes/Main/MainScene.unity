@@ -3928,6 +3928,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03440857
       objectReference: {fileID: 0}
+    - target: {fileID: 1883527501021767405, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: _waitTime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1896279379793491254, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
       propertyPath: _price
@@ -5097,6 +5102,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.03622749
+      objectReference: {fileID: 0}
+    - target: {fileID: 6783792061486695123, guid: b7fd11435216ba14686e91ec034f2d92,
+        type: 3}
+      propertyPath: _waitTime
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 6802728547754701255, guid: b7fd11435216ba14686e91ec034f2d92,
         type: 3}
