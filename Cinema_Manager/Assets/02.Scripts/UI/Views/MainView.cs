@@ -100,8 +100,6 @@ public class MainView : UIView
         SetLevelBarMinMaxValue(data);
         _gameData.level = data;
         _gameData.levelIndex = index;
-        //_levelBar.title = $"0 / {_gameData.level.highValue}";
-        //UpdateExp(_gameData.exp);
         MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void SetLevelBarMinMaxValue(Level data)

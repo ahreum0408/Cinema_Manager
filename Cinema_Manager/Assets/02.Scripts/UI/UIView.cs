@@ -36,7 +36,7 @@ namespace UIToolkit
         {
             if (hideOnAwake)
             {
-                Hide();
+                //Hide();
             }
             SetVisualElements();
             RegisterButtonCallbacks();
