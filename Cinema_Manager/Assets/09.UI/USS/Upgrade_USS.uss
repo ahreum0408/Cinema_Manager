@@ -4,6 +4,9 @@
     width: 100%;
     bottom: 0;
     background-color: rgba(255, 192, 84, 0.53);
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out-back;
+    translate: 0 1050px;
 }
 
 .title-content {

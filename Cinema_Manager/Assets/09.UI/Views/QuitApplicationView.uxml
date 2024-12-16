@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/09.UI/USS/QuitApplication_USS.uss?fileID=7433441132597879392&amp;guid=7e6a7db7487e15a4a80f7c52b36c905e&amp;type=3#QuitApplication_USS" />
+    <Style src="project://database/Assets/09.UI/USS/Text_USS.uss?fileID=7433441132597879392&amp;guid=1dea2d0b00236fc4ab9a01355c8e2a18&amp;type=3#Text_USS" />
+    <Style src="project://database/Assets/09.UI/USS/Button_USS.uss?fileID=7433441132597879392&amp;guid=e14bf1679fc6d6f4dad2eae9b0c340ca&amp;type=3#Button_USS" />
+    <ui:VisualElement name="background" class="background">
+        <ui:VisualElement name="main-container" class="main-container">
+            <ui:Label tabindex="-1" text="정말로 게임을 &#10;종료하시겠습니까?" parse-escape-sequences="true" display-tooltip-when-elided="true" class="text_middle-array_50" />
+        </ui:VisualElement>
+        <ui:VisualElement name="bottom-container" class="top_bottom-container">
+            <ui:VisualElement name="buttom-content" class="button-content">
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="close-btn" class="base-btn" style="height: 100%; max-height: 100px; max-width: 300px; width: 50%;">
+                    <ui:Label tabindex="-1" text="닫기" parse-escape-sequences="true" display-tooltip-when-elided="true" class="btn-middle-array_55" />
+                </ui:Button>
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="quit-btn" class="base-btn" style="height: 100%; max-height: 100px; max-width: 300px; width: 50%;">
+                    <ui:Label tabindex="-1" text="종료" parse-escape-sequences="true" display-tooltip-when-elided="true" class="btn-middle-array_55" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

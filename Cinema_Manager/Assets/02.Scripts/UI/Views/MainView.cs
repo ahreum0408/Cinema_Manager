@@ -69,6 +69,11 @@ public class MainView : UIView
         MainEvents.ShowViewEvent?.Invoke();
     }
 
+    public override void Hide() {
+        base.Hide();
+        Debug.Log("main view hide");
+    }
+
     #region level-bar
     private async void UpdateExp(int exp)
     {
@@ -95,7 +100,8 @@ public class MainView : UIView
         SetLevelBarMinMaxValue(data);
         _gameData.level = data;
         _gameData.levelIndex = index;
-        UpdateExp(_gameData.exp);
+        //_levelBar.title = $"0 / {_gameData.level.highValue}";
+        //UpdateExp(_gameData.exp);
         MainEvents.GameDataUpdatEvent?.Invoke(_gameData);
     }
     private void SetLevelBarMinMaxValue(Level data)

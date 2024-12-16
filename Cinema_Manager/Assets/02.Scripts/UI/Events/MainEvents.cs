@@ -22,6 +22,7 @@ public static class MainEvents
     public static Action PackageMachineUpgradeViewShow;
     public static Action LevelUpViewShow;
 
+    public static Action QuitApplicationViewShow;
 
     // 각 view에서 사용
     public static Action ShowViewEvent;
