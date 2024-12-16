@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UIToolkit;
 using UnityEngine.UIElements;
 
@@ -19,6 +20,7 @@ public class UIManager : MonoSingleton<UIManager>
     private UIView _truckMachineUpgradeView;
     private UIView _packageMachineUpgradeView;
     private UIView _levelUpView;
+    private UIView _quitApplicationView;
 
 
     public const string mainViewName = "MainView";
@@ -28,6 +30,7 @@ public class UIManager : MonoSingleton<UIManager>
     public const string upgradeTruckMachineViewName = "TruckMachineUpgradeView";
     public const string upgradePackageMachineViewName = "PackageMachineUpgradeView";
     public const string levelUpViewName = "LevelUpView";
+    public const string quitApplicationName = "QuitApplicationView";
 
     void OnEnable()
     {
@@ -60,6 +63,7 @@ public class UIManager : MonoSingleton<UIManager>
         _truckMachineUpgradeView = new TruckMachineUpgradeView(root.Q<VisualElement>(upgradeTruckMachineViewName)); // Landing modal screen
         _packageMachineUpgradeView = new PackageMachineUpgradeView(root.Q<VisualElement>(upgradePackageMachineViewName)); // Landing modal screen
         _levelUpView = new LevelUpView(root.Q<VisualElement>(levelUpViewName)); // Landing modal screen
+        _quitApplicationView = new QuitApplicationView(root.Q<VisualElement>(quitApplicationName)); // Landing modal screen
 
         _allViews.Add(_mainView);
         _allViews.Add(_settingView);
@@ -68,6 +72,7 @@ public class UIManager : MonoSingleton<UIManager>
         _allViews.Add(_truckMachineUpgradeView);
         _allViews.Add(_packageMachineUpgradeView);
         _allViews.Add(_levelUpView);
+        _allViews.Add(_quitApplicationView);
 
         _mainView.Show();
     }
@@ -105,6 +110,8 @@ public class UIManager : MonoSingleton<UIManager>
         MainEvents.PackageMachineUpgradeViewShow += ShowPackageMachineUpgradeView;
         MainEvents.LevelUpViewShow += ShowLevelUpView;
 
+        MainEvents.QuitApplicationViewShow += QuitApplicationView;
+
         MainEvents.CloseCurrentEvent += CloseCurrentView;
     }
     private void UnRegisterToEvents()
@@ -116,6 +123,8 @@ public class UIManager : MonoSingleton<UIManager>
         MainEvents.TruckMachineUpgradeViewShow -= ShowTruckMachineUpgradeView;
         MainEvents.PackageMachineUpgradeViewShow -= ShowPackageMachineUpgradeView;
         MainEvents.LevelUpViewShow -= ShowLevelUpView;
+
+        MainEvents.QuitApplicationViewShow -= QuitApplicationView;
 
         MainEvents.CloseCurrentEvent -= CloseCurrentView;
     }
@@ -148,6 +157,9 @@ public class UIManager : MonoSingleton<UIManager>
     private void ShowLevelUpView()
     {
         ChangeShowView(_levelUpView);
+    }
+    private void QuitApplicationView() {
+        ChangeShowView(_quitApplicationView);
     }
     #endregion
     public void ActiveMainView(bool active)

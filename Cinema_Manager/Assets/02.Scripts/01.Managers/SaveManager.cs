@@ -48,16 +48,23 @@ public class SaveManager : MonoBehaviour
     {
         MainEvents.ShowViewEvent += ViewShown;
     }
-
     void OnDisable()
     {
         MainEvents.ShowViewEvent -= ViewShown;
     }
+
+    private void Update() {
+        if (Application.platform == RuntimePlatform.Android) { //안드로이드일때
+            if (Input.GetKey(KeyCode.Escape)) { // 뒤로가기키를 누르면
+                MainEvents.QuitApplicationViewShow.Invoke();
+            }
+        }
+    }
+
     public GameData NewData()
     {
         return new GameData();
     }
-
     public void LoadGame()
     {
         if (gameDataManager.GameData == null)
@@ -77,7 +84,6 @@ public class SaveManager : MonoBehaviour
             GameDataLoadedEvent?.Invoke(gameDataManager.GameData);
         }
     }
-
     public void SaveGameData()
     {
         string jsonFile = gameDataManager.GameData.ToJson();
