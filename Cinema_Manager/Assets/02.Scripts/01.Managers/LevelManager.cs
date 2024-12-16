@@ -174,7 +174,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         _allStand.First(stand => stand.ItemType == PoolableType.Beer).IsFirst = true;
         _allStand.First(stand => stand.ItemType == PoolableType.Snack).IsFirst = true;
         _allStand.First(stand => stand.ItemType == PoolableType.Juice).IsFirst = true;
-        _allStand.First(stand => stand.ItemType == PoolableType.Jelly).IsFirst = true;
+        //_allStand.First(stand => stand.ItemType == PoolableType.Jelly).IsFirst = true;
         _allStand.First(stand => stand.ItemType == PoolableType.Coffee).IsFirst = true;
         _allStand.First(stand => stand.ItemType == PoolableType.Bread).IsFirst = true;
         _allStand.First(stand => stand.ItemType == PoolableType.Soju).IsFirst = true;
