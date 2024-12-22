@@ -69,11 +69,6 @@ public class MainView : UIView
         MainEvents.ShowViewEvent?.Invoke();
     }
 
-    public override void Hide() {
-        base.Hide();
-        Debug.Log("main view hide");
-    }
-
     #region level-bar
     private async void UpdateExp(int exp)
     {

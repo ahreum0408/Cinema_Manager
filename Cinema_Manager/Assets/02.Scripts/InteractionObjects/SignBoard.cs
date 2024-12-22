@@ -50,6 +50,7 @@ public class SignBoard : MonoBehaviour, IOpenTarget
             _collider.enabled = false;
         else
             _collider.enabled = true;
+        LevelEvents.ChangeSignBoardActiveEvent?.Invoke(this, true);
         ScaleSetting();
     }
 
