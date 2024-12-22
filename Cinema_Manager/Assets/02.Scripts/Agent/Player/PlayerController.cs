@@ -31,9 +31,6 @@ public class PlayerController : AgentController
 
     private float _sellingCostWeigth;
 
-    // UnityEvents
-    //public UnityEvent<bool> OnStackMaxed;
-
     #region Main
     protected override void Init()
     {
@@ -163,7 +160,7 @@ public class PlayerController : AgentController
     {
         if (true == data.isMinimumExecution)
         {
-            transform.position = new Vector3(-11.8f, 0, 18.36f);
+            transform.position = new Vector3(-11.1f, 0, 9.7f);
             transform.rotation = Quaternion.Euler(0, 90, 0);
         }
     }
