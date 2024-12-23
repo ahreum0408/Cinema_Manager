@@ -36,7 +36,7 @@ public class UseTable : Conditional
                 if (false == _isPlayingSound)
                 {
                     _isPlayingSound = true;
-                    _soundObj = SoundManager.Instance.Play(AudioClips.SleepCustomer, true, 1, null, true);
+                    _soundObj = SoundManager.Instance.Play(AudioClips.SleepCustomer, true, 1, customer.Value.transform, true);
                 }
 
                 customer.Value.SetBadCanvas(true);

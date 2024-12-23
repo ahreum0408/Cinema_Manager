@@ -1270,7 +1270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 763921075}
   m_Layer: 0
-  m_Name: -------------------------------------------------- (3)
+  m_Name: --------------------------------------------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2546,7 +2546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1217468174}
   m_Layer: 0
-  m_Name: -------------------------------------------------- (2)
+  m_Name: --------------------------------------------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2803,7 +2803,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1389964487}
   m_Layer: 0
-  m_Name: -------------------------------------------------- (1)
+  m_Name: --------------------------------------------------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3244,21 +3244,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 14650354208677501, guid: 1af7f7196d0f4e944bc57859fbf758e1,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 161785012089004053, guid: 1af7f7196d0f4e944bc57859fbf758e1,
         type: 3}
       propertyPath: m_Name
       value: FixLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 548877334114020376, guid: 1af7f7196d0f4e944bc57859fbf758e1,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1203230554144194544, guid: 1af7f7196d0f4e944bc57859fbf758e1,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141319837228181097, guid: 1af7f7196d0f4e944bc57859fbf758e1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.11
       objectReference: {fileID: 0}
     - target: {fileID: 2864442148465448634, guid: 1af7f7196d0f4e944bc57859fbf758e1,
         type: 3}
       propertyPath: _truckCameraTimeline
       value: 
       objectReference: {fileID: 1502713802}
+    - target: {fileID: 4966390701416901698, guid: 1af7f7196d0f4e944bc57859fbf758e1,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5861256126034125792, guid: 1af7f7196d0f4e944bc57859fbf758e1,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001043522741448127, guid: 1af7f7196d0f4e944bc57859fbf758e1,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6233298514361772759, guid: 1af7f7196d0f4e944bc57859fbf758e1,
         type: 3}
       propertyPath: _startTimeline
       value: 
       objectReference: {fileID: 1906034726}
+    - target: {fileID: 8465892605390198342, guid: 1af7f7196d0f4e944bc57859fbf758e1,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: d5700f766c180734897cd2bc9b7f9d46,
+        type: 2}
     - target: {fileID: 9133975283715901661, guid: 1af7f7196d0f4e944bc57859fbf758e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3675,7 +3716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1862276234
 MonoBehaviour:
   m_ObjectHideFlags: 0

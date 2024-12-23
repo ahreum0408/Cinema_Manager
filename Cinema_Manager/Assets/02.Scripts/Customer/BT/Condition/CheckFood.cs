@@ -28,7 +28,7 @@ public class CheckFood : Conditional
             if(isStartBad)
             {
                 // Play Sound
-                _soundObj = SoundManager.Instance.Play(AudioClips.CallCustomer, true, 1.5f, null, true);
+                _soundObj = SoundManager.Instance.Play(AudioClips.CallCustomer, true, 1.5f, customer.Value.transform, true);
 
                 StopCustomers();
                 customer.Value.SetBadCanvas(true);

@@ -118,7 +118,6 @@ public class CustomerSpawnManager : MonoSingleton<CustomerSpawnManager>
                 break;
             case PoolableType.Coke:
             case PoolableType.Beer:
-            case PoolableType.Jelly:
             case PoolableType.Soju:
                 maxCustomer += 2;
                 break;

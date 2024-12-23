@@ -77,6 +77,12 @@ public class PlayerController : AgentController
     private void Update()
     {
         HandleInputVaueChanged();
+
+        // 개발자키
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CoinManager.Instance.Coin += 1000;
+        }
     }
 
     protected override void OnDisable()

@@ -8,8 +8,8 @@ public class LodingView : MonoBehaviour
     private float _currentTime = 0;
     private float _delayTime;
 
-    private float _minDelayTime = 0.8f;
-    private float _maxDelayTime = 1.2f;
+    private float _minDelayTime = 1f;
+    private float _maxDelayTime = 1.4f;
 
     private void Awake()
     {
@@ -43,7 +43,8 @@ public class LodingView : MonoBehaviour
 
         // Sound
         SoundManager.Instance.LodingSet(_isLoding);
-        SoundManager.Instance.Play(AudioClips.BGM, 1, null, true);
+        // 영상 촬영 때문에 BGM 끈거니까 다시 키기
+        // SoundManager.Instance.Play(AudioClips.BGM, 1, null, true);
 
         UIManager.Instance.ActiveMainView(true);
         gameObject.SetActive(false);

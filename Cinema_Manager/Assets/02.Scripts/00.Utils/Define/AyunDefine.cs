@@ -65,7 +65,7 @@ public static class AyunDefine
     {
         None,
         TriangleKimbap, Coke, CupRamen, Beer, Snack,
-        Juice, Jelly, Coffee, Bread, Soju,
+        Juice, Bread, Coffee, Soju,
         Money, Trash,
         Box,
 
