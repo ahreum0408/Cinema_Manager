@@ -159,7 +159,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 7e58dd27d61eb2f4e964d03d05c25373, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d5700f766c180734897cd2bc9b7f9d46, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &172702008500806503
 GameObject:
@@ -7518,6 +7518,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2207348890665723945}
     m_Modifications:
+    - target: {fileID: 2409441080316009945, guid: b2cb33d908e89a9408cd28c75fa8c310,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3221833126124713129, guid: b2cb33d908e89a9408cd28c75fa8c310,
         type: 3}
       propertyPath: _exp
@@ -7581,6 +7586,11 @@ PrefabInstance:
     - target: {fileID: 5139612716018582244, guid: b2cb33d908e89a9408cd28c75fa8c310,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373352253431280837, guid: b2cb33d908e89a9408cd28c75fa8c310,
+        type: 3}
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5375754696256994203, guid: b2cb33d908e89a9408cd28c75fa8c310,
@@ -16764,6 +16774,11 @@ PrefabInstance:
       propertyPath: _calculateWeight
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5532484563715101120, guid: 8d830403d3e18d6408a51ac6d0b101b6,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7920962156427046775, guid: 8d830403d3e18d6408a51ac6d0b101b6,
         type: 3}
       propertyPath: m_Name
@@ -20809,6 +20824,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _calculateWeight
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163609394001197865, guid: eae7faebbe2833b49ade21fff676b12d,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36486,6 +36506,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2108691258163525819, guid: 5fa1cecd2a0738c4287686fdbf0bf150,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2331578082663709809, guid: 5fa1cecd2a0738c4287686fdbf0bf150,
         type: 3}
       propertyPath: _exp
@@ -36807,6 +36832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _calculateWeight
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532484563715101120, guid: 8d830403d3e18d6408a51ac6d0b101b6,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7920962156427046775, guid: 8d830403d3e18d6408a51ac6d0b101b6,
         type: 3}
@@ -40568,6 +40598,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923812826283996118, guid: 6bbf4a074fffedf48b331d9494df6ce7,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3764488885407808421, guid: 6bbf4a074fffedf48b331d9494df6ce7,
         type: 3}
@@ -52706,6 +52741,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FTruck_Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 8392068016418795618, guid: a4791cdc296c6184d93096a6e15b7c45,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -56068,6 +56108,11 @@ PrefabInstance:
       propertyPath: _calculateWeight
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 4163609394001197865, guid: eae7faebbe2833b49ade21fff676b12d,
+        type: 3}
+      propertyPath: _poolObjType
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -56298,7 +56343,7 @@ PrefabInstance:
     - target: {fileID: 7197679919718481903, guid: 8d5b11566767f0c4bbda10952def5149,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.18
+      value: -14.11
       objectReference: {fileID: 0}
     - target: {fileID: 7197679919718481903, guid: 8d5b11566767f0c4bbda10952def5149,
         type: 3}

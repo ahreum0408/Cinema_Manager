@@ -47,7 +47,6 @@ public class CheckFood : Conditional
 
                     customer.Value.AnimationCompo.CallAnimation(-1);
                     customer.Value.CurrentCustomerType = CustomerType.Basic;
-                    CustomerSpawnManager.Instance.MinusBadCustomer();
 
                     // Stop Sound
                     SoundManager.Instance.PushSoundObj(_soundObj);

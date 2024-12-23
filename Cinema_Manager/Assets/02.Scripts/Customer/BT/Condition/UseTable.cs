@@ -54,7 +54,6 @@ public class UseTable : Conditional
 
                         customer.Value.AnimationCompo.SleepAnimation(-1);
                         customer.Value.CurrentCustomerType = CustomerType.Basic;
-                        CustomerSpawnManager.Instance.MinusBadCustomer();
 
                         // Stop Sound
                         SoundManager.Instance.PushSoundObj(_soundObj);
